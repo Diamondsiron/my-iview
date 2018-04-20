@@ -61,28 +61,34 @@ export default {
 <style scoped>
 .sidebar{
   width: 200px;
-  overflow: hidden;
+  overflow: auto;
   position: fixed;
   top:0px;
   left: 0px;
   height: 100%;
+  background-color: rgb(73, 80, 96);
+  color:#fff
 }
 .header{
+  padding-left: 200px;
+  box-sizing: border-box;
   position: fixed;
- 
+  display: block;
+  width: 100%;
   height: 100px;
-  left: 200px;
-  top:0;
+   
 }
 .page{
+    left: 200px;
     position: absolute;
     top: 100px;
-    left: 200px;
-    min-width: 600px;
+    right: 0;
     bottom: 0;
     overflow: auto;
+    background-color: #F0F0F0;
 }
 .page-contains{
   padding:10px;
+  background-color: #fff
 }
 </style>

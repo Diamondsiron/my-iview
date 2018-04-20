@@ -79,6 +79,7 @@ export default {
 <style>
 .image-editor{
     width: 100%;
+    height: 200px;
 }
 .cropper{
     box-sizing: border-box;
@@ -87,7 +88,7 @@ export default {
     height: 100%;
     
 }
-.cropper>img{
+.cropper img{
     max-height: 100%;
 }
 
