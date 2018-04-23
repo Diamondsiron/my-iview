@@ -30,8 +30,20 @@ export default new Router({
           { path: 'searchableTable', title: '可搜索表格', name: 'searchable-table', icon: 'search', component: () => import('@/views/tables/searchable-table.vue') },
           { path: 'exportableTable', title: '表格导出数据', name: 'exportable-table', icon: 'code-download', component: () => import('@/views/tables/exportable-table.vue') },
           { path: 'table2image', title: '表格转图片', name: 'table-to-image', icon: 'images', component: () => import('@/views/tables/table-to-image.vue') }
-      ]
-  },
+        ]
+    },
+    {
+      path: '/advanced-router',
+      icon: 'ios-infinite',
+      name: 'advanced-router',
+      title: '高级路由',
+      component: Mains,
+      children: [
+            { path: 'mutative-router', title: '动态路由', name: 'mutative-router', icon: 'link', component: () => import('@/views/advanced-router/mutative-router.vue') },
+            { path: 'argument-page', title: '带参页面', name: 'argument-page', icon: 'android-send', component: () => import('@/views/advanced-router/argument-page.vue') },
+            { path: 'order-info/:id', title: '带参详情页面', name: 'order-info', icon: 'android-send', component: () => import('@/views/advanced-router/order-info.vue') }
+        ]
+    }
     
 
   ]

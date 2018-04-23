@@ -1,3 +1,4 @@
+//生成execl的黑科技用法，安全性可能有问题，无样式，只有内容
 var idTmr;
 function getExplorer () {
     var explorer = window.navigator.userAgent;
@@ -87,6 +88,7 @@ let tableToExcel = (function () {
     };
     return function (table, aId, name) {
         let ctx = {worksheet: name || 'Worksheet', table: table};
+        //下载全靠a 和下载图片一样
         document.getElementById(aId).href = uri + base64(format(template, ctx));
         document.getElementById(aId).download = name;
         document.getElementById(aId).click();
