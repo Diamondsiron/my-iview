@@ -2,10 +2,12 @@
     <div class="image-editor">
         <Row :gutter="10">
             <Col span="12">
-                <Card>
+                
+                    <Col span="14" class="image-editor-con1">
                      <div class="cropper">
                                 <img id="cropimg1"src="static/images/logo.jpg" alt="">
                     </div>
+                    </Col>
                     <Row type="flex" justify="center" align="middle" class="image-editor-con1-preview-con">
                                 <div id="preview1"></div>
                             </Row>
@@ -19,7 +21,7 @@
                                 <img :src="option1.cropedImg" alt="" v-if="option1.showCropedImage" style="width: 100%;">
                             </Modal>
 
-                </Card>
+                
             </Col>
             <Col span="12">
             </Col>
@@ -84,8 +86,8 @@ export default {
 .cropper{
     box-sizing: border-box;
     border: 1px solid #c3c3c3;
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 300px;
     
 }
 .cropper img{
