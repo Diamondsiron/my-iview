@@ -11,12 +11,21 @@ export default new Router({
       name: 'otherRouter',
       
       component: Mains,
+     
+    },
+    {
+      path: '/component',
+      icon: 'social-buffer',
+      name: 'component',
+      title: '组件',
+      component: Mains,
       children:[
-        {path:'home',title:'home',name:'home_index',component:()=>import('../views/home/home.vue')},
-        {path:'image-editor',title:'image-editor',name:'image-editor',component:()=>import('../views/my-components/image-editor/image-editor.vue')},
-        {path:'text-editor',title:'text-editor',name:'text-editor',component:()=>import('../views/my-components/text-editor/text-editor.vue')},
+        {path:'home',title:'home',name:'home_index',component:()=>import('@/views/home/home.vue')},
+        {path:'image-editor',title:'image-editor',name:'image-editor',component:()=>import('@/views/my-components/image-editor/image-editor.vue')},
+        {path:'text-editor',title:'text-editor',name:'text-editor',component:()=>import('@/views/my-components/text-editor/text-editor.vue')},
 
       ]
+
     },
     {
       path: '/tables',
@@ -43,7 +52,27 @@ export default new Router({
             { path: 'argument-page', title: '带参页面', name: 'argument-page', icon: 'android-send', component: () => import('@/views/advanced-router/argument-page.vue') },
             { path: 'order-info/:id', title: '带参详情页面', name: 'order-info', icon: 'android-send', component: () => import('@/views/advanced-router/order-info.vue') }
         ]
-    }
+    },
+    {
+      path: '/*',
+      name: 'error-404',
+      meta: {
+          title: '404-页面不存在'
+      },
+      component: () => import('@/views/error-page/404.vue')
+    },
+    {
+      path: '/form',
+      icon: 'android-checkbox',
+      name: 'form',
+      title: '表单编辑',
+      component: Mains,
+      children: [
+          { path: 'artical-publish', title: '文章发布', name: 'artical-publish', icon: 'compose', component: () => import('@/views/form/article-publish.vue') },
+          { path: 'workflow', title: '工作流', name: 'workflow', icon: 'arrow-swap', component: () => import('@/views/form/work-flow.vue') }
+
+        ]
+    },
     
 
   ]

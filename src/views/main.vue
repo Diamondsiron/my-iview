@@ -70,7 +70,7 @@ export default {
   color:#fff
 }
 .header{
-  padding-left: 200px;
+  left: 200px;
   box-sizing: border-box;
   position: fixed;
   display: block;

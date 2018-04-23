@@ -5,9 +5,9 @@
       <li>
         <div>组件</div>
         <ul>
-          <li @click="handleChange()">富文本编辑器</li>
+          <li @click="handleChange('text-editor')">富文本编辑器</li>
           <li @click="handleChange()">markdown编辑</li>
-          <li @click="handleChange()">图片预览编辑</li>
+          <li @click="handleChange('image-editor')">图片预览编辑</li>
            <li @click="handleChange()">可拖拽列表</li>
           <li @click="handleChange()">城市联动</li>
           <li @click="handleChange()">文件上传</li>
@@ -18,8 +18,8 @@
       <li>
         <div>表单编辑</div>
         <ul>
-          <li>文章发布</li>
-          <li>工作流</li>
+          <li @click="handleChange('artical-publish')">文章发布</li>
+          <li @click="handleChange('workflow')">工作流</li>
         </ul>
       </li>
       <li>
@@ -58,7 +58,7 @@ export default{
   },
   methods:{
     handleChange(name){
-     
+      console.log(name)
       this.$router.push({
           name:name
       });
