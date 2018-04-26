@@ -1,6 +1,24 @@
 <template>
 <div>
   <Table border :columns="columns7" :data="data6"></Table>
+   <div style="margin-top:100px;">
+      <table ref="dragable" cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
+        <thead>
+          <tr>
+            <th v-for="(item,index) in columnsList" :key="index" v-bind:class="{xx:index==0}" ><div ><span>{{item}}</span></div></th>
+            
+          </tr>
+        </thead>
+        <tbody ref="tab">
+          <tr v-for="(item,index) in tableData" :key="index" >
+            <td class="xx"><div><span>{{item.title}}</span></div></td>
+             <td ><div ><span>{{item.todoItem}}</span></div></td> 
+             <td ><div ><span>{{item.remarks}}</span></div></td> 
+             <td><div><span>{{item.move}}</span><Button disabled="disabled">不能用</Button></div></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
 </div>
   
 </template>
@@ -89,7 +107,58 @@
                         age: 26,
                         address: 'Ottawa No. 2 Lake Park'
                     }
-                ]
+                ],
+                columnsList: ['序号','待办事项','备注','拖拽'],
+        tableData: [
+                {   
+                    title:0,
+                    todoItem: '明天去后海玩',
+                    remarks: '估计得加班',
+                    move:'闹'
+                },
+                {
+                     title:1,
+                    todoItem: '后天去和妹子看电影',
+                    remarks: '可能没妹子',
+                    move:'闹'
+                },
+                {
+                     title:2,
+                    todoItem: '大后天去吃海天盛筵',
+                    remarks: '没钱就不去了',
+                    move:'闹'
+                },
+                {
+                     title:3,
+                    todoItem: '周末去看电影',
+                    remarks: '估计得加班',
+                    move:'闹'
+                },
+                {
+                     title:4,
+                    todoItem: '下个月准备回家看父母',
+                    remarks: '估计得加班',
+                    move:'闹'
+                },
+                {
+                     title:5,
+                    todoItem: '该买回家的票了',
+                    remarks: '可能没票了',
+                    move:'闹'
+                },
+                {
+                     title:6,
+                    todoItem: '过年不回家和父母视频聊天',
+                    remarks: '一定要记得',
+                    move:'闹'
+                },
+                {
+                     title:7,
+                    todoItem: '去车站接父母一起在北京过年',
+                    remarks: 'love',
+                    move:'闹'
+                }
+               ] 
       }
     },
     methods:{
@@ -108,3 +177,52 @@
 
   }
 </script>
+<style scoped>
+.xx{
+    border-left: 1px solid #e9eaec;
+}
+th{
+    border-right: 1px solid #e9eaec;height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #f8f8f9;    min-width: 0;
+    box-sizing: border-box;
+    text-align: left;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    border-top: 1px solid #e9eaec;
+    border-bottom: 1px solid #e9eaec;
+   
+}
+th div{
+     word-wrap: normal;
+    vertical-align: middle;    padding-left: 18px;
+    padding-right: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
+    box-sizing: border-box;
+}
+td{
+    border-right: 1px solid #e9eaec;background-color: #fff;
+    transition: background-color .2s ease-in-out;    min-width: 0;
+    height: 48px;
+    box-sizing: border-box;
+    text-align: left;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9eaec;
+}
+td div{
+    padding-left: 18px;
+    padding-right: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
+    box-sizing: border-box;
+
+}
+</style>
+
