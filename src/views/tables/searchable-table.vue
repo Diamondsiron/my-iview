@@ -9,7 +9,7 @@
         </thead>
         <tbody ref="tab">
           <tr v-for="(item,index) in tableData" :key="index" >
-            <td>{{item.title}}</td>
+            <td>{{item.title}}1</td>
             <td>{{item.todoItem}}</td>
             <td>{{item.remarks}}</td>
             <td>{{item.move}}</td>
@@ -19,10 +19,10 @@
     
     <input type="text" v-model="searchConName" @change="handleSearch()">
     <div class="thumb" ref="thumb" id="thumb">
-     <!--  <img src="static/images/cropper-test.png" alt="" ref="img"> -->
-      <!-- <img src="static/images/xxx.png" alt="" ref="img"> -->
-      <!-- <img src="static/images/bbb.png" alt="" ref="img"> -->
-      <img src="static/images/aaa.png" alt="" ref="img">
+      <img src="static/images/cropper-test.png" alt="" ref="img" class="img-responsive" id="img">
+     <!--  <img src="static/images/xxx.png" alt="" ref="img" class="img-responsive" id="img"> -->
+      <!--  <img src="static/images/bbb.png" alt="" ref="img" class="img-responsive" id="img">  -->
+      <!-- <img src="static/images/aaa.png" alt="" ref="img" class="img-responsive" id="img"> -->
     </div>
   <!--   <div class="thumbs">
       
@@ -39,6 +39,7 @@
     data(){
       return{
         searchConName:'',
+        message : "xuxiao is boy" ,
         columnsList: ['序号','待办事项','备注','拖拽'],
         tableData: [
                 {   
@@ -112,21 +113,12 @@
         console.log("onChange")
       },
       resizeImg(){
-        /* let thumb =document.getElementById("thumb").width
-        let img = this.$refs.img.width
-        console.log(thumb)
-        console.log(img) */
-        //988 544 1200 600
-   /*    let imgwidth = 988
-      let imgheight = 544 */
-       /* let imgwidth = 984
-      let imgheight = 112 */
-     /*  let imgwidth = 386
-      let imgheight = 737 */
-      let imgwidth = 1444
-      let imgheight = 278
-      let divwidth = 1200
-      let divheigth = 600
+        
+      let imgwidth = this.$refs.img.offsetWidth
+      let imgheight =this.$refs.img.offsetHeight
+      let divwidth =this.$refs.thumb.offsetWidth
+      let divheigth = this.$refs.thumb.offsetHeight
+      console.log(imgwidth,imgheight,divwidth,divheigth)
       let a = divwidth/imgwidth
       let b = divheigth/imgheight
        console.log(a,b)
@@ -156,15 +148,24 @@
       }
        
      
-        console.log(this.$refs.img.style,imgwidth,imgheight)
+        
          
+      },
+      getSize(){
+        let thumb =document.getElementById("thumb").width
+        let img = this.$refs.img.width
+        console.log(thumb,img)
       }
 
     },
     mounted(){
-      this.resizeImg();
-    }
-
+      let vm = this
+      document.getElementById("img").addEventListener("load",function(){
+       vm.resizeImg();
+      })
+        
+    } 
+   
   }
 </script>
 <style scoped>
@@ -188,5 +189,6 @@
   background-image: url(../../../static/images/cropper-test.png);
 
 }
+
 </style>
 
