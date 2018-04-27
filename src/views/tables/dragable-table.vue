@@ -16,7 +16,11 @@
           </tr>
         </tbody>
       </table>
-    
+      <input id="file" type="file" >
+      
+      <div id="fileList"></div>
+      <div @click="doupload()">玩呢</div>
+      <img src="" alt="" id="preViewImg">
   </div>
   
 </template>
@@ -27,6 +31,7 @@
     name:'dragable-table',
     data(){
       return{
+       
         columnsList: ['序号','待办事项','备注','拖拽'],
         tableData: [
                 {   
@@ -83,7 +88,7 @@
     methods:{
       init(){
         var el = this.$refs.tab
-        console.log(el)
+        
         let vm = this;
         Sortable.create(el,{
           onStart:vm.startFunc,
@@ -94,21 +99,60 @@
 
       },
       startFunc(e){
-        console.log("oldIndex",e.oldIndex)
+       
       },
       endFunc(e){
         let vm = this;
        
-        console.log("oldIndex",e.oldIndex)
-        console.log("newIndex",e.newIndex)
+      
       },
       chooseFunc(e){
-         console.log("oldIndex",e.oldIndex)
+         
+      },
+      upload(){
+        document.getElementById("file").addEventListener("change", function(e){
+          
+            var d = document.getElementById("fileList");
+            //加载出正常的图片
+            var img = document.createElement("img");
+            img.id="aa";
+            img.src = window.URL.createObjectURL(e.target.files[0]);
+            img.height = 60;
+            img.onload = function() {
+              window.URL.revokeObjectURL(this.src);
+            }
+            d.appendChild(img);
+            //加载出canva压缩后的图片
+            
+        });
+      },
+      doupload(){
+        var c=document.createElement("canvas");
+        let img = document.getElementById("aa");
+        c.width=img.width;c.height=img.height;
+        c.getContext("2d").drawImage(img, 0, 0,img.width,img.height);
+        var image = new Image();
+        image.crossOrigin = "*";
+        image.setAttribute('crossOrigin', 'anonymous');
+        image = c.toDataURL("image/png");
+        console.log(image)
+        document.getElementById("preViewImg").src=image; 
+        image=image.split(',')[1];
+        image=window.atob(image);
+        var ia = new Uint8Array(image.length);
+        for (var i = 0; i < image.length; i++) {
+        ia[i] = image.charCodeAt(i);
+              }
+          var name=new Blob([ia], {type:"image/png"});
+        console.log(name)
+          
+
       }
 
     },
     mounted(){
-      this.init()
+      this.init();
+      this.upload()
     }
 
   }

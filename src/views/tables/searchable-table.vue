@@ -18,6 +18,18 @@
       </table>
     
     <input type="text" v-model="searchConName" @change="handleSearch()">
+    <div class="thumb" ref="thumb" id="thumb">
+     <!--  <img src="static/images/cropper-test.png" alt="" ref="img"> -->
+      <!-- <img src="static/images/xxx.png" alt="" ref="img"> -->
+      <!-- <img src="static/images/bbb.png" alt="" ref="img"> -->
+      <img src="static/images/aaa.png" alt="" ref="img">
+    </div>
+  <!--   <div class="thumbs">
+      
+    </div> -->
+    <div style="margin-top:500px;">
+
+    </div>
   </div>
   
 </template>
@@ -98,9 +110,83 @@
         let vm = this
         this.tableData = this.search(vm.tableData,{todoItem:vm.searchConName})
         console.log("onChange")
+      },
+      resizeImg(){
+        /* let thumb =document.getElementById("thumb").width
+        let img = this.$refs.img.width
+        console.log(thumb)
+        console.log(img) */
+        //988 544 1200 600
+   /*    let imgwidth = 988
+      let imgheight = 544 */
+       /* let imgwidth = 984
+      let imgheight = 112 */
+     /*  let imgwidth = 386
+      let imgheight = 737 */
+      let imgwidth = 1444
+      let imgheight = 278
+      let divwidth = 1200
+      let divheigth = 600
+      let a = divwidth/imgwidth
+      let b = divheigth/imgheight
+       console.log(a,b)
+      if(a<b&&a>1){
+        imgwidth=divwidth
+        imgheight = imgheight*a
+        this.$refs.img.width=imgwidth;
+        this.$refs.img.height=imgheight;
+      }else if(a>b&&b>1){
+         imgheight=divheigth
+         imgwidth = imgwidth*b
+         this.$refs.img.width=imgwidth;
+         this.$refs.img.height=imgheight;
+         this.$refs.img.style.marginLeft='auto'
+         this.$refs.img.style.marginRight='auto'
+
+      }else if(a>b&&b<1){
+         imgwidth = imgwidth*b
+         imgheight = imgheight*b
+         this.$refs.img.width=imgwidth;
+        this.$refs.img.height=imgheight;
+      }else if(a<b&&a<1){
+         imgwidth = imgwidth*a
+         imgheight = imgheight*a
+         this.$refs.img.width=imgwidth;
+        this.$refs.img.height=imgheight;
+      }
+       
+     
+        console.log(this.$refs.img.style,imgwidth,imgheight)
+         
       }
 
     },
+    mounted(){
+      this.resizeImg();
+    }
 
   }
 </script>
+<style scoped>
+.thumb{
+  width: 1200px;
+  height: 600px;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.thumb img{
+  
+}
+.thumbs{
+  width: 1200px;
+  height: 600px;
+  background: red;
+  background-position: center;
+  background-size: cover;
+  background-image: url(../../../static/images/cropper-test.png);
+
+}
+</style>
+

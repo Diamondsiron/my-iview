@@ -14,7 +14,7 @@
             <td class="xx"><div><span>{{item.title}}</span></div></td>
              <td ><div ><span>{{item.todoItem}}</span></div></td> 
              <td ><div ><span>{{item.remarks}}</span></div></td> 
-             <td><div><span>{{item.move}}</span><Button disabled="disabled">不能用</Button></div></td>
+             <td><div><span>{{item.move}}</span><Button >不能用</Button></div></td>
           </tr>
         </tbody>
       </table>
