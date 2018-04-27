@@ -24,11 +24,11 @@
       <!--  <img src="static/images/bbb.png" alt="" ref="img" class="img-responsive" id="img">  -->
       <!-- <img src="static/images/aaa.png" alt="" ref="img" class="img-responsive" id="img"> -->
     </div>
-  <!--   <div class="thumbs">
-      
-    </div> -->
+    <div class="thumbs">
+     
+    </div>
     <div style="margin-top:500px;">
-
+        
     </div>
   </div>
   
@@ -170,8 +170,8 @@
 </script>
 <style scoped>
 .thumb{
-  width: 1200px;
-  height: 600px;
+  width: 400px;
+  height: 400px;
   background: black;
   display: flex;
   align-items: center;
@@ -181,8 +181,10 @@
   
 }
 .thumbs{
-  width: 1200px;
-  height: 600px;
+  background-position: 50%;
+  margin-top:20px;
+  width: 400px;
+  height: 400px;
   background: red;
   background-position: center;
   background-size: cover;

@@ -145,6 +145,36 @@
               }
           var name=new Blob([ia], {type:"image/png"});
         console.log(name)
+        /* 
+        压缩
+        // 图片原始尺寸
+        var originWidth = img.width;
+        var originHeight = img.height;
+        // 最大尺寸限制
+        var maxWidth = 400, maxHeight = 400;
+        // 目标尺寸
+        var targetWidth = originWidth, targetHeight = originHeight;
+        // 图片尺寸超过400x400的限制
+        if (originWidth > maxWidth || originHeight > maxHeight) {
+            if (originWidth / originHeight > maxWidth / maxHeight) {
+                // 更宽，按照宽度限定尺寸
+                targetWidth = maxWidth;
+                targetHeight = Math.round(maxWidth * (originHeight / originWidth));
+            } else {
+                targetHeight = maxHeight;
+                targetWidth = Math.round(maxHeight * (originWidth / originHeight));
+            }
+        }
+            
+        // canvas对图片进行缩放
+        c.width = targetWidth;
+        c.height = targetHeight;
+        var context = canvas.getContext('2d');
+        // 清除画布
+       context.clearRect(0, 0, targetWidth, targetHeight);
+        // 图片压缩
+        context.drawImage(img, 0, 0, targetWidth, targetHeight);
+         */
           
 
       }
