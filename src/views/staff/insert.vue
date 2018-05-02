@@ -1,0 +1,96 @@
+<template>
+  <div>
+      <div>
+          <table>
+              <tr>
+                  <th>增加人员信息</th>
+              </tr>
+              <tr>
+                  <td>人员代码</td>
+                  <td></td>
+                  <td>人员姓名</td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td>性别</td>
+                  <td></td>
+                  <td>出生日期</td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td>证件类型</td>
+                  <td></td>
+                  <td>证件号码</td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td>入职日期</td>
+                  <td></td>
+                  <td>离职日期</td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td>人员状态</td>
+                  <td></td>
+                  <td>邮箱</td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td>办公电话</td>
+                  <td></td>
+                  <td>手机号码</td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td>家庭住址</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td>公司名称</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td>备注说明</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td>操作员信息</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td>用户登陆名</td>
+                  <td></td>
+                  <td>密码</td>
+                  <td></td>
+              </tr>
+               <tr>
+                  <td>操作员状态</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+          </table>
+      </div>
+      <div>
+          <button >保存</button>
+          <button>取消</button>
+      </div>
+  </div>
+</template>
+<script>
+    export default{
+      
+    }
+</script>
+<style scoped>
+
+</style>
+
