@@ -18,39 +18,39 @@
                 <Submenu name="1">
                     <template slot="title">
                         <Icon type="ios-navigate"></Icon>
-                        Item 1
+                        公司信息管理
                     </template>
-                    <MenuItem name="1-1"><router-link :to="{ path: '/company/insert'}" style="color:#fff">新增公司</router-link></MenuItem>
-                    <MenuItem name="1-2"><router-link :to="{ path: '/company/list'}" style="color:#fff">公司列表</router-link></MenuItem>
-                    <MenuItem name="1-3">Option 3</MenuItem>
+                  
+                    <MenuItem name="1-2"><router-link :to="{ path: '/company/list'}" style="color:#fff">公司管理</router-link></MenuItem>
+                   
                 </Submenu>
                 <Submenu name="2">
                     <template slot="title">
                         <Icon type="ios-keypad"></Icon>
-                        Item 2
+                       权限管理
                     </template>
-                    <MenuItem name="2-1">Option 1</MenuItem>
-                    <MenuItem name="2-2">Option 2</MenuItem>
+                    <MenuItem name="2-1"><router-link :to="{ path: '/company/liststaff'}" style="color:#fff">角色管理</router-link></MenuItem>
+                   
                 </Submenu>
-                <Submenu name="3">
-                    <template slot="title">
-                        <Icon type="ios-analytics"></Icon>
-                        Item 3
-                    </template>
-                    <MenuItem name="3-1">Option 1</MenuItem>
-                    <MenuItem name="3-2">Option 2</MenuItem>
-                </Submenu>
+               
             </Menu>
         </Sider>
         <Layout :style="{marginLeft: '200px'}">
             <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}"></Header>
           
-                
-                    <span @click="fullscreeen(value)">全屏</span>
+                    <div style="position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 300px;">
+    <span @click="fullscreeen(value)">全屏</span>
                     <span @click="lockscreen()">锁屏</span>
                     <span>admin</span>
+
+                    </div>
+                    
                 
-                <Card>
+                <Card style="background-color:rgb(240,240,240)">
                      <keep-alive>
                         <router-view></router-view>
                     </keep-alive>
@@ -60,12 +60,7 @@
     </div>
 </template>
 <script>
-const setLockBackSize = () => {
-    let x = document.body.clientWidth;
-    let y = document.body.clientHeight;
-    let r = Math.sqrt(x * x + y * y);
-    return parseInt(r);
-};
+
     export default {
         name:'mains',
         data(){
@@ -113,23 +108,17 @@ const setLockBackSize = () => {
             }
             },
             lockscreen(){
-                let lockScreenBack = document.getElementById('lock_screen_back');
-                console.log(lockScreenBack);
-                lockScreenBack.style.transition = 'all 3s';
-                lockScreenBack.style.zIndex = 10000;
-                lockScreenBack.style.boxShadow = '0 0 0 ' + this.lockScreenSize + 'px #667aa6 inset';
-                setTimeout(() => {
-                    lockScreenBack.style.transition = 'all 0s';
+                
+               
+                    
                     this.$router.push({
                         name: 'locking'
                     }); 
-                }, 800);
+                
               
             }
         },
-        mounted(){
-          
-        }
+       
         
     }
 </script>
