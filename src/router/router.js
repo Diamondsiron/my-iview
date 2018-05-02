@@ -16,7 +16,11 @@ export const loginRouter ={
   },
   component: () => import('@/views/login.vue')
 }
-
+export const locking = {
+  path: '/locking',
+  name: 'locking',
+  component: () => import('@/views/lockscreeen/lockscreeen.vue')
+};
 export const otherRouter = {
   path: '/',
   name: 'otherRouter',
@@ -87,6 +91,71 @@ export const appRouter = [
 
       ]
   },
+  {
+    path: '/company',
+    icon: 'key',
+    name: 'company',
+    title: '公司管理',
+    component: Mains,
+    children: [
+        {
+            path: 'insert',
+            icon: 'compose',
+            name: 'insert',
+            title: '新增',
+            component: () => import('@/views/company/insert.vue')
+        },
+        {
+            path: 'update',
+            icon: 'compose',
+            name: 'update',
+            title: '修改',
+            component: () => import('@/views/company/update.vue')
+        },
+        {
+            path: 'detail',
+            icon: 'compose',
+            name: 'detail',
+            title: '详情',
+            component: () => import('@/views/company/detail.vue')
+        },
+        {
+            path: 'list',
+            icon: 'compose',
+            name: 'list',
+            title: '列表',
+            component: () => import('@/views/company/list.vue')
+        },
+        {
+            path: 'insertstaff',
+            icon: 'compose',
+            name: 'insertstaff',
+            title: '新增',
+            component: () => import('@/views/staff/insert.vue')
+        },
+        {
+            path: 'updatestaff',
+            icon: 'compose',
+            name: 'updatestaff',
+            title: '修改',
+            component: () => import('@/views/staff/update.vue')
+        },
+        {
+            path: 'detailstaff',
+            icon: 'compose',
+            name: 'detailstaff',
+            title: '详情',
+            component: () => import('@/views/staff/detail.vue')
+        },
+        {
+            path: 'liststaff',
+            icon: 'compose',
+            name: 'liststaff',
+            title: '列表',
+            component: () => import('@/views/staff/list.vue')
+        },
+    ]
+  }
   
 
 ]
@@ -95,6 +164,7 @@ export const routers = [
  
   loginRouter,
   otherRouter,
+  locking,
   ...appRouter,
   page404,
 
