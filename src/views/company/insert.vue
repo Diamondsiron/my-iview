@@ -22,7 +22,11 @@
                    <td><div>公司名称</div></td>
                    <td><div><Input></Input></div></td>
                    <td><div>公司类别</div></td>
-                   <td><div><Input></Input></div></td>
+                   <td><div>
+                      <Select   value="男">
+                            <Option v-for="item in list" :value="item" :key="item">{{ item }}</Option>
+                        </Select>
+                    </div></td>
                </tr>
                <tr>
                    <td><div>公司状态</div></td>
@@ -56,7 +60,11 @@
 </template>
 <script>
     export default{
-      
+        data(){
+            return{
+                list:['类别1','类别2']
+            }
+        }
     }
 </script>
 <style scoped>

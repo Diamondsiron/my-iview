@@ -36,7 +36,11 @@
                 </td>
             </tr>
         </table>
+        <!-- <div>
+            <Page :total="100" show-elevator></Page>
+        </div> -->
     </div>
+    
 </div>
 </template>
 <script>

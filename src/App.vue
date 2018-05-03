@@ -38,7 +38,7 @@ th{
     border-bottom: 1px solid #e9eaec;
    
 }
-th div{
+th>div{
      word-wrap: normal;
     vertical-align: middle;    padding-left: 18px;
     padding-right: 18px;
@@ -58,7 +58,7 @@ td{
     vertical-align: middle;
     border-bottom: 1px solid #e9eaec;
 }
-td div{
+td>div{
     padding-left: 18px;
     padding-right: 18px;
     overflow: hidden;

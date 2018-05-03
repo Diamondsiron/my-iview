@@ -13,7 +13,12 @@
               </tr>
                <tr>
                   <td><div>性别</div></td>
-                  <td><div><Input></Input></div></td>
+                  <td><div>
+                      <Select   value="男">
+                            <Option v-for="item in list" :value="item" :key="item">{{ item }}</Option>
+                        </Select>
+                    </div>
+                </td>
                   <td><div>出生日期</div></td>
                   <td><div><Input type="date"></Input></div></td>
               </tr>
@@ -57,7 +62,7 @@
                  
               </tr>
                <tr>
-                  <td><div>操作员信息</div></td>
+                  <td><div> <Checkbox label="twitter"></Checkbox>操作员信息</div></td>
                   <td colspan="3"><div><Input></Input></div></td>
                   
               </tr>
@@ -82,7 +87,11 @@
 </template>
 <script>
     export default{
-      
+      data(){
+          return{
+              list:['男','女']
+          }
+      }
     }
 </script>
 <style scoped>

@@ -19,7 +19,8 @@
              </tr>
          </table>
      </div>
-     <div>
+     <div style="padding: 30px;
+    text-align: center;">
          <Button>重置</Button>
          <Button>查询</Button>
      </div>
@@ -36,7 +37,7 @@
                  <td><div>公司性质</div></td>
                  <td><div>操作</div></td>
              </tr>
-             <tr>
+             <tr v-for="item in list" :key="item">
                  <td><div><input type="checkbox" name="" id=""></div></td>
                  <td><div></div></td>
                  <td><div></div></td>
@@ -47,10 +48,12 @@
             
          </table>
      </div>
-     <div>
+     <div style="margin-top:40px">
          <Button @click="gonext('insertstaff')" >机构添加人员</Button>
          <Button @click="gonext('insert')">新增机构</Button>
-         <p >共 130 条记录 第 1 页/ 13 页     上页  下页  尾页</p>
+         <span style="    display: inline-block;
+    vertical-align: middle;
+    margin-left: 190px;"><Page :total="100" show-elevator></Page></span>
          
          
      </div>
@@ -59,7 +62,9 @@
 <script>
     export default{
         data(){
-            return{}
+            return{
+                list:[0,1,2,3,4,5]
+            }
         },
         methods:{
             gonext(value){

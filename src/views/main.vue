@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     .layout{
         
         background: #f5f7f9;
@@ -40,6 +40,16 @@
                        权限管理
                     </template>
                     <MenuItem name="2-1"><router-link :to="{ path: '/company/listrole'}" style="color:#fff">角色管理</router-link></MenuItem>
+                     <MenuItem name="2-2"><router-link :to="{ path: '/company/listrole'}" style="color:#fff">岗位管理</router-link></MenuItem>
+                   
+                </Submenu>
+                 <Submenu name="3">
+                    <template slot="title">
+                        <Icon type="ios-keypad"></Icon>
+                       配置管理
+                    </template>
+                    <MenuItem name="2-1"><router-link :to="{ path: '/company/listrole'}" style="color:#fff">菜单管理</router-link></MenuItem>
+                    
                    
                 </Submenu>
                
@@ -50,13 +60,16 @@
           
                     <div style="position: absolute;
     right: 0;
-    top: 0;
-    height: 100%;
+    top: 20px;
+    
     width: 300px;">
     <span @click="fullscreeen(value)">全屏</span>
                     <span @click="lockscreen()">锁屏</span>
+                    <div style="    width: 20px;
+    display: inline-block;"><lock-screen></lock-screen></div>
                     <span>admin</span>
-<lock-screen></lock-screen>
+
+
                     </div>
                     
                 
