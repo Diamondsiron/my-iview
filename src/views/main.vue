@@ -1,6 +1,6 @@
-<style scoped>
+<style>
     .layout{
-        border: 1px solid #d7dde4;
+        
         background: #f5f7f9;
         position: relative;
         border-radius: 4px;
@@ -9,6 +9,16 @@
     .layout-header-bar{
         background: #fff;
         box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    }
+    .lock-screen-back{
+        border-radius: 50%;
+        z-index: -1;
+        box-shadow: 0 0 0 0 #667aa6 inset;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        transition: all 3s;
     }
 </style>
 <template>
@@ -46,7 +56,7 @@
     <span @click="fullscreeen(value)">全屏</span>
                     <span @click="lockscreen()">锁屏</span>
                     <span>admin</span>
-
+<lock-screen></lock-screen>
                     </div>
                     
                 
@@ -60,9 +70,12 @@
     </div>
 </template>
 <script>
-
+ import lockScreen from './lockscreen/lockscreen.vue';
     export default {
         name:'mains',
+        components: {
+            lockScreen
+        },
         data(){
             return{
                 value:  false
