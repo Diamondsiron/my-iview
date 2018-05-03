@@ -48,7 +48,7 @@
                         <Icon type="ios-keypad"></Icon>
                        配置管理
                     </template>
-                    <MenuItem name="2-1"><router-link :to="{ path: '/company/listrole'}" style="color:#fff">菜单管理</router-link></MenuItem>
+                    <MenuItem name="3-1"><router-link :to="{ path: '/company/listrole'}" style="color:#fff">菜单管理</router-link></MenuItem>
                     
                    
                 </Submenu>
