@@ -7,13 +7,13 @@
              </tr>
              <tr>
                  <td><div>公司代码</div></td>
-                 <td><div></div></td>
+                 <td><div><input type="text" name="" id=""></div></td>
                  <td><div>公司名称</div></td>
-                 <td><div></div></td>
+                 <td><div><input type="text"></div></td>
              </tr>
              <tr>
                  <td><div>公司类别</div></td>
-                 <td><div></div></td>
+                 <td><div><input type="text"></div></td>
                  <td><div></div></td>
                  <td><div></div></td>
              </tr>
@@ -48,9 +48,9 @@
          </table>
      </div>
      <div>
-         <Button >机构添加人员</Button>
-         <Button >新增机构</Button>
-         <button >共 130 条记录 第 1 页/ 13 页     上页  下页  尾页</button>
+         <Button @click="gonext('insertstaff')" >机构添加人员</Button>
+         <Button @click="gonext('insert')">新增机构</Button>
+         <p >共 130 条记录 第 1 页/ 13 页     上页  下页  尾页</p>
          
          
      </div>
@@ -58,7 +58,16 @@
 </template>
 <script>
     export default{
-      
+        data(){
+            return{}
+        },
+        methods:{
+            gonext(value){
+                this.$router.push({
+                    name:value
+                })
+            }
+        }
     }
 </script>
 <style scoped>

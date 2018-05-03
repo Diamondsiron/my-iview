@@ -1,58 +1,56 @@
       
 <template>
-   <div>
+   <div class="home-main content">
        <div>
-           <table>
+           <table cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
                <tr>
-                   <th>增加分公司</th>
+                   <th colspan="4">增加分公司</th>
                </tr>
                <tr>
-                   <td>公司代码</td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
+                   <td ><div><span>公司代码</span></div> </td>
+                   <td ><div><Input></Input></div></td>
+                   <td colspan="2" ><div></div></td>
+                   
                </tr>
                <tr>
-                   <td>所在省市</td>
-                   <td></td>
-                   <td>所在城市</td>
-                   <td></td>
+                   <td><div>所在省市</div>  </td>
+                   <td><div><Input></Input></div></td>
+                   <td><div>所在城市</div> </td>
+                   <td><div><Input></Input></div></td>
                </tr>
                <tr>
-                   <td>公司名称</td>
-                   <td></td>
-                   <td>公司类别</td>
-                   <td></td>
+                   <td><div>公司名称</div></td>
+                   <td><div><Input></Input></div></td>
+                   <td><div>公司类别</div></td>
+                   <td><div><Input></Input></div></td>
                </tr>
                <tr>
-                   <td>公司状态</td>
-                   <td></td>
-                   <td>公司性质</td>
-                   <td></td>
+                   <td><div>公司状态</div></td>
+                   <td><div><Input></Input></div></td>
+                   <td><div>公司性质</div></td>
+                   <td><div><Input></Input></div></td>
                </tr>
                <tr>
-                   <td>公司全程</td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
+                   <td><div>公司全称</div></td>
+                   <td colspan="3"><div><Input></Input></div></td>
+                  
                </tr>
                <tr>
-                   <td>公司地址</td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
+                   <td><div>公司地址</div></td>
+                   <td colspan="3"><div><Input></Input></div></td>
+                   
                </tr>
                <tr>
-                   <td>创建时间</td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
+                   <td><div>创建时间</div></td>
+                   <td><div><Input></Input></div></td>
+                   <td colspan="2"></td>
+                   
                </tr>
            </table>
        </div>
-       <div>
-           <button>保存</button>
-           <button>取消</button>
+       <div class="control">
+           <Button>保存</Button>
+           <Button>取消</Button>
        </div>
    </div> 
 </template>
@@ -62,6 +60,14 @@
     }
 </script>
 <style scoped>
+.control{
+    width: 120px;
+    margin: 42px auto;
+}
+.content{
+    border: #d6caca solid 1px;
+    background-color: #fff;
+}
 
 </style>
 

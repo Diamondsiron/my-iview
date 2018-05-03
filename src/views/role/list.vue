@@ -31,7 +31,7 @@
                     <div>
                         <Button @click="change(index)">编辑</Button>
                         <Button>删除</Button>
-                        <Button>人员</Button>
+                        <Button @click="getinfo()">人员</Button>
                     </div>
                 </td>
             </tr>
@@ -56,6 +56,11 @@
               this.$set(this.editable,index,!this.editable[index])
                   //this.editable[index] = true
               console.log(this.editable)
+          },
+          getinfo(){
+            this.$router.push({
+              name:'detailrole'
+            })
           }
       }
     }

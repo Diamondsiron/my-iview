@@ -154,6 +154,34 @@ export const appRouter = [
             title: '列表',
             component: () => import('@/views/staff/list.vue')
         },
+        {
+            path: 'insertrole',
+            icon: 'compose',
+            name: 'insertrole',
+            title: '新增',
+            component: () => import('@/views/role/insert.vue')
+        },
+        {
+            path: 'updaterole',
+            icon: 'compose',
+            name: 'updaterole',
+            title: '修改',
+            component: () => import('@/views/role/update.vue')
+        },
+        {
+            path: 'detailrole',
+            icon: 'compose',
+            name: 'detailrole',
+            title: '详情',
+            component: () => import('@/views/role/detail.vue')
+        },
+        {
+            path: 'listrole',
+            icon: 'compose',
+            name: 'listrole',
+            title: '列表',
+            component: () => import('@/views/role/list.vue')
+        },
     ]
   }
   

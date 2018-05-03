@@ -31,7 +31,7 @@ th{
     overflow: hidden;
     background-color: #f8f8f9;    min-width: 0;
     box-sizing: border-box;
-    text-align: left;
+    text-align: center;
     text-overflow: ellipsis;
     vertical-align: middle;
     border-top: 1px solid #e9eaec;
@@ -53,7 +53,7 @@ td{
     transition: background-color .2s ease-in-out;    min-width: 0;
     height: 48px;
     box-sizing: border-box;
-    text-align: left;
+    text-align: center;
     text-overflow: ellipsis;
     vertical-align: middle;
     border-bottom: 1px solid #e9eaec;

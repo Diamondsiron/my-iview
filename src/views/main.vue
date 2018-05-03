@@ -29,7 +29,7 @@
                         <Icon type="ios-keypad"></Icon>
                        权限管理
                     </template>
-                    <MenuItem name="2-1"><router-link :to="{ path: '/company/liststaff'}" style="color:#fff">角色管理</router-link></MenuItem>
+                    <MenuItem name="2-1"><router-link :to="{ path: '/company/listrole'}" style="color:#fff">角色管理</router-link></MenuItem>
                    
                 </Submenu>
                
