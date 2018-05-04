@@ -3,6 +3,7 @@
       <ul>
           <li v-for="(item,index) in pages" :key="index">{{item}}<p v-if="currentPath==item">选中的是我</p><p @click="close(item)" v-if="index>0">关闭</p></li>
       </ul>
+      <div @click="closeAll();">关闭</div>
   </div>
 </template>
 <script>
@@ -23,6 +24,9 @@
        methods:{
            close(item){
                this.$store.commit('closepageOpenedList',item)
+           },
+           closeAll(){
+                this.$store.commit('closeallpageOpenedList')
            }
        }
    } 

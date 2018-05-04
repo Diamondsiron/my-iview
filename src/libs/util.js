@@ -1,7 +1,7 @@
-import axios from 'axios';
+/* import axios from 'axios';
 import env from '../../build/env';
 import semver from 'semver';
-import packjson from '../../package.json';
+import packjson from '../../package.json'; */
 
 let util = {
 
@@ -11,16 +11,16 @@ util.title = function (title) {
     window.document.title = title;
 };
 
-const ajaxUrl = env === 'development'
+/* const ajaxUrl = env === 'development'
     ? 'http://127.0.0.1:8888'
     : env === 'production'
         ? 'https://www.url.com'
-        : 'https://debug.url.com';
+        : 'https://debug.url.com'; */
 
-util.ajax = axios.create({
+/* util.ajax = axios.create({
     baseURL: ajaxUrl,
     timeout: 30000
-});
+}); */
 
 util.inOf = function (arr, targetArr) {
     let res = true;
@@ -251,7 +251,7 @@ util.fullscreenEvent = function (vm) {
     // 全屏相关
 };
 
-util.checkUpdate = function (vm) {
+/* util.checkUpdate = function (vm) {
     axios.get('https://api.github.com/repos/iview/iview-admin/releases/latest').then(res => {
         let version = res.data.tag_name;
         vm.$Notice.config({
@@ -264,6 +264,6 @@ util.checkUpdate = function (vm) {
             });
         }
     });
-};
+}; */
 
 export default util;

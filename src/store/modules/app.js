@@ -28,7 +28,7 @@ const app = {
       state.pageOpenedList.push(pathArr);
     },
     closeallpageOpenedList(){
-
+      state.pageOpenedList.splice(1);
     },
     closeotherpageOpenedList(){
 
