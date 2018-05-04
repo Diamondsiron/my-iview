@@ -39,8 +39,8 @@
                         <Icon type="ios-keypad"></Icon>
                        权限管理
                     </template>
-                    <MenuItem name="2-1"><router-link :to="{ path: '/company/listrole'}" style="color:#fff">角色管理</router-link></MenuItem>
-                     <MenuItem name="2-2"><router-link :to="{ path: '/company/listrole'}" style="color:#fff">岗位管理</router-link></MenuItem>
+                    <MenuItem name="2-1"><router-link :to="{ path: '/authority/listrole'}" style="color:#fff">角色管理</router-link></MenuItem>
+                     <MenuItem name="2-2"><router-link :to="{ path: '/authority/listjob'}" style="color:#fff">岗位管理</router-link></MenuItem>
                    
                 </Submenu>
                  <Submenu name="3">
@@ -48,7 +48,7 @@
                         <Icon type="ios-keypad"></Icon>
                        配置管理
                     </template>
-                    <MenuItem name="3-1"><router-link :to="{ path: '/company/listrole'}" style="color:#fff">菜单管理</router-link></MenuItem>
+                    <MenuItem name="3-1"><router-link :to="{ path: '/menu/list'}" style="color:#fff">菜单管理</router-link></MenuItem>
                     
                    
                 </Submenu>
