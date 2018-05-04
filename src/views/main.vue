@@ -71,7 +71,9 @@
 
 
                     </div>
-                    
+                    <div>
+                        <tags-page-opened ></tags-page-opened>
+                    </div>
                 
                 <Card style="background-color:rgb(240,240,240)">
                      <keep-alive>
@@ -84,10 +86,12 @@
 </template>
 <script>
  import lockScreen from './lockscreen/lockscreen.vue';
+ import tagsPageOpened from './lockscreen/tags-page-opened.vue';
     export default {
         name:'mains',
         components: {
-            lockScreen
+            lockScreen,
+            tagsPageOpened
         },
         data(){
             return{

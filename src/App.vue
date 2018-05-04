@@ -70,8 +70,8 @@ td>div{
 }
 .home-main{
     width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 10px;
+   
 
 }
 table{
