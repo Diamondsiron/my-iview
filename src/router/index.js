@@ -32,7 +32,7 @@ router.beforeEach((to,from,next) => {
 
 })
 router.afterEach((to) => {
-  console.log(to)
+  console.log("to",to)
   util.openNewPage(router.app, to.name, to.params, to.query);
   iView.LoadingBar.finish();
  
@@ -66,12 +66,28 @@ util.openNewPage = function (vm,name,argu,query){
   let i = 0;
   let tagHasOpened = false;
  // console.log(name)
+  let tag = {}
+  tag.name = name
+ // console.log("currentPath",vm.$store.state.app.currentPath)
+  vm.$store.commit('setCurrentPath', tag);
+ // console.log("currentPath",vm.$store.state.app.currentPath)
+ function check(){
+   for(let i=0;i<pageOpenedList.length;i++){
+      if(pageOpenedList[i].name==tag.name){
+        return false
+      }
+      
+   }
+   return true
+ }
+let tags = []
+for(let i=0;i<vm.$store.state.app.routers.length;i++ ){
   
- // console.log("currentPath",vm.$store.state.app.currentPath)
-  vm.$store.commit('setCurrentPath', name);
- // console.log("currentPath",vm.$store.state.app.currentPath)
-  if(pageOpenedList.indexOf(name)<0){
-    vm.$store.commit('pushpageOpenedList', name);
-  }
+}
+console.log("tages",vm.$store.state.app.routers,tags)
+ //let tags = vm.$store.state.app.tagsList.filter
+ if(check()){
+    vm.$store.commit('pushpageOpenedList', tag);
+  } 
   console.log(vm.$store.state.app.pageOpenedList)
 }

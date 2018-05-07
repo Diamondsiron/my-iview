@@ -25,6 +25,7 @@ const app = {
         state.currentPath = pathArr;
     },
     orderCurrentPath (state,i){
+      //console.log('i',i)
       state.currentPath = state.pageOpenedList[i]
     },
     pushpageOpenedList(state, pathArr){
@@ -42,8 +43,16 @@ const app = {
       
     },
     closepageOpenedList(state, pathArr){
-     console.log(pathArr)
-     state.pageOpenedList.splice(state.pageOpenedList.indexOf(pathArr),1)
+     //console.log("pathArr",pathArr)
+     
+     function check(){
+      for(let i=0;i<state.pageOpenedList.length;i++){
+        if(state.pageOpenedList[i].name==pathArr.name){
+          return i
+        }
+      }
+     }
+     state.pageOpenedList.splice(check(),1)
      
       
     }

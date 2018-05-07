@@ -13,8 +13,8 @@
                     :name="item.name" 
                     @click.native="linkTo(item)"
                     @on-close="close(item)"
-                    :closable="true"
-                    :color="item==currentPath?'blue':'default'"
+                    :closable="index>0?true:false"
+                    :color="item.name==currentPath.name?'blue':'default'"
                 >{{ item }}</Tag>
       </div>
   </div>
@@ -38,26 +38,37 @@
        },
        methods:{
            close(item){
-               if(item==this.currentPath){
-                  if(this.pages.indexOf(item)==(this.pages.length-1)){
+              // console.log("item",item)
+               let vm = this
+                let check =function (){
+                        for(let i=0;i<vm.pages.length;i++){
+                            if(vm.pages[i].name==item.name){
+                            return i
+                            }
+                        }
+                    }
+                   // console.log("check",check(),this.pages.length-1);
+               if(item.name==this.currentPath.name){
+                  if((check())==(this.pages.length-1)){
                       //当前页变成倒数第二页
-                      console.log(0)
-                      console.log("正常",this.pages.indexOf(item),this.pages.length-1)
-                      let i = this.pages.indexOf(item);
+                     // console.log(0)
+                      //console.log("正常")
+                      
                       
                       this.$store.commit('closepageOpenedList',item)
-                      this.$store.commit('orderCurrentPath',this.pages.length-1)
+                       this.$store.commit('orderCurrentPath',this.pages.length-1) 
                   }else{
                      
-                      console.log(1)
+                      //console.log(1)
+                      // console.log("不正常",check())
                       //当前页变成i页面
-                      let i = this.pages.indexOf(item);
-                      this.$store.commit('closepageOpenedList',item)
-                      this.$store.commit('orderCurrentPath',i)
+                   let order = check()
+                    this.$store.commit('closepageOpenedList',item)
+                    this.$store.commit('orderCurrentPath',order)  
                   }
                }else{
-                   console.log(2)
-                   this.$store.commit('closepageOpenedList',item)
+                   //console.log(2)
+                   this.$store.commit('closepageOpenedList',item) 
                }
                
                
@@ -69,10 +80,10 @@
                 this.$store.commit('closeotherpageOpenedList')
            },
            linkTo(item){
-               console.log(item)
+              // console.log(item)
                let routerObj = {};
-               //routerObj.name = item.name;
-               routerObj.name = item;
+               routerObj.name = item.name;
+               //routerObj.name = item;
                 if (item.argu) {
                     routerObj.params = item.argu;
                 }
