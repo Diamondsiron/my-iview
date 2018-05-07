@@ -9,7 +9,7 @@ const app = {
         }],
         routers: [
           otherRouter,
-          ...appRouter
+          
        ],
        tagsList: [...otherRouter.children],
        currentPath: [
@@ -21,6 +21,7 @@ const app = {
       ],
   },
   mutations:{
+    //导航栏部分
     setCurrentPath (state, pathArr) {
         state.currentPath = pathArr;
     },
@@ -56,7 +57,7 @@ const app = {
      
       
     }
-
+    //左菜单部分
 
   },
 }

@@ -1,4 +1,4 @@
-<style scoped>
+<style>
     .layout{
         
         background: #f5f7f9;
@@ -24,14 +24,14 @@
 <template>
     <div class="layout">
         <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
-            <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
+            <Menu :active-name='active' theme="dark" width="auto" :open-names="open" ref="leftMenu">
                 <Submenu name="1">
                     <template slot="title">
                         <Icon type="ios-navigate"></Icon>
                         公司信息管理
                     </template>
                   
-                    <MenuItem name="1-2"><router-link :to="{ path: '/company/list'}" style="color:#fff">公司管理</router-link></MenuItem>
+                    <MenuItem name="1-1"><router-link :to="{ path: '/company/list'}" style="color:#fff">公司管理</router-link></MenuItem>
                    
                 </Submenu>
                 <Submenu name="2">
@@ -95,8 +95,10 @@
         },
         data(){
             return{
-                value:  false
-                      }
+                value:  false,
+                open: [],
+                active: '1-1',
+            }
         },
         computed: {
             showFullScreenBtn () {
@@ -146,9 +148,28 @@
                     }); 
                 
               
+            },
+            handleSelect(){
+
             }
         },
-       
+        mounted(){
+            this.active = '2-1';
+            this.open = ["2"];
+            
+            this.$nextTick(function() {
+                this.$refs.leftMenu.updateOpened();
+                this.$refs.leftMenu.updateActiveName();
+            })
+            this.handleSelect(this.active);
+        },
+        watch:{
+            '$route' (to){
+                let title = to.meta.title;
+               // console.log(title)
+
+            }
+        }
         
     }
 </script>

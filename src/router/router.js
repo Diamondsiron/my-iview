@@ -32,13 +32,7 @@ export const otherRouter = {
   ]
 };
 export const appRouter = [
-  {
-    path: '/',
-    name: 'otherRouter',
-    
-    component: Mains,
-   
-  },
+  
   {
     path: '/component',
     icon: 'social-buffer',
