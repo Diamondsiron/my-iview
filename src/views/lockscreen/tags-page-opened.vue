@@ -15,7 +15,7 @@
                     @on-close="close(item)"
                     :closable="index>0?true:false"
                     :color="item.name==currentPath.name?'blue':'default'"
-                >{{ item }}</Tag>
+                >{{ item.title }}</Tag>
       </div>
   </div>
 </template>
