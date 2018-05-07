@@ -24,18 +24,27 @@ const app = {
     setCurrentPath (state, pathArr) {
         state.currentPath = pathArr;
     },
+    orderCurrentPath (state,i){
+      state.currentPath = state.pageOpenedList[i]
+    },
     pushpageOpenedList(state, pathArr){
       state.pageOpenedList.push(pathArr);
     },
-    closeallpageOpenedList(){
+    closeallpageOpenedList(state){
       state.pageOpenedList.splice(1);
     },
-    closeotherpageOpenedList(){
-
+    closeotherpageOpenedList(state){
+      for(let i=0;i<state.pageOpenedList.length;i++){
+        if(state.pageOpenedList[i]!=state.pageOpenedList[0]&&state.pageOpenedList[i]!= state.currentPath){
+          state.pageOpenedList.splice(i,1)
+        }
+      }
+      
     },
     closepageOpenedList(state, pathArr){
      console.log(pathArr)
      state.pageOpenedList.splice(state.pageOpenedList.indexOf(pathArr),1)
+     
       
     }
 

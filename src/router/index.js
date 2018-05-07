@@ -32,10 +32,33 @@ router.beforeEach((to,from,next) => {
 
 })
 router.afterEach((to) => {
+  console.log(to)
   util.openNewPage(router.app, to.name, to.params, to.query);
   iView.LoadingBar.finish();
  
 });
+/* let util = {};
+util.openNewPage = function (vm,name,argu,query){
+  let pageOpenedList = vm.$store.state.app.pageOpenedList;
+  let openedPageLen = pageOpenedList.length;
+  let i = 0;
+  let tagHasOpened = false;
+  let tag = {}
+  tag.name = name;
+  tag.argu = argu;
+  tag.query = query;
+ // console.log(name)
+  
+ // console.log("currentPath",vm.$store.state.app.currentPath)
+  
+
+  if(pageOpenedList.indexOf(tag)<0){
+    vm.$store.commit('pushpageOpenedList', tag);
+  }else{
+    vm.$store.commit('setCurrentPath', tag);
+  }
+  
+} */
 let util = {};
 util.openNewPage = function (vm,name,argu,query){
   let pageOpenedList = vm.$store.state.app.pageOpenedList;
