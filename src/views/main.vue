@@ -23,7 +23,7 @@
 </style>
 <template>
     <div class="layout">
-        <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
+        <!-- <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
             <Menu :active-name='active' theme="dark" width="auto" :open-names="open" ref="leftMenu">
                 <Submenu name="1">
                     <template slot="title">
@@ -54,7 +54,26 @@
                 </Submenu>
                
             </Menu>
-        </Sider>
+        </Sider> -->
+        <div style="    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    flex: 0 0 200px;
+    position: fixed;
+    height: 100vh;
+    left: 0px;
+    overflow: auto;
+    background: #495060;
+    transition: all .2s ease-in-out;">
+            <shrinkable-menu
+             @on-change="handleSubmenuChange"
+             :menu-list="menuList"
+        >
+         </shrinkable-menu>
+        </div>
+        
+            
+       
         <Layout :style="{marginLeft: '200px'}">
             <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}"></Header>
           
@@ -85,19 +104,23 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
  import lockScreen from './lockscreen/lockscreen.vue';
  import tagsPageOpened from './lockscreen/tags-page-opened.vue';
+ import shrinkableMenu from '@/components/shrinkable-menu/menu.vue';
     export default {
         name:'mains',
         components: {
             lockScreen,
-            tagsPageOpened
+            tagsPageOpened,
+            shrinkableMenu
         },
         data(){
             return{
                 value:  false,
                 open: [],
                 active: '1-1',
+                 menuList:[]
             }
         },
         computed: {
@@ -151,17 +174,35 @@
             },
             handleSelect(){
 
+            },
+            handleSubmenuChange(val){
+                console.log(val)
+            },
+            init(){
+                 let vm = this
+                axios.get('/api/menu')
+                    .then(function(res){
+                    console.log("数据",res)
+                    vm.menuList=res.data.data.data;
+                    console.log(vm.menuList)
+                    })
+                    .catch(function(error){
+                    console.log(error)
+                    })
+               
+
             }
         },
         mounted(){
-            this.active = '2-1';
+            this.init();
+            /* this.active = '2-1';
             this.open = ["2"];
             
             this.$nextTick(function() {
                 this.$refs.leftMenu.updateOpened();
                 this.$refs.leftMenu.updateActiveName();
             })
-            this.handleSelect(this.active);
+            this.handleSelect(this.active); */
         },
         watch:{
             '$route' (to){
