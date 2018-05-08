@@ -36,7 +36,7 @@ export default {
     },
     methods:{
         handleChange(name){
-            console.log("name",name)
+           
             this.$emit('on-change', name);
         }
     }

@@ -6,7 +6,8 @@
           "id":0,
           "children":[
               {
-                  "name":"公司管理"
+                  "name":"公司管理",
+                  "route":"list"
               }
           ]
       },
@@ -15,10 +16,12 @@
           "id":1,
           "children":[
               {
-                  "name":"角色管理"
+                  "name":"角色管理",
+                  "route":"listrole"
               },
               {
-                  "name":"岗位管理"
+                  "name":"岗位管理",
+                  "route":"listjob"
               }
           ]
       },
@@ -27,7 +30,8 @@
           "id":2,
           "children":[
               {
-                  "name":"菜单管理"
+                  "name":"菜单管理",
+                  "route":"listmenu"
               }
           ]
       }

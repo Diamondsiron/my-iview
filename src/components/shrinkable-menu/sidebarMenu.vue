@@ -1,7 +1,7 @@
 <template>
     <Menu ref="sideMenu" :active-name="$route.name" :open-names="openNames" :theme="menuTheme" width="auto"z @on-select="changeMenu">
         <template v-for="item in menuList">
-            <MenuItem v-if="item.children.length<=1" :name="item.children[0].name" :key="'menuitem' + item.name">
+            <MenuItem v-if="item.children.length<=1" :name="item.children[0].route" :key="'menuitem' + item.name">
                <!--  <Icon :type="item.children[0].icon || item.icon" :size="iconSize" :key="'menuicon' + item.name"></Icon> -->
                 <span class="layout-text" :key="'title' + item.name">{{ item.name }}</span>
             </MenuItem>
@@ -12,7 +12,7 @@
                     <span class="layout-text">{{ item.name }}</span>
                 </template>
                 <template v-for="child in item.children">
-                    <MenuItem :name="child.name" :key="'menuitem' + child.name">
+                    <MenuItem :name="child.route" :key="'menuitem' + child.name">
                         <!-- <Icon :type="child.icon" :size="iconSize" :key="'icon' + child.name"></Icon> -->
                         <span class="layout-text" :key="'title' + child.name">{{ child.name }}</span>
                     </MenuItem>
@@ -38,8 +38,8 @@ export default {
     },
     methods: {
         changeMenu (active) {
-            console.log("active",active) 
-            this.$emit('on-change', active);  
+           
+           this.$router.push({name:active})   
         },
         itemTitle (item) {
             

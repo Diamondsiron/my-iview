@@ -163,12 +163,13 @@ export const appRouter = [
         { path: 'insert', title: '新增', name: 'insert', icon: 'compose', component: () => import('@/views/menu/parent/insert.vue') },
         { path: 'detail', title: '新增', name: 'detail', icon: 'compose', component: () => import('@/views/menu/parent/detail.vue') },
         { path: 'update', title: '新增', name: 'update', icon: 'compose', component: () => import('@/views/menu/parent/update.vue') },
-        { path: 'list', meta:{title:'列表'},title: '新增', name: 'list', icon: 'compose', component: () => import('@/views/menu/parent/list.vue') },
+        { path: 'list', meta:{title:'列表'},title: '新增', name: 'listmenu', icon: 'compose', component: () => import('@/views/menu/parent/list.vue') },
         { path: 'insertchild', title: '新增', name: 'insertchild', icon: 'compose', component: () => import('@/views/menu/child/insert.vue') },
         { path: 'detailchild', title: '新增', name: 'detailchild', icon: 'compose', component: () => import('@/views/menu/child/detail.vue') },
         { path: 'updatechild', title: '新增', name: 'updatechild', icon: 'compose', component: () => import('@/views/menu/child/update.vue') },
         { path: 'listchild', meta:{title:'列表'},title: '新增', name: 'listchild', icon: 'compose', component: () => import('@/views/menu/child/list.vue') },
         { path: 'listconfig', meta:{title:'菜单配置'},title: '菜单配置', name: 'listconfig', icon: 'compose', component: () => import('@/views/menu/parent/config.vue') },
+        { path: 'tree', meta:{title:'树组件'},title: '树组件', name: 'tree', icon: 'compose', component: () => import('@/views/menu/parent/tree.vue') },
 
 
       ]

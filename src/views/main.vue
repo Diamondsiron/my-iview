@@ -77,15 +77,10 @@
         <Layout :style="{marginLeft: '200px'}">
             <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}"></Header>
           
-                    <div style="position: absolute;
-    right: 0;
-    top: 20px;
-    
-    width: 300px;">
-    <span @click="fullscreeen(value)">全屏</span>
+                    <div style="position: absolute;right: 0;top: 20px;width: 300px;">
+                    <span @click="fullscreeen(value)">全屏</span>
                     <span @click="lockscreen()">锁屏</span>
-                    <div style="    width: 20px;
-    display: inline-block;"><lock-screen></lock-screen></div>
+                    <div style="width: 20px;display: inline-block;"><lock-screen></lock-screen></div>
                     <span>admin</span>
 
 
@@ -176,7 +171,7 @@ import axios from 'axios';
 
             },
             handleSubmenuChange(val){
-                console.log(val)
+               
             },
             init(){
                  let vm = this
@@ -184,7 +179,7 @@ import axios from 'axios';
                     .then(function(res){
                     console.log("数据",res)
                     vm.menuList=res.data.data.data;
-                    console.log(vm.menuList)
+                    
                     })
                     .catch(function(error){
                     console.log(error)
