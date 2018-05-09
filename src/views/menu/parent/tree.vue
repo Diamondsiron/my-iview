@@ -76,19 +76,23 @@ let toData=""
               this.open = !this.open
             }
           },
-          dragStart(e){
+          dragStart(e,treeNode){
             //拖拽效果
             e.dataTransfer.effectAllowed = "move";
+            fromData = e.target.dataset.name
+           // console.log("选中元素",e.target.dataset.name)
             e.dataTransfer.setData("nottext", e.target.innerHTML);
+            
             return true
           },
           dragEnter(e){
-            toData = this.model
+           /*  toData = this.model */
             /* console.log("toData",toData) */
-            console.log(e.target.textContent,e.toElement.textContent)
+            toData = e.target.textContent
+            //console.log("进入的元素",e.target.textContent)
           },
           dragLeave(e){
-            fromData = this.model
+            /* fromData = this.model */
             /* console.log(e)
             console.log("fromData",fromData) */
           },
@@ -96,15 +100,20 @@ let toData=""
 
           },
           dragEnd(e){
-            fromData = undefined
+              this.order(fromData,toData)
           },
           dragOver(e){
+
+          },
+          order(from,to){
+            console.log("from",from,"to",to)
+            //this.data
 
           }
 
         },
-        template:`<li >
-          <span @click="toggle" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend='dragEnd' >{{model.name}}</span>
+        template:`<li  draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend='dragEnd' :data-name="model.name">
+          <span  @click="toggle">{{model.name}}</span>
           <span v-if="isFolder">+</span>
           <a></a>
           <ul class="ul" v-show="open" v-if="isFolder">

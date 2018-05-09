@@ -43,12 +43,19 @@
                  <td><div></div></td>
                  <td><div></div></td>
                  <td><div></div></td>
-                 <td><div><Button>编辑</Button><Button>操作</Button></div></td>
+                 <td>
+                     <div @click="showTag(item)">{{item}}点我呀</div>
+                     <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
+                         <button disabled="disabled">删除</button>
+                         <button disabled="disabled">修改</button>
+                         <button disabled="disabled">详情</button>
+                     </div>
+                </td>
              </tr>
             
          </table>
      </div>
-     <div style="margin-top:40px">
+     <div style="margin-top:40px;" id="box">
          <Button @click="gonext('insertstaff')" >机构添加人员</Button>
          <Button @click="gonext('insert')">新增机构</Button>
          <span style="    display: inline-block;
@@ -57,13 +64,15 @@
          
          
      </div>
+   
  </div>   
 </template>
 <script>
     export default{
         data(){
             return{
-                list:[0,1,2,3,4,5]
+                list:['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u'],
+                choose:''
             }
         },
         methods:{
@@ -71,11 +80,58 @@
                 this.$router.push({
                     name:value
                 })
+            },
+            showTag(item){
+                var box=document.getElementById(item);       
+                if(this.choose==item){
+                    this.choose=""
+                     //box.style.zIndex=-999
+                }else{
+                    this.choose=item
+                     //box.style.zIndex=10
+                }
+                console.log(document.body.clientHeight,document.body.clientWidth,
+                            box.getBoundingClientRect().top,
+                            box.getBoundingClientRect().right,
+                            box.getBoundingClientRect().bottom,
+                            box.getBoundingClientRect().left);
+                let distance = box.getBoundingClientRect();
+                let width = document.body.clientWidth;
+                let height = document.body.clientHeight;
+                if(distance.bottom>height){
+                    //box.style.top="200px";
+                    let y = box.offsetTop-220
+                    box.style.top=y+"px"
+                    
+                } 
+                if(distance.right>document.body.clientWidth){
+                    console.log("ok", box.offsetLeft)
+                    let x = box.offsetLeft-400
+
+                    box.style.left=x+"px"
+                }
+                 
+                
+
+                
             }
+        },
+        updated: function () {
+        this.$nextTick(function () {
+            
+            })
         }
     }
 </script>
 <style scoped>
-
+.maxIndex{
+z-Index:10
+}
+.minIndex{
+z-Index:-999
+}
+.content{
+    width:400px;height:200px;background-color:#fff;box-shadow: 0 1px 6px rgba(0,0,0,.2);border-radius: 20px;position: absolute; 
+}
 </style>
 

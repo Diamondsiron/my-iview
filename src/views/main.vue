@@ -4,7 +4,7 @@
         background: #f5f7f9;
         position: relative;
         border-radius: 4px;
-        overflow: hidden;
+        
     }
     .layout-header-bar{
         background: #fff;
@@ -89,9 +89,9 @@
                         <tags-page-opened ></tags-page-opened>
                     </div>
                 
-                <Card style="background-color:rgb(240,240,240)">
+                <Card style="background-color:rgb(240,240,240);overflow:hidden">
                      <keep-alive>
-                        <router-view></router-view>
+                        <router-view style="overflow:hidden"></router-view>
                     </keep-alive>
                 </Card>
            
