@@ -12,14 +12,14 @@
           <span>图标</span>
         </div>
       </div> -->
-      
-      <Input  icon="search" placeholder="请输入菜单名称搜索" style="width: 600px"></Input>
+      <Input  icon="search" placeholder="请输入登陆账号搜索" style="width: 300px"></Input>
+      <Input  icon="search" placeholder="请输入姓名搜索" style="width: 300px"></Input>
     </div>
     <div>
       <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
              <tr>
-                  <th><div>菜单名称<Icon type="arrow-down-a"></Icon></div></th>
-                 <th><div>是否子菜单<Icon type="arrow-down-a"></Icon></div></th>
+                  <th><div>登陆账号<Icon type="arrow-down-a"></Icon></div></th>
+                 <th><div>用户姓名<Icon type="arrow-down-a"></Icon></div></th>
                  <th><div>热点操作区域</div></th>
              </tr>
             
@@ -134,7 +134,7 @@ z-Index:-999
     position: absolute;
     border-color: transparent;
     border-style: solid;
-    border-width: 6px;
+        border-width: 6px;
 }
 </style>
 

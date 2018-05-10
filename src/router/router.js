@@ -154,6 +154,18 @@ export const appRouter = [
     ]
   },
   {
+    path:'/organization',
+    name:'organization',
+    title:'参与者管理',
+    component: Mains,
+    children:[
+        { path: 'listorganization', meta:{title:'机构管理'}, name: 'listorganization', icon: 'compose', component: () => import('@/views/organization/list.vue') }, 
+        { path: 'listuser', meta:{title:'用户管理'}, name: 'listuser', icon: 'compose', component: () => import('@/views/organization/user/list.vue') }, 
+        { path: 'organizationtoUser', meta:{title:'机构-用户管理'}, name: 'organizationtoUser', icon: 'compose', component: () => import('@/views/organization/organizationtoUser.vue') }, 
+        { path: 'usertoRole', meta:{title:'用户-角色管理'}, name: 'usertoRole', icon: 'compose', component: () => import('@/views/organization/user/usertoRole.vue') }, 
+    ]
+  },
+  {
     path: '/menu',
     icon: 'android-checkbox',
     name: 'menu',
@@ -163,7 +175,7 @@ export const appRouter = [
         { path: 'insert', title: '新增', name: 'insert', icon: 'compose', component: () => import('@/views/menu/parent/insert.vue') },
         { path: 'detail', title: '新增', name: 'detail', icon: 'compose', component: () => import('@/views/menu/parent/detail.vue') },
         { path: 'update', title: '新增', name: 'update', icon: 'compose', component: () => import('@/views/menu/parent/update.vue') },
-        { path: 'list', meta:{title:'列表'},title: '新增', name: 'listmenu', icon: 'compose', component: () => import('@/views/menu/parent/list.vue') },
+        { path: 'list', meta:{title:'菜单管理'},title: '新增', name: 'listmenu', icon: 'compose', component: () => import('@/views/menu/parent/list.vue') },
         { path: 'insertchild', title: '新增', name: 'insertchild', icon: 'compose', component: () => import('@/views/menu/child/insert.vue') },
         { path: 'detailchild', title: '新增', name: 'detailchild', icon: 'compose', component: () => import('@/views/menu/child/detail.vue') },
         { path: 'updatechild', title: '新增', name: 'updatechild', icon: 'compose', component: () => import('@/views/menu/child/update.vue') },
@@ -184,12 +196,12 @@ export const appRouter = [
         { path: 'insertrole', title: '新增', name: 'insertrole', icon: 'compose', component: () => import('@/views/authority/role/insert.vue') },
         { path: 'detailrole', title: '新增', name: 'detailrole', icon: 'compose', component: () => import('@/views/authority/role/detail.vue') },
         { path: 'updaterole', title: '新增', name: 'updaterole', icon: 'compose', component: () => import('@/views/authority/role/update.vue') },
-        { path: 'listrole',meta:{title:'列表'}, title: '新增', name: 'listrole', icon: 'compose', component: () => import('@/views/authority/role/list.vue') },
+        { path: 'listrole',meta:{title:'角色列表'}, title: '新增', name: 'listrole', icon: 'compose', component: () => import('@/views/authority/role/list.vue') },
         { path: 'insertjob', title: '新增', name: 'insertjob', icon: 'compose', component: () => import('@/views/authority/job/insert.vue') },
         { path: 'detailjob', title: '新增', name: 'detailjob', icon: 'compose', component: () => import('@/views/authority/job/detail.vue') },
         { path: 'updatejob', title: '新增', name: 'updatejob', icon: 'compose', component: () => import('@/views/authority/job/update.vue') },
-        { path: 'listjob', meta:{title:'列表'},title: '新增', name: 'listjob', icon: 'compose', component: () => import('@/views/authority/job/list.vue') },
-        
+        { path: 'listjob', meta:{title:'岗位管理'},title: '新增', name: 'listjob', icon: 'compose', component: () => import('@/views/authority/job/list.vue') },
+        { path: 'listauthority', meta:{title: '菜单授权'}, name: 'listauthority', icon: 'compose', component: () => import('@/views/authority/list.vue') },
 
       ]
   }

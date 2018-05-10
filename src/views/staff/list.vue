@@ -37,6 +37,9 @@
             </tr>
         </table>
     </div>
+    <div>
+        <Page :total="100"></Page>
+    </div>
 </div>
 </template>
 <script>

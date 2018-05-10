@@ -12,15 +12,15 @@
           <span>图标</span>
         </div>
       </div> -->
-      
-      <Input  icon="search" placeholder="请输入菜单名称搜索" style="width: 600px"></Input>
+      <Input  icon="search" placeholder="输入机构代码搜索" style="width: 300px"></Input>
+      <Input  icon="search" placeholder="收入机构名称搜索" style="width: 300px"></Input>
     </div>
     <div>
       <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
              <tr>
-                  <th><div>菜单名称<Icon type="arrow-down-a"></Icon></div></th>
-                 <th><div>是否子菜单<Icon type="arrow-down-a"></Icon></div></th>
-                 <th><div>热点操作区域</div></th>
+                  <th><div>公司代码<Icon type="arrow-down-a"></Icon></div></th>
+                 <th><div>公司名称<Icon type="arrow-down-a"></Icon></div></th>
+                 <th><div>操作</div></th>
              </tr>
             
              <tr v-for="(item,index) in list" :key="index">
@@ -44,6 +44,7 @@
                              <Button >删除</Button>
                             <Button @click="change(index)">修改</Button>
                             <Button>详情</Button>
+                             <Button style="margin-top:5px">添加机构人</Button>
                         </div>
                          
                      </div>
@@ -122,7 +123,7 @@ z-Index:10
 z-Index:-999
 }
 .content{
-    width:270px;height:70px;background-color:#fff;box-shadow: 0 1px 6px rgba(0,0,0,.2);border-radius: 20px;position: absolute; 
+    width:270px;height:100px;background-color:#fff;box-shadow: 0 1px 6px rgba(0,0,0,.2);border-radius: 20px;position: absolute; 
 }
 .circle{
   bottom: 3px;
@@ -134,7 +135,7 @@ z-Index:-999
     position: absolute;
     border-color: transparent;
     border-style: solid;
-    border-width: 6px;
+        border-width: 6px;
 }
 </style>
 

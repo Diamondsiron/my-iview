@@ -50,21 +50,25 @@
                    // console.log("check",check(),this.pages.length-1);
                if(item.name==this.currentPath.name){
                   if((check())==(this.pages.length-1)){
-                      //当前页变成倒数第二页
-                     // console.log(0)
-                      //console.log("正常")
+                      
                       
                       
                       this.$store.commit('closepageOpenedList',item)
                        this.$store.commit('orderCurrentPath',this.pages.length-1) 
+                      
+                       vm.$router.push({
+                          name:vm.currentPath.name
+                      })
                   }else{
                      
-                      //console.log(1)
-                      // console.log("不正常",check())
-                      //当前页变成i页面
+                      
                    let order = check()
                     this.$store.commit('closepageOpenedList',item)
                     this.$store.commit('orderCurrentPath',order)  
+                     
+                    vm.$router.push({
+                          name:vm.currentPath.name
+                      })
                   }
                }else{
                    //console.log(2)

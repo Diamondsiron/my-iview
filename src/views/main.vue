@@ -82,6 +82,7 @@
                     <span @click="lockscreen()">锁屏</span>
                     <div style="width: 20px;display: inline-block;"><lock-screen></lock-screen></div>
                     <span>admin</span>
+                    <span @click="logout()">退出</span>
 
 
                     </div>
@@ -172,6 +173,11 @@ import axios from 'axios';
             },
             handleSubmenuChange(val){
                
+            },
+            logout(){
+                localStorage.removeItem("organization");
+                localStorage.removeItem("UserName");
+                this.$router.push({name:'login'})
             },
             init(){
                  let vm = this
