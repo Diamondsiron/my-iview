@@ -159,8 +159,12 @@ export const appRouter = [
     title:'参与者管理',
     component: Mains,
     children:[
-        { path: 'listorganization', meta:{title:'机构管理'}, name: 'listorganization', icon: 'compose', component: () => import('@/views/organization/list.vue') }, 
+        { path: 'listorganization', meta:{title:'机构管理'}, name: 'listorganization', icon: 'compose', component: () => import('@/views/organization/list.vue') },
+        { path: 'insertorganization', meta:{title:'新增机构'}, name: 'insertorganization', icon: 'compose', component: () => import('@/views/organization/insert.vue') },  
+        { path: 'updateorganization', meta:{title:'修改机构'}, name: 'updateorganization', icon: 'compose', component: () => import('@/views/organization/insert.vue') },  
         { path: 'listuser', meta:{title:'用户管理'}, name: 'listuser', icon: 'compose', component: () => import('@/views/organization/user/list.vue') }, 
+        { path: 'insertuser', meta:{title:'新增用户'}, name: 'insertuser', icon: 'compose', component: () => import('@/views/organization/user/insert.vue') }, 
+        { path: 'otoUser', meta:{title:'新增用户'}, name: 'otoUser', icon: 'compose', component: () => import('@/views/organization/otoUser.vue') }, 
         { path: 'organizationtoUser', meta:{title:'机构-用户管理'}, name: 'organizationtoUser', icon: 'compose', component: () => import('@/views/organization/organizationtoUser.vue') }, 
         { path: 'usertoRole', meta:{title:'用户-角色管理'}, name: 'usertoRole', icon: 'compose', component: () => import('@/views/organization/user/usertoRole.vue') }, 
     ]
@@ -195,7 +199,7 @@ export const appRouter = [
     children: [
         { path: 'insertrole', title: '新增', name: 'insertrole', icon: 'compose', component: () => import('@/views/authority/role/insert.vue') },
         { path: 'detailrole', title: '新增', name: 'detailrole', icon: 'compose', component: () => import('@/views/authority/role/detail.vue') },
-        { path: 'updaterole', title: '新增', name: 'updaterole', icon: 'compose', component: () => import('@/views/authority/role/update.vue') },
+        { path: 'updaterole', meta:{title:'修改角色'}, name: 'updaterole', icon: 'compose', component: () => import('@/views/authority/role/update.vue') },
         { path: 'listrole',meta:{title:'角色列表'}, title: '新增', name: 'listrole', icon: 'compose', component: () => import('@/views/authority/role/list.vue') },
         { path: 'insertjob', title: '新增', name: 'insertjob', icon: 'compose', component: () => import('@/views/authority/job/insert.vue') },
         { path: 'detailjob', title: '新增', name: 'detailjob', icon: 'compose', component: () => import('@/views/authority/job/detail.vue') },

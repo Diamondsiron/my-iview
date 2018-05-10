@@ -2,13 +2,21 @@
   <div class="home-main content">
       <div class="form-content">
            <Form  label-position="left" :label-width="100">
-              <FormItem label="角色编号">
+              <FormItem label="登陆账号">
                   <Input></Input>
               </FormItem>
-              <FormItem label="角色名称">
+              <FormItem label="用户姓名">
                   <Input></Input>
               </FormItem>
-              
+               <FormItem label="登录密码">
+                  <Input></Input>
+              </FormItem>
+               <FormItem label="用户状态">
+                  <Input></Input>
+              </FormItem>
+               <FormItem label="">
+                 <Checkbox >是否是管理员</Checkbox>
+              </FormItem>
              
           </Form>
       </div>

@@ -2,13 +2,12 @@
   <div class="home-main content">
       <div class="form-content">
            <Form  label-position="left" :label-width="100">
-              <FormItem label="角色编号">
+              <FormItem label="机构代码">
                   <Input></Input>
               </FormItem>
-              <FormItem label="角色名称">
+              <FormItem label="机构名称">
                   <Input></Input>
               </FormItem>
-              
              
           </Form>
       </div>

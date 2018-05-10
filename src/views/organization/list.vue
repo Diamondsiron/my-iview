@@ -41,10 +41,10 @@
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">
-                             <Button >删除</Button>
-                            <Button @click="change(index)">修改</Button>
-                            <Button>详情</Button>
-                             <Button style="margin-top:5px">添加机构人</Button>
+                             <Button @click="linkTO('insertorganization')">添加</Button>
+                             <Button @click="change(index)">修改</Button>
+                             <Button @click="destroy(item)">删除</Button>
+                             <Button style="margin-top:5px" @click="linkTO('otoUser')">添加机构人</Button>
                         </div>
                          
                      </div>
@@ -57,6 +57,14 @@
     text-align: center;">
       <Page :total="100"></Page>
     </div>
+    <Modal
+        v-model="modal1"
+        title="Common Modal dialog box title"
+        @on-ok="ok"
+        @on-cancel="cancel">
+        <p>确定删除？</p>
+    
+    </Modal>
   </div>
 </template>
 <script>
@@ -65,22 +73,34 @@
             return{
                 list:['a','b','c','d','e','f','g','h','i','j'],
                 editable:[false,false,false,false,false,false,false,false,false,false,false],
-                choose:''
+                choose:'',
+                modal1: false
             }
         },
         methods:{
             changeEditable(){
               console.log("修改后的回车事件")
             },
-            gonext(value){
+            linkTO(value){
                 this.$router.push({
                     name:value
                 })
+            },
+            destroy(item){
+                let vm = this
+                this.modal1 = true
+               // this.list.splice(vm.list.indexOf(item),1)
             },
             change(index){
                 
                 this.$set(this.editable,index,!this.editable[index])
                 
+                
+            },
+            ok () {
+               
+            },
+            cancel () {
                 
             },
             showTag(item){
@@ -135,7 +155,7 @@ z-Index:-999
     position: absolute;
     border-color: transparent;
     border-style: solid;
-        border-width: 6px;
+    border-width: 6px;
 }
 </style>
 
