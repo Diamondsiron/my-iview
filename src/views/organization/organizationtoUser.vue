@@ -1,25 +1,65 @@
 <template>
-  <div class="home-main">
-    <el-tree
-      :data="data6"
-      node-key="id"
-      default-expand-all
-      @node-drag-start="handleDragStart"
-      @node-drag-enter="handleDragEnter"
-      @node-drag-leave="handleDragLeave"
-      @node-drag-over="handleDragOver"
-      @node-drag-end="handleDragEnd"
-      @node-drop="handleDrop"
-      draggable
-      :allow-drop="allowDrop"
-      :allow-drag="allowDrag">
-    </el-tree>
+  <div class="">
+    <Row>
+      <Col span="12">
+       <el-tree
+        :data="data6"
+        node-key="id"
+        default-expand-all
+        @node-drag-start="handleDragStart"
+        @node-drag-enter="handleDragEnter"
+        @node-drag-leave="handleDragLeave"
+        @node-drag-over="handleDragOver"
+        @node-drag-end="handleDragEnd"
+        @node-drop="handleDrop"
+        draggable
+        :allow-drop="allowDrop"
+        :allow-drag="allowDrag">
+      </el-tree>
+      <tree></tree>
+      </Col>
+       <Col span="12">
+        <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
+            <tr>
+                <th colspan="2"><div> 角色查询条件</div></th>
+            </tr>
+            <tr>
+                <td><div>角色名称</div></td>
+                <td><div><Input style="width:200px"></Input><Button>查询</Button></div></td>
+                
+            </tr>
+            <tr>
+                <td colspan="2"><div>角色查询结果</div></td>
+                
+            </tr>
+            <tr>
+                <td><div>角色编号</div></td>
+                <td><div>角色名称</div></td>
+                
+            </tr>
+            <tr v-for="(item) in list" :key="item" draggable='true'  @dragstart='dragStart'>
+                <td   >
+                    <div>
+                        
+                         <span   >{{item}}</span>
+                    </div>
+                </td>
+                <td><div>{{item}}</div></td>
+               
+            </tr>
+        </table>
+      </Col>
+    </Row>
+   
   </div>
 </template>
 <script>
+import tree from "@/views/menu/parent/tree.vue"
  export default{
    data(){
      return{
+       list:["张三","李四","王五","赵六",4,5],
+       editable:[false,false,false,false,false,false],
         data6: [{
           id: 1,
           label: '机构 1',
@@ -67,7 +107,15 @@
             }],
      }
    },
+   components:{
+     tree
+   },
    methods:{
+      dragStart(e){
+          e.dataTransfer.effectAllowed = "move";
+          console.log("选中元素",e.target)
+          e.dataTransfer.setData("item", e.target);
+      },
       handleDragStart(node, ev) {
         console.log('drag start', node);
       },

@@ -25,27 +25,22 @@ let toData=""
         data:{
             name: 'My Tree',
             children: [
-              { name: '0' },
-              { name: '1' },
+              { name: '机构1' ,
+              children: [
+                  {name: '人员1'},
+                  { name: '人员2' },
+                  { name: '人员3' },
+                  { name: '人员4'}
+                ]
+              },
+              { name: '机构2' },
               {
-                name: '2',
+                name: '机构3',
                 children: [
-                  {
-                    name: '2-1',
-                    children: [
-                      { name: '2-1-1' },
-                      { name: '2-1-2' }
-                    ]
-                  },
-                  { name: '2-2' },
-                  { name: '2-3' },
-                  {
-                    name: '2-4',
-                    children: [
-                      { name: '2-4-1' },
-                      { name: '2-4-2' }
-                    ]
-                  }
+                  {name: '人员5'},
+                  { name: '人员6' },
+                  { name: '人员7' },
+                  { name: '人员8'}
                 ]
               }
             ]
@@ -100,7 +95,8 @@ let toData=""
 
           },
           dragEnd(e){
-              this.order(fromData,toData)
+              //this.order(fromData,toData)
+              console.log("end",fromData,toData)
           },
           dragOver(e){
 

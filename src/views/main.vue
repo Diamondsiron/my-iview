@@ -89,12 +89,15 @@
                     <div>
                         <tags-page-opened ></tags-page-opened>
                     </div>
-                
-                <Card style="background-color:rgb(240,240,240);overflow:hidden">
-                     <keep-alive>
-                        <router-view style="overflow:hidden"></router-view>
-                    </keep-alive>
-                </Card>
+                <div style="padding:20px">
+                     <Card style="overflow:hidden">
+                        <keep-alive>
+                            <router-view style="overflow:hidden"></router-view>
+                        </keep-alive>
+                    </Card>
+
+                </div>
+               
            
         </Layout>
     </div>

@@ -26,6 +26,14 @@ html,body{
 .xx{
     border-left: 1px solid #e9eaec;
 }
+tr>th:first-child
+{
+border-left: 1px solid #e9eaec;height: 40px;
+}
+tr>td:first-child
+{
+border-left: 1px solid #e9eaec;height: 40px;
+}
 th{
     border-right: 1px solid #e9eaec;height: 40px;
     white-space: nowrap;
