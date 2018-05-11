@@ -4,7 +4,7 @@
         <ul >
           <ztreeItem
             class="item"
-            v-for="(i, m) in xx.children"
+            v-for="(i, m) in tree.children"
             :key="m"
             :model="i"
            @wode="wode"
@@ -28,25 +28,35 @@ import ztreeItem from "@/views/menu/parent/childtree"
             children: [
               { name: '机构1' ,
               children: [
-                  {name: '人员1'},
+                  {name: "人员1"},
                   { name: '人员2' },
                   { name: '人员3' },
                   { name: '人员4'}
                 ]
               },
-              { name: '机构2' },
-              {
-                name: '机构3',
-                children: [
+              { name: '机构2' ,
+               children: [
                   {name: '人员5'},
                   { name: '人员6' },
                   { name: '人员7' },
                   { name: '人员8'}
                 ]
+              },
+              {
+                name: '机构3',
+                children: [
+                  {name: '人员9'},
+                  { name: '人员10' },
+                  { name: '人员11' },
+                  { name: '人员12'}
+                ]
               }
             ]
           }
       }
+    },
+    props:{
+      tree:{}
     },
     methods:{
       wode(){

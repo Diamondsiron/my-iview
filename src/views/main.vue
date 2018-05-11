@@ -186,7 +186,7 @@ import axios from 'axios';
                  let vm = this
                 axios.get('/api/menu')
                     .then(function(res){
-                    console.log("数据",res)
+                   
                     vm.menuList=res.data.data.data;
                     
                     })

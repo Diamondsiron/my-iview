@@ -2,7 +2,7 @@
   <div class="">
     <Row>
       <Col span="12">
-       <el-tree
+      <!--  <el-tree
         :data="data6"
         node-key="id"
         default-expand-all
@@ -15,8 +15,8 @@
         draggable
         :allow-drop="allowDrop"
         :allow-drag="allowDrag">
-      </el-tree>
-      <tree></tree>
+      </el-tree> -->
+      <tree :tree="yy"></tree>
       </Col>
        <Col span="12">
         <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
@@ -59,6 +59,36 @@ import tree from "@/views/menu/parent/tree.vue"
    data(){
      return{
        list:["张三","李四","王五","赵六",4,5],
+        xx:{
+            name: 'My Tree',
+            children: [
+              { name: '机构1' ,
+              children: [
+                  {name: "人员1"},
+                  { name: '人员2' },
+                  { name: '人员3' },
+                  { name: '人员4'}
+                ]
+              },
+              { name: '机构2' ,
+               children: [
+                  {name: '人员5'},
+                  { name: '人员6' },
+                  { name: '人员7' },
+                  { name: '人员8'}
+                ]
+              },
+              {
+                name: '机构3',
+                children: [
+                  {name: '人员9'},
+                  { name: '人员10' },
+                  { name: '人员11' },
+                  { name: '人员12'}
+                ]
+              }
+            ]
+          },
        editable:[false,false,false,false,false,false],
         data6: [{
           id: 1,
@@ -107,8 +137,19 @@ import tree from "@/views/menu/parent/tree.vue"
             }],
      }
    },
+   computed:{
+     yy(){
+       return this.$store.state.app.tree
+     }
+   },
    components:{
      tree
+   },
+   created(){
+     this.$store.commit("settree",this.xx)
+   },
+   mounted(){
+     console.log("yy",this.yy)
    },
    methods:{
      xxx(){

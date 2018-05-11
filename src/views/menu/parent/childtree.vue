@@ -73,21 +73,37 @@ let toData=""
           },
           order(from,to){
              let vm = this;
-             console.log("child",vm.model)
-             //vm.model.children.splice(vm.model.children.indexOf(from),1)
-            this.check(from);
-            //this.$emit("wode")
-             /* array.splice(array.indexOf(fron), 1);  
-            array.splice(array.indexOf(to), 0, from);   */
-            console.log("from",from,"to",to)
-            //this.data
+             this.check(from,to);
+             console.log("from",from,"to",to)
+            
 
           },
-          check(from){
+          check(from,to){
               let vm = this;
-              let xx =JSON.parse(localStorage.getItem("tree")); 
-              
-              console.log("xx",xx)
+              //let root =JSON.parse(localStorage.getItem("tree")); 
+              let root = this.$store.state.app.tree
+              let dataset;
+              for(let i=0;i<root.children.length;i++){
+                for(let j=0;j<root.children[i].children.length;j++){
+                  if(from==root.children[i].children[j].name){
+                    dataset = root.children[i].children[j]
+                    root.children[i].children.splice(j,1)
+                    }
+                  
+                }
+              }
+                for(let i=0;i<root.children.length;i++){
+                
+                  for(let j=0;j<root.children[i].children.length;j++){
+                   
+                    if(to==root.children[i].children[j].name){
+                      console.log("to",root.children[i].children[j])
+                        root.children[i].children.splice(j, 0, dataset); 
+                    }
+                  }
+              }
+              this.$store.commit("settree",root)
+              console.log("after",root,dataset)
               
            
 

@@ -7,6 +7,7 @@ const app = {
             path: '',
             name: 'home_index'
         }],
+        tree:{},
         routers: [
           otherRouter,
           
@@ -24,6 +25,9 @@ const app = {
     //导航栏部分
     setCurrentPath (state, pathArr) {
         state.currentPath = pathArr;
+    },
+    settree(state,value){
+      state.tree=value
     },
     orderCurrentPath (state,i){
       //console.log('i',i)
