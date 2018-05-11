@@ -38,7 +38,7 @@ export default {
     },
     methods: {
         changeMenu (active) {
-           
+           this.$emit("father")
            this.$router.push({name:active})   
         },
         itemTitle (item) {

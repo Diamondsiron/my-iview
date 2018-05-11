@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <td><div>角色名称</div></td>
-                <td><div><Input style="width:200px"></Input><Button>查询</Button></div></td>
+                <td><div><Input style="width:200px"></Input><Button @click="children">查询</Button></div></td>
                 
             </tr>
             <tr>
@@ -111,6 +111,12 @@ import tree from "@/views/menu/parent/tree.vue"
      tree
    },
    methods:{
+     xxx(){
+       console.log("heihiei")
+     },
+     children(){
+       
+     },
       dragStart(e){
           e.dataTransfer.effectAllowed = "move";
           console.log("选中元素",e.target)

@@ -8,6 +8,7 @@
             :menu-list="menuList" 
             :open-names="openNames"
             @on-change="handleChange"
+           @father="xxxx"
         ></sidebar-menu>
       
     </div>
@@ -35,6 +36,9 @@ export default {
         }
     },
     methods:{
+        xxxx(){
+           /*  console.log("linkto") */
+        },
         handleChange(name){
            
             this.$emit('on-change', name);

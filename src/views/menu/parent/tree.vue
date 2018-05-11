@@ -1,12 +1,13 @@
 <template>
   <div>
     
-        <ul>
+        <ul >
           <ztreeItem
             class="item"
-            v-for="(i, m) in data.children"
+            v-for="(i, m) in xx.children"
             :key="m"
             :model="i"
+           @wode="wode"
             >
           </ztreeItem>
           
@@ -15,14 +16,14 @@
   </div>
 </template>
 <script>
-let fromData = ''
-let toData=""
+import ztreeItem from "@/views/menu/parent/childtree"
+
   export default{
     name:'tree',
     
     data(){
       return{
-        data:{
+        xx:{
             name: 'My Tree',
             children: [
               { name: '机构1' ,
@@ -47,76 +48,23 @@ let toData=""
           }
       }
     },
-    components:{
-      ztreeItem:{
-        name:'ztreeItem',
-        data(){
-          return{
-            open: false
-          }
-        },
-        props:{
-          model:{}
-
-        },
-        computed:{
-          isFolder: function () {
-              return this.model.children &&
-                this.model.children.length
-            }
-        },
-        methods:{
-          toggle: function () {
-            if (this.isFolder) {
-              this.open = !this.open
-            }
-          },
-          dragStart(e,treeNode){
-            //拖拽效果
-            e.dataTransfer.effectAllowed = "move";
-            fromData = e.target.dataset.name
-           // console.log("选中元素",e.target.dataset.name)
-            e.dataTransfer.setData("nottext", e.target.innerHTML);
-            
-            return true
-          },
-          dragEnter(e){
-           /*  toData = this.model */
-            /* console.log("toData",toData) */
-            toData = e.target.textContent
-            //console.log("进入的元素",e.target.textContent)
-          },
-          dragLeave(e){
-            /* fromData = this.model */
-            /* console.log(e)
-            console.log("fromData",fromData) */
-          },
-          drop(e){
-
-          },
-          dragEnd(e){
-              //this.order(fromData,toData)
-              console.log("end",fromData,toData)
-          },
-          dragOver(e){
-
-          },
-          order(from,to){
-            console.log("from",from,"to",to)
-            //this.data
-
-          }
-
-        },
-        template:`<li  draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend='dragEnd' :data-name="model.name">
-          <span  @click="toggle">{{model.name}}</span>
-          <span v-if="isFolder">+</span>
-          <a></a>
-          <ul class="ul" v-show="open" v-if="isFolder">
-            <ztreeItem v-for="(i,m) in model.children" :model="i"></ztreeItem>
-          </ul>
-        </li>`
+    methods:{
+      wode(){
+         console.log("msg")
       }
+
+    },
+    created(){
+      let vm = this
+      localStorage.setItem("tree",JSON.stringify(vm.xx))
+    },
+    mounted(){
+      this.$on("oxxe",function(){
+        console.log("xxx")
+      })
+    },
+    components:{
+      ztreeItem
     }
   }  
 </script>
