@@ -1,13 +1,21 @@
 <template>
-        <li>
-          <span  @click="toggle" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend.prevent='dragEnd' :data-name="model.name">{{model.name}}</span>
-          <span v-if="isFolder">+</span>
+
+  <ul class="ul">
+        <li :data-name="i.name" v-for="(i, m) in tree.children" :key="m" class="item">
+          <span  @click="toggle" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend.prevent='dragEnd' :data-name="i.name">{{i.name}}</span>
+         <!--  <span v-if="isFolder">+</span> -->
           <a></a>
-          <ul class="ul" v-show="open" v-if="isFolder">
-           <treeNode v-for="(i,m) in model.children" :key="m" :model="i" @wode="wode"></treeNode> 
-          </ul>
+         
+           <treeNode :tree="i"></treeNode> 
+          
         </li>
+        <div>
+          
+        </div>
+  </ul>
+
   
+ 
 </template>
 <script>
 let fromData = ''
@@ -17,56 +25,61 @@ let toData=""
        
         data(){
           return{
-            open: false
+            open: false,
+             list:["张三","李四","王五","赵六",4,5],
           }
         },
         props:{
-          model:{}
+          tree:{}
 
         },
         computed:{
-          isFolder: function () {
+         /*  isFolder: function () {
               return this.model.children &&
                 this.model.children.length
-            }
+            } */
         },
         methods:{
-           wode(){
-             console.log("model",this.model)
+          wode(){
+            /*  console.log("model",this.model) */
           
           },
           toggle: function () {
-            if (this.isFolder) {
+           /*  if (this.isFolder) {
               this.open = !this.open
-            }
+            } */
           },
-          dragStart(e,treeNode){
+          dragStart(e){
             //拖拽效果
             e.dataTransfer.effectAllowed = "move";
             fromData = e.target.dataset.name
-           // console.log("选中元素",e.target.dataset.name)
+           
             e.dataTransfer.setData("nottext", e.target.innerHTML);
             
             return true
           },
           dragEnter(e){
-           /*  toData = this.model */
-            /* console.log("toData",toData) */
+           
             toData = e.target.textContent
-            //console.log("进入的元素",e.target.textContent)
+            if(this.$store.state.app.righttable==""){
+
+            }else{
+              this.$store.commit("setleftli",toData)
+              
+            }
+            
+             
           },
           dragLeave(e){
-            /* fromData = this.model */
-            /* console.log(e)
-            console.log("fromData",fromData) */
+            
           },
           drop(e){
 
           },
           dragEnd(e){
-            // e.preventDefault();
+            
               this.order(fromData,toData)
-              //console.log("end",fromData,toData)
+             
           },
           dragOver(e){
 
@@ -74,14 +87,43 @@ let toData=""
           order(from,to){
              let vm = this;
              this.check(from,to);
-             console.log("from",from,"to",to)
+            
             
 
           },
-          check(from,to){
+          checktable(from,to){
+              
               let vm = this;
-              //let root =JSON.parse(localStorage.getItem("tree")); 
+              
               let root = this.$store.state.app.tree
+              
+              let dataset={name:from};
+              
+                for(let i=0;i<root.children.length;i++){
+                
+                  for(let j=0;j<root.children[i].children.length;j++){
+                   
+                    if(to==root.children[i].children[j].name){
+                     /*  console.log("to",root.children[i].children[j]) */
+                       /*  root.children[i].children.splice(j, 0, dataset);  */
+                        root.children[i].children.push(dataset)
+                    }
+                  }
+              } 
+              
+              this.$store.commit("settree",root)
+              
+              
+           
+
+            
+          },
+          check(from,to){
+               console.log("from",from,"to",to)
+              let vm = this;
+              
+              let root = this.$store.state.app.tree
+              console.log("root",root)
               let dataset;
               for(let i=0;i<root.children.length;i++){
                 for(let j=0;j<root.children[i].children.length;j++){
@@ -97,11 +139,13 @@ let toData=""
                   for(let j=0;j<root.children[i].children.length;j++){
                    
                     if(to==root.children[i].children[j].name){
-                      console.log("to",root.children[i].children[j])
-                        root.children[i].children.splice(j, 0, dataset); 
+                     /*  console.log("to",root.children[i].children[j]) */
+                       /*  root.children[i].children.splice(j, 0, dataset);  */
+                        root.children[i].children.push(dataset)
                     }
                   }
-              }
+              } 
+              console.log("root",root)
               this.$store.commit("settree",root)
               console.log("after",root,dataset)
               

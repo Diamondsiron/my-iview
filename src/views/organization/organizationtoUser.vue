@@ -16,10 +16,10 @@
         :allow-drop="allowDrop"
         :allow-drag="allowDrag">
       </el-tree> -->
-      <tree :tree="yy"></tree>
+      <tree ></tree>
       </Col>
        <Col span="12">
-        <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
+        <!-- <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
             <tr>
                 <th colspan="2"><div> 角色查询条件</div></th>
             </tr>
@@ -37,7 +37,7 @@
                 <td><div>角色名称</div></td>
                 
             </tr>
-            <tr v-for="(item) in list" :key="item" draggable='true'  @dragstart='dragStart'>
+            <tr v-for="(item) in list" :key="item" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item">
                 <td   >
                     <div>
                         
@@ -47,7 +47,7 @@
                 <td><div>{{item}}</div></td>
                
             </tr>
-        </table>
+        </table> -->
       </Col>
     </Row>
    
@@ -55,6 +55,8 @@
 </template>
 <script>
 import tree from "@/views/menu/parent/tree.vue"
+let fromData = ''
+let toData=""
  export default{
    data(){
      return{
@@ -160,10 +162,24 @@ import tree from "@/views/menu/parent/tree.vue"
      },
       dragStart(e){
           e.dataTransfer.effectAllowed = "move";
-          console.log("选中元素",e.target)
+          fromData = e.target.dataset.name
           e.dataTransfer.setData("item", e.target);
       },
-      handleDragStart(node, ev) {
+      dragEnter(e){
+        toData = e.target.textContent
+        console.log("我进去了",e.target)
+      },
+      dragEnd(e){
+         this.order(fromData,toData)
+      },
+      order(from,to){
+          let vm = this;
+          //this.check(from,to);
+          console.log("from",from,"to",to)
+        
+
+      },
+     /*  handleDragStart(node, ev) {
         console.log('drag start', node);
       },
       handleDragEnter(draggingNode, dropNode, ev) {
@@ -192,7 +208,7 @@ import tree from "@/views/menu/parent/tree.vue"
       },
       allowDrag(draggingNode) {
         return draggingNode.data.label.indexOf('三级 3-1-1') === -1;
-      }
+      } */
    }
    
  } 

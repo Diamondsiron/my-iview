@@ -8,6 +8,8 @@ const app = {
             name: 'home_index'
         }],
         tree:{},
+        righttable:'',
+        leftli:'',
         routers: [
           otherRouter,
           
@@ -28,6 +30,12 @@ const app = {
     },
     settree(state,value){
       state.tree=value
+    },
+    setleftli(state,value){
+      state.leftli=value
+    },
+    setrighttable(state,value){
+      state.righttable=value
     },
     orderCurrentPath (state,i){
       //console.log('i',i)
