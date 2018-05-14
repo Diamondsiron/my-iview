@@ -2,12 +2,12 @@
 
   <ul class="ul">
         <li :data-name="i.name" v-for="(i, m) in tree.children" :key="m" class="item">
-          <span  @click="toggle" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend.prevent='dragEnd' :data-name="i.name">{{i.name}}</span>
-         <!--  <span v-if="isFolder">+</span> -->
+          <span  @click="toggle(m)" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend.prevent='dragEnd' :data-name="i.name">{{i.name}}</span>
+         <span v-if="isFolder">+</span>
           <a></a>
-         
+         <span v-if="open[m]">
            <treeNode :tree="i"></treeNode> 
-          
+          </span>
         </li>
         <div>
           
@@ -25,7 +25,7 @@ let toData=""
        
         data(){
           return{
-            open: false,
+            open: [],
              list:["张三","李四","王五","赵六",4,5],
           }
         },
@@ -34,20 +34,22 @@ let toData=""
 
         },
         computed:{
-         /*  isFolder: function () {
-              return this.model.children &&
-                this.model.children.length
-            } */
+          isFolder: function () {
+              return this.tree.children.children &&
+                this.tree.children.children.length
+            }
         },
         methods:{
           wode(){
             /*  console.log("model",this.model) */
           
           },
-          toggle: function () {
-           /*  if (this.isFolder) {
-              this.open = !this.open
-            } */
+          toggle: function (m) {
+              let vm = this
+              this.$set(this.open,m,!this.open[m])
+            
+             
+            
           },
           dragStart(e){
             //拖拽效果

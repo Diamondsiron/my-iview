@@ -1,7 +1,7 @@
 <template>
 <div style="display:flex">
   <div style="flex:1"> 
-    
+      <Input style="width:200px"></Input>
        
           <ztreeItem :tree="yy"></ztreeItem>
           

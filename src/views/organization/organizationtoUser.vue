@@ -5,8 +5,8 @@
             <Icon type="person"></Icon>
             机构管理
         </p>
-    <Row>
-      <Col span="12">
+    <div style="display:flex">
+      <div style="flex:1" >
       <!--  <el-tree
         :data="data6"
         node-key="id"
@@ -22,39 +22,9 @@
         :allow-drag="allowDrag">
       </el-tree> -->
       <tree ></tree>
-      </Col>
-       <Col span="12">
-        <!-- <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
-            <tr>
-                <th colspan="2"><div> 角色查询条件</div></th>
-            </tr>
-            <tr>
-                <td><div>角色名称</div></td>
-                <td><div><Input style="width:200px"></Input><Button @click="children">查询</Button></div></td>
-                
-            </tr>
-            <tr>
-                <td colspan="2"><div>角色查询结果</div></td>
-                
-            </tr>
-            <tr>
-                <td><div>角色编号</div></td>
-                <td><div>角色名称</div></td>
-                
-            </tr>
-            <tr v-for="(item) in list" :key="item" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item">
-                <td   >
-                    <div>
-                        
-                         <span   >{{item}}</span>
-                    </div>
-                </td>
-                <td><div>{{item}}</div></td>
-               
-            </tr>
-        </table> -->
-      </Col>
-    </Row>
+      </div>
+      
+    </div>
    
   </Card>
 </div>
