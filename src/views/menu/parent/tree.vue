@@ -49,7 +49,7 @@ import ztreeItem from "@/views/menu/parent/childtree"
     
     data(){
       return{
-         list:["张三","李四","王五","赵六",4,5],
+         list:["张三","李四","王五","赵六",4,5,6],
         xx:{
             name: 'My Tree',
             children: [
