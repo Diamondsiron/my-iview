@@ -1,6 +1,10 @@
 <template>
 <div>
    <Card class="home-main">
+        <p slot="title">
+            <Icon type="person"></Icon>
+            机构管理
+        </p>
     <div style="text-align: center;
     margin: 20px;">
       <!-- <div style="display:flex;width:600px;">

@@ -1,6 +1,10 @@
 <template>
 <div>
-   <Card class="home-main">
+   <Card class="">
+      <p slot="title">
+            <Icon type="person"></Icon>
+            机构管理
+        </p>
     <Row>
       <Col span="12">
       <!--  <el-tree

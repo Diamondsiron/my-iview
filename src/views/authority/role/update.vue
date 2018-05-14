@@ -1,6 +1,10 @@
 <template>
     <div >
    <Card class="home-main">
+        <p slot="title">
+            <Icon type="person"></Icon>
+            机构管理
+        </p>
       <div class="form-content">
            <Form  label-position="left" :label-width="100">
               <FormItem label="角色编号">

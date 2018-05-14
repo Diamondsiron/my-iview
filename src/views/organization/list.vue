@@ -3,7 +3,7 @@
    <Card class="home-main">
        <p slot="title">
             <Icon type="person"></Icon>
-            个人信息
+            机构管理
         </p>
     <div style="text-align: center;
     margin: 20px;">
