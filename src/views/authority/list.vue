@@ -1,11 +1,8 @@
 <template>
-  <div class="home-main">
-    <div>
-      <span>菜单</span>
-      <span>角色</span>
-      <span>列表</span>
-    </div>
-  </div>
+<div>
+   <Card class="home-main">
+   </Card>
+</div>
 </template>
 <script>
   export default{

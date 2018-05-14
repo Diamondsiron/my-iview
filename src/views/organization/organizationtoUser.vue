@@ -1,5 +1,6 @@
 <template>
-  <div class="">
+<div>
+   <Card class="home-main">
     <Row>
       <Col span="12">
       <!--  <el-tree
@@ -51,7 +52,8 @@
       </Col>
     </Row>
    
-  </div>
+  </Card>
+</div>
 </template>
 <script>
 import tree from "@/views/menu/parent/tree.vue"

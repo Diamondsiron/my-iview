@@ -89,12 +89,12 @@
                     <div>
                         <tags-page-opened ></tags-page-opened>
                     </div>
-                <div style="padding:20px">
-                     <Card style="overflow:hidden">
+                <div style="padding:20px;">
+                     
                         <keep-alive>
                             <router-view style="overflow:hidden"></router-view>
                         </keep-alive>
-                    </Card>
+                   
 
                 </div>
                
@@ -176,6 +176,9 @@ import axios from 'axios';
             },
             handleSubmenuChange(val){
                
+            },
+            showout(){
+                //this.$refs.div.$emit('showTag',"");
             },
             logout(){
                 localStorage.removeItem("organization");

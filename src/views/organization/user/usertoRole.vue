@@ -1,5 +1,6 @@
 <template>
-  <div class="home-main">
+<div>
+   <Card class="home-main">
     <div style="text-align: center;
     margin: 20px;">
       <!-- <div style="display:flex;width:600px;">
@@ -56,7 +57,8 @@
     text-align: center;">
       <Page :total="100"></Page>
     </div>
-  </div>
+  </Card>
+</div>
 </template>
 <script>
   export default{

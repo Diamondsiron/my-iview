@@ -1,5 +1,6 @@
 <template>
-  <div class="home-main">
+  <div @click="closeTag">
+   <Card class="home-main">
     <div style="text-align: center;
     margin: 20px;">
       <!-- <div style="display:flex;width:600px;">
@@ -37,7 +38,7 @@
                     </div>
                    </td>
                  <td>
-                     <div @click="showTag(item)">{{item}}点我呀</div>
+                     <div @click.stop="showTag(item)">{{item}}点我呀</div>
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">
@@ -64,7 +65,8 @@
         <p>确定删除？</p>
     
     </Modal>
-  </div>
+  </Card>
+</div>
 </template>
 <script>
   export default{
@@ -96,6 +98,9 @@
             },
             cancel () {
                 
+            },
+            closeTag(){
+                 this.choose="";
             },
             showTag(item){
                 var box=document.getElementById(item);       

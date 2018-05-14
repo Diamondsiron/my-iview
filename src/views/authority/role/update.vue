@@ -1,5 +1,6 @@
 <template>
-  <div class="home-main content">
+    <div >
+   <Card class="home-main">
       <div class="form-content">
            <Form  label-position="left" :label-width="100">
               <FormItem label="角色编号">
@@ -16,7 +17,8 @@
           <Button >保存</Button>
           <Button>取消</Button>
       </div>
-  </div>
+  </Card>
+</div>
 </template>
 <script>
     export default{

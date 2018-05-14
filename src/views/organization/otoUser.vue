@@ -1,6 +1,6 @@
 <template>
-<div>
-    <div class="home-main content">
+  <div>
+   <Card class="home-main">
         <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
             <tr>
                 <th colspan="4"><div> 查询条件</div></th>
@@ -26,8 +26,7 @@
         </table>
         
         
-    </div>
-    <div class="home-main content">
+
         <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
             <tr>
                 <th colspan="3"><div> 查询结果</div></th>
@@ -57,7 +56,7 @@
           </div>
         
         
-    </div>
+   </Card>
 </div>
 </template>
 <script>
