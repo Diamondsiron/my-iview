@@ -1,7 +1,7 @@
 <template>
 <div style="display:flex">
   <div style="flex:1"> 
-      <Input style="width:200px"></Input>
+      <Input style="width:200px" v-model="title" ></Input>
        
           <ztreeItem :tree="yy"></ztreeItem>
           
@@ -50,36 +50,8 @@ import ztreeItem from "@/views/menu/parent/childtree"
     data(){
       return{
          list:["张三","李四","王五","赵六",4,5,6],
-        xx:{
-            name: 'My Tree',
-            children: [
-              { name: '机构1' ,
-              children: [
-                  {name: "人员1"},
-                  { name: '人员2' },
-                  { name: '人员3' },
-                  { name: '人员4'}
-                ]
-              },
-              { name: '机构2' ,
-               children: [
-                  {name: '人员5'},
-                  { name: '人员6' },
-                  { name: '人员7' },
-                  { name: '人员8'}
-                ]
-              },
-              {
-                name: '机构3',
-                children: [
-                  {name: '人员9'},
-                  { name: '人员10' },
-                  { name: '人员11' },
-                  { name: '人员12'}
-                ]
-              }
-            ]
-          }
+         title:"",
+         zz : this.$store.state.app.tree
       }
     },
     props:{
@@ -89,10 +61,39 @@ import ztreeItem from "@/views/menu/parent/childtree"
        yy(){
           return this.$store.state.app.tree
         }
+        
     },
     methods:{
       wode(){
          console.log("msg")
+      },
+      search(){
+        console.log(this.title)
+        let title = this.title
+       
+        let root = this.yy
+        let x = {}
+        x.children = []
+        for(let i=0;i<root.children.length;i++){
+          let obj = {}
+          obj.name = root.children[i].name;
+          obj.children=[]
+            /* for(let j=0;j<root.children[i].children.length;j++){
+              
+              if((root.children[i].children[j].name.indexOf(title)>-1)){
+                     obj.children.push(root.children[i].children[j])
+                 
+              }
+            } */
+             x.children.push(obj)
+        } 
+        /* console.log(root,this.$store.state.app.tree) */
+      /*   this.$store.commit("settree",x) */
+       /*  if(title==""){
+          console.log("还原")
+          this.$store.commit("settree",this.$store.state.app.tree)
+        } */
+       
       },
       dragStart(e){
           e.dataTransfer.effectAllowed = "move";
@@ -140,7 +141,7 @@ import ztreeItem from "@/views/menu/parent/childtree"
     },
     created(){
       let vm = this
-      localStorage.setItem("tree",JSON.stringify(vm.xx))
+      //localStorage.setItem("tree",JSON.stringify(vm.xx))
     },
     mounted(){
       this.$on("oxxe",function(){

@@ -33,6 +33,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
   export default{
     name:'login',
     data(){
@@ -59,15 +60,34 @@
         this.$router.push({
             name: 'home_index'
         });
-               /*  this.$refs[name].validate((valid) => {
-                    if (valid) {
-                        this.$Message.success('Success!');
-                    } else {
-                        this.$Message.error('Fail!');
-                    }
-                }) */
+        let req = {
 
-            }
+	"jyau_content": {
+		"jyau_reqData": [{
+			"req_no": "CL048201802051125231351",
+			"account_content": "6fdefAERTYP",
+			"account_id": "systemman"
+		}],
+		"jyau_pubData": {
+			"operator_id": "O201801301417012263",
+			"ip_address": "10.2.0.116",
+			"account_id": "systemman",
+			"system_id": "10909"
+		}
+	}
+}
+//JSON.parse(req)
+        /*  axios.post('api/api',req)
+        .then(function(res){
+        
+       console.log(res.data)
+        
+        })
+        .catch(function(error){
+        console.log(error)
+        })  */     
+
+       }
     }
   }
   
