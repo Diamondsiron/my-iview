@@ -35,12 +35,14 @@ module.exports = {
     //跨域访问开始
     proxyTable: {
       '/api':{
-          target:'http://10.2.0.116:8099/AuthorityM_Serv/login',
+          target:'http://10.2.0.116:8099/AuthorityM_Serv/',
           changeOrigin: true,
           pathRewrite: {
             '^/api': ''
           }
-      }
+      } 
+      
+      
     },
     //跨越访问结束
     cssSourceMap: true
