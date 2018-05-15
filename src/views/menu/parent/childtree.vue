@@ -1,13 +1,14 @@
 <template>
 
   <ul class="ul">
-        <li :data-name="i.name" v-for="(i, m) in tree.children" :key="m" class="item">
+     
+        <li :data-name="i.name" v-for="(i, m) in tree.children" :key="m" class="item" v-if="!searchopen[m]">
           <span  @click="toggle(m)" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend.prevent='dragEnd' :data-name="i.name">{{i.name}}</span>
          <span v-if="isdelete(i.name)" @click="removeItem(i)" style="color:red">删除</span>
         <!--  <span v-if="!isdelete(i.name)">+</span> -->
           <a></a>
          <span v-if="open[m]">
-           <treeNode :tree="i"></treeNode> 
+           <treeNode :tree="i" :searchname="childrentitle"></treeNode> 
           </span>
         </li>
         <div>
@@ -28,29 +29,83 @@ let toData=""
           return{
             open: [],
              list:["张三","李四","王五","赵六",4,5],
+             searchopen:[]
+           
           }
         },
         props:{
-          tree:{}
+          tree:{},
+          searchname:""
 
         },
         computed:{
           isFolder: function () {
               return this.tree.children.children &&
                 this.tree.children.children.length
+            },
+          childrentitle:function(){
+            return this.searchname
+          }
+        },
+        watch:{
+          searchname:function(){
+             let vm = this;
+            if(vm.searchname==""){
+               for(let i=0;i<vm.tree.children.length;i++){
+                //this.$set(this.open,i,false) 
+                 vm.$set(this.searchopen,i,false) 
+                
             }
-          
+              return
+            }
+            
+            for(let i=0;i<vm.tree.children.length;i++){
+                //this.$set(this.open,i,false) 
+                 vm.$set(this.searchopen,i,vm.seachenameul(vm.tree.children[i])) 
+                  vm.$set(this.open,i,!vm.seachenameul(vm.tree.children[i])) 
+            }
+           
+              
+            
+            
+          }
         },
         methods:{
+          seachenameul(item){
+            let vm = this;
+            console.log(item)
+            if(item.children){
+              for(let j=0;j<item.children.length;j++){
+                if(item.children[j].name.indexOf(vm.searchname)>-1){
+                     return false
+                }
+              }
+              return true
+
+            }else{
+              
+            }
+           
+              
+             
+            
+          },
           wode(){
-            /*  console.log("model",this.model) */
+            console.log("model") 
           
           },
           toggle: function (m) {
               let vm = this
               this.$set(this.open,m,!this.open[m])
-            
-             
+          },
+          search(name){
+            console.log("search")
+            let vm = this;
+            for(let i=0;i<vm.tree.children.length;i++){
+                if(vm.tree.children[i].name.indexOf(name)>-1){
+                  vm.open[i] = true
+                }
+            }
             
           },
           dragStart(e){

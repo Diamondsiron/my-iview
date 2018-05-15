@@ -1,9 +1,9 @@
 <template>
 <div style="display:flex">
   <div style="flex:1"> 
-      <Input style="width:200px" v-model="title" ></Input>
+      <Input style="width:200px" v-model="title" :on-change="search()"></Input>
        
-          <ztreeItem :tree="yy"></ztreeItem>
+          <ztreeItem :tree="yy" ref="trees" :searchname="title"></ztreeItem>
           
         
      
@@ -68,31 +68,10 @@ import ztreeItem from "@/views/menu/parent/childtree"
          console.log("msg")
       },
       search(){
-        console.log(this.title)
-        let title = this.title
-       
-        let root = this.yy
-        let x = {}
-        x.children = []
-        for(let i=0;i<root.children.length;i++){
-          let obj = {}
-          obj.name = root.children[i].name;
-          obj.children=[]
-            /* for(let j=0;j<root.children[i].children.length;j++){
-              
-              if((root.children[i].children[j].name.indexOf(title)>-1)){
-                     obj.children.push(root.children[i].children[j])
-                 
-              }
-            } */
-             x.children.push(obj)
-        } 
-        /* console.log(root,this.$store.state.app.tree) */
-      /*   this.$store.commit("settree",x) */
-       /*  if(title==""){
-          console.log("还原")
-          this.$store.commit("settree",this.$store.state.app.tree)
-        } */
+        //this.$refs.trees.$emit("search",(this.title))
+        //this.$refs.trees.search(this.title)
+        
+       // console.log(this.$refs.trees)
        
       },
       dragStart(e){
