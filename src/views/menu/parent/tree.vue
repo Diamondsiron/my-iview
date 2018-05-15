@@ -1,7 +1,7 @@
 <template>
 <div style="display:flex">
   <div style="flex:1"> 
-      <Input style="width:200px" v-model="title" :on-change="search()"></Input>
+      <Input style="width:200px" v-model="title" ></Input>
        
           <ztreeItem :tree="yy" ref="trees" :searchname="title"></ztreeItem>
           
@@ -15,7 +15,7 @@
             </tr>
             <tr>
                 <td><div>角色名称</div></td>
-                <td><div><Input style="width:200px"></Input><Button>查询</Button></div></td>
+                <td><div><Input style="width:200px" v-model="tabletitle"></Input><Button @click="tabletitlechange">查询</Button></div></td>
                 
             </tr>
             <tr>
@@ -27,14 +27,14 @@
                 <td><div>角色名称</div></td>
                 
             </tr>
-            <tr v-for="(item) in list" :key="item" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item">
+            <tr v-for="(item,index) in list" :key="index" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" v-if="!tableshow[index]">
                 <td   >
                     <div>
                         
-                         <span   >{{item}}</span>
+                         <span   >{{item.name}}</span>
                     </div>
                 </td>
-                <td><div>{{item}}</div></td>
+                <td><div>{{item.name}}</div></td>
                
             </tr>
         </table>
@@ -49,9 +49,11 @@ import ztreeItem from "@/views/menu/parent/childtree"
     
     data(){
       return{
-         list:["张三","李四","王五","赵六",4,5,6],
+         list:[{ name: '张三'},{ name: '李四'},{ name: '王五'},{ name: '赵六'},{ name: '1'},{ name: '2'},{ name: '3'}],
          title:"",
-         zz : this.$store.state.app.tree
+         tabletitle:"",
+         zz : this.$store.state.app.tree,
+         tableshow:[]
       }
     },
     props:{
@@ -64,15 +66,30 @@ import ztreeItem from "@/views/menu/parent/childtree"
         
     },
     methods:{
+      
       wode(){
          console.log("msg")
       },
-      search(){
-        //this.$refs.trees.$emit("search",(this.title))
-        //this.$refs.trees.search(this.title)
-        
-       // console.log(this.$refs.trees)
-       
+      
+      tabletitlechange(){
+        let vm = this
+          console.log(this.tabletitle)
+          if(vm.tabletitle==""){
+            for(let i=0;i<vm.list.length;i++){
+               
+                  vm.$set(vm.tableshow,i,false)
+               
+            }
+          }else{
+            for(let i=0;i<vm.list.length;i++){
+                if(vm.list[i].name.indexOf(vm.tabletitle)>-1){
+                  vm.$set(vm.tableshow,i,false)
+                }else{
+                   vm.$set(vm.tableshow,i,true)
+                }
+            }
+           
+          }
       },
       dragStart(e){
           e.dataTransfer.effectAllowed = "move";
