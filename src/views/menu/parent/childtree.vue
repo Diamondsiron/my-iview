@@ -50,24 +50,21 @@ let toData=""
         watch:{
           searchname:function(){
              let vm = this;
-            if(vm.searchname==""){
-               for(let i=0;i<vm.tree.children.length;i++){
-                //this.$set(this.open,i,false) 
-                 vm.$set(this.searchopen,i,false) 
-                
-            }
-              return
-            }
-            
-            for(let i=0;i<vm.tree.children.length;i++){
-                //this.$set(this.open,i,false) 
-                 vm.$set(this.searchopen,i,vm.seachenameul(vm.tree.children[i])) 
-                  vm.$set(this.open,i,!vm.seachenameul(vm.tree.children[i])) 
-            }
+             if(vm.searchname==""){
+                /*  for(let i=0;i<vm.tree.children.length;i++){
+                    vm.tree.children[i].searchopen=true
+                 } */
+             }else{
+               /*  for(let i=0;i<vm.tree.children.length;i++){
+                    if(vm.tree.children[i].name.indexOf(vm.searchname)>-1){
+                      vm.tree.children[i].searchopen=true
+                    }else{
+                      vm.tree.children[i].searchopen=false
+                    }
+                 } */
+
+             }
            
-              
-            
-            
           }
         },
         methods:{
