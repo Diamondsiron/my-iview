@@ -15,7 +15,7 @@
             </tr>
             <tr>
                 <td><div>角色名称</div></td>
-                <td><div><Input style="width:200px" v-model="tabletitle"></Input><Button @click="tabletitlechange">查询</Button></div></td>
+                <td><div><Input style="width:200px" v-model="tabletitle" :on-change="tabletitlechange()"></Input></div></td>
                 
             </tr>
             <tr>
@@ -27,7 +27,7 @@
                 <td><div>角色名称</div></td>
                 
             </tr>
-            <tr v-for="(item,index) in list" :key="index" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" v-if="!tableshow[index]">
+            <tr v-for="(item,index) in list" :key="index" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" v-if="item.tableshow">
                 <td   >
                     <div>
                         
@@ -49,7 +49,15 @@ import ztreeItem from "@/views/menu/parent/childtree"
     
     data(){
       return{
-         list:[{ name: '张三'},{ name: '李四'},{ name: '王五'},{ name: '赵六'},{ name: '1'},{ name: '2'},{ name: '3'}],
+         list:[
+                { name: '张三',tableshow:true},
+                { name: '李四',tableshow:true},
+                { name: '王五',tableshow:true},
+                { name: '赵六',tableshow:true},
+                { name: '1',tableshow:true},
+                { name: '2',tableshow:true},
+                { name: '3',tableshow:true}
+              ],
          title:"",
          tabletitle:"",
          zz : this.$store.state.app.tree,
@@ -73,19 +81,19 @@ import ztreeItem from "@/views/menu/parent/childtree"
       
       tabletitlechange(){
         let vm = this
-          console.log(this.tabletitle)
+        
           if(vm.tabletitle==""){
-            for(let i=0;i<vm.list.length;i++){
+             for(let i=0;i<vm.list.length;i++){
+               vm.list[i].tableshow=true
+                 // vm.$set(vm.tableshow,i,false)
                
-                  vm.$set(vm.tableshow,i,false)
-               
-            }
+            }  
           }else{
             for(let i=0;i<vm.list.length;i++){
                 if(vm.list[i].name.indexOf(vm.tabletitle)>-1){
-                  vm.$set(vm.tableshow,i,false)
+                 vm.list[i].tableshow=true
                 }else{
-                   vm.$set(vm.tableshow,i,true)
+                  vm.list[i].tableshow=false
                 }
             }
            

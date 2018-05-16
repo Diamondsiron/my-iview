@@ -7,7 +7,7 @@
          <span v-if="!i.isdelete" @click="removeItem(i)" style="color:red">删除</span>
         <!--  <span v-if="!isdelete(i.name)">+</span> -->
           <a></a>
-         <span v-if="open[m]">
+         <span v-if="i.open">
            <treeNode :tree="i" :searchname="childrentitle"></treeNode> 
           </span>
         </li>
@@ -95,8 +95,9 @@ let toData=""
           
           },
           toggle: function (m) {
-              let vm = this
-              this.$set(this.open,m,!this.open[m])
+            let vm = this
+            vm.tree.children[m].open = !vm.tree.children[m].open
+              
           },
           search(name){
             console.log("search")
