@@ -4,7 +4,7 @@
      
         <li :data-name="i.name" v-for="(i, m) in tree.children" :key="m" class="item" v-if="!searchopen[m]">
           <span  @click="toggle(m)" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend.prevent='dragEnd' :data-name="i.name">{{i.name}}</span>
-         <span v-if="isdelete(i.name)" @click="removeItem(i)" style="color:red">删除</span>
+         <span v-if="!i.isdelete" @click="removeItem(i)" style="color:red">删除</span>
         <!--  <span v-if="!isdelete(i.name)">+</span> -->
           <a></a>
          <span v-if="open[m]">
@@ -149,10 +149,6 @@ let toData=""
             
             
 
-          },
-          isdelete(item){
-            let isdelete = (item.indexOf("人员")>-1)
-            return isdelete
           },
           removeItem(item){
             console.log(item)
