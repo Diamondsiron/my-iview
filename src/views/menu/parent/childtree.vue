@@ -4,7 +4,7 @@
      
         <li :data-name="i.name" v-for="(i, m) in tree.children" :key="m" class="item"  :class="{'tree-hidden':!i.searchopen,'tree-block':i.expanded }">
           <span  @click="toggle(m)" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend.prevent='dragEnd' :data-name="i.name">{{i.name}}</span>
-         <span v-if="!i.isdelete" @click="removeItem(i)" style="color:red">删除</span>
+         <span v-if="!i.children" @click="removeItem(i)" style="color:red">删除</span>
         <!--  <span v-if="!isdelete(i.name)">+</span> -->
           <a></a>
          <span v-if="i.open">
@@ -61,22 +61,25 @@ let toData=""
              }else{
               
                if(vm.tree.children){
-                  
+                   vm.tree.children.forEach((child) => {
+                      child.searchopen=true 
+                      vm.tree.expanded=false
+                  })
+                    
                   vm.tree.children.forEach((child) => {
                    
                     if(child.name.indexOf(vm.searchname)>-1){
                       child.searchopen=true 
                       vm.tree.expanded=true  
                       
-                      console.log("当前",child.name,"是否应该显示",child.searchopen,"当前父类",vm.tree.name)
+                      //console.log("当前",child.name,"是否应该显示",child.searchopen,"当前父类",vm.tree.name)
                     }else{
                       child.searchopen=false 
-                      console.log("else",child.name,"是否应该显示",child.searchopen)
+                      //console.log("else",child.name,"是否应该显示",child.searchopen)
                     }
 
                   });
-                  //vm.tree.expanded=vm.seachenameul(); 
-              //vm.seachenameul();
+                 
                 
                }
              
@@ -88,21 +91,7 @@ let toData=""
         },
         methods:{
           seachenameul(){
-            let vm = this
-            if(vm.tree.children){
-              vm.tree.children.forEach((child)=>{
-                console.log(child.name,child.searchopen)
-                 if(child.searchopen==true){
-                    console.log(child.name)
-                  return true
-                 }else{
-                    console.log("没戏")
-                 }
-                
-               }) 
-               
-              return false
-            }
+            
                
           },
           wode(){
