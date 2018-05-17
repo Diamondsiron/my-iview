@@ -52,10 +52,12 @@ let toData=""
              let vm = this;
              
              if(vm.searchname==""){
-                 vm.tree.children.forEach((child) => {
+               if(vm.tree.children){
+                  vm.tree.children.forEach((child) => {
                    child.searchopen=true 
                     vm.tree.expanded=false
                  })
+               }
              }else{
               
                if(vm.tree.children){
@@ -64,16 +66,20 @@ let toData=""
                    
                     if(child.name.indexOf(vm.searchname)>-1){
                       child.searchopen=true 
+                      vm.tree.expanded=true  
                       
-                      vm.tree.expanded=true
                       console.log("当前",child.name,"是否应该显示",child.searchopen,"当前父类",vm.tree.name)
                     }else{
                       child.searchopen=false 
                       console.log("else",child.name,"是否应该显示",child.searchopen)
                     }
+
                   });
+                  //vm.tree.expanded=vm.seachenameul(); 
+              //vm.seachenameul();
+                
                }
-               
+             
            
 
              }
@@ -81,24 +87,23 @@ let toData=""
           }
         },
         methods:{
-          seachenameul(item){
-            let vm = this;
-            console.log(item)
-            if(item.children){
-              for(let j=0;j<item.children.length;j++){
-                if(item.children[j].name.indexOf(vm.searchname)>-1){
-                     return false
-                }
-              }
-              return true
-
-            }else{
-              
+          seachenameul(){
+            let vm = this
+            if(vm.tree.children){
+              vm.tree.children.forEach((child)=>{
+                console.log(child.name,child.searchopen)
+                 if(child.searchopen==true){
+                    console.log(child.name)
+                  return true
+                 }else{
+                    console.log("没戏")
+                 }
+                
+               }) 
+               
+              return false
             }
-           
-              
-             
-            
+               
           },
           wode(){
             console.log("model") 
