@@ -8,7 +8,8 @@
         <!--  <span v-if="!isdelete(i.name)">+</span> -->
           <a></a>
          <span v-if="i.open">
-           <treeNode :tree="i" :searchname="childrentitle"></treeNode> 
+          <!--  <treeNode :tree="i" :searchname="childrentitle"></treeNode>  -->
+          <treeNode :tree="i" ></treeNode>
           </span>
         </li>
         <div>
