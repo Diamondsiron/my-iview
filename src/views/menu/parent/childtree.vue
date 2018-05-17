@@ -2,7 +2,7 @@
 
   <ul class="ul">
      
-        <li :data-name="i.name" v-for="(i, m) in tree.children" :key="m" class="item" v-if="!searchopen[m]">
+        <li :data-name="i.name" v-for="(i, m) in tree.children" :key="m" class="item"  :class="{'tree-hidden':!i.searchopen,'tree-block':i.expanded }">
           <span  @click="toggle(m)" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend.prevent='dragEnd' :data-name="i.name">{{i.name}}</span>
          <span v-if="!i.isdelete" @click="removeItem(i)" style="color:red">删除</span>
         <!--  <span v-if="!isdelete(i.name)">+</span> -->
@@ -28,8 +28,8 @@ let toData=""
         data(){
           return{
             open: [],
-             list:["张三","李四","王五","赵六",4,5],
-             searchopen:[]
+             list:["张三","李四","王五","赵六",4,5]
+            
            
           }
         },
@@ -50,18 +50,31 @@ let toData=""
         watch:{
           searchname:function(){
              let vm = this;
+             
              if(vm.searchname==""){
-                /*  for(let i=0;i<vm.tree.children.length;i++){
-                    vm.tree.children[i].searchopen=true
-                 } */
+                 vm.tree.children.forEach((child) => {
+                   child.searchopen=true 
+                    vm.tree.expanded=false
+                 })
              }else{
-               /*  for(let i=0;i<vm.tree.children.length;i++){
-                    if(vm.tree.children[i].name.indexOf(vm.searchname)>-1){
-                      vm.tree.children[i].searchopen=true
+              
+               if(vm.tree.children){
+                  
+                  vm.tree.children.forEach((child) => {
+                   
+                    if(child.name.indexOf(vm.searchname)>-1){
+                      child.searchopen=true 
+                      
+                      vm.tree.expanded=true
+                      console.log("当前",child.name,"是否应该显示",child.searchopen,"当前父类",vm.tree.name)
                     }else{
-                      vm.tree.children[i].searchopen=false
+                      child.searchopen=false 
+                      console.log("else",child.name,"是否应该显示",child.searchopen)
                     }
-                 } */
+                  });
+               }
+               
+           
 
              }
            
@@ -234,6 +247,11 @@ let toData=""
   }
 </script>
 <style scoped>
-
+.tree-hidden{
+  display: none
+}
+.tree-block{
+  display: block
+}
 </style>
 

@@ -60,8 +60,10 @@ import ztreeItem from "@/views/menu/parent/childtree"
               ],
          title:"",
          tabletitle:"",
-         zz : this.$store.state.app.tree,
-         tableshow:[]
+         
+         tableshow:[],
+         store: null,
+         root: null,
       }
     },
     props:{
@@ -116,7 +118,7 @@ import ztreeItem from "@/views/menu/parent/childtree"
         let root = this.$store.state.app.tree
         let from = this.$store.state.app.righttable
         let to = this.$store.state.app.leftli
-        let dataset={name:from};
+        let dataset={name:from,open:true,searchopen:true};
         
           for(let i=0;i<root.children.length;i++){
           
@@ -144,13 +146,32 @@ import ztreeItem from "@/views/menu/parent/childtree"
 
     },
     created(){
-      let vm = this
-      //localStorage.setItem("tree",JSON.stringify(vm.xx))
+      /* let vm = this
+      vm.store = {
+        data: vm.yy,
+        root:{
+          data:vm.yy
+         
+        }
+      }
+      vm.root = vm.store.root.data;
+      console.log(vm.store) */
     },
     mounted(){
       this.$on("oxxe",function(){
         console.log("xxx")
       })
+      /* let vm = this
+      vm.store = {
+        data: vm.yy,
+        root:{
+          data:vm.yy
+         
+        }
+      }
+      vm.root = vm.store.root.data;
+      console.log(vm.store) */
+
     },
     components:{
       ztreeItem
