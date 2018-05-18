@@ -4,7 +4,9 @@
      
         <li :data-name="i.name" v-for="(i, m) in tree.children" :key="m" class="item"  :class="{'tree-hidden':!i.searchopen,'tree-block':i.expanded }">
           <span  @click="toggle(m)" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend.prevent='dragEnd' :data-name="i.name">{{i.name}}</span>
-         <span v-if="!i.children" @click="removeItem(i)" style="color:red">删除</span>
+         <Icon type="arrow-right-b" v-if="(!i.open)&&i.children"></Icon>
+         <Icon type="arrow-down-b" v-if="i.open&&i.children"></Icon>
+         <span v-if="!i.children" @click="removeItem(i)" ><Icon type="ios-minus" style="color:red"></Icon></span>
         <!--  <span v-if="!isdelete(i.name)">+</span> -->
           <a></a>
          <span v-if="i.open">
@@ -224,8 +226,7 @@ let toData=""
                   for(let j=0;j<root.children[i].children.length;j++){
                    
                     if(to==root.children[i].children[j].name){
-                     /*  console.log("to",root.children[i].children[j]) */
-                       /*  root.children[i].children.splice(j, 0, dataset);  */
+                    
                         root.children[i].children.push(dataset)
                     }
                   }
@@ -247,6 +248,9 @@ let toData=""
 }
 .tree-block{
   display: block
+}
+li{
+  list-style: none;
 }
 </style>
 

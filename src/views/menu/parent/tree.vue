@@ -1,6 +1,6 @@
 <template>
 <div style="display:flex">
-  <div style="flex:1"> 
+  <div style="flex:1;overflow-y: scroll;height:800px"> 
       <Input style="width:200px" v-model="title" ></Input>
        
           <ztreeItem :tree="yy" ref="trees" :searchname="title"></ztreeItem>
@@ -11,20 +11,20 @@
   <div style="flex:1"> 
     <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
             <tr>
-                <th colspan="2"><div> 角色查询条件</div></th>
+                <th colspan="2"><div> 用户查询条件</div></th>
             </tr>
             <tr>
-                <td><div>角色名称</div></td>
+                <td><div>用户名称</div></td>
                 <td><div><Input style="width:200px" v-model="tabletitle" :on-change="tabletitlechange()"></Input></div></td>
                 
             </tr>
             <tr>
-                <td colspan="2"><div>角色查询结果</div></td>
+                <td colspan="2"><div>用户查询结果</div></td>
                 
             </tr>
             <tr>
-                <td><div>角色编号</div></td>
-                <td><div>角色名称</div></td>
+                <td><div>用户账号</div></td>
+                <td><div>用户名称</div></td>
                 
             </tr>
             <tr v-for="(item,index) in list" :key="index" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" v-if="item.tableshow">
