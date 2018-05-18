@@ -9,10 +9,14 @@
          <span v-if="!i.children" @click="removeItem(i)" ><Icon type="ios-minus" style="color:red"></Icon></span>
         <!--  <span v-if="!isdelete(i.name)">+</span> -->
           <a></a>
+          
          <span v-if="i.open">
           <!--  <treeNode :tree="i" :searchname="childrentitle"></treeNode>  -->
-          <treeNode :tree="i" ></treeNode>
+           
+              <treeNode :tree="i" ></treeNode>
+         
           </span>
+           
         </li>
         <div>
           
@@ -252,5 +256,6 @@ let toData=""
 li{
   list-style: none;
 }
+
 </style>
 
