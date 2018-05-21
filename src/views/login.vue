@@ -29,7 +29,11 @@
                                     <div id="drag_text" class="drag_text slidetounlock" onselectstart="return false;" unselectable="on">
                                         请按住滑块，拖动到最右边
                                     </div>
-                                    <div class="handler handler_bg" id="handler"></div>
+                                    <div class="handler handler_bg" id="handler">
+                                        <Icon v-if="!isdrag" type="ios-fastforward-outline"></Icon>
+                                        <Icon v-if="isdrag" type="checkmark-round" style="color:green"></Icon>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </FormItem>
@@ -49,9 +53,11 @@ import axios from 'axios';
     name:'login',
     data(){
       return{
+          isdrag:false,
          formInline: {
                     user: 'modifyOperator',
-                    password: 'admin'
+                    password: 'admin',
+                    
                 },
           ruleInline: {
               user: [
@@ -99,28 +105,30 @@ import axios from 'axios';
 
        },
        init(){
-
+           let vm = this
            let handler = document.getElementById("handler");
+           let drag = document.getElementById("drag")
            let drag_bg =  document.getElementById("drag_bg");
            let text =  document.getElementById("drag_text");
            let isMove = false
            let x 
-          // var maxWidth = drag.width() - handler.width();  //能滑动的最大间距
+          let maxWidth = 230;  //能滑动的最大间距
           handler.addEventListener("mousedown",function(e){
               
               isMove = true;
               x = e.pageX - parseInt(handler.offsetLeft);
+              console.log(maxWidth)
              
           })
           function mousemove(e){
               let _x = e.pageX - x;
               //console.log(_x)
               if (isMove) {
-                    if (_x > 0 && _x <= 232) {
+                    if (_x > 0 && _x <= maxWidth) {
                         //console.log("执行了")
                         handler.style.left= _x+"px"
                         drag_bg.style.width= _x+"px"
-                    } else if (_x > 232) {  //鼠标指针移动距离达到最大时清空事件
+                    } else if (_x > maxWidth) {  //鼠标指针移动距离达到最大时清空事件
                         dragOk();
                     }
                 }
@@ -145,7 +153,7 @@ import axios from 'axios';
                
                isMove = false;
                 let _x = e.pageX - x;
-                if (_x < 232) { //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+                if (_x < maxWidth) { //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
                     
                    
                      handler.className="handler handler_bg button_move"
@@ -165,20 +173,22 @@ import axios from 'axios';
           })
           function dragOk(){
               //console.log("ok")
+              vm.isdrag=true
+             
               handler = "handler handler_ok_bg" 
               text.className ="drag_text"
               text.innerHTML="验证通过";
               text.style.color = "#fff"
-              handler.style.left=232+"px"
-              drag_bg.style.width=232+"px"
-
-              handler.removeEventListener('mousedown',function(){
+             /*  handler.style.left=232+"px"
+              drag_bg.style.width=232+"px" */
+              
+              /* handler.removeEventListener('mousedown',function(){
                    event.preventDefault();  
               });
               handler.removeEventListener('mousemove',mousemove);
               handler.removeEventListener('mouseup',function(){
                   event.preventDefault();  
-              });
+              }); */
           }
 
 
@@ -243,15 +253,15 @@ position: relative;
     top: 0px;
     left: 0px;
     width: 40px;
-    height: 32px;
+    height: 34px;
     border: 1px solid #ccc;
     cursor: move;
 }
 .handler_bg{
-    background: #fff /* url("../img/slider.png") no-repeat center; */
+    background: #fff
 }
 .handler_ok_bg{
-    background: #fff /* url("../img/complet.png") no-repeat center; */
+    background: #fff 
 }
 #drag .drag_bg{
     background-color: #2d8cf0;
