@@ -23,6 +23,17 @@
                             </Input>
                         </FormItem>
                         <FormItem>
+                            <div id="wrapper">
+                                <div id="drag">
+                                    <div class="drag_bg" id="drag_bg"></div>
+                                    <div id="drag_text" class="drag_text slidetounlock" onselectstart="return false;" unselectable="on">
+                                        请按住滑块，拖动到最右边
+                                    </div>
+                                    <div class="handler handler_bg" id="handler"></div>
+                                </div>
+                            </div>
+                        </FormItem>
+                        <FormItem>
                             <Button type="primary" long @click="handleSubmit()">登录</Button>
                         </FormItem>
                     </Form>
@@ -62,19 +73,19 @@ import axios from 'axios';
             name: 'home_index'
         });
         let req = {
-	"jyau_content": {
-		"jyau_reqData": [{
-			"req_no": " AU001201810231521335687",
-			"account_pwd": vm.user
-		}],
-		"jyau_pubData": {
-			"oprator_id": "",
-			"account_id": "systemman",
-			"ip_address": "10.2.0.116",
-			"system_id": "10909"
-		}
-	}
-}
+            "jyau_content": {
+                "jyau_reqData": [{
+                    "req_no": " AU001201810231521335687",
+                    "account_pwd": vm.user
+                }],
+                "jyau_pubData": {
+                    "oprator_id": "",
+                    "account_id": "systemman",
+                    "ip_address": "10.2.0.116",
+                    "system_id": "10909"
+                }
+            }
+        }
 
          axios.post('api/login',req)
         .then(function(res){
@@ -86,7 +97,68 @@ import axios from 'axios';
         console.log(error)
         })    
 
+       },
+       init(){
+
+           let handler = document.getElementById("handler");
+           let drag_bg =  document.getElementById("drag_bg");
+           let text =  document.getElementById("drag_text");
+           let isMove = false
+           let x 
+          // var maxWidth = drag.width() - handler.width();  //能滑动的最大间距
+          handler.addEventListener("mousedown",function(e){
+              
+              isMove = true;
+              x = e.pageX - parseInt(handler.offsetLeft);
+             
+          })
+          handler.addEventListener("mousemove",function(e){
+              
+              let _x = e.pageX - x;
+              console.log(_x)
+              if (isMove) {
+                    if (_x > 0 && _x <= 232) {
+                        console.log("执行了")
+                        handler.style.left= _x+"px"
+                        drag_bg.style.width= _x+"px"
+                    } else if (_x > 232) {  //鼠标指针移动距离达到最大时清空事件
+                        dragOk();
+                    }
+                }
+          })
+          handler.addEventListener("mouseup",function(e){
+               
+               isMove = false;
+                let _x = e.pageX - x;
+                if (_x < 232) { //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
+                    handler.style.left= 0+"px"
+                   drag_bg.style.width= 0+"px"
+                }
+          })
+          function dragOk(){
+              console.log("ok")
+              handler = "handler handler_ok_bg" 
+              text.className ="drag_text"
+              text.style.color = "#fff"
+              handler.style.left=232+"px"
+              drag_bg.style.width=232+"px"
+
+              handler.removeEventListener('mousedown',function(){
+                   event.preventDefault();  
+              });
+              handler.removeEventListener('mousemove',function(){
+                   event.preventDefault();  
+              });
+              handler.removeEventListener('mouseup',function(){
+                  event.preventDefault();  
+              });
+          }
+
+
        }
+    },
+    mounted(){
+        this.init();
     }
   }
   
@@ -120,5 +192,56 @@ height: 100%;
 background-image: url('https://file.iviewui.com/iview-admin/login_bg.jpg');
 background-size: cover;
 background-position: center;
-position: relative;}
+position: relative;
+}
+.slidetounlock{
+    font-size: 12px;
+    background:-webkit-gradient(linear,left top,right top,color-stop(0,#4d4d4d),color-stop(.4,#4d4d4d),color-stop(.5,#fff),color-stop(.6,#4d4d4d),color-stop(1,#4d4d4d));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    -webkit-animation:slidetounlock 3s infinite;
+    -webkit-text-size-adjust:none
+ }
+ @-webkit-keyframes slidetounlock{0%{background-position:-200px 0} 100%{background-position:200px 0}}
+#drag{
+    position: relative;
+    background-color: #e8e8e8;
+    width: 270px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+}
+#drag .handler{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    height: 32px;
+    border: 1px solid #ccc;
+    cursor: move;
+}
+.handler_bg{
+    background: #fff /* url("../img/slider.png") no-repeat center; */
+}
+.handler_ok_bg{
+    background: #fff /* url("../img/complet.png") no-repeat center; */
+}
+#drag .drag_bg{
+    background-color: #7ac23c;
+    height: 34px;
+    width: 0px;
+}
+#drag .drag_text{
+    position: absolute;
+    top: 0px;
+    width: 270px;
+    color:#9c9c9c;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -o-user-select:none;
+    -ms-user-select:none;
+
+    font-size: 12px;     
+}
 </style>
