@@ -112,7 +112,21 @@ import axios from 'axios';
               x = e.pageX - parseInt(handler.offsetLeft);
              
           })
-          handler.addEventListener("mousemove",function(e){
+          function mousemove(e){
+              let _x = e.pageX - x;
+              console.log(_x)
+              if (isMove) {
+                    if (_x > 0 && _x <= 232) {
+                        console.log("执行了")
+                        handler.style.left= _x+"px"
+                        drag_bg.style.width= _x+"px"
+                    } else if (_x > 232) {  //鼠标指针移动距离达到最大时清空事件
+                        dragOk();
+                    }
+                }
+
+          }
+          /* handler.addEventListener("mousemove",function(e){
               
               let _x = e.pageX - x;
               console.log(_x)
@@ -125,7 +139,8 @@ import axios from 'axios';
                         dragOk();
                     }
                 }
-          })
+          }) */
+          handler.addEventListener("mousemove",mousemove)
           handler.addEventListener("mouseup",function(e){
                
                isMove = false;
@@ -139,6 +154,7 @@ import axios from 'axios';
               console.log("ok")
               handler = "handler handler_ok_bg" 
               text.className ="drag_text"
+              text.innerHTML="验证通过";
               text.style.color = "#fff"
               handler.style.left=232+"px"
               drag_bg.style.width=232+"px"
@@ -146,9 +162,7 @@ import axios from 'axios';
               handler.removeEventListener('mousedown',function(){
                    event.preventDefault();  
               });
-              handler.removeEventListener('mousemove',function(){
-                   event.preventDefault();  
-              });
+              handler.removeEventListener('mousemove',mousemove);
               handler.removeEventListener('mouseup',function(){
                   event.preventDefault();  
               });
