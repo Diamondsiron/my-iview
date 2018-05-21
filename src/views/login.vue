@@ -82,16 +82,17 @@ import axios from 'axios';
             "jyau_content": {
                 "jyau_reqData": [{
                     "req_no": " AU001201810231521335687",
-                    "account_pwd": vm.user
+                    "account_pwd": "6fdefAERTYP"
                 }],
                 "jyau_pubData": {
-                    "oprator_id": "",
+                    "operator_id": "",
                     "account_id": "systemman",
                     "ip_address": "10.2.0.116",
                     "system_id": "10909"
                 }
             }
         }
+
 
          axios.post('api/login',req)
         .then(function(res){
@@ -112,12 +113,12 @@ import axios from 'axios';
            let text =  document.getElementById("drag_text");
            let isMove = false
            let x 
-          let maxWidth = 230;  //能滑动的最大间距
+          let maxWidth = 232;  //能滑动的最大间距
           handler.addEventListener("mousedown",function(e){
               
               isMove = true;
               x = e.pageX - parseInt(handler.offsetLeft);
-              console.log(maxWidth)
+             
              
           })
           function mousemove(e){
