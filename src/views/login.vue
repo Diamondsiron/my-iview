@@ -114,10 +114,10 @@ import axios from 'axios';
           })
           function mousemove(e){
               let _x = e.pageX - x;
-              console.log(_x)
+              //console.log(_x)
               if (isMove) {
                     if (_x > 0 && _x <= 232) {
-                        console.log("执行了")
+                        //console.log("执行了")
                         handler.style.left= _x+"px"
                         drag_bg.style.width= _x+"px"
                     } else if (_x > 232) {  //鼠标指针移动距离达到最大时清空事件
@@ -146,12 +146,25 @@ import axios from 'axios';
                isMove = false;
                 let _x = e.pageX - x;
                 if (_x < 232) { //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
-                    handler.style.left= 0+"px"
+                    
+                   
+                     handler.className="handler handler_bg button_move"
+                     handler.style.left= 0+"px"
+                     
+                     setTimeout(function(){ 
+                         handler.className="handler handler_bg"
+                     },550); 
+                   
+                   drag_bg.className="drag_bg bg_move"
                    drag_bg.style.width= 0+"px"
+                     setTimeout(function(){ 
+                         drag_bg.className="drag_bg"
+                     },550); 
+                    
                 }
           })
           function dragOk(){
-              console.log("ok")
+              //console.log("ok")
               handler = "handler handler_ok_bg" 
               text.className ="drag_text"
               text.innerHTML="验证通过";
@@ -241,7 +254,7 @@ position: relative;
     background: #fff /* url("../img/complet.png") no-repeat center; */
 }
 #drag .drag_bg{
-    background-color: #7ac23c;
+    background-color: #2d8cf0;
     height: 34px;
     width: 0px;
 }
@@ -257,5 +270,11 @@ position: relative;
     -ms-user-select:none;
 
     font-size: 12px;     
+}
+.button_move{
+    transition: left  .5s;
+}
+.bg_move{
+    transition: width .5s
 }
 </style>
