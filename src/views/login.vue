@@ -124,10 +124,12 @@ import axios from 'axios';
 
          axios.post('api/login',req)
         .then(function(res){
-           
+            console.log(res)
             if(res.data.jyau_content.jyau_resHead.return_code=="0000"){
-                console.log("成功")
-                localStorage.setItem("UserName", vm.formInline.name);
+                
+                localStorage.setItem("UserName",vm.formInline.name);
+                localStorage.setItem("User",JSON.stringify(res.data));
+
                 vm.$router.push({
                     name: 'home_index'
                 });
