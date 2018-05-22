@@ -72,10 +72,10 @@ import axios from 'axios';
              }
             console.log("数据",req);
             axios.post('api/operator/modifyOperator',req).then(function(res){
-                this.$Message.success('修改成功!');
+                vm.$Message.success('修改成功!');
                 console.log(res.data)
             }).catch(function(error){
-                 this.$Message.error('修改失败!');
+                 vm.$Message.error('修改失败!');
                 console.log(error)
             })  
         }, 

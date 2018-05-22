@@ -52,9 +52,9 @@ import axios from 'axios';
             console.log("数据",req);
             axios.post('api/org/saveOrg',req).then(function(res){
                 console.log(res.data)
-                 this.$Message.success('新建成功!');
+                 vm.$Message.success('新建成功!');
             }).catch(function(error){
-                this.$Message.error('新建失败!');
+                vm.$Message.error('新建失败!');
                 console.log(error)
             }) 
           }

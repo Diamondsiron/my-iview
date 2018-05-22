@@ -162,10 +162,10 @@ import axios from 'axios';
           })
           function mousemove(e){
               let _x = e.pageX - x;
-              //console.log(_x)
+             
               if (isMove) {
                     if (_x > 0 && _x <= maxWidth) {
-                        //console.log("执行了")
+                        
                         handler.style.left= _x+"px"
                         drag_bg.style.width= _x+"px"
                     } else if (_x > maxWidth) {  //鼠标指针移动距离达到最大时清空事件
@@ -212,7 +212,7 @@ import axios from 'axios';
                 }
           })
           function dragOk(){
-              //console.log("ok")
+             
               vm.isdrag=true
              
               handler = "handler handler_ok_bg" 

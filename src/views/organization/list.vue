@@ -28,7 +28,7 @@
                  <th><div>操作</div></th>
              </tr>
             
-             <tr v-for="(item,index) in list" :key="index">
+             <tr v-for="(item,index) in list" :key="index" v-if="currentpage-10<=index&&index<currentpage">
                  
                  <td><div>
                         <!-- <Input v-show="editable[index]==true" v-model="list[index]" @keyup.enter="changeEditable"></Input> -->
@@ -61,7 +61,7 @@
     </div>
     <div style="    margin-top: 30px;
     text-align: center;">
-      <Page :total="100"></Page>
+      <Page :total="list.length" @on-change="pages" ></Page>
     </div>
     <Modal
         v-model="modal1"
@@ -83,7 +83,8 @@ import axios from 'axios';
                 editable:[false,false,false,false,false,false,false,false,false,false,false],
                 choose:'',
                 current:'',
-                modal1: false
+                modal1: false,
+                currentpage:10
             }
         },
         methods:{
@@ -129,6 +130,11 @@ import axios from 'axios';
                 this.$set(this.editable,index,!this.editable[index])
                 
                 
+            },
+            pages(page){
+                
+                this.currentpage = Number(page+"0")
+                console.log(this.currentpage)
             },
             ok () {
                 let vm = this;
