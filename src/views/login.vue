@@ -7,21 +7,30 @@
                     欢迎登录
                 </p>
                 <div class="form-con">
-                    <Form ref="loginForm" >
-                        <FormItem prop="userName">
+                    <Form ref="loginForm" :model="formInline" :rules="rules">
+                        <FormItem prop="name">
                             <Input v-model="formInline.name" placeholder="请输入用户名">
                                 <span slot="prepend">
                                     <Icon :size="16" type="person"></Icon>
                                 </span>
                             </Input>
                         </FormItem>
-                        <FormItem prop="password">
-                            <Input type="password" v-model="formInline.pwd" placeholder="请输入密码">
+                        <FormItem prop="pwd" >
+                            <Input :type="type" v-model="formInline.pwd" placeholder="请输入密码" >
                                 <span slot="prepend">
                                     <Icon :size="14" type="locked"></Icon>
                                 </span>
+                                <span slot="append" v-if="type=='text'" @click="changetype(type)">
+                                    <Icon :size="14" type="eye"></Icon>
+                                </span>
+                                 <span slot="append" v-if="type=='password'" @click="changetype(type)">
+                                    <Icon :size="14" type="eye-disabled"></Icon>
+                                </span>
+                                
                             </Input>
+                           
                         </FormItem>
+                        
                         <FormItem>
                             <div id="wrapper">
                                 <div id="drag">
@@ -37,11 +46,12 @@
                                 </div>
                             </div>
                         </FormItem>
-                        <FormItem>
+                        <FormItem prop="">
                             <Button type="primary" long @click="handleSubmit()">登录</Button>
                         </FormItem>
                     </Form>
-                    <p class="login-tip">输入任意用户名和密码即可</p>
+                   <!--  <p v-if="formInline.state" class="login-tip">输入用户名和密码即可</p> -->
+                    
                 </div>
             </Card>
         </div>
@@ -53,28 +63,47 @@ import axios from 'axios';
     name:'login',
     data(){
       return{
+          type:"password",
           isdrag:false,
          formInline: {
                     name: 'XINZ',
                     pwd: '897889',
+                    state:true
                     
                 },
-          ruleInline: {
-              user: [
-                  { required: true, message: 'Please fill in the user name', trigger: 'blur' }
+          rules: {
+              name: [
+                  { required: true, message: '用户名不能为空', trigger: 'blur' }
               ],
-              password: [
-                  { required: true, message: 'Please fill in the password.', trigger: 'blur' },
-                  { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+              pwd: [
+                  { required: true, message: '密码不能为空.', trigger: 'blur' }
+                  
+              ],
+              state:[
+                  { required: true, message: '用户名密码错误.', trigger: 'blur' }
               ]
           }
 
       }
     },
     methods:{
+        changetype(item){
+            let vm =this
+            if(item=="password"){
+                vm.type="text"
+            }else{
+               vm.type="password"
+            }
+            
+        },
       handleSubmit(name) {
+        this.$refs.loginForm.validate((valid) => {
+             if (!valid){return  }
+        })
         let vm = this
-        
+        if(!vm.isdrag){
+            return
+        }
         
         //systemman，6fdefAERTYP
         let req = {
@@ -96,13 +125,15 @@ import axios from 'axios';
          axios.post('api/login',req)
         .then(function(res){
            
-        if(res.data.jyau_content.jyau_resHead.return_code=="0000"){
-            console.log("成功")
-            localStorage.setItem("UserName", vm.formInline.name);
-            vm.$router.push({
-                name: 'home_index'
-            });
-        }
+            if(res.data.jyau_content.jyau_resHead.return_code=="0000"){
+                console.log("成功")
+                localStorage.setItem("UserName", vm.formInline.name);
+                vm.$router.push({
+                    name: 'home_index'
+                });
+            }else{
+              vm.$Message.error('登陆失败!');
+            }
         
         
         })
