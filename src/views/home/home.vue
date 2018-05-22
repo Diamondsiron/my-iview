@@ -13,7 +13,7 @@
                                     <Row class-name="made-child-con-middle" type="flex" align="middle">
                                         <div class="organization">所属机构1</div>
                                         <div>
-                                            <b class="card-user-infor-name">Admin</b>
+                                            <b class="card-user-infor-name">{{username}}</b>
                                             <p>super admin</p>
                                         </div>
                                     </Row>
@@ -42,6 +42,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
   export default{
     name:'home',
     data(){
@@ -50,6 +51,11 @@
             list:["所属机构1","所属机构2"]
         }
     },
+    computed:{
+        username(){
+                return localStorage.getItem("UserName")
+            }
+    },
     methods:{
         init(){
            
@@ -57,6 +63,25 @@
             if(localStorage.getItem("organization")){
                 vm.organization = true
             }
+            let req = {
+                    "jyau_content": {
+                        "jyau_reqData": [{
+                            "req_no": " AU001201810231521335687"
+                        }],
+                        "jyau_pubData": {
+                            "operator_id": "1",
+                            "account_id": "systemman",
+                            "ip_address": "10.2.0.116",
+                            "system_id": "10909"
+                        }
+                    }
+                }
+            axios.post('api/emporg',req).then(function(res){
+                console.log(res.data)
+            }).catch(function(e){
+                console.log(e)
+            })
+
         },
         chooseO(item){
             localStorage.setItem("organization",item)

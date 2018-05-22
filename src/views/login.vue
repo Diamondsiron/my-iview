@@ -9,14 +9,14 @@
                 <div class="form-con">
                     <Form ref="loginForm" >
                         <FormItem prop="userName">
-                            <Input v-model="formInline.user" placeholder="请输入用户名">
+                            <Input v-model="formInline.name" placeholder="请输入用户名">
                                 <span slot="prepend">
                                     <Icon :size="16" type="person"></Icon>
                                 </span>
                             </Input>
                         </FormItem>
                         <FormItem prop="password">
-                            <Input type="password" v-model="formInline.password" placeholder="请输入密码">
+                            <Input type="password" v-model="formInline.pwd" placeholder="请输入密码">
                                 <span slot="prepend">
                                     <Icon :size="14" type="locked"></Icon>
                                 </span>
@@ -55,8 +55,8 @@ import axios from 'axios';
       return{
           isdrag:false,
          formInline: {
-                    user: 'modifyOperator',
-                    password: 'admin',
+                    name: 'XINZ',
+                    pwd: '897889',
                     
                 },
           ruleInline: {
@@ -74,19 +74,18 @@ import axios from 'axios';
     methods:{
       handleSubmit(name) {
         let vm = this
-        localStorage.setItem("UserName", 'admin');
-        this.$router.push({
-            name: 'home_index'
-        });
+        
+        
+        //systemman，6fdefAERTYP
         let req = {
             "jyau_content": {
                 "jyau_reqData": [{
                     "req_no": " AU001201810231521335687",
-                    "account_pwd": "6fdefAERTYP"
+                    "account_pwd": vm.formInline.pwd
                 }],
                 "jyau_pubData": {
                     "operator_id": "",
-                    "account_id": "systemman",
+                    "account_id": vm.formInline.name,
                     "ip_address": "10.2.0.116",
                     "system_id": "10909"
                 }
@@ -96,12 +95,19 @@ import axios from 'axios';
 
          axios.post('api/login',req)
         .then(function(res){
+           
+        if(res.data.jyau_content.jyau_resHead.return_code=="0000"){
+            console.log("成功")
+            localStorage.setItem("UserName", vm.formInline.name);
+            vm.$router.push({
+                name: 'home_index'
+            });
+        }
         
-       console.log(res.data)
         
         })
         .catch(function(error){
-        console.log(error)
+            console.log(error)
         })    
 
        },
