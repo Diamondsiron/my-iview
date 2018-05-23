@@ -164,7 +164,7 @@ let toData=""
 
             ]
           },
-       editable:[false,false,false,false,false,false],
+      
         data6: [{
           id: 1,
           label: '机构 1',
@@ -213,47 +213,22 @@ let toData=""
      }
    },
    computed:{
-     yy(){
-       return this.$store.state.app.tree
-     }
+     
    },
    components:{
      tree
    },
    created(){
-     
+      
    },
    mounted(){
-     this.init()
+    //this.init()
      
      
    },
    methods:{
      init(){
-       let vm = this
-       vm.$store.commit("settree",this.xx)
-
        
-        let req =   {
-          "jyau_content": {
-            "jyau_reqData": [{
-              "req_no": " AU001201810231521335687"
-            }],
-            "jyau_pubData": {
-              "operator_id": "1",
-              "account_id": "systemman",
-              "ip_address": "10.2.0.116",
-              "system_id": "10909"
-            }
-          }
-        }
-
-        axios.post('api/emporg',req).then(function(res){ 
-              console.log("data",res.data)
-              
-            }).catch(function(error){
-                console.log(error)
-            }) 
      },
      xxx(){
        console.log("heihiei")

@@ -34,10 +34,6 @@ let toData=""
        
         data(){
           return{
-            open: [],
-             list:["张三","李四","王五","赵六",4,5]
-            
-           
           }
         },
         props:{
@@ -106,9 +102,11 @@ let toData=""
           
           },
           toggle: function (m) {
+           
             let vm = this
             vm.tree.children[m].open = !vm.tree.children[m].open
-              
+             console.log("展开",m,vm.tree.children[m].open)
+            // this.$store.commit("settree",vm.tree) 
           },
           search(name){
             console.log("search")
@@ -163,7 +161,8 @@ let toData=""
 
           },
           removeItem(item){
-            console.log(item)
+            console.log("removeItem",item)
+            let vm = this 
              let root = this.$store.state.app.tree
               for(let i=0;i<root.children.length;i++){
                 for(let j=0;j<root.children[i].children.length;j++){
@@ -174,7 +173,11 @@ let toData=""
                   
                 }
               }
-             this.$store.commit("settree",root)
+             //this.$store.commit("settree",root)
+             this.$store.dispatch("asyncsetTree",root).then(res=>{
+               vm.root = res
+             })
+             console.log("删除后的tree",this.$store.state.app.tree)
           },
           checktable(from,to){
               
@@ -197,6 +200,7 @@ let toData=""
               } 
               
               this.$store.commit("settree",root)
+              
               
               
            
