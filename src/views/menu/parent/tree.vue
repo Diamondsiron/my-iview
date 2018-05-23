@@ -52,7 +52,7 @@ import axios from 'axios';
          list:[],
          initTable:[],
          title:"",
-         yy:{},
+        
          tabletitle:"",
          tableshow:[],
          store: null,
@@ -63,7 +63,9 @@ import axios from 'axios';
       tree:{}
     },
     computed:{
-    
+       yy(){
+          return this.$store.state.app.tree
+        }
     },
     methods:{
        init(){
@@ -89,11 +91,11 @@ import axios from 'axios';
                         console.log(error)
                     }) 
                // vm.yy = vm.$store.dispatch("actionB")
-                vm.$store.dispatch("actionB").then(res=>{
+               /*  vm.$store.dispatch("actionB").then(res=>{
                   vm.yy=vm.$store.state.app.tree
                  
                 })
-                console.log("yy",vm.yy)
+                console.log("yy",vm.yy) */
        },
       wode(){
          console.log("msg")
