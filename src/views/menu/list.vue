@@ -3,20 +3,11 @@
    <Card class="home-main">
         <p slot="title">
             <Icon type="person"></Icon>
-            机构管理
+           菜单管理
         </p>
     <div style="text-align: center;
     margin: 20px;">
-      <!-- <div style="display:flex;width:600px;">
-        <div style="flex:1">
-          <input type="text">
-          <span>图标</span>
-        </div>
-        <div style="flex:1">
-          <input type="text">
-          <span>图标</span>
-        </div>
-      </div> -->
+     
       
       <Input  icon="search" placeholder="请输入菜单名称搜索" style="width: 600px"></Input>
     </div>
@@ -31,24 +22,27 @@
              <tr v-for="(item,index) in list" :key="index">
                  
                  <td><div>
-                        <Input v-show="editable[index]==true" v-model="list[index]" @keyup.enter="changeEditable"></Input>
-                         <span v-show="editable[index]==false"  >{{item}}</span>
+                       
+                         <span>{{item.mu_name}}</span>
                     </div>
                  </td>
                  <td>
                    <div>
-                     <Input v-show="editable[index]==true" v-model="list[index]" @keyup.enter="changeEditable"></Input>
-                     <span v-show="editable[index]==false"  >{{item}}</span>
+                    
+                     <span>{{item.if_leaf}}</span>
                     </div>
                    </td>
                  <td>
-                     <div @click.stop="showTag(item)">{{item}}点我呀</div>
+                     <div @click.stop="showTag(item)">点我呀</div>
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">
+                              <Button @click.stop="linkTO('insertmenu',item.mu_id)">新增</Button>
+                              <Button @click.stop="linkTO('updatemenu',item.mu_id)">修改</Button>
                              <Button @click.stop="destroy(item)">删除</Button>
-                            <Button @click.stop="change(index)">修改</Button>
-                            <Button>详情</Button>
+                            
+                            
+                            
                         </div>
                          
                      </div>
@@ -73,16 +67,42 @@
 </div>
 </template>
 <script>
+import axios from 'axios';
   export default{
     data(){
             return{
-                list:['a','b','c','d','e','f','g','h','i','j'],
+                list:[],
                 editable:[false,false,false,false,false,false,false,false,false,false,false],
                 choose:'',
+                 current:'',
                 modal1: false
             }
         },
         methods:{
+            init(){
+                let vm = this
+                let req = {
+                    "jyau_content": {
+                        "jyau_reqData": [{
+                            "req_no": " AU001201810231521335687"
+                        }],
+                        "jyau_pubData": {
+                            "operator_id": "1",
+                            "account_id": "systemman",
+                            "ip_address": "10.2.0.116",
+                            "system_id": "10909"
+                        }
+                    }
+                }
+
+                axios.post("api/menu",req).then(function(res){
+                    console.log(res.data)
+                     vm.list = res.data.jyau_content.jyau_resData[0].menu_list
+                }).catch(function(error){
+
+                })
+
+            },
             changeEditable(){
               console.log("修改后的回车事件")
             },
@@ -97,8 +117,32 @@
                 
                 
             },
+            linkTO(name,id){
+                console.log(name,id)
+                this.$router.push({
+                    name:name,
+                    params:{id:id}
+                }) 
+            },
             ok () {
-               
+                let vm = this;
+                let req = {
+                    "jyau_content": {
+                        "jyau_reqData": [{
+                            "req_no": " AU001201810231521335687",
+                             "menu_id": vm.current.mu_id
+
+                        }],
+                        "jyau_pubData": {
+                            "operator_id": "1",
+                            "account_id": "systemman",
+                            "ip_address": "10.2.0.116",
+                            "system_id": "10909"
+                        }
+                    }
+                }
+ 
+                axios.post('api/menu/deleteMenu',req).then(function(res){vm.init()}).catch(function(error){console.log(error)}) 
             },
             cancel () {
                 
@@ -106,6 +150,7 @@
             destroy(item){
                 let vm = this
                 this.modal1 = true
+                this.current = item
                // this.list.splice(vm.list.indexOf(item),1)
             },
             closeTag(){
@@ -140,6 +185,9 @@
                 
             }
         },
+        mounted(){
+            this.init()
+        }
 
   }
 </script>

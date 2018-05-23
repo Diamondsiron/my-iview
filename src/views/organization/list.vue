@@ -79,7 +79,7 @@ import axios from 'axios';
   export default{
     data(){
             return{
-                list:['a','b','c','d','e','f','g','h','i','j'],
+                list:[],
                 editable:[false,false,false,false,false,false,false,false,false,false,false],
                 choose:'',
                 current:'',
