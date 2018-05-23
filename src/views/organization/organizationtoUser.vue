@@ -30,6 +30,7 @@
 </div>
 </template>
 <script>
+import axios from 'axios';
 import tree from "@/views/menu/parent/tree.vue"
 let fromData = ''
 let toData=""
@@ -223,11 +224,37 @@ let toData=""
      
    },
    mounted(){
-    
-     this.$store.commit("settree",this.xx)
+     this.init()
+     
      
    },
    methods:{
+     init(){
+       let vm = this
+       vm.$store.commit("settree",this.xx)
+
+       
+        let req =   {
+          "jyau_content": {
+            "jyau_reqData": [{
+              "req_no": " AU001201810231521335687"
+            }],
+            "jyau_pubData": {
+              "operator_id": "1",
+              "account_id": "systemman",
+              "ip_address": "10.2.0.116",
+              "system_id": "10909"
+            }
+          }
+        }
+
+        axios.post('api/emporg',req).then(function(res){ 
+              console.log("data",res.data)
+              
+            }).catch(function(error){
+                console.log(error)
+            }) 
+     },
      xxx(){
        console.log("heihiei")
      },

@@ -27,11 +27,11 @@
                 <td><div>用户名称</div></td>
                 
             </tr>
-            <tr v-for="(item,index) in list" :key="index" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" v-if="item.tableshow">
+            <tr v-for="(item,index) in list" :key="index" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" >
                 <td   >
                     <div>
                         
-                         <span   >{{item.name}}</span>
+                         <span >{{item.account}}</span>
                     </div>
                 </td>
                 <td><div>{{item.name}}</div></td>
@@ -43,21 +43,14 @@
 </template>
 <script>
 import ztreeItem from "@/views/menu/parent/childtree"
-
+import axios from 'axios';
   export default{
     name:'tree',
     
     data(){
       return{
-         list:[
-                { name: '张三',tableshow:true},
-                { name: '李四',tableshow:true},
-                { name: '王五',tableshow:true},
-                { name: '赵六',tableshow:true},
-                { name: '1',tableshow:true},
-                { name: '2',tableshow:true},
-                { name: '3',tableshow:true}
-              ],
+         list:[],
+         initTable:[],
          title:"",
          tabletitle:"",
          
@@ -76,30 +69,50 @@ import ztreeItem from "@/views/menu/parent/childtree"
         
     },
     methods:{
-      
-      wode(){
+       init(){
+                let vm = this;
+                let req =  {
+                  "jyau_content": {
+                    "jyau_reqData": [{
+                      "req_no": " AU001201810231521335687"
+                    }],
+                    "jyau_pubData": {
+                      "operator_id": "1",
+                      "account_id": "systemman",
+                      "ip_address": "10.2.0.116",
+                      "system_id": "10909"
+                    }
+                  }
+                }
+                axios.post('api/operator',req).then(function(res){ 
+                     //console.log("data",res.data)
+                     vm.list = res.data.jyau_content.jyau_resData[0].oper_list
+                     vm.initTable = res.data.jyau_content.jyau_resData[0].oper_list
+                    }).catch(function(error){
+                        console.log(error)
+                    }) 
+            }, wode(){
          console.log("msg")
       },
       
       tabletitlechange(){
         let vm = this
-        
-          if(vm.tabletitle==""){
-             for(let i=0;i<vm.list.length;i++){
-               vm.list[i].tableshow=true
-                 // vm.$set(vm.tableshow,i,false)
-               
-            }  
-          }else{
-            for(let i=0;i<vm.list.length;i++){
-                if(vm.list[i].name.indexOf(vm.tabletitle)>-1){
-                 vm.list[i].tableshow=true
-                }else{
-                  vm.list[i].tableshow=false
-                }
-            }
-           
+         this.list = this.initTable
+        // this.list = this.search(this.list, {name: this.name});
+          
+      },
+      search (data, argumentObj) {
+          let res = data;
+          let dataClone = data;
+          for (let argu in argumentObj) {
+              if (argumentObj[argu].length > 0) {
+                  res = dataClone.filter(d => {
+                      return d[argu].indexOf(argumentObj[argu]) > -1;
+                  });
+                  dataClone = res;
+              }
           }
+          return res;
       },
       dragStart(e){
           e.dataTransfer.effectAllowed = "move";
@@ -146,31 +159,14 @@ import ztreeItem from "@/views/menu/parent/childtree"
 
     },
     created(){
-      /* let vm = this
-      vm.store = {
-        data: vm.yy,
-        root:{
-          data:vm.yy
-         
-        }
-      }
-      vm.root = vm.store.root.data;
-      console.log(vm.store) */
+      
     },
     mounted(){
       this.$on("oxxe",function(){
         console.log("xxx")
       })
-      /* let vm = this
-      vm.store = {
-        data: vm.yy,
-        root:{
-          data:vm.yy
-         
-        }
-      }
-      vm.root = vm.store.root.data;
-      console.log(vm.store) */
+      this.init();
+      
 
     },
     components:{
