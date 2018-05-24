@@ -158,8 +158,7 @@ import axios from 'axios';
           for(let i=0;i<root.children.length;i++){
            if(to.parent_id==root.children[i].id){
               root.children[i].children.push(dataset)
-
-           }
+            }
             
         } 
         
