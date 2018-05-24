@@ -44,8 +44,8 @@
                
                 
             </tr>
-            <tr v-for="(item,index) in list" :key="index">
-                <td><div> <Checkbox ></Checkbox></div></td>
+            <tr v-for="(item,index) in list" :key="index" v-if="currentpage-10<=index&&index<currentpage">
+                <td><div> <Checkbox v-model="checked[index]" ></Checkbox></div></td>
                 <td ><div>{{item.account_id}}</div></td>
                 <td><div>{{item.account_name}}</div></td>
                 
@@ -58,7 +58,7 @@
         </div>
         <div style="text-align: center;margin: 10px;">
           
-          <Page :total="10"></Page>
+          <Page :total="list.length" @on-change="pages" ></Page>
           </div>
         
         
@@ -73,8 +73,10 @@ import axios from 'axios';
               list:[],
               initTable:[],
               indeterminate: true,
-              checkAll: false,
-              ncheckAllGroup: []
+              checkAll: true,
+              checked:[true,true,true,true,true,true,true,true,true,true],
+              ncheckAllGroup: [],
+               currentpage:10
              
           }
       },
@@ -89,6 +91,11 @@ import axios from 'axios';
                     params:{id:id}
                 })
             },
+             pages(page){
+                
+                this.currentpage = Number(page+"0")
+                console.log(this.currentpage)
+          },
           change(index){
               console.log(index)
               this.$set(this.editable,index,!this.editable[index])
@@ -104,9 +111,13 @@ import axios from 'axios';
                 this.indeterminate = false;
 
                 if (this.checkAll) {
-                   
+                      for(let i =0;i<this.checked.length;i++){
+                        this.checked[i]=true
+                      }
                 } else {
-                   
+                    for(let i =0;i<this.checked.length;i++){
+                      this.checked[i]=false
+                    }
                 }
           },
           init(){
@@ -134,6 +145,9 @@ import axios from 'axios';
                      console.log("data",res.data)
                      vm.list = res.data.jyau_content.jyau_resData[0].users_data
                      vm.initTable = res.data.jyau_content.jyau_resData[0].users_data
+                       for(let i = 0; i<vm.list.length;i++){
+                        vm.checked.push(true)
+                        }
                     }).catch(function(error){
                         console.log(error)
                     }) 

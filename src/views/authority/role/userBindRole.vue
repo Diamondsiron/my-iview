@@ -45,7 +45,7 @@
                 
             </tr>
            
-            <tr v-for="(item,index) in list" :key="index">
+            <tr v-for="(item,index) in list" :key="index" v-if="currentpage-10<=index&&index<currentpage">
                 <td><div> <Checkbox  v-model="checked[index]" :label="item.operator_id" @on-change="change(item.operator_id,index)"></Checkbox></div></td>
                 <td ><div>{{item.account_id}}</div></td>
                 <td><div>{{item.account_name}}</div></td>
@@ -59,7 +59,7 @@
         </div>
         <div style="text-align: center;margin: 10px;">
           
-          <Page :total="10"></Page>
+          <Page :total="list.length" @on-change="pages" ></Page>
           </div>
         
         
@@ -75,10 +75,11 @@ import axios from 'axios';
               initTable:[],
               indeterminate: false,
               checkAll: false,
-              checked:[false,false,false,false,false,false,false,false,false,false],
+              checked:[],
               ncheckAllGroup: [],
               checkAllGroup:[],
-              userliet:[]
+              userliet:[],
+              currentpage:10
              
           }
       },
@@ -91,6 +92,11 @@ import axios from 'axios';
               
 
               
+          },
+           pages(page){
+                
+                this.currentpage = Number(page+"0")
+                console.log(this.currentpage)
           },
           handleCheckAll(){
                 if (this.indeterminate) {
@@ -138,6 +144,9 @@ import axios from 'axios';
                      console.log("data",res.data)
                      vm.list = res.data.jyau_content.jyau_resData[0].users_data
                      vm.initTable = res.data.jyau_content.jyau_resData[0].users_data
+                     for(let i = 0; i<vm.list.length;i++){
+                       vm.checked.push(false)
+                     }
                     }).catch(function(error){
                         console.log(error)
                     }) 

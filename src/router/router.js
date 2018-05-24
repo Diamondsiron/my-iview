@@ -170,7 +170,7 @@ export const appRouter = [
         { path: 'listuser', meta:{title:'用户管理'}, name: 'listuser', icon: 'compose', component: () => import('@/views/organization/user/list.vue') }, 
         { path: 'insertuser', meta:{title:'新增用户'}, name: 'insertuser', icon: 'compose', component: () => import('@/views/organization/user/insert.vue') }, 
         { path: 'updateuser/:id', meta:{title:'修改用户'}, name: 'updateuser', icon: 'compose', component: () => import('@/views/organization/user/update.vue') }, 
-        { path: 'otoUser', meta:{title:'新增用户'}, name: 'otoUser', icon: 'compose', component: () => import('@/views/organization/otoUser.vue') }, 
+        { path: 'otoUser/:id', meta:{title:'机构新增用户'}, name: 'otoUser', icon: 'compose', component: () => import('@/views/organization/otoUser.vue') }, 
         { path: 'organizationtoUser', meta:{title:'机构-用户管理'}, name: 'organizationtoUser', icon: 'compose', component: () => import('@/views/organization/organizationtoUser.vue') }, 
         
     ]
