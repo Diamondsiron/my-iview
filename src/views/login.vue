@@ -66,8 +66,8 @@ import axios from 'axios';
           type:"password",
           isdrag:false,
          formInline: {
-                    name: 'XINZ',
-                    pwd: '897889',
+                    name: 'zhangming',
+                    pwd: '111111',
                     state:true
                     
                 },
@@ -135,6 +135,9 @@ import axios from 'axios';
                 });
             }else{
               vm.$Message.error('登陆失败!');
+             /*   vm.$router.push({
+                    name: 'home_index'
+                }); */
             }
         
         

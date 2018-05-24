@@ -1,6 +1,10 @@
 <template>
   <div>
    <Card class="home-main">
+      <p slot="title">
+            <Icon type="person"></Icon>
+           新增绑定
+        </p>
         <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
             <tr>
                 <th colspan="4"><div> 查询条件</div></th>
@@ -43,8 +47,8 @@
            
             <tr v-for="(item,index) in list" :key="index">
                 <td><div> <Checkbox  v-model="checked[index]" :label="item.operator_id" @on-change="change(item.operator_id,index)"></Checkbox></div></td>
-                <td ><div>{{item.account}}</div></td>
-                <td><div>{{item.name}}</div></td>
+                <td ><div>{{item.account_id}}</div></td>
+                <td><div>{{item.account_name}}</div></td>
                 
             </tr>
            
@@ -113,25 +117,27 @@ import axios from 'axios';
               let vm = this;
                let id = this.$route.params.id;
                let req = {
-                    "jyau_content": {
+                      "jyau_content": {
                         "jyau_reqData": [
-                        {
-                            "req_no": "AU011201810231521335687"
-                        }
+                          {
+                            "req_no": "AU002201810231521335687",
+                            "role_id": id
+                          }
                         ],
                         "jyau_pubData": {
-                        "operator_id": "1",
-                        "ip_address": "10.2.0.116",
-                        "account_id": "systemman",
-                        "system_id": "10909"
+                          "operator_id": "1",
+                          "ip_address": "10.2.0.116",
+                          "account_id": "systemman",
+                          "system_id": "10909"
                         }
-                    }
+                      }
                     }
 
-                axios.post('api/operator',req).then(function(res){ 
+
+                axios.post('api/emporg/showNoRoleUser',req).then(function(res){ 
                      console.log("data",res.data)
-                     vm.list = res.data.jyau_content.jyau_resData[0].oper_list
-                     vm.initTable = res.data.jyau_content.jyau_resData[0].oper_list
+                     vm.list = res.data.jyau_content.jyau_resData[0].users_data
+                     vm.initTable = res.data.jyau_content.jyau_resData[0].users_data
                     }).catch(function(error){
                         console.log(error)
                     }) 
@@ -142,10 +148,15 @@ import axios from 'axios';
             let id = this.$route.params.id
             let userList =[];
             for(let i=0;i<vm.list.length;i++){
-              if(vm.checked[i]=true){
+              if(vm.checked[i]==true){
                 let obj ={}
-                obj.oper_id = vm.list[i].operator_id
-                obj.org_id =""
+                obj.oper_id = vm.list[i].oper_id
+                if(vm.list[i].org_id==null){
+                  obj.org_id =""
+                }else{
+                  obj.org_id =vm.list[i].org_id
+                }
+                
                 userList.push(obj)
               }
             }
@@ -168,9 +179,12 @@ import axios from 'axios';
                     }
                   }
                 }
+                
               axios.post("api/emporg/addUserRole",req).then(function(res){
                 console.log(res.data)
+              vm.$Message.success('修改成功!');
               }).catch(function(error){
+                 vm.$Message.error('修改失败!');
                 console.log(error)
               })
 

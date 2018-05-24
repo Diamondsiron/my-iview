@@ -1,6 +1,10 @@
 <template>
   <div>
    <Card class="home-main">
+      <p slot="title">
+            <Icon type="person"></Icon>
+           查询绑定
+        </p>
         <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
             <tr>
                 <th colspan="4"><div> 查询条件</div></th>
@@ -100,30 +104,31 @@ import axios from 'axios';
                 this.indeterminate = false;
 
                 if (this.checkAll) {
-                   // this.checkAllGroup = ['香蕉', '苹果', '西瓜'];
+                   
                 } else {
-                   // this.checkAllGroup = [];
+                   
                 }
           },
           init(){
               let vm = this;
                let id = this.$route.params.id;
-                let req =   {
-                "jyau_content": {
-                  "jyau_reqData": [
-                    {
-                      "req_no": "AU002201810231521335687",
-                      "role_id": id
+                let req = {
+                    "jyau_content": {
+                      "jyau_reqData": [
+                        {
+                          "req_no": "AU002201810231521335687",
+                          "role_id": id
+                        }
+                      ],
+                      "jyau_pubData": {
+                        "operator_id": "1",
+                        "ip_address": "10.2.0.116",
+                        "account_id": "systemman",
+                        "system_id": "10909"
+                      }
                     }
-                  ],
-                  "jyau_pubData": {
-                    "operator_id": "1",
-                    "ip_address": "10.2.0.116",
-                    "account_id": "systemman",
-                    "system_id": "10909"
                   }
-                }
-              }
+
 
                 axios.post('api/emporg/showRoleUser',req).then(function(res){ 
                      console.log("data",res.data)
