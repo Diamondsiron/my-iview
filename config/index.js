@@ -35,7 +35,7 @@ module.exports = {
     //跨域访问开始
     proxyTable: {
       '/api':{
-          target:'http://10.2.0.101:8182/AuthorityM_Serv',
+          target:'https://authoritymserv.jiayecaifu.com:8023/AuthorityM_Serv',
           changeOrigin: true,
           pathRewrite: {
             '^/api': ''

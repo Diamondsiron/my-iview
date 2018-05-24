@@ -27,8 +27,8 @@
  
 </template>
 <script>
-let fromData = ''
-let toData=""
+let fromData = {}
+let toData={}
  export default{
         name:'treeNode',
        
@@ -118,15 +118,22 @@ let toData=""
           dragStart(e){
             //拖拽效果
             e.dataTransfer.effectAllowed = "move";
-            fromData = e.target.dataset.id
-            console.log("name&id",e.target.dataset.name,e.target.dataset.id)
+            fromData.child_name = e.target.dataset.name
+            fromData.child_id = e.target.dataset.id
+            fromData.parent_name = this.tree.name
+            fromData.parent_id = this.tree.id
+            console.log("dragStart",e.target.dataset.name,e.target.dataset.id,this.tree.name,this.tree.id)
             e.dataTransfer.setData("nottext", e.target.innerHTML);
             
            
           },
           dragEnter(e){
            
-            toData = e.target.dataset.id
+            toData.child_name = e.target.dataset.name
+            toData.child_id = e.target.dataset.id
+            toData.parent_name = this.tree.name
+            toData.parent_id = this.tree.id
+            console.log("dragEnter", e.target.dataset.name, e.target.dataset.id,this.tree.name,this.tree.id)
             if(this.$store.state.app.righttable==""){
 
             }else{
@@ -172,7 +179,7 @@ let toData=""
                   
                 
               }
-             //需要加数据的异步操作
+             //用户机构删除的操作
              console.log("删除后的tree",this.$store.state.app.tree)
           },
           checktable(from,to){
@@ -210,30 +217,39 @@ let toData=""
               let root = this.$store.state.app.tree
               
               let dataset;
-              if((from.indexOf("机构")>-1)||(to.indexOf("机构")>-1)){
+              /* if((from.parent_name.indexOf("机构")>-1)||(to.indexOf("机构")>-1)){
                 return
-              }
+              } 
               if(from==to){
                 return
-              }
+              } */
               for(let i=0;i<root.children.length;i++){
-                for(let j=0;j<root.children[i].children.length;j++){
-                  if(from==root.children[i].children[j].id){
-                    dataset = root.children[i].children[j]
-                    root.children[i].children.splice(j,1)
+                if(from.parent_id==root.children[i].id){
+                   for(let j=0;j<root.children[i].children.length;j++){
+                      if(from.child_id==root.children[i].children[j].id){
+                          dataset = root.children[i].children[j]
+                          root.children[i].children.splice(j,1)
+                          //用户机构删除的操作
+                        
+                          }
+                      
                     }
-                  
+
                 }
+               
               }
                 for(let i=0;i<root.children.length;i++){
-                
-                  for(let j=0;j<root.children[i].children.length;j++){
+                 if(to.parent_id==root.children[i].id){
+                   for(let j=0;j<root.children[i].children.length;j++){
                    
-                    if(to==root.children[i].children[j].id){
-                    
+                    if(to.child_id==root.children[i].children[j].id){
+                        //用户机构增加的操作
                         root.children[i].children.push(dataset)
                     }
                   }
+
+                 }
+                  
               } 
              
               this.$store.commit("settree",root)
