@@ -133,7 +133,7 @@ let toData={}
             toData.child_id = e.target.dataset.id
             toData.parent_name = this.tree.name
             toData.parent_id = this.tree.id
-            console.log("dragEnter", e.target.dataset.name, e.target.dataset.id,this.tree.name,this.tree.id)
+            
             if(this.$store.state.app.righttable==""){
 
             }else{

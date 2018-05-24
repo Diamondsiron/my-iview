@@ -116,7 +116,9 @@ import axios from 'axios';
           e.dataTransfer.effectAllowed = "move";
           
           e.dataTransfer.setData("item", e.target);
-          let tab = e.target.dataset.name
+          let tab = {}
+          tab.name = e.target.dataset.name
+          tab.id = e.target.dataset.id
           this.$store.commit("setrighttable",tab)
       },
       dragEnter(e){
@@ -151,18 +153,14 @@ import axios from 'axios';
         let root = this.$store.state.app.tree
         let from = this.$store.state.app.righttable
         let to = this.$store.state.app.leftli
-        let dataset={name:from,open:true,searchopen:true};
+        let dataset={name:from.name,id:from.id,open:true,searchopen:true};
         
           for(let i=0;i<root.children.length;i++){
-          
-            for(let j=0;j<root.children[i].children.length;j++){
-              
-              if(to==root.children[i].children[j].name){
-                /*  console.log("to",root.children[i].children[j]) */
-                  /*  root.children[i].children.splice(j, 0, dataset);  */
-                  root.children[i].children.push(dataset)
-              }
-            }
+           if(to.parent_id==root.children[i].id){
+              root.children[i].children.push(dataset)
+
+           }
+            
         } 
         
         this.$store.commit("settree",root)
