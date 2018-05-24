@@ -42,7 +42,7 @@
             </tr>
            
             <tr v-for="(item,index) in list" :key="index">
-                <td><div> <Checkbox  :label="item.operator_id" @on-change="change(item.operator_id,value)"></Checkbox></div></td>
+                <td><div> <Checkbox  v-model="checked[index]" :label="item.operator_id" @on-change="change(item.operator_id,index)"></Checkbox></div></td>
                 <td ><div>{{item.account}}</div></td>
                 <td><div>{{item.name}}</div></td>
                 
@@ -69,8 +69,9 @@ import axios from 'axios';
           return{
               list:[],
               initTable:[],
-              indeterminate: true,
+              indeterminate: false,
               checkAll: false,
+              checked:[false,false,false,false,false,false,false,false,false,false],
               ncheckAllGroup: [],
               checkAllGroup:[],
               userliet:[]
@@ -81,9 +82,11 @@ import axios from 'axios';
           changeEditable(){
               console.log("changeEditable")
           },
-          change(index,value){
-              console.log(index)
-             
+          change(value,index){
+              
+              
+
+              
           },
           handleCheckAll(){
                 if (this.indeterminate) {
@@ -94,9 +97,16 @@ import axios from 'axios';
                 this.indeterminate = false;
 
                 if (this.checkAll) {
+                 for(let i =0;i<this.checked.length;i++){
+                   this.checked[i]=true
+                 }
+                  
                    // this.checkAllGroup = ['香蕉', '苹果', '西瓜'];
                 } else {
-                   // this.checkAllGroup = [];
+                   for(let i =0;i<this.checked.length;i++){
+                   this.checked[i]=false
+                 }
+                    
                 }
           },
           init(){
@@ -119,7 +129,7 @@ import axios from 'axios';
                     }
 
                 axios.post('api/operator',req).then(function(res){ 
-                     //console.log("data",res.data)
+                     console.log("data",res.data)
                      vm.list = res.data.jyau_content.jyau_resData[0].oper_list
                      vm.initTable = res.data.jyau_content.jyau_resData[0].oper_list
                     }).catch(function(error){
@@ -128,6 +138,41 @@ import axios from 'axios';
 
           },
           submit(){
+            let vm = this
+            let id = this.$route.params.id
+            let userList =[];
+            for(let i=0;i<vm.list.length;i++){
+              if(vm.checked[i]=true){
+                let obj ={}
+                obj.oper_id = vm.list[i].operator_id
+                obj.org_id =""
+                userList.push(obj)
+              }
+            }
+            if(userList.length==0){return}
+            let req =  {
+                  "jyau_content": {
+                    "jyau_reqData": [
+                      {
+                        "req_no": "AU002201810231521335687",
+                        "role_id": id,
+                        "oper_data": userList,
+                        
+                      }
+                    ],
+                    "jyau_pubData": {
+                      "operator_id": "1",
+                      "ip_address": "10.2.0.116",
+                      "account_id": "systemman",
+                      "system_id": "10909"
+                    }
+                  }
+                }
+              axios.post("api/emporg/addUserRole",req).then(function(res){
+                console.log(res.data)
+              }).catch(function(error){
+                console.log(error)
+              })
 
           }
       },
