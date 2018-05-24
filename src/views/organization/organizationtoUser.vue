@@ -252,6 +252,7 @@ let toData=""
             obj.open=true
             obj.searchopen=true
             obj.expanded=false
+            obj.id=value.orgemp_list[i].org_id
           
             if(value.orgemp_list[i].emp_list){
               obj.children=[]
@@ -261,6 +262,7 @@ let toData=""
                 child.open=true
                 child.searchopen=true
                 child.expanded=false
+                 child.id=value.orgemp_list[i].emp_list[j].operator_id
                 obj.children.push(child)
               }
             }

@@ -32,16 +32,18 @@
                 <th colspan="3"><div> 查询结果</div></th>
             </tr>
             <tr>
-                <td><div> <Checkbox ></Checkbox>选择</div></td>
+                <td><div> <Checkbox :indeterminate="indeterminate"
+            :value="checkAll"
+            @click.prevent.native="handleCheckAll"></Checkbox>选择</div></td>
                 <td ><div>登录账号</div></td>
                 <td><div>用户姓名</div></td>
                
                 
             </tr>
-            <tr v-for="item in list" :key="item">
+            <tr v-for="(item,index) in list" :key="index">
                 <td><div> <Checkbox ></Checkbox></div></td>
-                <td ><div></div></td>
-                <td><div></div></td>
+                <td ><div>{{item.account}}</div></td>
+                <td><div>{{item.name}}</div></td>
                 
             </tr>
            
@@ -60,10 +62,15 @@
 </div>
 </template>
 <script>
+import axios from 'axios';
     export default{
       data(){
           return{
-              list:[0,1,2,3,4,5,6,7,8,9],
+              list:[],
+              initTable:[],
+              indeterminate: true,
+              checkAll: false,
+              ncheckAllGroup: []
              
           }
       },
@@ -76,7 +83,48 @@
               this.$set(this.editable,index,!this.editable[index])
                   //this.editable[index] = true
               console.log(this.editable)
+          },
+          handleCheckAll(){
+                if (this.indeterminate) {
+                    this.checkAll = false;
+                } else {
+                    this.checkAll = !this.checkAll;
+                }
+                this.indeterminate = false;
+
+                if (this.checkAll) {
+                   // this.checkAllGroup = ['香蕉', '苹果', '西瓜'];
+                } else {
+                   // this.checkAllGroup = [];
+                }
+          },
+          init(){
+              let vm = this;
+                let req =  {
+                  "jyau_content": {
+                    "jyau_reqData": [{
+                      "req_no": " AU001201810231521335687"
+                    }],
+                    "jyau_pubData": {
+                      "operator_id": "1",
+                      "account_id": "systemman",
+                      "ip_address": "10.2.0.116",
+                      "system_id": "10909"
+                    }
+                  }
+                }
+                axios.post('api/operator',req).then(function(res){ 
+                     //console.log("data",res.data)
+                     vm.list = res.data.jyau_content.jyau_resData[0].oper_list
+                     vm.initTable = res.data.jyau_content.jyau_resData[0].oper_list
+                    }).catch(function(error){
+                        console.log(error)
+                    }) 
+
           }
+      },
+      mounted(){
+          this.init()
       }
     }
 </script>

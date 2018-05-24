@@ -42,7 +42,7 @@
                     </div>
                    </td>
                  <td>
-                     <div @click.stop="showTag(item)"><!-- {{item.operator_id}} -->点我呀</div>
+                     <div @click.stop="showTag(item)"><!-- {{item.operator_id}} --> 点我呀</div>
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">

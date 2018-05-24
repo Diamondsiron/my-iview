@@ -52,8 +52,10 @@ import axios from 'axios';
              }
             console.log("数据",req);
             axios.post('api/org/saveOrg',req).then(function(res){
+                vm.$Message.success('修改成功!');
                 console.log(res.data)
             }).catch(function(error){
+                 vm.$Message.error('修改失败!');
                 console.log(error)
             }) 
           },

@@ -43,7 +43,7 @@
                     </div>
                    </td>
                  <td>
-                     <div  ref="div" @click.stop="showTag(item)">点我呀</div>
+                     <div  ref="div" @click.stop="showTag(item)">{{item.org_id}}点我呀</div>
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">

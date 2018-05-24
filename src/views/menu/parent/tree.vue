@@ -34,7 +34,7 @@
                          <span >{{item.account}}</span>
                     </div>
                 </td>
-                <td><div>{{item.name}}</div></td>
+                <td><div>{{item.name}}<!-- <div @click="mtm(item.operator_id)">{{item.operator_id}}绑定机构</div> --></div></td>
                
             </tr>
         </table>
@@ -69,6 +69,7 @@ import axios from 'axios';
     },
     methods:{
        init(){
+                //右侧用户数据初始化
                 let vm = this;
                 let req =  {
                   "jyau_content": {
@@ -90,18 +91,8 @@ import axios from 'axios';
                     }).catch(function(error){
                         console.log(error)
                     }) 
-               // vm.yy = vm.$store.dispatch("actionB")
-               /*  vm.$store.dispatch("actionB").then(res=>{
-                  vm.yy=vm.$store.state.app.tree
-                 
-                })
-                console.log("yy",vm.yy) */
+               
        },
-      wode(){
-         console.log("msg")
-         //
-      },
-      
       tabletitlechange(){
         let vm = this
          this.list = this.initTable
@@ -131,6 +122,28 @@ import axios from 'axios';
       dragEnter(e){
         
         console.log("我进去了",e.target)
+      },
+      mtm(userid){
+        let vm = this
+        let req = {
+            "jyau_content": {
+              "jyau_reqData": [{
+                "req_no": " AU001201810231521335687",
+                "org_id": "OG201805240947521098"
+              }],
+              "jyau_pubData": {
+                "operator_id": userid,
+                "account_id": "systemman",
+                "ip_address": "10.2.0.116",
+                "system_id": "10909"
+              }
+            }
+          }
+        axios.post("api/emporg/addOperator",req).then(function(res){
+           console.log(res.data)
+        }).catch(function(error){
+          console.log(error)
+        })
       },
       dragEnd(e){
          let vm = this;
