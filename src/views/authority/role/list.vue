@@ -3,7 +3,7 @@
    <Card class="home-main">
         <p slot="title">
             <Icon type="person"></Icon>
-            机构管理
+           角色管理
         </p>
     <div style="text-align: center;
     margin: 20px;">
@@ -71,7 +71,7 @@ import axios from 'axios';
                 list:[],
                 editable:[false,false,false,false,false,false,false,false,false,false,false],
                 choose:'',
-                  current:'',
+                current:'',
                 modal1: false
             }
         },

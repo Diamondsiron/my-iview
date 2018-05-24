@@ -3,22 +3,11 @@
    <Card class="home-main">
         <p slot="title">
             <Icon type="person"></Icon>
-            机构管理
+           用户-角色管理
         </p>
     <div style="text-align: center;
     margin: 20px;">
-      <!-- <div style="display:flex;width:600px;">
-        <div style="flex:1">
-          <input type="text">
-          <span>图标</span>
-        </div>
-        <div style="flex:1">
-          <input type="text">
-          <span>图标</span>
-        </div>
-      </div> -->
-      
-      <Input  icon="search" placeholder="请输入角色名称搜索" style="width: 600px"></Input>
+     <Input  icon="search" placeholder="请输入角色名称搜索" style="width: 600px"></Input>
     </div>
     <div>
       <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
@@ -31,24 +20,22 @@
              <tr v-for="(item,index) in list" :key="index">
                  
                  <td><div>
-                        <Input v-show="editable[index]==true" v-model="list[index]" @keyup.enter="changeEditable"></Input>
-                         <span v-show="editable[index]==false"  >{{item}}</span>
+                       
+                         <span >{{item.role_code}}</span>
                     </div>
                  </td>
                  <td>
                    <div>
-                     <Input v-show="editable[index]==true" v-model="list[index]" @keyup.enter="changeEditable"></Input>
-                     <span v-show="editable[index]==false"  >{{item}}</span>
+                    
+                     <span >{{item.role_name}}</span>
                     </div>
                    </td>
                  <td>
-                     <div @click.stop="showTag(item)">{{item}}点我呀</div>
+                     <div @click.stop="showTag(item)">点我呀</div>
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">
-                             <Button  @click.stop="destroy(item)">删除</Button>
-                            <Button @click.stop="change(index)">修改</Button>
-                            <Button>详情</Button>
+                            <Button @click.stop="linkTO('userFromRole',item.role_id)">详情</Button>
                         </div>
                          
                      </div>
@@ -73,16 +60,42 @@
 </div>
 </template>
 <script>
+import axios from 'axios';
   export default{
     data(){
             return{
-                list:['a','b','c','d','e','f','g','h','i','j'],
+                list:[],
                 editable:[false,false,false,false,false,false,false,false,false,false,false],
                 choose:'',
                 modal1: false
             }
         },
         methods:{
+            init(){
+                let vm = this
+                let req = {
+                    "jyau_content": {
+                        "jyau_reqData": [
+                        {
+                            "req_no": "AU011201810231521335687"
+                        }
+                        ],
+                        "jyau_pubData": {
+                        "operator_id": "1",
+                        "ip_address": "10.2.0.116",
+                        "account_id": "systemman",
+                        "system_id": "10909"
+                        }
+                    }
+                    }
+
+                axios.post("api/role",req).then(function(res){
+                    console.log(res.data)
+                    vm.list = res.data.jyau_content.jyau_resData[0].role_data
+                }).catch(function(){
+
+                })
+            },
             changeEditable(){
               console.log("修改后的回车事件")
             },
@@ -104,6 +117,34 @@
             },
             closeTag(){
                  this.choose="";
+            },
+            ok () {
+                let vm = this;
+                let req = {
+                  "jyau_content": {
+                    "jyau_reqData": [{
+                      "req_no": " AU001201810231521335687",
+                      "org_id": vm.current.org_id
+                    }],
+                    "jyau_pubData": {
+                      "operator_id": "1",
+                      "account_id": "systemman",
+                      "ip_address": "10.2.0.116",
+                      "system_id": "10909"
+                    }
+                  }
+                } 
+                axios.post('api/org/delOrg',req).then(function(res){vm.init()}).catch(function(error){console.log(error)}) 
+         
+            },
+            cancel () {
+                
+            },
+            linkTO(name,id){
+                this.$router.push({
+                    name:name,
+                    params:{id:id}
+                })
             },
             showTag(item){
                 var box=document.getElementById(item);       
@@ -134,6 +175,9 @@
                 
             }
         },
+        mounted(){
+             this.init()
+        }
 
   }
 </script>

@@ -172,7 +172,7 @@ export const appRouter = [
         { path: 'updateuser/:id', meta:{title:'修改用户'}, name: 'updateuser', icon: 'compose', component: () => import('@/views/organization/user/update.vue') }, 
         { path: 'otoUser', meta:{title:'新增用户'}, name: 'otoUser', icon: 'compose', component: () => import('@/views/organization/otoUser.vue') }, 
         { path: 'organizationtoUser', meta:{title:'机构-用户管理'}, name: 'organizationtoUser', icon: 'compose', component: () => import('@/views/organization/organizationtoUser.vue') }, 
-        { path: 'usertoRole', meta:{title:'用户-角色管理'}, name: 'usertoRole', icon: 'compose', component: () => import('@/views/organization/user/usertoRole.vue') }, 
+        
     ]
   },
   {
@@ -207,6 +207,9 @@ export const appRouter = [
         { path: 'detailrole', title: '新增', name: 'detailrole', icon: 'compose', component: () => import('@/views/authority/role/detail.vue') },
         { path: 'updaterole/:id', meta:{title:'修改角色'}, name: 'updaterole', icon: 'compose', component: () => import('@/views/authority/role/update.vue') },
         { path: 'listrole',meta:{title:'角色列表'}, title: '新增', name: 'listrole', icon: 'compose', component: () => import('@/views/authority/role/list.vue') },
+        { path: 'usertoRole', meta:{title:'用户-角色管理'}, name: 'usertoRole', icon: 'compose', component: () => import('@/views/authority/role/usertoRole.vue') }, 
+        { path: 'userFromRole/:id',meta:{title:'角色用户列表'}, title: '新增', name: 'userFromRole', icon: 'compose', component: () => import('@/views/authority/role/userFromRole.vue') },
+        { path: 'userBindRole/:id',meta:{title:'角色用户列表'}, title: '新增', name: 'userBindRole', icon: 'compose', component: () => import('@/views/authority/role/userBindRole.vue') },
         { path: 'insertjob', title: '新增', name: 'insertjob', icon: 'compose', component: () => import('@/views/authority/job/insert.vue') },
         { path: 'detailjob', title: '新增', name: 'detailjob', icon: 'compose', component: () => import('@/views/authority/job/detail.vue') },
         { path: 'updatejob', title: '新增', name: 'updatejob', icon: 'compose', component: () => import('@/views/authority/job/update.vue') },

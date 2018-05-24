@@ -41,11 +41,12 @@ import axios from 'axios';
                status:[{name:"是",value:"1"},{name:"否",value:"0"}],
               form:{
                   parent_name:"",
+                  parent_id:"",
                   display_order:"",
                   if_leaf:"",
                   name:"",
                   code:"",
-                   parent_id:""
+                   
               },
               parent:[]
           }
@@ -107,6 +108,7 @@ import axios from 'axios';
 
               axios.post('api/menu/displayMenu',req).then(function(res){
                   console.log(res.data)
+                  vm.form.parent_id=res.data.jyau_content.jyau_resData[0].parent_id
                   vm.form.parent_name=res.data.jyau_content.jyau_resData[0].parent_name
                   vm.form.display_order=res.data.jyau_content.jyau_resData[0].display_order
                   vm.form.name=res.data.jyau_content.jyau_resData[0].menu_name
