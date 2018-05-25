@@ -3,9 +3,13 @@
    <Card class="home-main">
       <p slot="title">
             <Icon type="person"></Icon>
-           查询绑定
+           查询绑定该角色的用户
         </p>
-        <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
+        <div style="text-align: center;margin: 20px;">
+            <Input  icon="search" placeholder="请输入登陆账号搜索" v-model="account" @on-change="findAccount()" style="width: 300px"></Input>
+            <Input  icon="search" placeholder="请输入姓名搜索" v-model="name" @on-change="findName()" style="width: 300px"></Input>
+        </div>
+       <!--  <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
             <tr>
                 <th colspan="4"><div> 查询条件</div></th>
             </tr>
@@ -27,7 +31,7 @@
                 
             </tr>
            
-        </table>
+        </table> -->
         
         
 
@@ -45,7 +49,7 @@
                 
             </tr>
             <tr v-for="(item,index) in list" :key="index" v-if="currentpage-10<=index&&index<currentpage">
-                <td><div> <Checkbox v-model="checked[index]" ></Checkbox></div></td>
+                <td><div> <Checkbox disabled v-model="checked[index]" ></Checkbox></div></td>
                 <td ><div>{{item.account_id}}</div></td>
                 <td><div>{{item.account_name}}</div></td>
                 
@@ -66,6 +70,7 @@
 </div>
 </template>
 <script>
+import Util from '@/libs/util';
 import axios from 'axios';
     export default{
       data(){
@@ -76,7 +81,9 @@ import axios from 'axios';
               checkAll: true,
               checked:[true,true,true,true,true,true,true,true,true,true],
               ncheckAllGroup: [],
-               currentpage:10
+               currentpage:10,
+               name:"",
+              account:"",
              
           }
       },
@@ -96,6 +103,18 @@ import axios from 'axios';
                 this.currentpage = Number(page+"0")
                 console.log(this.currentpage)
           },
+           findAccount(){
+                 let vm = this
+                this.currentpage=10
+                this.list = this.initTable
+                this.list = Util.search(vm.list, {account_id: vm.account});
+            },
+            findName(){
+                let vm = this
+                this.currentpage=10
+                this.list = this.initTable
+                this.list = Util.search(vm.list, {account_name: vm.name});
+            },
           change(index){
               console.log(index)
               this.$set(this.editable,index,!this.editable[index])
