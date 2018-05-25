@@ -17,7 +17,7 @@
                  <th><div>热点操作区域</div></th>
              </tr>
             
-             <tr v-for="(item,index) in list" :key="index">
+             <tr v-for="(item,index) in list" :key="index" v-if="currentpage-10<=index&&index<currentpage">
                  
                  <td><div>
                        
@@ -46,7 +46,7 @@
     </div>
     <div style="    margin-top: 30px;
     text-align: center;">
-      <Page :total="100"></Page>
+     <Page :total="list.length" @on-change="pages" ></Page>
     </div>
      <Modal
         v-model="modal1"
@@ -100,6 +100,11 @@ import axios from 'axios';
                 }).catch(function(){
 
                 })
+            },
+             pages(page){
+                
+                this.currentpage = Number(page+"0")
+                console.log(this.currentpage)
             },
             findName(){
                 let vm = this

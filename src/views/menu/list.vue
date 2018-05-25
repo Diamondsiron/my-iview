@@ -19,7 +19,7 @@
                  <th><div>热点操作区域</div></th>
              </tr>
             
-             <tr v-for="(item,index) in list" :key="index">
+             <tr v-for="(item,index) in list" :key="index" v-if="currentpage-10<=index&&index<currentpage">
                  
                  <td><div>
                        
@@ -53,7 +53,7 @@
     </div>
     <div style="    margin-top: 30px;
     text-align: center;">
-      <Page :total="100"></Page>
+      <Page :total="list.length" @on-change="pages" ></Page>
     </div>
       <Modal
         v-model="modal1"
@@ -108,6 +108,11 @@ import Util from '@/libs/util';
                 })
 
             },
+             pages(page){
+                
+                this.currentpage = Number(page+"0")
+                console.log(this.currentpage)
+            },
             changeEditable(){
               console.log("修改后的回车事件")
             },
@@ -117,11 +122,7 @@ import Util from '@/libs/util';
                 this.list = this.initTable
                 this.list = Util.search(vm.list, {mu_name: vm.name});
             },
-            gonext(value){
-                this.$router.push({
-                    name:value
-                })
-            },
+           
             change(index){
                 
                 this.$set(this.editable,index,!this.editable[index])

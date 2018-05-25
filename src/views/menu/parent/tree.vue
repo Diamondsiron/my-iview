@@ -2,48 +2,43 @@
 <div style="display:flex">
   <div style="flex:1;overflow-y: scroll;height:800px"> 
       <Input style="width:200px" v-model="title" ></Input>
-       
-          <ztreeItem :tree="yy" ref="trees" :searchname="title"></ztreeItem>
+      <!--  <ztreeItem :tree="yy" ref="trees" :searchname="title"></ztreeItem> -->
           
         
      
   </div>
-  <div style="flex:1"> 
+  <div style="flex:1;padding:15px"> 
+     <div style="text-align: center;margin: 20px;">
+     <Input  icon="search" placeholder="请输入用户名称搜索"   v-model="tabletitle" :on-change="findname()" style="width: 600px"></Input>
+    </div>
     <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
-            <tr>
-                <th colspan="2"><div> 用户查询条件</div></th>
-            </tr>
-            <tr>
-                <td><div>用户名称</div></td>
-                <td><div><Input style="width:200px" v-model="tabletitle" :on-change="tabletitlechange()"></Input></div></td>
+           <tr>
+                <th><div>用户账号</div></th>
+                <th><div>用户名称</div></th>
                 
             </tr>
-            <tr>
-                <td colspan="2"><div>用户查询结果</div></td>
-                
-            </tr>
-            <tr>
-                <td><div>用户账号</div></td>
-                <td><div>用户名称</div></td>
-                
-            </tr>
-            <tr v-for="(item,index) in list" :key="index" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" :data-id="item.operator_id" >
-                <td   >
+            <tr v-for="(item,index) in list" :key="index"    draggable='true' @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" :data-id="item.operator_id"  >
+           <!--    :class="{td_show:currentpage-10<=index&&index<currentpage,td_hidden:!(currentpage-10<=index&&index<currentpage)}" -->
+                <td >
                     <div>
                         
                          <span >{{item.account}}</span>
                     </div>
-                </td>
-                <td><div>{{item.name}}<!-- <div @click="mtm(item.operator_id)">{{item.operator_id}}绑定机构</div> --></div></td>
+                </td >
+                <td><div>{{item.name}}</div></td>
                
             </tr>
         </table>
+       <!--   <div style="margin-top: 30px;text-align: center;">
+         <Page :total="list.length" @on-change="pages" ></Page>
+        </div> -->
   </div>
 </div>
 </template>
 <script>
 import ztreeItem from "@/views/menu/parent/childtree"
 import axios from 'axios';
+import Util from '@/libs/util';
   export default{
     name:'tree',
     
@@ -52,11 +47,12 @@ import axios from 'axios';
          list:[],
          initTable:[],
          title:"",
-        
+         currentpage:10,
          tabletitle:"",
          tableshow:[],
          store: null,
          root: null,
+         
       }
     },
     props:{
@@ -88,18 +84,22 @@ import axios from 'axios';
                      //console.log("data",res.data)
                      vm.list = res.data.jyau_content.jyau_resData[0].oper_list
                      vm.initTable = res.data.jyau_content.jyau_resData[0].oper_list
-                    }).catch(function(error){
+                }).catch(function(error){
                         console.log(error)
-                    }) 
+                }) 
                
        },
-      tabletitlechange(){
-        let vm = this
+      findname(){
+        console.log("findname",this.tabletitle)
+         let vm = this
+       // this.currentpage=10
          this.list = this.initTable
-        // this.list = this.search(this.list, {name: this.name});
+       // this.list = vm.search(vm.list, {name: vm.tabletitle});
+        
           
       },
-      search (data, argumentObj) {
+      search(data, argumentObj) {
+         console.log("search",this.tabletitle)
           let res = data;
           let dataClone = data;
           for (let argu in argumentObj) {
@@ -112,6 +112,12 @@ import axios from 'axios';
           }
           return res;
       },
+     /*   pages(page){
+                
+               this.currentpage = Number(page+"0")
+               
+        }, */
+     
       dragStart(e){
           e.dataTransfer.effectAllowed = "move";
           
@@ -123,30 +129,7 @@ import axios from 'axios';
       },
       dragEnter(e){
         
-        console.log("我进去了",e.target)
-      },
-      mtm(userid){
-        let vm = this
-        let req = {
-            "jyau_content": {
-              "jyau_reqData": [{
-                "req_no": " AU001201810231521335687",
-                "org_id": "OG201805240947521098"
-              }],
-              "jyau_pubData": {
-                "operator_id": userid,
-                "account_id": "systemman",
-                "ip_address": "10.2.0.116",
-                "system_id": "10909"
-              }
-            }
-          }
-         
-        axios.post("api/emporg/addOperator",req).then(function(res){
-           console.log(res.data)
-        }).catch(function(error){
-          console.log(error)
-        })
+       // console.log("我进去了",e.target)
       },
       dragEnd(e){
          let vm = this;
@@ -198,26 +181,13 @@ import axios from 'axios';
                     console.log(error)
                 })
           },
-      order(from,to){
-          let vm = this;
-          //this.check(from,to);
-          console.log("from",from,"to",to)
-        
-
-      },
-
-    },
-    created(){
       
+
     },
+    
     mounted(){
-      this.$on("oxxe",function(){
-        console.log("xxx")
-      })
       this.init();
-      
-
-    },
+      },
     components:{
       ztreeItem
     }
@@ -229,6 +199,12 @@ import axios from 'axios';
   padding-left: 1em;
   line-height: 1.5em;
   list-style-type: dot;
+}
+.td_hidden{
+  display: none;
+}
+.td_show{
+  display: table-row;
 }
 </style>
 
