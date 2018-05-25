@@ -74,6 +74,7 @@
 </div>
 </template>
 <script>
+import Util from '@/libs/util';
 import axios from 'axios';
   export default{
     data(){
@@ -114,28 +115,17 @@ import axios from 'axios';
                         console.log(error)
                     }) 
             },
-            search (data, argumentObj) {
-                let res = data;
-                let dataClone = data;
-                for (let argu in argumentObj) {
-                    if (argumentObj[argu].length > 0) {
-                        res = dataClone.filter(d => {
-                            return d[argu].indexOf(argumentObj[argu]) > -1;
-                        });
-                        dataClone = res;
-                    }
-                }
-                return res;
-            },
             findAccount(){
+                 let vm = this
                 this.currentpage=10
                 this.list = this.initTable
-                this.list = this.search(this.list, {account: this.account});
+                this.list = Util.search(vm.list, {account: vm.account});
             },
             findName(){
+                let vm = this
                 this.currentpage=10
                 this.list = this.initTable
-                this.list = this.search(this.list, {name: this.name});
+                this.list = Util.search(vm.list, {name: vm.name});
             },
             linkTO(name,id){
                 this.$router.push({

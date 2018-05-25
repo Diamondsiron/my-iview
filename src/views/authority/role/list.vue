@@ -8,7 +8,7 @@
     <div style="text-align: center;
     margin: 20px;">
       
-      <Input  icon="search" placeholder="请输入角色名称搜索" style="width: 600px"></Input>
+      <Input  icon="search" placeholder="请输入角色名称搜索" v-model="name" @on-change="findName()" style="width: 600px"></Input>
      
     </div>
     <div>
@@ -65,15 +65,18 @@
 </div>
 </template>
 <script>
+import Util from '@/libs/util';
 import axios from 'axios';
   export default{
     data(){
             return{
                 list:[],
+                initTable:[],
                 editable:[false,false,false,false,false,false,false,false,false,false,false],
                 choose:'',
                 current:'',
-                modal1: false
+                modal1: false,
+                name:""
             }
         },
         methods:{
@@ -98,9 +101,17 @@ import axios from 'axios';
                 axios.post("api/role",req).then(function(res){
                     console.log(res.data)
                     vm.list = res.data.jyau_content.jyau_resData[0].role_data
+                    vm.initTable = res.data.jyau_content.jyau_resData[0].role_data
+
                 }).catch(function(){
 
                 })
+            },
+            findName(){
+                let vm = this
+                this.currentpage=10
+                this.list = this.initTable
+                this.list = Util.search(vm.list, {role_name: vm.name});
             },
             changeEditable(){
               console.log("修改后的回车事件")
