@@ -38,7 +38,7 @@
 <script>
 import ztreeItem from "@/views/menu/parent/childtree"
 import axios from 'axios';
-import Util from '@/libs/util';
+
   export default{
     name:'tree',
     
@@ -55,14 +55,17 @@ import Util from '@/libs/util';
          
       }
     },
-    props:{
+    /* props:{
       tree:{}
-    },
-    computed:{
+    }, */
+    /* computed:{
        yy(){
           return this.$store.state.app.tree
         }
-    },
+    }, */
+    /* components:{
+      ztreeItem
+    }, */
     methods:{
        init(){
                 //右侧用户数据初始化
@@ -94,7 +97,7 @@ import Util from '@/libs/util';
          let vm = this
        // this.currentpage=10
          this.list = this.initTable
-       // this.list = vm.search(vm.list, {name: vm.tabletitle});
+         this.list = vm.search(vm.list, {name: vm.tabletitle});
         
           
       },
@@ -186,11 +189,9 @@ import Util from '@/libs/util';
     },
     
     mounted(){
-      this.init();
-      },
-    components:{
-      ztreeItem
-    }
+     this.init();
+    },
+    
   }  
 </script>
 <style>

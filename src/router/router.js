@@ -45,7 +45,7 @@ export const appRouter = [
     title: '组件',
     component: Mains,
     children:[
-      {path:'home',title:'home',name:'home_index',component:()=>import('@/views/home/home.vue')},
+     /*  {path:'home',title:'home',name:'home_index',component:()=>import('@/views/home/home.vue')}, */
       {path:'image-editor',title:'image-editor',name:'image-editor',component:()=>import('@/views/my-components/image-editor/image-editor.vue')},
       {path:'text-editor',title:'text-editor',name:'text-editor',component:()=>import('@/views/my-components/text-editor/text-editor.vue')},
 
@@ -111,13 +111,13 @@ export const appRouter = [
             title: '修改',
             component: () => import('@/views/company/update.vue')
         },
-        {
+      /*   {
             path: 'detail',
             icon: 'compose',
             name: 'detail',
             title: '详情',
             component: () => import('@/views/company/detail.vue')
-        },
+        }, */
         {
             path: 'list',
             icon: 'compose',

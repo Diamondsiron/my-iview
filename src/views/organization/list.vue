@@ -131,6 +131,7 @@ import axios from 'axios';
               
             },
              findCode(){
+                console.log("findCode")
                 let vm = this
                 this.currentpage=10
                 this.list = this.initTable
