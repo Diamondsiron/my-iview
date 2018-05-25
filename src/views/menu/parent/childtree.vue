@@ -1,5 +1,6 @@
 <template>
 
+
   <ul class="ul">
      
         <li :data-name="i.name" v-for="(i, m) in tree.children" :key="m" class="item"  :class="{'tree-hidden':!i.searchopen,'tree-block':i.expanded }">
@@ -27,6 +28,7 @@
  
 </template>
 <script>
+import axios from 'axios';
 let fromData = {}
 let toData={}
  export default{
@@ -102,11 +104,11 @@ let toData={}
            
             let vm = this
             vm.tree.children[m].open = !vm.tree.children[m].open
-             console.log("展开",m,vm.tree.children[m].open)
+             //console.log("展开",m,vm.tree.children[m].open)
            
           },
           search(name){
-            console.log("search")
+            //console.log("search")
             let vm = this;
             for(let i=0;i<vm.tree.children.length;i++){
                 if(vm.tree.children[i].name.indexOf(name)>-1){
@@ -179,8 +181,66 @@ let toData={}
                   
                 
               }
-             //用户机构删除的操作
-             console.log("删除后的tree",this.$store.state.app.tree)
+              //用户机构删除的操作
+              let itemdata = []
+              itemdata.push(item.id)
+              vm.removeData(root.id,itemdata)
+             
+             console.log("删除后的tree",item.id,root.id)
+          },
+          removeData(org_id,oper_ids){
+              let vm = this
+              let org =org_id
+              let oper =oper_ids
+             
+              let req = {
+                "jyau_content": {
+                  "jyau_reqData": [{
+                    "req_no": "AU002201810231521335687",
+                    "org_id": org,
+                    "oper_ids": oper
+                  }],
+                  "jyau_pubData": {
+                    "operator_id": "1",
+                    "ip_address": "10.2.0.116",
+                    "account_id": "systemman",
+                    "system_id": "10909"
+                  }
+                }
+              }
+              axios.post("api/emporg/delOperator",req).then(function(res){
+                console.log(res.data)
+              }).catch(function(error){
+                console.log(error)
+              })
+          },
+          addData(org_id,oper_ids){
+               let vm = this
+               let org =org_id
+               let oper =oper_ids
+               let req =   {
+                            "jyau_content": {
+                                "jyau_reqData": [{
+                                    "req_no": "AU002201810231521335687",
+                                    "org_id": org,
+                                    "oper_ids": oper
+                                }],
+                                "jyau_pubData": {
+                                    "operator_id": "1",
+                                    "ip_address": "10.2.0.116",
+                                    "account_id": "systemman",
+                                    "system_id": "10909"
+                                }
+                            }
+                        }
+                
+                axios.post("api/emporg/addOperator",req).then(function(res){
+                    console.log(res.data)
+                    
+                }).catch(function(error){
+                   
+                    console.log(error)
+                })
           },
           checktable(from,to){
               
@@ -230,7 +290,9 @@ let toData={}
                           dataset = root.children[i].children[j]
                           root.children[i].children.splice(j,1)
                           //用户机构删除的操作
-                        
+                          let itemdata =[]
+                          itemdata.push(from.child_id)
+                          vm.removeData(from.parent_id,itemdata)
                           }
                       
                     }
@@ -243,8 +305,12 @@ let toData={}
                    for(let j=0;j<root.children[i].children.length;j++){
                    
                     if(to.child_id==root.children[i].children[j].id){
-                        //用户机构增加的操作
+                        
                         root.children[i].children.push(dataset)
+                        //用户机构增加的操作
+                        let itemdata =[]
+                        itemdata.push(from.child_id)
+                         vm.addData(to.parent_id,itemdata)
                     }
                   }
 

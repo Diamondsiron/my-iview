@@ -109,39 +109,29 @@ import axios from 'axios';
                 let userList =[];
                 for(let i=0;i<vm.list.length;i++){
                 if(vm.checked[i]==true){
-                    let obj ={}
-                    obj.oper_id = vm.list[i].oper_id
-                    if(vm.list[i].org_id==null){
-                    obj.org_id =""
-                    }else{
-                    obj.org_id =vm.list[i].org_id
+                    userList.push(vm.list[i].operator_id)
                     }
-                    
-                    userList.push(obj)
-                }
                 }
                 if(userList.length==0){return}
-                 let req =  {
-                  "jyau_content": {
-                    "jyau_reqData": [
-                      {
-                        "req_no": "AU002201810231521335687",
-                        "role_id": id,
-                        "oper_data": userList,
-                        
-                      }
-                    ],
-                    "jyau_pubData": {
-                      "operator_id": "1",
-                      "ip_address": "10.2.0.116",
-                      "account_id": "systemman",
-                      "system_id": "10909"
-                    }
-                  }
-                }
-                axios.post("api/emporg/addUserRole",req).then(function(res){
+                 let req =   {
+                            "jyau_content": {
+                                "jyau_reqData": [{
+                                    "req_no": "AU002201810231521335687",
+                                    "org_id": id,
+                                    "oper_ids": userList
+                                }],
+                                "jyau_pubData": {
+                                    "operator_id": "1",
+                                    "ip_address": "10.2.0.116",
+                                    "account_id": "systemman",
+                                    "system_id": "10909"
+                                }
+                            }
+                        }
+                
+                axios.post("api/emporg/addOperator",req).then(function(res){
                     console.log(res.data)
-                vm.$Message.success('修改成功!');
+                    vm.$Message.success('修改成功!');
                 }).catch(function(error){
                     vm.$Message.error('修改失败!');
                     console.log(error)
@@ -172,7 +162,7 @@ import axios from 'axios';
                     }
 
                 axios.post('api/emporg/notOrgUser',req).then(function(res){ 
-                     //console.log("data",res.data)
+                     console.log("data",res.data)
                      vm.list = res.data.jyau_content.jyau_resData[0].notorg_list
                      vm.initTable = res.data.jyau_content.jyau_resData[0].notorg_list
                        for(let i = 0; i<vm.list.length;i++){

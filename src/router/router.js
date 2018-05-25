@@ -210,6 +210,7 @@ export const appRouter = [
         { path: 'usertoRole', meta:{title:'用户-角色管理'}, name: 'usertoRole', icon: 'compose', component: () => import('@/views/authority/role/usertoRole.vue') }, 
         { path: 'userFromRole/:id',meta:{title:'角色用户列表'}, title: '新增', name: 'userFromRole', icon: 'compose', component: () => import('@/views/authority/role/userFromRole.vue') },
         { path: 'userBindRole/:id',meta:{title:'角色用户列表'}, title: '新增', name: 'userBindRole', icon: 'compose', component: () => import('@/views/authority/role/userBindRole.vue') },
+        { path: 'roleConfigMenu/:id',meta:{title:'角色配置菜单'}, title: '新增', name: 'roleConfigMenu', icon: 'compose', component: () => import('@/views/authority/role/roleConfigMenu.vue') },
         { path: 'insertjob', title: '新增', name: 'insertjob', icon: 'compose', component: () => import('@/views/authority/job/insert.vue') },
         { path: 'detailjob', title: '新增', name: 'detailjob', icon: 'compose', component: () => import('@/views/authority/job/detail.vue') },
         { path: 'updatejob', title: '新增', name: 'updatejob', icon: 'compose', component: () => import('@/views/authority/job/update.vue') },

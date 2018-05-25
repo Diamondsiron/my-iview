@@ -27,7 +27,7 @@
                 <td><div>用户名称</div></td>
                 
             </tr>
-            <tr v-for="(item,index) in list" :key="index" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" >
+            <tr v-for="(item,index) in list" :key="index" draggable='true'  @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" :data-id="item.operator_id" >
                 <td   >
                     <div>
                         
@@ -141,6 +141,7 @@ import axios from 'axios';
               }
             }
           }
+         
         axios.post("api/emporg/addOperator",req).then(function(res){
            console.log(res.data)
         }).catch(function(error){
@@ -161,11 +162,42 @@ import axios from 'axios';
             }
             
         } 
-        
-        this.$store.commit("settree",root)
+        //异步修改数据
+        let itemdata =[]
+        itemdata.push(from.id)
+        this.addData(to.parent_id,itemdata)
+         this.$store.commit("settree",root)
          this.$store.commit("setrighttable","")
          this.$store.commit("setleftli","")
       },
+      addData(org_id,oper_ids){
+               let vm = this
+               let org =org_id
+               let oper =oper_ids
+               let req =   {
+                            "jyau_content": {
+                                "jyau_reqData": [{
+                                    "req_no": "AU002201810231521335687",
+                                    "org_id": org,
+                                    "oper_ids": oper
+                                }],
+                                "jyau_pubData": {
+                                    "operator_id": "1",
+                                    "ip_address": "10.2.0.116",
+                                    "account_id": "systemman",
+                                    "system_id": "10909"
+                                }
+                            }
+                        }
+                
+                axios.post("api/emporg/addOperator",req).then(function(res){
+                    console.log(res.data)
+                    
+                }).catch(function(error){
+                   
+                    console.log(error)
+                })
+          },
       order(from,to){
           let vm = this;
           //this.check(from,to);
