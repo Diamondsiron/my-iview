@@ -170,7 +170,7 @@ let toData={}
 
           },
           removeItem(item){
-            console.log("removeItem",item)
+           // console.log("removeItem",item)
             let vm = this 
              let root = vm.tree
               for(let i=0;i<root.children.length;i++){
@@ -188,7 +188,7 @@ let toData={}
               itemdata.push(item.id)
               vm.removeData(root.id,itemdata)
              
-             console.log("删除后的tree",item.id,root.id)
+             //console.log("删除后的tree",item.id,root.id)
           },
           removeData(org_id,oper_ids){
               let vm = this
@@ -273,7 +273,7 @@ let toData={}
             
           },
           check(from,to){
-               console.log("from",from,"to",to)
+              // console.log("from",from,"to",to)
               let vm = this;
               
               let root = this.$store.state.app.tree
@@ -353,7 +353,7 @@ let toData={}
               } 
              
               this.$store.commit("settree",root)
-              console.log("after",root,dataset)
+              //console.log("after",root,dataset)
               
            
 

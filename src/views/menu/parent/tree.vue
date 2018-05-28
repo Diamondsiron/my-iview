@@ -111,7 +111,7 @@ import axios from 'axios';
           
       },
       search(data, argumentObj) {
-         console.log("search",this.tabletitle)
+       //  console.log("search",this.tabletitle)
           let res = data;
           let dataClone = data;
           for (let argu in argumentObj) {
