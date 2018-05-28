@@ -2,14 +2,15 @@
 <div style="display:flex">
   <div style="flex:1;overflow-y: scroll;height:800px"> 
       <Input style="width:200px" v-model="title" ></Input>
-      <!--  <ztreeItem :tree="yy" ref="trees" :searchname="title"></ztreeItem> -->
+       <ztreeItem :tree="yy" ref="trees" :searchname="title"></ztreeItem>
           
         
      
   </div>
   <div style="flex:1;padding:15px"> 
      <div style="text-align: center;margin: 20px;">
-     <Input  icon="search" placeholder="请输入用户名称搜索"   v-model="tabletitle" :on-change="findname()" style="width: 600px"></Input>
+     <Input  icon="search" placeholder="请输入用户名称搜索"   v-model="tabletitle"  style="width: 600px"></Input>
+    <!--  <input type="text" v-model="tabletitle" @change="findname()" placeholder="请输入用户名称搜索"> -->
     </div>
     <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
            <tr>
@@ -17,7 +18,7 @@
                 <th><div>用户名称</div></th>
                 
             </tr>
-            <tr v-for="(item,index) in list" :key="index"    draggable='true' @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" :data-id="item.operator_id"  >
+            <tr v-for="(item,index) in list" :key="index"  :class="{td_show:currentpage-10<=index&&index<currentpage,td_hidden:!(currentpage-10<=index&&index<currentpage)}"  draggable='true' @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" :data-id="item.operator_id"  >
            <!--    :class="{td_show:currentpage-10<=index&&index<currentpage,td_hidden:!(currentpage-10<=index&&index<currentpage)}" -->
                 <td >
                     <div>
@@ -29,9 +30,9 @@
                
             </tr>
         </table>
-       <!--   <div style="margin-top: 30px;text-align: center;">
+         <div style="margin-top: 30px;text-align: center;">
          <Page :total="list.length" @on-change="pages" ></Page>
-        </div> -->
+        </div>
   </div>
 </div>
 </template>
@@ -55,17 +56,25 @@ import axios from 'axios';
          
       }
     },
-    /* props:{
+    props:{
       tree:{}
-    }, */
-    /* computed:{
+    },
+    computed:{
        yy(){
           return this.$store.state.app.tree
         }
-    }, */
-    /* components:{
+    },
+    watch:{
+      tabletitle:function(){
+         let vm = this
+         this.currentpage=10
+         this.list = this.initTable
+         this.list = vm.search(vm.list, {name: vm.tabletitle});
+      }
+    },
+    components:{
       ztreeItem
-    }, */
+    },
     methods:{
        init(){
                 //右侧用户数据初始化
@@ -93,11 +102,11 @@ import axios from 'axios';
                
        },
       findname(){
-        console.log("findname",this.tabletitle)
+      /*   console.log("findname",this.tabletitle)
          let vm = this
-       // this.currentpage=10
+         this.currentpage=10
          this.list = this.initTable
-         this.list = vm.search(vm.list, {name: vm.tabletitle});
+         this.list = vm.search(vm.list, {name: vm.tabletitle}); */
         
           
       },
@@ -115,11 +124,11 @@ import axios from 'axios';
           }
           return res;
       },
-     /*   pages(page){
+       pages(page){
                 
                this.currentpage = Number(page+"0")
                
-        }, */
+        },
      
       dragStart(e){
           e.dataTransfer.effectAllowed = "move";
