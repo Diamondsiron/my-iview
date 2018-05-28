@@ -4,12 +4,14 @@
   <ul class="ul">
      
         <li :data-name="i.name" v-for="(i, m) in tree.children" :key="m" class="item"  :class="{'tree-hidden':!i.searchopen,'tree-block':i.expanded }">
-          <span  @click="toggle(m)" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend.prevent='dragEnd' :data-name="i.name" :data-id="i.id">{{i.name}}</span>
-         <Icon type="arrow-right-b" v-if="(!i.open)&&i.children"></Icon>
-         <Icon type="arrow-down-b" v-if="i.open&&i.children"></Icon>
-         <span v-if="!i.children" @click="removeItem(i)" ><Icon type="ios-minus" style="color:red"></Icon></span>
-        <!--  <span v-if="!isdelete(i.name)">+</span> -->
-          <a></a>
+          <div  @click="toggle(m)" draggable='true' @dragstart='dragStart' @dragover='dragOver' @dragenter='dragEnter' @dragleave='dragLeave' @drop='drop' @dragend.prevent='dragEnd' :data-name="i.name" :data-id="i.id">{{i.name}}
+
+            <Icon type="arrow-right-b" v-if="(!i.open)&&i.children"></Icon>
+            <Icon type="arrow-down-b" v-if="i.open&&i.children"></Icon>
+            <span v-if="!i.children" @click.stop="removeItem(i)" ><Icon type="ios-minus" style="color:red"></Icon></span>
+          </div>
+         
+     
           
          <span v-if="i.open">
           <!--  <treeNode :tree="i" :searchname="childrentitle"></treeNode>  -->
@@ -277,12 +279,44 @@ let toData={}
               let root = this.$store.state.app.tree
               
               let dataset;
-              /* if((from.parent_name.indexOf("机构")>-1)||(to.indexOf("机构")>-1)){
+              /*  if((from.parent_name.indexOf("机构")>-1)||(to.indexOf("机构")>-1)){
                 return
+              }  */
+              if(from.parent_name==to.parent_name){
+                return
+              }
+              if(to.parent_name=="myTree"){
+                 for(let i=0;i<root.children.length;i++){
+                  if(from.parent_id==root.children[i].id){
+                    for(let j=0;j<root.children[i].children.length;j++){
+                        if(from.child_id==root.children[i].children[j].id){
+                            dataset = root.children[i].children[j]
+                            root.children[i].children.splice(j,1)
+                            //用户机构删除的操作
+                            let itemdata =[]
+                            itemdata.push(from.child_id)
+                            vm.removeData(from.parent_id,itemdata)
+                            }
+                        
+                      }
+
+                  }
+                
+                }
+
+                for(let i=0;i<root.children.length;i++){
+                 if(to.child_id==root.children[i].id){
+                   console.log("end",to,root.children[i])
+                        root.children[i].children.push(dataset)
+                        //用户机构增加的操作
+                        let itemdata =[]
+                        itemdata.push(from.child_id)
+                         vm.addData(to.parent_id,itemdata)
+                  }
+                  
               } 
-              if(from==to){
                 return
-              } */
+              }
               for(let i=0;i<root.children.length;i++){
                 if(from.parent_id==root.children[i].id){
                    for(let j=0;j<root.children[i].children.length;j++){

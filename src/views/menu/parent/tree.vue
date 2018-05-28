@@ -150,17 +150,31 @@ import axios from 'axios';
         let from = this.$store.state.app.righttable
         let to = this.$store.state.app.leftli
         let dataset={name:from.name,id:from.id,open:true,searchopen:true};
+        if(to.parent_name=="myTree"){
+           for(let i=0;i<root.children.length;i++){
+           if(to.child_id==root.children[i].id){
+              root.children[i].children.push(dataset)
+               //异步修改数据
+              let itemdata =[]
+              itemdata.push(from.id)
+              this.addData(to.child_id,itemdata)
+            }
+            
+        } 
+          return
+        }
         
           for(let i=0;i<root.children.length;i++){
            if(to.parent_id==root.children[i].id){
               root.children[i].children.push(dataset)
+               //异步修改数据
+              let itemdata =[]
+              itemdata.push(from.id)
+              this.addData(to.parent_id,itemdata)
             }
             
         } 
-        //异步修改数据
-        let itemdata =[]
-        itemdata.push(from.id)
-        this.addData(to.parent_id,itemdata)
+       
          this.$store.commit("settree",root)
          this.$store.commit("setrighttable","")
          this.$store.commit("setleftli","")
