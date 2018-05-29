@@ -191,7 +191,7 @@ import axios from 'axios'
               }
             }
           }
-        //let req = {"jyau_content":{"jyau_reqData":[{"req_no":"AU2018048201802051125231351","menu_id":"MU201805291413135112","role_data":[{"role_id":"RL201805230932410066","role_name":"角色1","rg_data":[{"org_id":"OG201805171438586409","org_name":"天津嘉业智德分公司"},{"org_id":"OG201805171726129979","org_name":"机构0005"},{"org_id":"OG201805240947442640","org_name":"机构0004"},{"org_id":"OG201805240947521098","org_name":"机构0006"}]}]}],"jyau_pubData":{"operator_id":"O201801301417012263","account_id":"systemman","ip_address":"10.2.0.116","system_id":"10909"}}}
+        
         console.log("提交后台的数据",req,JSON.stringify(req))
         axios.post("api/menuAuth/operatorMenuAuth",req).then(function(res){
           console.log("api/menuAuth/operatorMenuAuth",res.data)
@@ -218,7 +218,7 @@ import axios from 'axios'
           }
         }
         axios.post("api/menuAuth/queryRoleByMenu",req).then(function(res){
-          console.log("默认第一个菜单第一个角色",res.data)
+          //console.log("默认第一个菜单第一个角色",res.data)
          vm.roleList=res.data.jyau_content.jyau_resData[0].role_data
          vm.orgList=res.data.jyau_content.jyau_resData[0].org_data
          vm.menuRoleOrg = res.data.jyau_content.jyau_resData[0].roleOrg_data
@@ -255,7 +255,7 @@ import axios from 'axios'
           } 
         
         
-        console.log(id) 
+        
       },
       changeCurrentOrg(id,name){
          let vm = this 
@@ -293,7 +293,7 @@ import axios from 'axios'
           this.currentRole.role_name=name
         }
         
-        console.log(id) 
+        
       },
       
        changeCheckMenu(id){
@@ -342,56 +342,13 @@ import axios from 'axios'
         })
       },
       initRole(){
-        /* let vm = this
-        let req = {
-            "jyau_content": {
-                "jyau_reqData": [
-                {
-                    "req_no": "AU011201810231521335687"
-                }
-                ],
-                "jyau_pubData": {
-                "operator_id": "1",
-                "ip_address": "10.2.0.116",
-                "account_id": "systemman",
-                "system_id": "10909"
-                }
-            }
-            }
-
-        axios.post("api/role",req).then(function(res){
-            console.log(res.data)
-            vm.roleList = res.data.jyau_content.jyau_resData[0].role_data
-        }).catch(function(){
-
-        }) */
+        
       },
       initOrg(){
-        /* let vm = this;
-        let req =  {
-          "jyau_content": {
-            "jyau_reqData": [{
-              "req_no": " AU001201810231521335687"
-            }],
-            "jyau_pubData": {
-              "operator_id": "1",
-              "account_id": "systemman",
-              "ip_address": "10.2.0.116",
-              "system_id": "10909"
-            }
-          }
-        }
-        axios.post('api/org',req).then(function(res){ 
-          console.log("vm.orgList",res.data.jyau_content.jyau_resData[0].org_data)
-          vm.orgList = res.data.jyau_content.jyau_resData[0].org_data
-        }).catch(function(error){
-            console.log(error)
-            })  */
+       
       },
       init(){
       this.initMenu();
-      //this.initRole();
-      //this.initOrg();
       },
     },
     mounted(){
