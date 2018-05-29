@@ -12,6 +12,9 @@
               <FormItem label="菜单名称">
                   <Input v-model="form.name"></Input>
               </FormItem>
+               <FormItem label="功能调入接口">
+                  <Input v-model="form.menu_action"></Input>
+              </FormItem>
                <FormItem label="菜单代码">
                   <Input v-model="form.code"></Input>
               </FormItem>
@@ -45,6 +48,7 @@ import axios from 'axios';
                   if_leaf:"0",
                   name:"",
                   code:"",
+                  menu_action:"",
                   parent_id:""
               },
               parent:[]
@@ -63,6 +67,7 @@ import axios from 'axios';
                         "menu_name": vm.form.name,
                         "menu_code": vm.form.code,
                         "if_leaf": vm.form.if_leaf,
+                        "menu_action":vm.form.menu_action,
                         "display_order": vm.form.display_order,
                         "type": "01"
                     }],
