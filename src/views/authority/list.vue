@@ -218,7 +218,7 @@ import axios from 'axios'
           }
         }
         axios.post("api/menuAuth/queryRoleByMenu",req).then(function(res){
-          //console.log("默认第一个菜单第一个角色",res.data)
+         
          vm.roleList=res.data.jyau_content.jyau_resData[0].role_data
          vm.orgList=res.data.jyau_content.jyau_resData[0].org_data
          vm.menuRoleOrg = res.data.jyau_content.jyau_resData[0].roleOrg_data
@@ -277,7 +277,7 @@ import axios from 'axios'
         if(check()){
           vm.currentOrgList.push(obj)
         }
-        //console.log("vm.currentOrgList",vm.currentOrgList,vm.menuRoleOrg)
+        
       },
        changeCurrentMenu(id){
          
@@ -323,20 +323,16 @@ import axios from 'axios'
         }
 
         axios.post("api/menuAuth",req).then(function(res){
-          //console.log("vm.menuList",res.data.jyau_content.jyau_resData[0].multi_menuList)
+         
           vm.menuList = res.data.jyau_content.jyau_resData[0].multi_menuList
           for(let i=0;i<vm.menuList.length;i++){
             if(vm.menuList[i].child_list){
-              
-              let id = vm.menuList[i].child_list[0].menu_id
-             // console.log(vm.menuList[i].child_list[0].menu_id,vm.menuList[i].child_list[0].name)
-             // vm.$refs.id.value=true
-              vm.currentMenu=vm.menuList[i].child_list[0].menu_id
-              vm.setCurrentMenu(vm.menuList[i].child_list[0].menu_id)
+               vm.currentMenu=vm.menuList[i].child_list[0].menu_id
+               vm.setCurrentMenu(vm.menuList[i].child_list[0].menu_id)
               return
             }
           }
-          //
+          
         }).catch(function(error){
           console.log(error)
         })
