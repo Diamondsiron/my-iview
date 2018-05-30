@@ -5,15 +5,15 @@
      <div style="display:flex">
        <div style="flex:1">
           <ul>
-            <li v-for="(item,index) in menuList" :key="index">
+            <li v-for="(item,index) in menuList" :key="index" >
              
-             {{item.name}}
+             <div class="menu-li">{{item.name}}</div>
               <ul v-if="!(item.child_list==null)">
-                <li v-for="(item,index) in item.child_list" :key="index" style="margin-left:20px">
+                <li v-for="(item,index) in item.child_list" :key="index" class="role-li ml20" @click="changeCurrentMenu(item.menu_id)" :class="{color_blue:(currentMenu==item.menu_id)}">
                   <!-- <Checkbox :value="item.menu_id==currentMenu"  @on-change="changeCheckMenu(item.menu_id)"> 
                      
                   </Checkbox>  -->
-                   <span @click="changeCurrentMenu(item.menu_id)">{{item.name}}</span><span v-if="currentMenu==item.menu_id">当前选中</span>
+                   <span >{{item.name}}</span><!-- <span v-if="currentMenu==item.menu_id">当前选中</span> -->
                 </li>
               </ul>
             </li>
@@ -23,6 +23,7 @@
      </div>
     <div>
      <!--  <Button @click="submit()">确定</Button> -->
+   <!--   <Button @click="meunListByUser()">确定</Button> -->
     </div>
  
      
@@ -36,12 +37,12 @@
       
         <div style="flex:1">
           <ul>
-            <li v-for="(item,index) in roleList" :key="index">
+            <li v-for="(item,index) in roleList" :key="index" class="role-li" @click="changeCurrentRole(item.role_id,item.role_name)"  :class="{color_blue:(currentRole.role_id==item.role_id)}">
              
                <!-- <Checkbox :value="checkRole(item.role_id)" @on-change="changeCheckRole(item.role_id,item.role_name)" >
                  
                </Checkbox>   -->
-                <span @click="changeCurrentRole(item.role_id,item.role_name)">{{item.role_name}} </span><span v-if="currentRole.role_id==item.role_id">当前选中</span>
+                <span >{{item.role_name}} </span><!-- <span v-if="currentRole.role_id==item.role_id">当前选中</span> -->
             </li>
           </ul>
        </div>
@@ -63,7 +64,7 @@
        
         <div style="flex:1">
            <ul>
-            <li v-for="(item,index) in orgList" :key="index">
+            <li v-for="(item,index) in orgList" :key="index"  class="role-li">
               <Checkbox :value="checkOrg(item.org_id)" @on-change="changeCurrentOrg(item.org_id,item.org_name)">
                 <span>{{item.org_name}}</span>
               </Checkbox>  
@@ -116,6 +117,29 @@ import axios from 'axios'
           } 
         return false
        
+      },
+      meunListByUser(){
+        let vm = this
+        let req = {
+
+          "jyau_content": {
+            " jyau_reqData": [{
+              "req_no": "AU2018048201802051125231351",
+              "org_id": "1212"
+            }],
+            "jyau_pubData": {
+              "operator_id": "O201801301417012263",
+              "account_id": "systemman",
+              "ip_address": "10.2.0.116",
+              "system_id": "10909"
+            }
+          }
+        }
+        axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
+          console.log(res.data)
+        }).catch(function(error){
+          console.log(error)
+        })
       },
       checkOrg(id){
         let vm = this
@@ -207,9 +231,11 @@ import axios from 'axios'
         }
         console.log("req",req)
         axios.post("api/menuAuth/operatorMenuAuth",req).then(function(res){
+           vm.$Message.success('修改成功!');
           console.log(res.data)
         }).catch(function(error){
           console.log(error)
+           vm.$Message.error('修改失败!');
         })
       },
       submit(){
@@ -339,6 +365,8 @@ import axios from 'axios'
        changeCurrentMenu(id){
          let vm = this
          this.currentMenu=id
+         let noDate = ""
+         vm.setCurrentRole(noDate,noDate)
          this.setCurrentMenu(id);
          setTimeout(function(){
             vm.orgShow=false
@@ -425,12 +453,6 @@ import axios from 'axios'
   }
 </script>
 <style scoped>
-/* .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to  .fade-leave-active below version 2.1.8  {
-  opacity: 0;
-} */
 .fade-enter-active {
   transition: all .2s ease;
 }
@@ -441,22 +463,36 @@ import axios from 'axios'
   transform: translateY(100px);
   opacity: 0;
 }
-.bounce-enter-active {
-  animation: bounce-in .5s;
+li{
+  list-style: none
 }
-.bounce-leave-active {
-  animation: bounce-in .5s reverse;
+.color_blue{
+  color:#2d8cf0;
+  border: 1px solid #2d8cf0;
 }
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
+.role-li{
+  padding: 9px;
+    border: 1px solid #e7ebee;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: all .2s;
+}
+.menu-li{
+    padding: 9px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: all .2s;
+}
+.ml20{
+  margin-left:20px
+}
+.iview-admin-draggable-list li:hover {
+    color: #87b4ee;
+    border-color: #87b4ee;
+    transition: all .2s;
 }
 </style>
 
