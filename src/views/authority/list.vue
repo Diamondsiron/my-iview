@@ -1,6 +1,7 @@
 <template>
 <div style="display:flex">
-   <Card class="home-main" style="flex:1">
+  <div style="flex:1;padding:10px">
+   <Card>
      <div style="display:flex">
        <div style="flex:1">
           <ul>
@@ -9,9 +10,9 @@
              {{item.name}}
               <ul v-if="!(item.child_list==null)">
                 <li v-for="(item,index) in item.child_list" :key="index" style="margin-left:20px">
-                  <Checkbox :value="item.menu_id==currentMenu"  @on-change="changeCheckMenu(item.menu_id)"> 
+                  <!-- <Checkbox :value="item.menu_id==currentMenu"  @on-change="changeCheckMenu(item.menu_id)"> 
                      
-                  </Checkbox> 
+                  </Checkbox>  -->
                    <span @click="changeCurrentMenu(item.menu_id)">{{item.name}}</span><span v-if="currentMenu==item.menu_id">当前选中</span>
                 </li>
               </ul>
@@ -21,21 +22,25 @@
        
      </div>
     <div>
-      <Button @click="submit()">确定</Button>
+     <!--  <Button @click="submit()">确定</Button> -->
     </div>
-      
+ 
      
    </Card>
-   <Card class="home-main" style="flex:1">
+      </div>  
+      <div style="flex:1;padding:10px">
+    <transition name="fade">
+      
+   <Card v-if="roleShow">
      <div style="display:flex">
       
         <div style="flex:1">
           <ul>
             <li v-for="(item,index) in roleList" :key="index">
              
-               <Checkbox :value="checkRole(item.role_id)" @on-change="changeCheckRole(item.role_id,item.role_name)" >
+               <!-- <Checkbox :value="checkRole(item.role_id)" @on-change="changeCheckRole(item.role_id,item.role_name)" >
                  
-               </Checkbox>  
+               </Checkbox>   -->
                 <span @click="changeCurrentRole(item.role_id,item.role_name)">{{item.role_name}} </span><span v-if="currentRole.role_id==item.role_id">当前选中</span>
             </li>
           </ul>
@@ -48,7 +53,12 @@
       
      
    </Card>
-   <Card class="home-main" style="flex:1">
+    </transition>
+   </div> 
+     <div style="flex:1;padding:10px">
+      <transition name="fade">
+       
+   <Card v-if="orgShow">
      <div style="display:flex">
        
         <div style="flex:1">
@@ -68,6 +78,8 @@
       
      
    </Card>
+   </transition>
+   </div>
 </div>
 </template>
 <script>
@@ -86,7 +98,9 @@ import axios from 'axios'
           role_name:""
         },
         currentOrgList:[],
-        data:[]
+        data:[],
+        roleShow:false,
+        orgShow:false
       }
     },
     watch:{
@@ -165,13 +179,45 @@ import axios from 'axios'
             }
             return false
         }
+        this.saveAuth(obj)
+      },
+      saveAuth(obj){
+        console.log("obj",obj)
+        let vm = this
+        let menu_id = vm.currentMenu
+        let org_ids =[]
+        for(let i=0; i<obj.rg_data.length; i++){
+          org_ids.push(obj.rg_data[i].org_id)
+        }
+        let req = {
+          "jyau_content": {
+            "jyau_reqData": [{
+              "req_no": "CL048201802051125231351",
+              "menu_id": menu_id,
+              "role_id": obj.role_id,
+              "org_ids": org_ids
+            }],
+            "jyau_pubData": {
+              "operator_id": "1",
+              "account_id": "systemman",
+              "ip_address": "10.2.0.116",
+              "system_id": "10909"
+            }
+          }
+        }
+        console.log("req",req)
+        axios.post("api/menuAuth/operatorMenuAuth",req).then(function(res){
+          console.log(res.data)
+        }).catch(function(error){
+          console.log(error)
+        })
       },
       submit(){
         let vm = this
         this.auth();
       },
       auth(){
-        console.log("auth")
+       /* 后台接口改了 就废了 */
         let vm = this
         let menu_id = vm.currentMenu
         let req = {
@@ -192,7 +238,7 @@ import axios from 'axios'
             }
           }
         
-        console.log("提交后台的数据",req,JSON.stringify(req))
+        
         axios.post("api/menuAuth/operatorMenuAuth",req).then(function(res){
           console.log("api/menuAuth/operatorMenuAuth",res.data)
         }).catch(function(error){
@@ -223,12 +269,13 @@ import axios from 'axios'
          vm.orgList=res.data.jyau_content.jyau_resData[0].org_data
          vm.menuRoleOrg = res.data.jyau_content.jyau_resData[0].roleOrg_data
          vm.menuRoleOrgClone = res.data.jyau_content.jyau_resData[0].roleOrg_data
-         if(res.data.jyau_content.jyau_resData[0].roleOrg_data[0]){
+         //取消选择第一个角色
+        /*  if(res.data.jyau_content.jyau_resData[0].roleOrg_data[0]){
            vm.setCurrentRole(res.data.jyau_content.jyau_resData[0].roleOrg_data[0].role_id,res.data.jyau_content.jyau_resData[0].roleOrg_data[0].role_Name)
          }else{
           let noDate = ""
           vm.setCurrentRole(noDate,noDate)
-         }
+         } */
          
           
          
@@ -239,7 +286,17 @@ import axios from 'axios'
         })
       },
       changeCurrentRole(id,name){
-           this.setCurrentRole(id,name)
+            let vm = this
+          
+            setTimeout(function(){
+                vm.orgShow=false
+            },400)
+             setTimeout(function(){
+               vm.setCurrentRole(id,name)
+                vm.orgShow=true
+            },800)
+             
+          
       },
       setCurrentRole(id,name){
            let vm = this
@@ -280,9 +337,23 @@ import axios from 'axios'
         
       },
        changeCurrentMenu(id){
-         
+         let vm = this
          this.currentMenu=id
          this.setCurrentMenu(id);
+         setTimeout(function(){
+            vm.orgShow=false
+         },300)
+          setTimeout(function(){
+           vm.roleShow=false
+         },600)
+          setTimeout(function(){
+            vm.roleShow=true
+         },900)
+         /*  this.orgShow=false
+          this.roleShow=false
+         this.roleShow=true */
+         
+        
       },
       changeCheckRole(id,name){
         if(this.currentRole.role_id==id){
@@ -325,13 +396,14 @@ import axios from 'axios'
         axios.post("api/menuAuth",req).then(function(res){
          
           vm.menuList = res.data.jyau_content.jyau_resData[0].multi_menuList
-          for(let i=0;i<vm.menuList.length;i++){
+          //取消自动选择第一个菜单
+         /*  for(let i=0;i<vm.menuList.length;i++){
             if(vm.menuList[i].child_list){
                vm.currentMenu=vm.menuList[i].child_list[0].menu_id
                vm.setCurrentMenu(vm.menuList[i].child_list[0].menu_id)
               return
             }
-          }
+          } */
           
         }).catch(function(error){
           console.log(error)
@@ -353,6 +425,38 @@ import axios from 'axios'
   }
 </script>
 <style scoped>
-
+/* .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to  .fade-leave-active below version 2.1.8  {
+  opacity: 0;
+} */
+.fade-enter-active {
+  transition: all .2s ease;
+}
+.fade-leave-active {
+  transition: all .2s ease;
+}
+.fade-enter, .slide-fade-leave-to {
+  transform: translateY(100px);
+  opacity: 0;
+}
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 </style>
 
