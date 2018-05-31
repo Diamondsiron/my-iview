@@ -52,6 +52,14 @@
    </Card>
    </transition>
    </div>
+    <Modal
+        v-model="modal1"
+        title="提示"
+        @on-ok="ok"
+        @on-cancel="cancel">
+        <p>是否保存修改</p>
+    
+    </Modal>
 </div>
 </template>
 <script>
@@ -62,9 +70,12 @@ import axios from 'axios'
         menuList:[],
         orgList:[],
         currentMenu:"",
+        currentMenuClone:"",
         orgShow:false,
         menuOrg:[],
-        currentOrgList:[]
+        currentOrgList:[],
+        modal1: false,
+        isModified:false
       }
     },
     methods:{
@@ -101,18 +112,46 @@ import axios from 'axios'
         this.initMenu();
         
       },
+      ok(){
+        let vm = this
+         //vm.isModified=false
+         vm.save()
+         vm.changeCurrentMenu(vm.currentMenuClone)
+        
+      },
+      cancel(){
+         let vm = this
+         vm.isModified=false
+         vm.changeCurrentMenu(vm.currentMenuClone)
+      },
       changeCurrentMenu(id){
         console.log(id)
         let vm = this
-        
+         vm.currentMenuClone=id
+        if(vm.isModified){
+          vm.modal1=true
+           return
+        }
          setTimeout(function(){
             vm.orgShow=false
          },300)
           setTimeout(function(){
-            vm.currentMenu=id
+            vm.setCurrentMenu(id)
             vm.orgShow=true
             
          },600)
+      },
+      setCurrentMenu(id){
+        let vm = this
+        vm.currentMenu=id
+        vm.currentOrgList=[]
+         for(let i=0; i<vm.menuOrg.length; i++){
+            if(vm.currentMenu==vm.menuOrg[i].menu_id){
+              vm.currentOrgList=vm.currentOrgList.concat(vm.menuOrg[i].mg_data)
+            
+            }
+          } 
+         console.log("vm.currentOrgList",vm.currentOrgList) 
       },
       checkOrg(id){
         let vm = this
@@ -134,42 +173,49 @@ import axios from 'axios'
             org_name: name
           }
           function check(){
-            for(let i=0; i<vm.menuOrg.length; i++){
-              if(vm.currentMenu==vm.menuOrg[i].menu_id){
-                for(let j=0; j<vm.menuOrg[i].mg_data.length; j++){
-                   if(obj.org_id==vm.menuOrg[i].mg_data[j].org_id){
-                    vm.menuOrg[i].mg_data.splice(j,1)
+            for(let i=0; i<vm.currentOrgList.length; i++){
+             
+               
+                   if(obj.org_id==vm.currentOrgList[i].org_id){
+                    vm.currentOrgList.splice(i,1)
                     return false
                   }
-                }
-              }
+                
+              
              
             }
             return true
           }
           if(check()){
-            for(let i=0; i<vm.menuOrg.length; i++){
+            vm.currentOrgList.push(obj)
+           /*  for(let i=0; i<vm.menuOrg.length; i++){
               if(vm.currentMenu==vm.menuOrg[i].menu_id){
                vm.menuOrg[i].mg_data.push(obj)
               }
-            }
+            } */
           }
-          console.log(vm.menuOrg)
+          vm.isModified=true
+          console.log(vm.menuOrg,vm.currentOrgList)
       },
       save(){
+       
         let vm = this
+         vm.isModified=false
         let obj = {
           role_id:vm.$route.params.id,
           menu_id:vm.currentMenu,
           org_ids:[]
         }
-        for(let i=0; i<vm.menuOrg.length; i++){
-          if(vm.currentMenu==vm.menuOrg[i].menu_id){
-            for(let j=0; j<vm.menuOrg[i].mg_data.length; j++){
-                 obj.org_ids.push(vm.menuOrg[i].mg_data[j].org_id)
-              }
-          }
+        
+        for(let i=0; i<vm.currentOrgList.length; i++){
+              obj.org_ids.push(vm.currentOrgList[i].org_id)
         }
+        for(let i=0; i<vm.menuOrg.length; i++){
+              if(vm.currentMenu==vm.menuOrg[i].menu_id){
+               vm.menuOrg[i].mg_data=vm.currentOrgList
+              }
+        }
+         
         this.saveAuth(obj)
       },
       saveAuth(obj){
@@ -190,7 +236,7 @@ import axios from 'axios'
             }
           }
         }
-        console.log("req",req)
+        console.log("req",JSON.stringify(req))
         axios.post("api/menuAuth/operatorMenuAuth",req).then(function(res){
            vm.$Message.success('修改成功!');
           console.log(res.data)

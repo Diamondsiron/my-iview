@@ -81,6 +81,14 @@
    </Card>
    </transition>
    </div>
+    <Modal
+        v-model="modal1"
+        title="提示"
+        @on-ok="ok"
+        @on-cancel="cancel">
+        <p>是否保存修改</p>
+    
+    </Modal>
 </div>
 </template>
 <script>
@@ -94,14 +102,21 @@ import axios from 'axios'
         menuRoleOrg:{},
         menuRoleOrgClone:"",
         currentMenu:"",
+        currentMenuClone:"",
         currentRole:{
+          role_id:"",
+          role_name:""
+        },
+        currentRoleClone:{
           role_id:"",
           role_name:""
         },
         currentOrgList:[],
         data:[],
         roleShow:false,
-        orgShow:false
+        orgShow:false,
+         modal1: false,
+        isModified:false
       }
     },
     watch:{
@@ -156,6 +171,7 @@ import axios from 'axios'
       },
       save(){
         let vm = this
+        vm.isModified=false
         let obj = {
           role_id:vm.currentRole.role_id,
           role_name:vm.currentRole.role_name,
@@ -204,6 +220,25 @@ import axios from 'axios'
             return false
         }
         this.saveAuth(obj)
+      },
+      ok(){
+        let vm = this
+        vm.save();
+       if(vm.currentRoleClone.role_id==""){
+          vm.changeCurrentMenu(vm.currentMenuClone)
+        }else if(vm.currentMenuClone==""){
+          vm.changeCurrentRole(vm.currentRoleClone.role_id,vm.currentRoleClone.role_name)
+        }
+      },
+      cancel(){
+        let vm = this
+        vm.isModified=false
+        console.log(vm.currentRoleClone.role_id,vm.currentMenuClone)
+        if(vm.currentRoleClone.role_id==""){
+          vm.changeCurrentMenu(vm.currentMenuClone)
+        }else if(vm.currentMenuClone==""){
+          vm.changeCurrentRole(vm.currentRoleClone.role_id,vm.currentRoleClone.role_name)
+        }
       },
       saveAuth(obj){
         console.log("obj",obj)
@@ -313,7 +348,15 @@ import axios from 'axios'
       },
       changeCurrentRole(id,name){
             let vm = this
-          
+            this.currentRoleClone.role_id=id
+            this.currentRoleClone.role_name=name
+            if(vm.isModified){
+            vm.modal1=true
+           
+            return
+          }
+           this.currentRoleClone.role_id=""
+            this.currentRoleClone.role_name=""
             setTimeout(function(){
                 vm.orgShow=false
             },400)
@@ -341,8 +384,9 @@ import axios from 'axios'
         
       },
       changeCurrentOrg(id,name){
+         
          let vm = this 
-        
+        vm.isModified=true
         let obj = {
           org_id: id,
           org_name: name
@@ -364,10 +408,17 @@ import axios from 'axios'
       },
        changeCurrentMenu(id){
          let vm = this
+         vm.currentMenuClone = id
          this.currentMenu=id
          let noDate = ""
          vm.setCurrentRole(noDate,noDate)
          this.setCurrentMenu(id);
+         if(vm.isModified){
+          vm.modal1=true
+          
+          return
+        }
+        this.currentMenuClone=""
          setTimeout(function(){
             vm.orgShow=false
          },300)
@@ -436,12 +487,6 @@ import axios from 'axios'
         }).catch(function(error){
           console.log(error)
         })
-      },
-      initRole(){
-        
-      },
-      initOrg(){
-       
       },
       init(){
       this.initMenu();
