@@ -186,6 +186,7 @@ import axios from 'axios';
             logout(){
                 localStorage.removeItem("organization");
                 localStorage.removeItem("UserName");
+                 localStorage.removeItem("User");
                 this.$router.push({name:'login'})
             },
             init(){

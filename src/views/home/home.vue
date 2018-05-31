@@ -1,5 +1,6 @@
 <template>
     <div class="home-main center">
+        
         <div v-if="organization">
             <Col :md="12" :lg="24" :style="{marginBottom: '10px'}">
                         <Card>
@@ -33,7 +34,7 @@
         </div>
         <div v-if="!organization">
            <div v-for="(item,index) in list" :key="index" class="organization-choose">
-               <div @click="chooseO(item.org_name)" class="organization-choose-item">
+               <div @click="chooseO(item.org_name,item.org_id)" class="organization-choose-item">
                    <div class="organization-choose-item-content">{{item.org_name}}</div>
               </div>
                
@@ -71,7 +72,7 @@ import axios from 'axios';
             if(localStorage.getItem("organization")){
                 vm.organization = true
             }
-            /* let req = {
+            let req = {
                     "jyau_content": {
                         "jyau_reqData": [{
                             "req_no": " AU001201810231521335687"
@@ -88,12 +89,33 @@ import axios from 'axios';
                 console.log(res.data)
             }).catch(function(e){
                 console.log(e)
-            }) */
+            })
 
         },
-        chooseO(item){
-            localStorage.setItem("organization",item)
+        chooseO(name,id){
+            localStorage.setItem("organization",name)
             this.organization = true
+            let vm = this
+            let req = {
+                  "jyau_content": {
+                    " jyau_reqData": [{
+                        "req_no": "AU2018048201802051125231351",
+                        "org_id": id
+                    }],
+                    "jyau_pubData": {
+                        "operator_id": JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id,
+                        "account_id": "systemman",
+                        "ip_address": "10.2.0.116",
+                        "system_id": "10909"
+                    }
+                }
+            }
+            console.log("req",JSON.stringify(req))
+            axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
+                console.log(res.data)
+            }).catch(function(error){
+                console.log(error)
+            })
         }
     },
     mounted(){
