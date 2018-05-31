@@ -9,7 +9,7 @@
              
              <div class="menu-li">{{item.name}}</div>
               <ul v-if="!(item.child_list==null)">
-                <li v-for="(item,index) in item.child_list" :key="index" class="role-li ml20" @click="changeCurrentMenu(item.menu_id)" :class="{color_blue:(currentMenu==item.menu_id)}">
+                <li v-for="(item,index) in item.child_list" :key="index"  @click="changeCurrentMenu(item.menu_id)" :class="{color_blue:(currentMenu==item.menu_id)}" class="role-li ml20">
                   <!-- <Checkbox :value="item.menu_id==currentMenu"  @on-change="changeCheckMenu(item.menu_id)"> 
                      
                   </Checkbox>  -->
