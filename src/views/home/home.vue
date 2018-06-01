@@ -131,7 +131,7 @@ import axios from 'axios';
                         obj.id = list[i].menu_id
                         obj.children = []
                         if(list[i].child_list){
-                            console.log("you")
+                           
                             for(let j=0; j<list[i].child_list.length; j++){
                                 let child={}
                                 child.name=list[i].child_list[j].name
@@ -140,7 +140,7 @@ import axios from 'axios';
                                 obj.children.push(child)
                             }
                         }else{
-                            console.log("meiyou")
+                            
                         } 
                        
                         menuList.data.push(obj)
