@@ -112,7 +112,7 @@ import axios from 'axios';
             }
             console.log("req",JSON.stringify(req))
             axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
-                console.log(res.data)
+                console.log(res.data,JSON.stringify(res.data.jyau_content.jyau_resData[0].multi_menuList))
             }).catch(function(error){
                 console.log(error)
             })

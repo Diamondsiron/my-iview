@@ -191,7 +191,7 @@ import axios from 'axios';
             },
             init(){
                  let vm = this
-                axios.get('/api/menu')
+                 axios.get('/api/menu')
                     .then(function(res){
                    
                     vm.menuList=res.data.data.data;
@@ -199,8 +199,30 @@ import axios from 'axios';
                     })
                     .catch(function(error){
                     console.log(error)
-                    })
-               
+                    }) 
+                 let req = {"jyau_content":{" jyau_reqData":[{"req_no":"AU2018048201802051125231351","org_id":"OG201805171438586409"}],"jyau_pubData":{"operator_id":"OP201805241441037573","account_id":"systemman","ip_address":"10.2.0.116","system_id":"10909"}}}
+                axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
+                    let list =res.data.jyau_content.jyau_resData[0].multi_menuList
+                    let menuList = {}
+                    menuList.name="菜单"
+                    menuList.data=[]
+                    for(let i=0; i<list.length;i++){
+                        let obj={}
+                        obj.name=list[i].name
+                        obj.id = list[i].menu_id
+                        obj.children = []
+                        for(let j=0; j<list[i].child_list.length; j++){
+                            let child={}
+                            child.name=list[i].child_list[j].name
+                            child.id=list[i].child_list[j].menu_id
+                            child.route= list[i].child_list[j].action
+                            obj.children.push(child)
+                        }
+                        menuList.data.push(obj)
+                    }
+                    //vm.menuList=menuList.data
+                    console.log(menuList)
+                })
 
             }
         },
