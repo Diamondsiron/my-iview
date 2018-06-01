@@ -60,7 +60,7 @@ import axios from 'axios';
             return JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].last_login
         },
         org(){
-            return localStorage.getItem("organization")
+            return localStorage.getItem("organization").name
         }
     },
     methods:{
@@ -93,7 +93,10 @@ import axios from 'axios';
 
         },
         chooseO(name,id){
-            localStorage.setItem("organization",name)
+            let obj ={}
+            obj.name = name
+            obj.id = id
+            localStorage.setItem("organization",JSON.stringify(obj))
             this.organization = true
             let vm = this
             let req = {
@@ -112,7 +115,41 @@ import axios from 'axios';
             }
             console.log("req",JSON.stringify(req))
             axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
-                console.log(res.data,JSON.stringify(res.data.jyau_content.jyau_resData[0].multi_menuList))
+                console.log(res.data.jyau_content.jyau_resData[0].multi_menuList)
+                 let list =res.data.jyau_content.jyau_resData[0].multi_menuList
+                    let menuList = {}
+                    menuList.name="菜单"
+                    menuList.data=[]
+                    if(list){
+                        
+                    }else{
+                       
+                    } 
+                        for(let i=0; i<list.length;i++){
+                        let obj={}
+                        obj.name=list[i].name
+                        obj.id = list[i].menu_id
+                        obj.children = []
+                        if(list[i].child_list){
+                            console.log("you")
+                            for(let j=0; j<list[i].child_list.length; j++){
+                                let child={}
+                                child.name=list[i].child_list[j].name
+                                child.id=list[i].child_list[j].menu_id
+                                child.route= list[i].child_list[j].action
+                                obj.children.push(child)
+                            }
+                        }else{
+                            console.log("meiyou")
+                        } 
+                       
+                        menuList.data.push(obj)
+                     }
+                   
+                    
+                    
+                   // vm.$store.commit("setMenuList",menuList.data)
+                    console.log(menuList)
             }).catch(function(error){
                 console.log(error)
             })

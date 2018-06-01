@@ -67,7 +67,7 @@
     transition: all .2s ease-in-out;">
             <shrinkable-menu
              @on-change="handleSubmenuChange"
-             :menu-list="menuList"
+             :menu-list="menuLists"
         >
          </shrinkable-menu>
         </div>
@@ -126,7 +126,10 @@ import axios from 'axios';
             showFullScreenBtn () {
                 return window.navigator.userAgent.indexOf('MSIE') < 0;
             },
-            username(){
+            menuLists(){
+                return this.$store.state.app.menuList
+            },
+           username(){
                 return localStorage.getItem("UserName")
             }
         },
@@ -195,12 +198,28 @@ import axios from 'axios';
                     .then(function(res){
                    
                     vm.menuList=res.data.data.data;
-                    
+                    vm.$store.commit("setMenuList",vm.menuList)
                     })
                     .catch(function(error){
                     console.log(error)
                     }) 
-                 let req = {"jyau_content":{" jyau_reqData":[{"req_no":"AU2018048201802051125231351","org_id":"OG201805171438586409"}],"jyau_pubData":{"operator_id":"OP201805241441037573","account_id":"systemman","ip_address":"10.2.0.116","system_id":"10909"}}}
+                    if(!JSON.parse(localStorage.getItem("organization"))){
+                        return
+                    }
+                 let req = {
+                  "jyau_content": {
+                    " jyau_reqData": [{
+                        "req_no": "AU2018048201802051125231351",
+                        "org_id": JSON.parse(localStorage.getItem("organization")).id
+                    }],
+                        "jyau_pubData": {
+                            "operator_id": JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id,
+                            "account_id": "systemman",
+                            "ip_address": "10.2.0.116",
+                            "system_id": "10909"
+                        }
+                    }
+                }
                 axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
                     let list =res.data.jyau_content.jyau_resData[0].multi_menuList
                     let menuList = {}
@@ -220,7 +239,8 @@ import axios from 'axios';
                         }
                         menuList.data.push(obj)
                     }
-                    //vm.menuList=menuList.data
+                    vm.menuList=menuList.data
+                    vm.$store.commit("setMenuList",vm.menuList)
                     console.log(menuList)
                 })
 
