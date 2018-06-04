@@ -1,11 +1,11 @@
 <template>
     <Menu ref="sideMenu" :active-name="$route.name" :open-names="openNames" :theme="menuTheme" width="auto" @on-select="changeMenu">
         <template v-for="item in menuList">
-           <!--  <MenuItem v-if="item.children.length<=1" :name="item.children[0].route" :key="'menuitem' + item.name">
+            <!-- <MenuItem v-if="item.children.length<=1" :name="item.children[0].route" :key="'menuitem' + item.name">
               
                 <span class="layout-text" :key="'title' + item.name">{{ item.name }}</span>
-            </MenuItem> -->
-
+            </MenuItem>
+ -->
             <Submenu v-if="item.children.length > 0" :name="item.name" :key="item.name">
                 <template slot="title">
                     <!-- <Icon :type="item.icon" :size="iconSize"></Icon> -->

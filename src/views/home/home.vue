@@ -148,7 +148,7 @@ import axios from 'axios';
                    
                     
                     
-                   // vm.$store.commit("setMenuList",menuList.data)
+                    vm.$store.commit("setMenuList",menuList.data)
                     console.log(menuList)
             }).catch(function(error){
                 console.log(error)

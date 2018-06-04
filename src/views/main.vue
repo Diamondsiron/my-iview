@@ -190,11 +190,13 @@ import axios from 'axios';
                 localStorage.removeItem("organization");
                 localStorage.removeItem("UserName");
                  localStorage.removeItem("User");
+                 let array = []
+                  this.$store.commit("setMenuList",array)
                 this.$router.push({name:'login'})
             },
             init(){
                  let vm = this
-                 axios.get('/api/menu')
+                /*  axios.get('/api/menu')
                     .then(function(res){
                    
                     vm.menuList=res.data.data.data;
@@ -202,7 +204,7 @@ import axios from 'axios';
                     })
                     .catch(function(error){
                     console.log(error)
-                    }) 
+                    })  */
                     if(!JSON.parse(localStorage.getItem("organization"))){
                         return
                     }
