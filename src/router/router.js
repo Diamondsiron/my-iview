@@ -186,6 +186,7 @@ export const appRouter = [
         { path: 'detailmenu', meta:{title:'菜单管理'},title: '新增', name: 'detail', icon: 'compose', component: () => import('@/views/menu/parent/detail.vue') },
         { path: 'updatemenu/:id', meta:{title:'修改管理'},title: '新增', name: 'updatemenu', icon: 'compose', component: () => import('@/views/menu/parent/update.vue') },
         { path: 'listmenu', meta:{title:'菜单管理'},title: '新增', name: 'listmenu', icon: 'compose', component: () => import('@/views/menu/list.vue') },
+        { path: 'pushMessage', meta:{title:'消息管理'},title: '新增', name: 'pushMessage', icon: 'compose', component: () => import('@/views/menu/pushMessage.vue') },
         { path: 'insertchild', title: '新增', name: 'insertchild', icon: 'compose', component: () => import('@/views/menu/child/insert.vue') },
         { path: 'detailchild', title: '新增', name: 'detailchild', icon: 'compose', component: () => import('@/views/menu/child/detail.vue') },
         { path: 'updatechild', title: '新增', name: 'updatechild', icon: 'compose', component: () => import('@/views/menu/child/update.vue') },

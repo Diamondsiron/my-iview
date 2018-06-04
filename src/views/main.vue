@@ -75,20 +75,29 @@
             
        
         <Layout :style="{marginLeft: '200px'}">
-            <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}"></Header>
-          
-                    <div style="position: absolute;right: 0;top: 20px;width: 300px;">
-                    <span @click="fullscreeen(value)">全屏</span>
-                    <span @click="lockscreen()">锁屏</span>
-                    <div style="width: 20px;display: inline-block;"><lock-screen></lock-screen></div>
-                    <span>{{username}}</span>
-                    <span @click="logout()">退出</span>
+            <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}">
+                <div style="height: 64px;overflow-y: hidden;position: relative;">
+                       <ul style="position: absolute;" id="list">
+                           <li @click="info(false)">这是收到的第一条消息</li>
+                           <li @click="info(false)">第二条消息</li>
+                           <li @click="info(false)">这是收到的第三条消息</li>
+                           <li @click="info(false)">第四条消息</li>
+                      </ul>    
+                </div>
+            </Header>
+                    
+            <div style="position: absolute;right: 0;top: 20px;width: 300px;">
+                <span @click="fullscreeen(value)">全屏</span>
+                <span @click="lockscreen()">锁屏</span>
+                <div style="width: 20px;display: inline-block;"><lock-screen></lock-screen></div>
+                <span>{{username}}</span>
+                <span @click="logout()">退出</span>
+                
 
-
-                    </div>
-                    <div>
-                        <tags-page-opened ></tags-page-opened>
-                    </div>
+            </div>
+            <div>
+                <tags-page-opened ></tags-page-opened>
+            </div>
                 <div style="padding: 20px;">
                      
                         
@@ -177,8 +186,34 @@ import axios from 'axios';
                 
               
             },
+            info(nodesc){
+                this.$Notice.info({
+                    title: '消息',
+                    desc: nodesc ? '' : '您有一条新的消息 '
+                });
+            },
             handleSelect(){
-
+                
+            },
+            play(){
+                console.log("play")
+                let moveDis=-64;
+                let list = document.getElementById('list');
+                 function animate(){
+                   
+                    var newLeft = Number(list.style.top.replace("px","")) + moveDis;
+                    //console.log("newLeft",newLeft)
+                    
+                    
+                    if (newLeft <= 0&&newLeft > -256) {
+                        list.style.top =newLeft+"px"
+                    }else if (newLeft == -256) {
+                        list.style.top = 0 + 'px';
+                    }
+                 }
+                let timer = setInterval(function() {
+                  animate();
+                }, 2000)   
             },
             handleSubmenuChange(val){
                
@@ -250,6 +285,7 @@ import axios from 'axios';
         },
         mounted(){
             this.init();
+            this.play()
             /* this.active = '2-1';
             this.open = ["2"];
             

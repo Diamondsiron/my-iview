@@ -38,7 +38,7 @@
                  <td>
                    <div>
                      
-                     <span>{{item.name}}</span>
+                     <span>{{item.name}}{{item.operator_id}}</span>
                     </div>
                    </td>
                  <td>
