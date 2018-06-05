@@ -47,10 +47,10 @@
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">
-                             <Button @click.stop="linkTO('insertorganization',item.org_id)">添加</Button>
-                             <Button @click.stop="linkTO('updateorganization',item.org_id)">修改</Button>
-                             <Button @click.stop="destroy(item)">删除</Button>
-                             <Button style="margin-top:5px" @click.stop="linkTO('otoUser',item.org_id)">添加机构人</Button>
+                             <Button type="primary" @click.stop="linkTO('insertorganization',item.org_id)">添加</Button>
+                             <Button type="primary" @click.stop="linkTO('updateorganization',item.org_id)">修改</Button>
+                             <Button type="primary" @click.stop="destroy(item)">删除</Button>
+                             <Button type="primary" style="margin-top:5px" @click.stop="linkTO('otoUser',item.org_id)">添加机构人</Button>
                         </div>
                          
                      </div>

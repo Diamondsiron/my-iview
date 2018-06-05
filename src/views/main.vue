@@ -95,7 +95,7 @@
                 
 
             </div>
-            <div>
+            <div style="background-color:#e3dfdf">
                 <tags-page-opened ></tags-page-opened>
             </div>
                 <div style="padding: 20px;">

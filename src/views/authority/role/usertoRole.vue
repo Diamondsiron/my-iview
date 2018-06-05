@@ -35,7 +35,7 @@
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">
-                            <Button @click.stop="linkTO('userFromRole',item.role_id)">详情</Button>
+                            <Button type="primary" @click.stop="linkTO('userFromRole',item.role_id)">详情</Button>
                         </div>
                          
                      </div>

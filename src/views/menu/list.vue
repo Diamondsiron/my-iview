@@ -37,9 +37,9 @@
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">
-                              <Button @click.stop="linkTO('insertmenu',item.mu_id)">新增</Button>
-                              <Button @click.stop="linkTO('updatemenu',item.mu_id)">修改</Button>
-                             <Button @click.stop="destroy(item)">删除</Button>
+                              <Button type="primary" @click.stop="linkTO('insertmenu',item.mu_id)">新增</Button>
+                              <Button type="primary" @click.stop="linkTO('updatemenu',item.mu_id)">修改</Button>
+                             <Button type="primary" @click.stop="destroy(item)">删除</Button>
                             
                             
                             

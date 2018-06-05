@@ -44,7 +44,11 @@
 </div>
 </template>
 <script>
-const url ="ws://authoritymserv.jiayecaifu.com:8023/AuthorityM_Serv/websocket/"
+
+// const url ="ws://authoritymserv.jiayecaifu.com:8023/AuthorityM_Serv/websocket/" 
+const url ="ws://10.2.0.101:8182/AuthorityM_Serv/websocket/";
+// const url ="ws://10.2.0.155:8199/AuthorityM_Serv/websocket/" 
+var websocket
 export default{
   name:'pushMessage',
   data(){
@@ -55,8 +59,8 @@ export default{
         name:"",
         desc:"",
         type:""
-      },
-      websocket:null
+      }
+      
     }
   },
   methods:{
@@ -69,55 +73,56 @@ export default{
     send(){
         let vm = this
       	if ('WebSocket' in window) {
-          vm.websocket = new WebSocket(url + vm.formValidate.push + "/" + vm.formValidate.name+"/"+vm.formValidate.type);
+          websocket = new WebSocket(url + vm.formValidate.push + "/" + vm.formValidate.name+"/"+vm.formValidate.type);
         } else {
           alert('当前浏览器 Not support websocket')
           return;
         };
-        vm.websocket.onopen = function() {
+        websocket.onopen = function() {
           vm.startSend();
         }
-        	vm.websocket.onerror = function() {
+        	websocket.onerror = function() {
             console.log("WebSocket连接发生错误");
             return;
           };
           //接收到消息的回调方法
-          vm.websocket.onmessage = function(event) {
-            console.log(event.data);
+          websocket.onmessage = function(event) {
+            console.log("event",event,event.data);
           }
           //连接关闭的回调方法
-         vm. websocket.onclose = function() {
+         websocket.onclose = function() {
             console.log("WebSocket连接关闭");
           }
     },
     sendAll(){
        let vm = this
       	if ('WebSocket' in window) {
-          vm.websocket = new WebSocket(url+"0/0/"+vm.formValidate.type);
+          websocket = new WebSocket(url+"0/0/"+vm.formValidate.type);
         } else {
           alert('当前浏览器不支持websocket')
           return;
         };
-        vm.websocket.onopen = function() {
-            startSend();
+        websocket.onopen = function() {
+            vm.startSend();
           }
           //连接发生错误的回调方法
-          vm.websocket.onerror = function() {
+         websocket.onerror = function() {
             console.log("WebSocket连接发生错误");
             return;
           };
           //接收到消息的回调方法
-          vm.websocket.onmessage = function(event) {
-            console.log(event.data);
+          websocket.onmessage = function(event) {
+            console.log("event",event,event.data);
           }
           //连接关闭的回调方法
-          vm.websocket.onclose = function() {
+         websocket.onclose = function() {
             console.log("WebSocket连接关闭");
           }
     },
     startSend(){
       let vm = this
-      websocket.send(vm.desc);
+      console.log("登录成功")
+      websocket.send(vm.formValidate.desc);
     },
     closeWebScoket(){
       websocket.close();
