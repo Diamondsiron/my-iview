@@ -12,14 +12,11 @@
 
     </div> -->
    <Form ref="formValidate" :model="formValidate"  :label-width="80" style="width: 600px">
-       <FormItem label="发件人">
-            <Input v-model="formValidate.push" placeholder="发件人姓名"></Input>
-        </FormItem>
         <FormItem label="收件人">
             <Input v-model="formValidate.name" placeholder="收件人姓名"></Input>
         </FormItem>
          <FormItem label="消息类型">
-            <Input v-model="formValidate.type" placeholder="消息类型"></Input>
+            <Input v-model="formValidate.type" placeholder="0 不是必须接收，1是必须接收"></Input>
         </FormItem>
         
         <FormItem label="内容" >
@@ -71,7 +68,9 @@ export default{
 
     },
     send(){
+        
         let vm = this
+        vm.formValidate.push=JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id
       	if ('WebSocket' in window) {
           websocket = new WebSocket(url + vm.formValidate.push + "/" + vm.formValidate.name+"/"+vm.formValidate.type);
         } else {
@@ -96,6 +95,7 @@ export default{
     },
     sendAll(){
        let vm = this
+        vm.formValidate.push=JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id
       	if ('WebSocket' in window) {
           websocket = new WebSocket(url+"0/0/"+vm.formValidate.type);
         } else {

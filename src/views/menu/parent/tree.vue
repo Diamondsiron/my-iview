@@ -132,8 +132,8 @@ import axios from 'axios';
      
       dragStart(e){
           e.dataTransfer.effectAllowed = "move";
-          
-          e.dataTransfer.setData("item", e.target);
+          console.log(e.target.dataset.name)
+          e.dataTransfer.setData("Text", e.target.dataset.name);
           let tab = {}
           tab.name = e.target.dataset.name
           tab.id = e.target.dataset.id
