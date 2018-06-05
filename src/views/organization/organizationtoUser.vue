@@ -3,7 +3,7 @@
    <Card class="" style="max-width:1200px">
       <p slot="title">
             <Icon type="person"></Icon>
-            机构管理1
+            机构管理
         </p>
     <div style="display:flex">
       <div style="flex:1" >

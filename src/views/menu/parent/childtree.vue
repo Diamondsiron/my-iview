@@ -285,6 +285,25 @@ let toData={}
               if(from.parent_name==to.parent_name){
                 return
               }
+              /* 拖拽到机构判断是否重复 */
+              if(to.parent_name=="myTree"){
+               
+                for(let i=0;i<root.children.length;i++){
+                   if(to.child_id==root.children[i].id){
+                    
+                      for(let j=0; j<root.children[i].children.length; j++){
+                        
+                        if(from.child_id==root.children[i].children[j].id){
+                          console.log("机构去重复")
+                          return
+                        }
+                      }
+                   }
+                 
+                  
+                }
+              }
+              /* 拖拽到机构 */
               if(to.parent_name=="myTree"){
                  for(let i=0;i<root.children.length;i++){
                   if(from.parent_id==root.children[i].id){
@@ -317,6 +336,18 @@ let toData={}
               } 
                 return
               }
+              /* 拖拽到人员判断是否重复 */
+              for(let i=0;i<root.children.length;i++){
+                if(to.parent_id==root.children[i].id){
+                   for(let j=0;j<root.children[i].children.length;j++){
+                     if(from.child_id==root.children[i].children[j].id){
+                       console.log("有重复的")
+                       return
+                     }
+                   }
+                }
+              }
+              /* 拖拽到人员 */
               for(let i=0;i<root.children.length;i++){
                 if(from.parent_id==root.children[i].id){
                    for(let j=0;j<root.children[i].children.length;j++){

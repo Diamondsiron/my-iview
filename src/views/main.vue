@@ -288,8 +288,8 @@ import axios from 'axios';
             messageInit(){
                     let vm = this
                 	if ('WebSocket' in window) {
-                        websocket = new WebSocket(url+"OP201805241441037573"+"/0/0");
-                    //websocket = new WebSocket(url+JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id+"/0/0");
+                       // websocket = new WebSocket(url+"OP201805241441037573"+"/0/0");
+                          websocket = new WebSocket(url+JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id+"/0/0");
                     } else {
                     alert('当前浏览器 Not support websocket')
                     return;

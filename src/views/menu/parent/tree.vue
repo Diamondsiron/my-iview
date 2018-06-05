@@ -150,6 +150,25 @@ import axios from 'axios';
         let from = this.$store.state.app.righttable
         let to = this.$store.state.app.leftli
         let dataset={name:from.name,id:from.id,open:true,searchopen:true};
+        console.log("from",from)
+         /* 拖拽到机构判断是否重复 */
+              if(to.parent_name=="myTree"){
+               
+                for(let i=0;i<root.children.length;i++){
+                   if(to.child_id==root.children[i].id){
+                    
+                      for(let j=0; j<root.children[i].children.length; j++){
+                        
+                        if(from.id==root.children[i].children[j].id){
+                          console.log("机构去重复")
+                          return
+                        }
+                      }
+                   }
+                 
+                  
+                }
+              }
         if(to.parent_name=="myTree"){
            for(let i=0;i<root.children.length;i++){
            if(to.child_id==root.children[i].id){
@@ -163,7 +182,17 @@ import axios from 'axios';
         } 
           return
         }
-        
+         /* 拖拽到人员判断是否重复 */
+              for(let i=0;i<root.children.length;i++){
+                if(to.parent_id==root.children[i].id){
+                   for(let j=0;j<root.children[i].children.length;j++){
+                     if(from.id==root.children[i].children[j].id){
+                       console.log("有重复的")
+                       return
+                     }
+                   }
+                }
+              }
           for(let i=0;i<root.children.length;i++){
            if(to.parent_id==root.children[i].id){
               root.children[i].children.push(dataset)
