@@ -78,10 +78,8 @@
             <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}">
                 <div style="height: 64px;overflow-y: hidden;position: relative;">
                        <ul style="position: absolute;" id="list">
-                           <li @click="info(false)">这是收到的第一条消息</li>
-                           <li @click="info(false)">第二条消息</li>
-                           <li @click="info(false)">这是收到的第三条消息</li>
-                           <li @click="info(false)">第四条消息</li>
+                           <li @click="info(item,index)" v-for="(item,index) in messageList" :key="index">{{item}}</li>
+                          
                       </ul>    
                 </div>
             </Header>
@@ -112,6 +110,10 @@
     </div>
 </template>
 <script>
+ const url ="wss://authoritymserv.jiayecaifu.com:8023/AuthorityM_Serv/websocket/" 
+//const url ="ws://10.2.0.101:8182/AuthorityM_Serv/websocket/";
+// const url ="ws://10.2.0.155:8199/AuthorityM_Serv/websocket/" 
+var websocket
 import axios from 'axios';
  import lockScreen from './lockscreen/lockscreen.vue';
  import tagsPageOpened from './lockscreen/tags-page-opened.vue';
@@ -128,7 +130,8 @@ import axios from 'axios';
                 value:  false,
                 open: [],
                 active: '1-1',
-                 menuList:[]
+                menuList:[],
+                messageList:[]
             }
         },
         computed: {
@@ -177,37 +180,37 @@ import axios from 'axios';
             }
             },
             lockscreen(){
-                
-               
-                    
                     this.$router.push({
                         name: 'locking'
                     }); 
                 
               
             },
-            info(nodesc){
+            info(item,index){
                 this.$Notice.info({
                     title: '消息',
-                    desc: nodesc ? '' : '您有一条新的消息 '
+                    desc: item,
+                    duration: 0
                 });
+                this.messageList.splice(index,1)
             },
             handleSelect(){
                 
             },
             play(){
                 console.log("play")
+                let vm = this
                 let moveDis=-64;
                 let list = document.getElementById('list');
                  function animate(){
                    
                     var newLeft = Number(list.style.top.replace("px","")) + moveDis;
                     //console.log("newLeft",newLeft)
+                    let max = vm.messageList.length*(-64)
                     
-                    
-                    if (newLeft <= 0&&newLeft > -256) {
+                    if (newLeft <= 0&&newLeft > max) {
                         list.style.top =newLeft+"px"
-                    }else if (newLeft == -256) {
+                    }else if (newLeft == max) {
                         list.style.top = 0 + 'px';
                     }
                  }
@@ -243,57 +246,88 @@ import axios from 'axios';
                     if(!JSON.parse(localStorage.getItem("organization"))){
                         return
                     }
-                 let req = {
-                  "jyau_content": {
-                    " jyau_reqData": [{
-                        "req_no": "AU2018048201802051125231351",
-                        "org_id": JSON.parse(localStorage.getItem("organization")).id
-                    }],
-                        "jyau_pubData": {
-                            "operator_id": JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id,
-                            "account_id": "systemman",
-                            "ip_address": "10.2.0.116",
-                            "system_id": "10909"
+                    let req = {
+                    "jyau_content": {
+                        " jyau_reqData": [{
+                            "req_no": "AU2018048201802051125231351",
+                            "org_id": JSON.parse(localStorage.getItem("organization")).id
+                        }],
+                            "jyau_pubData": {
+                                "operator_id": JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id,
+                                "account_id": "systemman",
+                                "ip_address": "10.2.0.116",
+                                "system_id": "10909"
+                            }
                         }
                     }
-                }
-                axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
-                    let list =res.data.jyau_content.jyau_resData[0].multi_menuList
-                    let menuList = {}
-                    menuList.name="菜单"
-                    menuList.data=[]
-                    for(let i=0; i<list.length;i++){
-                        let obj={}
-                        obj.name=list[i].name
-                        obj.id = list[i].menu_id
-                        obj.children = []
-                        for(let j=0; j<list[i].child_list.length; j++){
-                            let child={}
-                            child.name=list[i].child_list[j].name
-                            child.id=list[i].child_list[j].menu_id
-                            child.route= list[i].child_list[j].action
-                            obj.children.push(child)
+                    axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
+                        let list =res.data.jyau_content.jyau_resData[0].multi_menuList
+                        let menuList = {}
+                        menuList.name="菜单"
+                        menuList.data=[]
+                        for(let i=0; i<list.length;i++){
+                            let obj={}
+                            obj.name=list[i].name
+                            obj.id = list[i].menu_id
+                            obj.children = []
+                            for(let j=0; j<list[i].child_list.length; j++){
+                                let child={}
+                                child.name=list[i].child_list[j].name
+                                child.id=list[i].child_list[j].menu_id
+                                child.route= list[i].child_list[j].action
+                                obj.children.push(child)
+                            }
+                            menuList.data.push(obj)
                         }
-                        menuList.data.push(obj)
-                    }
-                    vm.menuList=menuList.data
-                    vm.$store.commit("setMenuList",vm.menuList)
-                    console.log(menuList)
-                })
+                        vm.menuList=menuList.data
+                        vm.$store.commit("setMenuList",vm.menuList)
+                        console.log(menuList)
+                    })
 
+            },
+            messageInit(){
+                    let vm = this
+                	if ('WebSocket' in window) {
+                        websocket = new WebSocket(url+"OP201805241441037573"+"/0/0");
+                    //websocket = new WebSocket(url+JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id+"/0/0");
+                    } else {
+                    alert('当前浏览器 Not support websocket')
+                    return;
+                    };
+                    websocket.onopen = function() {
+                    vm.startSend();
+                    }
+                        websocket.onerror = function() {
+                        console.log("WebSocket连接发生错误");
+                        return;
+                    };
+                    //接收到消息的回调方法
+                    websocket.onmessage = function(event) {
+                        vm.messageList.push(event.data)
+                        console.log("event",event,event.data);
+                    }
+                    //连接关闭的回调方法
+                    websocket.onclose = function() {
+                        console.log("WebSocket连接关闭");
+                    }
+            },
+             startSend(){
+                let vm = this
+                console.log("登录成功")
+                //websocket.send();
+            },
+            closeWebScoket(){
+                 websocket.close();
             }
         },
         mounted(){
             this.init();
             this.play()
-            /* this.active = '2-1';
-            this.open = ["2"];
-            
-            this.$nextTick(function() {
-                this.$refs.leftMenu.updateOpened();
-                this.$refs.leftMenu.updateActiveName();
-            })
-            this.handleSelect(this.active); */
+            this.messageInit()
+             let vm = this
+            window.onbeforeunload = function() {
+            vm.closeWebSocket();
+            }
         },
         watch:{
             '$route' (to){

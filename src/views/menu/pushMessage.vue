@@ -45,8 +45,8 @@
 </template>
 <script>
 
-// const url ="ws://authoritymserv.jiayecaifu.com:8023/AuthorityM_Serv/websocket/" 
-const url ="ws://10.2.0.101:8182/AuthorityM_Serv/websocket/";
+ const url ="wss://authoritymserv.jiayecaifu.com:8023/AuthorityM_Serv/websocket/" 
+//const url ="ws://10.2.0.101:8182/AuthorityM_Serv/websocket/";
 // const url ="ws://10.2.0.155:8199/AuthorityM_Serv/websocket/" 
 var websocket
 export default{
