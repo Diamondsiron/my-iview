@@ -18,15 +18,15 @@
                 <th><div>用户名称</div></th>
                 
             </tr>
-            <tr v-for="(item,index) in list" :key="index"  :class="{td_show:currentpage-10<=index&&index<currentpage,td_hidden:!(currentpage-10<=index&&index<currentpage)}"  draggable='true' @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" :data-id="item.operator_id"  >
+            <tr v-for="(item,index) in list" :key="index"  :class="{td_show:currentpage-10<=index&&index<currentpage,td_hidden:!(currentpage-10<=index&&index<currentpage)}"  >
            <!--    :class="{td_show:currentpage-10<=index&&index<currentpage,td_hidden:!(currentpage-10<=index&&index<currentpage)}" -->
                 <td >
                     <div>
                         
-                         <span >{{item.account}}</span>
+                         <span   >{{item.account}}</span>
                     </div>
                 </td >
-                <td><div>{{item.name}}</div></td>
+                <td  draggable='true' @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" :data-id="item.operator_id"><div>{{item.name}}</div></td>
                
             </tr>
         </table>

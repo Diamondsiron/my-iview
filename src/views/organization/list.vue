@@ -23,8 +23,8 @@
     <div>
       <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
              <tr>
-                  <th><div>公司代码<Icon type="arrow-down-a"></Icon></div></th>
-                 <th><div>公司名称<Icon type="arrow-down-a"></Icon></div></th>
+                  <th><div>公司代码</div></th>
+                 <th><div>公司名称</div></th>
                  <th><div>操作</div></th>
              </tr>
             
@@ -43,7 +43,7 @@
                     </div>
                    </td>
                  <td>
-                     <div  ref="div" @click.stop="showTag(item)"><!-- {{item.org_id}} -->点我呀</div>
+                     <div  ref="div" @click.stop="showTag(item)"><!-- {{item.org_id}} -->操作</div>
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">

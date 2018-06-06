@@ -86,8 +86,8 @@
                     
             <div style="position: absolute;right: 0;top: 20px;width: 300px;">
                 <span @click="fullscreeen(value)">全屏</span>
-                <span @click="lockscreen()">锁屏</span>
-                <div style="width: 20px;display: inline-block;"><lock-screen></lock-screen></div>
+               
+                <div @click="lockscreen()" style="width: 20px;display: inline-block;"><lock-screen></lock-screen></div>
                 <span>{{username}}</span>
                 <span @click="logout()">退出</span>
                 
