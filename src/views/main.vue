@@ -96,14 +96,9 @@
             <div style="background-color:#e3dfdf">
                 <tags-page-opened ></tags-page-opened>
             </div>
-                <div style="padding: 20px;">
-                     
-                        
-                            <router-view></router-view>
-                        
-                   
-
-                </div>
+            <div style="padding: 20px;">
+                <router-view></router-view>
+            </div>
                
            
         </Layout>
