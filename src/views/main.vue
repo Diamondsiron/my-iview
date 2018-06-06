@@ -99,7 +99,7 @@
                 <div style="padding: 20px;">
                      
                         
-                            <router-view style="overflow:hidden"></router-view>
+                            <router-view></router-view>
                         
                    
 
