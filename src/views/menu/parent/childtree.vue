@@ -132,7 +132,10 @@ let toData={}
            
           },
           dragEnter(e){
-           
+            console.log("进来了",e)
+           // e.target.style.backgroundColor="#2d8cf0";
+           e.target.style.backgroundColor="#e3dfdf";
+            //e.target.style.color="#fff"
             toData.child_name = e.target.dataset.name
             toData.child_id = e.target.dataset.id
             toData.parent_name = this.tree.name
@@ -148,7 +151,9 @@ let toData={}
              
           },
           dragLeave(e){
-            
+            e.target.style.backgroundColor="rgba(0,0,0,0)";
+           // e.target.style.color="black"
+            console.log("出去了",e.target)
           },
           drop(e){
 
@@ -403,6 +408,8 @@ let toData={}
 li{
   list-style: none;
 }
-
+.ul{
+  
+}
 </style>
 

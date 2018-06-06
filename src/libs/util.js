@@ -250,6 +250,8 @@ util.fullscreenEvent = function (vm) {
     vm.$store.commit('updateMenulist');
     // 全屏相关
 };
+
+
 //上面的用没用的不知道，底下的都是用的的 这个是js模糊查询的
 util.search =function(data, argumentObj) {
     let res = data;
