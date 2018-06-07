@@ -85,26 +85,11 @@
             </Header>
                     
             <div style="position: absolute;right: 0;top: 20px;width: 300px;">
-               <!--  <span @click="fullscreeen(value)">全屏</span> width: 20px; display: inline-block;-->
-               <div @click="fullscreeen(value)" style="width: 20px;display: inline-block;" v-if="!value">
-                   <Tooltip content="全屏" placement="bottom">
-                    <Icon  type="arrow-expand"   size="24"></Icon>
-                    </Tooltip>
-                    
-               </div>
-               <div @click="fullscreeen(value)" style="width: 20px;display: inline-block;" v-if="value">
-                   <Tooltip content="退出全屏" placement="bottom">
-                    <Icon   type="arrow-shrink"   size="24"></Icon>
-                    </Tooltip>
-                </div>
+              
+                <full-screen v-model="isFullScreen" ></full-screen>
                 <div @click="lockscreen()" style="width: 20px;display: inline-block;"><lock-screen></lock-screen></div>
                 <div style="display: inline-block;">{{username}}</div>
-              <!--   <span @click="logout()">退出</span> -->
-                <div  @click="logout()" style="width: 20px;display: inline-block;"> 
-                     <Tooltip content="退出" placement="bottom">
-                    <Icon  type="log-out" size="20"></Icon>
-                     </Tooltip>
-                </div>
+                <logout></logout>
 
             </div>
             <div style="background-color:#e3dfdf">
@@ -122,9 +107,11 @@
  const url ="wss://authoritymserv.jiayecaifu.com:8023/AuthorityM_Serv/websocket/" 
 //const url ="ws://10.2.0.101:8182/AuthorityM_Serv/websocket/";
 // const url ="ws://10.2.0.155:8199/AuthorityM_Serv/websocket/" 
-var websocket
+  var websocket
   import axios from 'axios';
   import lockScreen from '@/components/lockscreen/lockscreen.vue';
+  import logout from '@/components/logout/logout.vue';
+  import fullScreen from '@/components/fullscreen/fullscreen.vue';
   import shrinkableMenu from '@/components/shrinkable-menu/menu.vue';
   import tagsPageOpened from '@/components/tagsPageOpened/tagsPageOpened.vue';
     export default {
@@ -132,10 +119,13 @@ var websocket
         components: {
             lockScreen,
             tagsPageOpened,
-            shrinkableMenu
+            shrinkableMenu,
+            logout,
+            fullScreen
         },
         data(){
             return{
+                isFullScreen: false,
                 value:  false,
                 open: [],
                 active: '1-1',
@@ -232,14 +222,6 @@ var websocket
             },
             showout(){
                 //this.$refs.div.$emit('showTag',"");
-            },
-            logout(){
-                localStorage.removeItem("organization");
-                localStorage.removeItem("UserName");
-                 localStorage.removeItem("User");
-                 let array = []
-                  this.$store.commit("setMenuList",array)
-                this.$router.push({name:'login'})
             },
             init(){
                  let vm = this
