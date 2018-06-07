@@ -1,7 +1,7 @@
 <template>
     <div class="home-main center">
         
-        <div v-if="organization">
+        <div>
             <Col :md="12" :lg="24" :style="{marginBottom: '10px'}">
                         <Card>
                             <Row type="flex" class="user-infor">
@@ -32,14 +32,7 @@
                         </Card>
                     </Col>
         </div>
-        <div v-if="!organization">
-           <div v-for="(item,index) in list" :key="index" class="organization-choose">
-               <div @click="chooseO(item.org_name,item.org_id)" class="organization-choose-item">
-                   <div class="organization-choose-item-content">{{item.org_name}}</div>
-              </div>
-               
-           </div>
-        </div>
+       
     </div>
 </template>
 <script>
