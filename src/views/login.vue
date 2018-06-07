@@ -73,6 +73,7 @@
             </Card>
         </div>
         </transition>
+       
     </div>
 </template>
 <script>
@@ -226,9 +227,7 @@ import axios from 'axios';
               
             }else{
               vm.$Message.error('登陆失败!');
-             /*   vm.$router.push({
-                    name: 'home_index'
-                }); */
+            
             }
         
         
@@ -240,6 +239,7 @@ import axios from 'axios';
        },
        init(){
            let vm = this
+           let wrapper = document.getElementById("wrapper");
            let handler = document.getElementById("handler");
            let drag = document.getElementById("drag")
            let login = document.getElementById("login-con")
@@ -248,14 +248,24 @@ import axios from 'axios';
            let isMove = false
            let x 
           let maxWidth = 232;  //能滑动的最大间距
-          document.addEventListener("mousedown",function(e){
-              
-              isMove = true;
+       
+         
+          function mousedown(e){
+               isMove = true;
               x = e.pageX - parseInt(handler.offsetLeft);
-             
-             
-          })
+              
+               handler.addEventListener("click",clicks,false)
+               console.log("增加")
+                handler.removeEventListener("click",clicks,false)
+                console.log("删除")
+                 document.addEventListener("mousemove",mousemove,false)
+                document.addEventListener("mouseup",mouseup,false)
+               
+          }
+            function clicks(){}
           function mousemove(e){
+             
+               console.log("过程")
               let _x = e.pageX - x;
              
               if (isMove) {
@@ -269,10 +279,12 @@ import axios from 'axios';
                 }
 
           }
-          
-          document.addEventListener("mousemove",mousemove)
-          document.addEventListener("mouseup",function(e){
-               
+          function mouseup(e){
+              
+              console.log("结束")
+               document.removeEventListener("mousemove",mousemove,false)
+                document.removeEventListener("mouseup",mouseup,false)
+                 drag.removeEventListener("mousedown",mousedown,false)
                isMove = false;
                 let _x = e.pageX - x;
                 if (_x < maxWidth) { //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
@@ -292,15 +304,23 @@ import axios from 'axios';
                      },550); 
                     
                 }
-          })
+                
+          }
+        
+          drag.addEventListener("mousedown",mousedown,false)
+         /*  drag.addEventListener("mousemove",mousemove,false)
+          drag.addEventListener("mouseup",mouseup,false) */
+          
           function dragOk(){
              
               vm.isdrag=true
              
-              handler = "handler handler_ok_bg" 
+              //handler = "handler handler_ok_bg" 
               text.className ="drag_text"
               text.innerHTML="验证通过";
               text.style.color = "#fff"
+              handler.style.left= maxWidth+"px"
+              drag_bg.style.width= maxWidth+"px"
              
           }
 
