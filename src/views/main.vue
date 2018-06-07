@@ -85,12 +85,13 @@
             </Header>
                     
             <div style="position: absolute;right: 0;top: 20px;width: 300px;">
-                <span @click="fullscreeen(value)">全屏</span>
-               
+               <!--  <span @click="fullscreeen(value)">全屏</span> -->
+               <span @click="fullscreeen(value)"> <Icon v-if="!value" type="arrow-expand"   size="24"></Icon></span>
+               <span @click="fullscreeen(value)"> <Icon  v-if="value" type="arrow-shrink"   size="24"></Icon></span>
                 <div @click="lockscreen()" style="width: 20px;display: inline-block;"><lock-screen></lock-screen></div>
                 <span>{{username}}</span>
-                <span @click="logout()">退出</span>
-                
+              <!--   <span @click="logout()">退出</span> -->
+                <span  @click="logout()"> <Icon  type="log-out" size="24"></Icon></span>
 
             </div>
             <div style="background-color:#e3dfdf">
