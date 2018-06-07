@@ -207,7 +207,7 @@ z-Index:10
 z-Index:-999
 }
 .content{
-    width:270px;height:100px;background-color:#fff;box-shadow: 0 1px 6px rgba(0,0,0,.2);border-radius: 20px;position: absolute; 
+    width:270px;height:100px;background-color:#fff;box-shadow: 0 1px 6px rgba(0,0,0,.2);border-radius: 4px;position: absolute; 
 }
 .circle{
   bottom: 3px;

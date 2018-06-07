@@ -422,10 +422,9 @@ position: relative;
 }
 .org{
     position: absolute;
-    left: 50%;
+    right: 160px;
     top: 50%;
-    -webkit-transform: translateY(-60%) translateX(-60%);
-    transform: translateY(-60%) translateX(-60%);
+    transform: translateY(-60%);
     width: 300px;
 }
 .organization{
