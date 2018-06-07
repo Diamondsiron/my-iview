@@ -284,7 +284,7 @@ import axios from 'axios';
               console.log("结束")
                document.removeEventListener("mousemove",mousemove,false)
                 document.removeEventListener("mouseup",mouseup,false)
-                 drag.removeEventListener("mousedown",mousedown,false)
+                 //drag.removeEventListener("mousedown",mousedown,false)
                isMove = false;
                 let _x = e.pageX - x;
                 if (_x < maxWidth) { //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
