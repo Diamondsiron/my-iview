@@ -13,10 +13,17 @@
     </div> -->
    <Form ref="formValidate" :model="formValidate"  :label-width="80" style="width: 600px">
         <FormItem label="收件人">
-            <Input v-model="formValidate.name" placeholder="收件人姓名"></Input>
+           <Select v-model="formValidate.name" style="width:200px">
+                      <Option v-for="(item,index) in list" :value="item.operator_id" :key="index">{{ item.name }}</Option>
+                    </Select>
+           
         </FormItem>
          <FormItem label="消息类型">
-            <Input v-model="formValidate.type" placeholder="0 不是必须接收，1是必须接收"></Input>
+            <Select v-model="formValidate.type" style="width:200px">
+                      <Option  :value="0">非必须接受</Option>
+                      <Option  :value="1">必须接受</Option>
+             </Select>
+            
         </FormItem>
         
         <FormItem label="内容" >
@@ -41,7 +48,7 @@
 </div>
 </template>
 <script>
-
+import axios from 'axios';
  const url ="wss://authoritymserv.jiayecaifu.com:8023/AuthorityM_Serv/websocket/" 
 //const url ="ws://10.2.0.101:8182/AuthorityM_Serv/websocket/";
 // const url ="ws://10.2.0.155:8199/AuthorityM_Serv/websocket/" 
@@ -50,6 +57,7 @@ export default{
   name:'pushMessage',
   data(){
     return{
+      list:[],
       modal1:false,
       formValidate:{
         push:"",
@@ -67,6 +75,29 @@ export default{
     cancel(){
 
     },
+    init(){
+                let vm = this;
+                let req =  {
+                  "jyau_content": {
+                    "jyau_reqData": [{
+                      "req_no": " AU001201810231521335687"
+                    }],
+                    "jyau_pubData": {
+                      "operator_id": "1",
+                      "account_id": "systemman",
+                      "ip_address": "10.2.0.116",
+                      "system_id": "10909"
+                    }
+                  }
+                }
+                axios.post('api/operator',req).then(function(res){ 
+                     //console.log("data",res.data)
+                     vm.list = res.data.jyau_content.jyau_resData[0].oper_list
+                   
+                    }).catch(function(error){
+                        console.log(error)
+                    }) 
+      },
     send(){
         
         let vm = this
@@ -130,6 +161,7 @@ export default{
   },
   mounted(){
     let vm = this
+    this.init()
     window.onbeforeunload = function() {
       vm.closeWebSocket();
     }
