@@ -5,11 +5,9 @@
             <Icon type="person"></Icon>
            菜单管理
         </p>
-    <div style="text-align: center;
-    margin: 20px;">
-     
-      
+      <div class="home-head">
       <Input  icon="search" placeholder="请输入菜单名称搜索"  v-model="name"  @on-change="findName" style="width: 600px"></Input>
+      <Button type="primary" @click.stop="linkTO('insertmenu')">新增</Button>
     </div>
     <div>
       <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
@@ -37,7 +35,7 @@
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">
-                              <Button type="primary" @click.stop="linkTO('insertmenu',item.mu_id)">新增</Button>
+                              
                               <Button type="primary" @click.stop="linkTO('updatemenu',item.mu_id)">修改</Button>
                              <Button type="primary" @click.stop="destroy(item)">删除</Button>
                             
@@ -224,6 +222,9 @@ z-Index:-999
     border-color: transparent;
     border-style: solid;
     border-width: 6px;
+}
+.home-head{
+    text-align: center; margin: 20px;
 }
 </style>
 

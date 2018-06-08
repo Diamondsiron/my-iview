@@ -76,9 +76,9 @@
        
         <Layout :style="{marginLeft: '200px'}">
             <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}">
-                <div style="height: 64px;overflow-y: hidden;position: relative;">
+                <div class="message">
                        <ul style="position: absolute;" id="list">
-                           <li @click="info(item,index)" v-for="(item,index) in messageList" :key="index">{{item.msgContent}}</li>
+                           <li @click="info(item,index)" v-for="(item,index) in messageList" :key="index" class="message-item">{{item.msgContent}}</li>
                           
                       </ul>    
                 </div>
@@ -314,3 +314,14 @@
         
     }
 </script>
+<style scoped>
+.message{
+    height: 64px;overflow-y: hidden;position: relative;
+}
+.message-item{
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+</style>

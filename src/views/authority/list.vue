@@ -421,13 +421,13 @@ import axios from 'axios'
         this.currentMenuClone=""
          setTimeout(function(){
             vm.orgShow=false
-         },300)
+         },250)
           setTimeout(function(){
            vm.roleShow=false
-         },600)
+         },500)
           setTimeout(function(){
             vm.roleShow=true
-         },900)
+         },750)
          /*  this.orgShow=false
           this.roleShow=false
          this.roleShow=true */
