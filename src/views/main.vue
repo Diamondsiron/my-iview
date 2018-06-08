@@ -86,13 +86,16 @@
                     
             <div style="position: absolute;right: 0;top: 20px;width: 300px;">
               
-                <full-screen v-model="isFullScreen" ></full-screen>
+                <full-screen></full-screen>
                 <lock-screen></lock-screen>
-                <div  style="width: 20px;display: inline-block;margin-right: 10px;">
-                    <img style="height:19px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&amp;fm=27&amp;gp=0.jpg">
-                </div>
-                <div style="display: inline-block;margin-right: 10px;">{{username}}</div>
+             
+              <!--   <div style="display: inline-block;margin-right: 10px;">{{username}}</div>  -->
                 <logout></logout>
+                   <div  style="position: absolute;width: 20px;display: inline-block;left: 70px;top: -8px;">
+                        <Tooltip :content="username" placement="bottom">
+                             <img style="height: 32px;border-radius: 16px;" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&amp;fm=27&amp;gp=0.jpg">
+                        </Tooltip>
+                </div>
 
             </div>
             <div style="background-color:#e3dfdf">

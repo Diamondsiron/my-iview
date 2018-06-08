@@ -1,6 +1,6 @@
 <template>
 
-     <div @click="fullscreeen(value)" style="    top: -1px;
+     <div @click="fullscreeen(value)" style="top: -1px;
     position: absolute;
     left: -35px;
     width: 20px;
@@ -21,14 +21,10 @@
  export default{
    name:"fullscreen",
    data(){
-     return{}
+     return{
+         value:false
+     }
    },
-   props: {
-        value: {
-            type: Boolean,
-            default: false
-        }
-    },
    methods:{
      fullscreeen(value){
                let main = document.body;
