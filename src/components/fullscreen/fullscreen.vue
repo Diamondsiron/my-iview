@@ -1,17 +1,20 @@
 <template>
-  <div style="width: 20px;display: inline-block;">
-     <div @click="fullscreeen(value)" style="width: 20px;display: inline-block;" v-if="!value">
-            <Tooltip content="全屏" placement="bottom">
+
+     <div @click="fullscreeen(value)" style="    top: -1px;
+    position: absolute;
+    left: -35px;
+    width: 20px;
+    display: inline-block;
+    margin-right: 10px;" >
+            <Tooltip content="全屏" placement="bottom" v-if="!value">
             <Icon  type="arrow-expand"   size="23"></Icon>
+            </Tooltip>
+             <Tooltip content="退出全屏" placement="bottom" v-if="value">
+            <Icon   type="arrow-shrink"   size="23"></Icon>
             </Tooltip>
             
         </div>
-        <div @click="fullscreeen(value)" style="width: 20px;display: inline-block;" v-if="value">
-            <Tooltip content="退出全屏" placement="bottom">
-            <Icon   type="arrow-shrink"   size="23"></Icon>
-            </Tooltip>
-        </div>
-  </div>
+
   
 </template>
 <script>

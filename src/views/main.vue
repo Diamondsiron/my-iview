@@ -78,7 +78,7 @@
             <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}">
                 <div style="height: 64px;overflow-y: hidden;position: relative;">
                        <ul style="position: absolute;" id="list">
-                           <li @click="info(item,index)" v-for="(item,index) in messageList" :key="index">{{item}}</li>
+                           <li @click="info(item,index)" v-for="(item,index) in messageList" :key="index">{{item.msgContent}}</li>
                           
                       </ul>    
                 </div>
@@ -87,8 +87,8 @@
             <div style="position: absolute;right: 0;top: 20px;width: 300px;">
               
                 <full-screen v-model="isFullScreen" ></full-screen>
-                <div @click="lockscreen()" style="width: 20px;display: inline-block;"><lock-screen></lock-screen></div>
-                <div style="display: inline-block;">{{username}}</div>
+                <lock-screen></lock-screen>
+                <div style="display: inline-block;margin-right: 10px;">{{username}}</div>
                 <logout></logout>
 
             </div>
@@ -146,38 +146,6 @@
         },
         methods:{
             
-            fullscreeen(value){
-               let main = document.body;
-            if (this.value) {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                    this.value = false
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                    this.value = false
-                } else if (document.webkitCancelFullScreen) {
-                    document.webkitCancelFullScreen();
-                    this.value = false
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                    this.value = false
-                }
-            } else {
-                if (main.requestFullscreen) {
-                    main.requestFullscreen();
-                    this.value = true
-                } else if (main.mozRequestFullScreen) {
-                    main.mozRequestFullScreen();
-                     this.value = true
-                } else if (main.webkitRequestFullScreen) {
-                    main.webkitRequestFullScreen();
-                     this.value = true
-                } else if (main.msRequestFullscreen) {
-                    main.msRequestFullscreen();
-                     this.value = true
-                }
-            }
-            },
             lockscreen(){
                     this.$router.push({
                         name: 'locking'
@@ -188,7 +156,7 @@
             info(item,index){
                 this.$Notice.info({
                     title: '消息',
-                    desc: item,
+                    desc: item.msgContent ,
                     duration: 0
                 });
                 this.messageList.splice(index,1)
@@ -294,8 +262,17 @@
                     };
                     //接收到消息的回调方法
                     websocket.onmessage = function(event) {
-                        vm.messageList.push(event.data)
-                        console.log("event",event,event.data);
+                        if(JSON.parse(event.data).msgType==1){
+                             vm.$Notice.info({
+                                title: '消息',
+                                desc: JSON.parse(event.data).msgContent ,
+                                duration: 0
+                            }); 
+                        }else{
+                             vm.messageList.push(JSON.parse(event.data))
+                             console.log("event",vm.messageList,JSON.parse(event.data));
+                        }
+                       
                     }
                     //连接关闭的回调方法
                     websocket.onclose = function() {
@@ -319,6 +296,7 @@
             window.onbeforeunload = function() {
             vm.closeWebSocket();
             }
+            
         },
         watch:{
             '$route' (to){
