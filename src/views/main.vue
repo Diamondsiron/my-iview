@@ -88,6 +88,9 @@
               
                 <full-screen v-model="isFullScreen" ></full-screen>
                 <lock-screen></lock-screen>
+                <div  style="width: 20px;display: inline-block;margin-right: 10px;">
+                    <img style="height:19px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&amp;fm=27&amp;gp=0.jpg">
+                </div>
                 <div style="display: inline-block;margin-right: 10px;">{{username}}</div>
                 <logout></logout>
 
