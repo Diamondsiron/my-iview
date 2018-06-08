@@ -23,53 +23,10 @@
 </style>
 <template>
     <div class="layout">
-        <!-- <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
-            <Menu :active-name='active' theme="dark" width="auto" :open-names="open" ref="leftMenu">
-                <Submenu name="1">
-                    <template slot="title">
-                        <Icon type="ios-navigate"></Icon>
-                        公司信息管理
-                    </template>
-                  
-                    <MenuItem name="1-1"><router-link :to="{ path: '/company/list'}" style="color:#fff">公司管理</router-link></MenuItem>
-                   
-                </Submenu>
-                <Submenu name="2">
-                    <template slot="title">
-                        <Icon type="ios-keypad"></Icon>
-                       权限管理
-                    </template>
-                    <MenuItem name="2-1"><router-link :to="{ path: '/authority/listrole'}" style="color:#fff">角色管理</router-link></MenuItem>
-                     <MenuItem name="2-2"><router-link :to="{ path: '/authority/listjob'}" style="color:#fff">岗位管理</router-link></MenuItem>
-                   
-                </Submenu>
-                 <Submenu name="3">
-                    <template slot="title">
-                        <Icon type="ios-keypad"></Icon>
-                       配置管理
-                    </template>
-                    <MenuItem name="3-1"><router-link :to="{ path: '/menu/list'}" style="color:#fff">菜单管理</router-link></MenuItem>
-                    
-                   
-                </Submenu>
-               
-            </Menu>
-        </Sider> -->
-        <div style="    width: 200px;
-    min-width: 200px;
-    max-width: 200px;
-    flex: 0 0 200px;
-    position: fixed;
-    height: 100vh;
-    left: 0px;
-    overflow: auto;
-    background: #495060;
-    transition: all .2s ease-in-out;">
-            <shrinkable-menu
-             @on-change="handleSubmenuChange"
-             :menu-list="menuLists"
-        >
-         </shrinkable-menu>
+        
+        <div class="leftMenu">
+            <shrinkable-menu  @on-change="handleSubmenuChange"  :menu-list="menuLists" >
+            </shrinkable-menu>
         </div>
         
             
@@ -323,5 +280,17 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+.leftMenu{
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    flex: 0 0 200px;
+    position: fixed;
+    height: 100vh;
+    left: 0px;
+    overflow: auto;
+    background: #495060;
+    transition: all .2s ease-in-out;
 }
 </style>
