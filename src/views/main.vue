@@ -221,6 +221,7 @@
                     }
                         websocket.onerror = function() {
                         console.log("WebSocket连接发生错误");
+                        
                         return;
                     };
                     //接收到消息的回调方法
