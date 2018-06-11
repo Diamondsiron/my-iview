@@ -70,6 +70,7 @@ export default {
                         vm.inputLeft = '400px';
                         vm.password = '';
                         //Cookies.set('locking', '0');
+                        localStorage.removeItem("locking");
                         vm.$emit('on-unlock');
                        
                     

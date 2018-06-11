@@ -28,11 +28,11 @@
                  <td>
                    <div>
                      
-                     <span>{{item.name}}{{item.operator_id}}</span>
+                     <span>{{item.name}}</span>
                     </div>
                    </td>
                  <td>
-                     <div @click.stop="showTag(item)"><!-- {{item.operator_id}} --><Icon type="settings" size="22"></Icon></div>
+                     <div @click.stop="showTag(item)"><Icon type="settings" size="22"></Icon></div>
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">

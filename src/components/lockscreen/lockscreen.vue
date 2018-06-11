@@ -29,6 +29,7 @@ export default {
             lockScreenBack.style.zIndex = 10000;
             lockScreenBack.style.boxShadow = '0 0 0 ' + this.lockScreenSize + 'px #667aa6 inset';
             this.showUnlock = true;
+             localStorage.setItem("locking","locking");
            // Cookies.set('last_page_name', this.$route.name); // 本地存储锁屏之前打开的页面以便解锁后打开
             setTimeout(() => {
                 lockScreenBack.style.transition = 'all 0s';
@@ -60,6 +61,7 @@ export default {
         this.lockScreenSize = size;
         lockScreenBack.style.transition = 'all 3s';
         lockScreenBack.style.width = lockScreenBack.style.height = size + 'px';
+      
     }
 };
 </script>

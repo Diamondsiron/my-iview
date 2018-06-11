@@ -14,19 +14,31 @@ export const router = new Router(RouterConfig);
 
 router.beforeEach((to,from,next) => {
   iView.LoadingBar.start();
-  if(to.name=='login'){
-    next(true);
-  }else{
-    if((localStorage.getItem("UserName"))){
+    if(localStorage.getItem("locking") && to.name !== 'locking'){
+      next({
+          replace: true,
+          name: 'locking'
+      });
+      return
+     console.log("锁了")
+    }else{
+      console.log("没锁")
+    }
+    if(to.name=='login'){
       next(true);
     }else{
-      
-      next({
-        name: 'login'
-      }) 
+      if((localStorage.getItem("UserName"))){
+        next(true);
+      }else{
+        
+        next({
+          name: 'login'
+        }) 
+      }
+  
     }
-
-  }
+ 
+  
   
   
 
