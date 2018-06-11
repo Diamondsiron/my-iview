@@ -20,9 +20,9 @@ router.beforeEach((to,from,next) => {
           name: 'locking'
       });
       return
-     console.log("锁了")
+     
     }else{
-      console.log("没锁")
+      
     }
     if(to.name=='login'){
       next(true);

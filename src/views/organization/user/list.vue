@@ -213,7 +213,7 @@ z-Index:-999
     position: absolute;
     border-color: transparent;
     border-style: solid;
-        border-width: 6px;
+    border-width: 6px;
 }
 .home-head{
     text-align: center; margin: 20px;

@@ -363,6 +363,7 @@ background-image: url('https://file.iviewui.com/iview-admin/login_bg.jpg');
 background-size: cover;
 background-position: center;
 position: relative;
+-moz-user-select: none; -khtml-user-select: none; user-select: none;
 }
 .slidetounlock{
     font-size: 12px;

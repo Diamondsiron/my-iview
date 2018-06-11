@@ -21,8 +21,7 @@
              <tr v-for="(item,index) in list" :key="index" v-if="currentpage-10<=index&&index<currentpage">
                  
                  <td><div>
-                        <!-- <Input v-show="editable[index]==true" v-model="list[index]" @keyup.enter="changeEditable"></Input> -->
-                        <!--  <span v-show="editable[index]==false"  >{{item.org_code}}</span> -->
+                     
                         <span>{{item.org_code}}</span>
                     </div>
                  </td>
@@ -37,7 +36,7 @@
                      <div class="content" :class="{maxIndex: (item==choose),minIndex:!(item==choose) }"   :id='item'>
                          <div class="circle"></div>
                          <div style="margin-top:20px;">
-                             <!-- <Button type="primary" @click.stop="linkTO('insertorganization',item.org_id)">添加</Button> -->
+                            
                              <Button type="primary" @click.stop="linkTO('updateorganization',item.org_id)">修改</Button>
                              <Button type="primary" @click.stop="destroy(item)">删除</Button>
                              <Button type="primary" @click.stop="linkTO('otoUser',item.org_id)">添加机构人</Button>
@@ -49,8 +48,7 @@
             
          </table>
     </div>
-    <div style="    margin-top: 30px;
-    text-align: center;">
+    <div class="page-content" >
       <Page :total="list.length" @on-change="pages" ></Page>
     </div>
     <Modal
@@ -228,6 +226,10 @@ z-Index:-999
 }
 .home-head{
     text-align: center; margin: 20px;
+}
+.page-content{
+    margin-top: 30px;
+    text-align: center;
 }
 </style>
 

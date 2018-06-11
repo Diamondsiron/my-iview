@@ -1,8 +1,8 @@
 <template>
     <div class="home-main center">
         
-        <div>
-            <Col :md="12" :lg="24" :style="{marginBottom: '10px'}">
+        <div style="width:400px">
+            
                         <Card>
                             <Row type="flex" class="user-infor">
                                 <Col span="8">
@@ -30,7 +30,7 @@
                                 <Col span="16" class="padding-left-8">北京</Col>
                             </Row>
                         </Card>
-                    </Col>
+                   
         </div>
        
     </div>

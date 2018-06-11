@@ -12,7 +12,7 @@
      <Input  icon="search" placeholder="请输入用户名称搜索"   v-model="tabletitle"  style="width: 600px"></Input>
     <!--  <input type="text" v-model="tabletitle" @change="findname()" placeholder="请输入用户名称搜索"> -->
     </div>
-    <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
+    <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;cursor:hand">
            <tr>
                 <th><div>用户账号</div></th>
                 <th><div>用户名称</div></th>
