@@ -9,7 +9,7 @@
                         </p>
                     <div v-for="(item,index) in list" :key="index" class="organization-choose">
                             <div @click="chooseO(item.org_name,item.org_id)" class="organization-choose-item">
-                                <div class="organization-choose-item-content">{{item.org_name}}</div>
+                                <div class="organization-choose-item-content"> <Icon type="log-in" class="mr10"></Icon>{{item.org_name}}</div>
                             </div>
                             
                         </div>
@@ -439,7 +439,10 @@ position: relative;
     color:#fff
 }
 .organization-choose-item-content{
-    padding-top: 20px;padding-bottom: 20px;
+   text-align: left;
+    margin-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .fade-enter-active {
   transition: all .2s ease;
@@ -450,5 +453,8 @@ position: relative;
 .fade-enter, .slide-fade-leave-to {
   transform: translateY(100px);
   opacity: 0;
+}
+.mr10{
+    margin-right: 10px;
 }
 </style>
