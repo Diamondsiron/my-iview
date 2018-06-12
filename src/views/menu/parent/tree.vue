@@ -12,7 +12,7 @@
      <Input  icon="search" placeholder="请输入用户名称搜索"   v-model="tabletitle"  style="width: 600px"></Input>
     <!--  <input type="text" v-model="tabletitle" @change="findname()" placeholder="请输入用户名称搜索"> -->
     </div>
-    <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;cursor:hand">
+    <table  cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
            <tr>
                 <th><div>用户账号</div></th>
                 <th><div>用户名称</div></th>
@@ -26,7 +26,7 @@
                          <span   >{{item.account}}</span>
                     </div>
                 </td >
-                <td  draggable='true' @dragstart='dragStart' @dragenter='dragEnter' @dragend='dragEnd' :data-name="item.name" :data-id="item.operator_id"><div>{{item.name}}</div></td>
+                <td  draggable='true' @dragstart='dragStart' @dragenter='dragEnter' @dragover="dragover" @dragend='dragEnd' :data-name="item.name" :data-id="item.operator_id" style="cursor: pointer;"><div>{{item.name}}</div></td>
                
             </tr>
         </table>
@@ -132,18 +132,30 @@ import axios from 'axios';
      
       dragStart(e){
           e.dataTransfer.effectAllowed = "move";
-          console.log(e.target.dataset.name)
+          console.log(e.target.Class)
+          //e.target.className ="sortable-ghost"
           e.dataTransfer.setData("Text", e.target.dataset.name);
           let tab = {}
           tab.name = e.target.dataset.name
           tab.id = e.target.dataset.id
           this.$store.commit("setrighttable",tab)
+         
       },
       dragEnter(e){
-        
+        //sortable-ghost
+        event.preventDefault();
+        e.target.className="sortable-ghost"
+       
+         console.log("进去了",e.target.style)
        // console.log("我进去了",e.target)
+       return true;
+      },
+      dragover(e) {
+        e.preventDefault();
+        return true;
       },
       dragEnd(e){
+         e.target.className =""
          let vm = this;
               
         let root = this.$store.state.app.tree
@@ -207,6 +219,7 @@ import axios from 'axios';
          this.$store.commit("settree",root)
          this.$store.commit("setrighttable","")
          this.$store.commit("setleftli","")
+         //return false
       },
       addData(org_id,oper_ids){
                let vm = this
@@ -247,7 +260,10 @@ import axios from 'axios';
   }  
 </script>
 <style>
-
+.sortable-ghost {
+ /*  opacity: .2; */
+  cursor: pointer;
+}
 .ul {
   padding-left: 1em;
   line-height: 1.5em;
