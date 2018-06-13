@@ -77,6 +77,7 @@
     </div>
 </template>
 <script>
+import Util from '@/libs/util';
 import axios from 'axios';
   export default{
     name:'login',
@@ -135,7 +136,7 @@ import axios from 'axios';
                 }
             }
             console.log("req",JSON.stringify(req))
-            axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
+            axios.post(Util.ajaxUrl+"/api/menuAuth/queryOperatorMenu",req).then(function(res){
                 console.log(res.data.jyau_content.jyau_resData[0].multi_menuList)
                  let list =res.data.jyau_content.jyau_resData[0].multi_menuList
                     let menuList = {}
@@ -213,7 +214,7 @@ import axios from 'axios';
         }
 
 
-         axios.post('api/login',req)
+         axios.post(Util.ajaxUrl+'/api/login',req)
         .then(function(res){
             console.log(res)
             if(res.data.jyau_content.jyau_resHead.return_code=="0000"){
