@@ -26,7 +26,7 @@
                      <CheckboxGroup v-model="list">
                     <Checkbox   v-for="(item,index) in userList"  :key="index" :label="item.operator_id">{{item.name}}</Checkbox>
                     </CheckboxGroup>
-                   <!--  {{list}} -->
+                    <!-- {{list}} -->
         </FormItem>
          <FormItem label="消息类型">
             <Select v-model="formValidate.type" style="width:200px">
@@ -41,7 +41,7 @@
         </FormItem>
         <FormItem>
             <Button type="primary" @click="send">发送</Button>
-            <Button type="primary" @click="sendAll">群发</Button>
+         <!--    <Button type="primary" @click="sendAll">群发</Button> -->
             <Button type="ghost" style="margin-left: 8px">重置</Button>
         </FormItem>
     </Form>
@@ -154,9 +154,12 @@ export default{
     send(){
         
         let vm = this
-        let json =`{["OP201805171438586409", "OP201805171726129979"]}`
-        vm.formValidate.name=json
-        
+        let json =`OP201805171438586409,OP201805171726129979`
+
+        vm.formValidate.name=vm.list.join(",")
+        if(vm.formValidate.name==""){
+          return
+        }
         vm.formValidate.push=JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id
       	if ('WebSocket' in window) {
           websocket = new WebSocket(url + vm.formValidate.push + "/" + vm.formValidate.name+"/"+vm.formValidate.type);
@@ -209,6 +212,9 @@ export default{
     startSend(){
       let vm = this
       console.log("登录成功")
+      if(vm.formValidate.desc==""){
+        return
+      }
       websocket.send(vm.formValidate.desc);
     },
     closeWebScoket(){

@@ -47,7 +47,7 @@
                 <lock-screen></lock-screen>
              
               <!--   <div style="display: inline-block;margin-right: 10px;">{{username}}</div>  -->
-                <logout></logout>
+                <logout v-on:logout="logouts"></logout>
                    <div  style="position: absolute;width: 20px;display: inline-block;left: 70px;top: -8px;">
                         <Tooltip :content="username" placement="bottom">
                              <img style="height: 32px;border-radius: 16px;" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&amp;fm=27&amp;gp=0.jpg">
@@ -108,7 +108,11 @@
             }
         },
         methods:{
-            
+            logouts(){
+                let vm =this
+                vm.closeWebScoket();
+                
+            },
             lockscreen(){
                     this.$router.push({
                         name: 'locking'
@@ -226,6 +230,7 @@
                     };
                     //接收到消息的回调方法
                     websocket.onmessage = function(event) {
+                        console.log("这是接受的消息",event.data)
                         if(JSON.parse(event.data).msgType==1){
                              vm.$Notice.info({
                                 title: '消息',
@@ -234,7 +239,7 @@
                             }); 
                         }else{
                              vm.messageList.push(JSON.parse(event.data))
-                             console.log("event",vm.messageList,JSON.parse(event.data));
+                             //console.log("event",vm.messageList,JSON.parse(event.data));
                         }
                        
                     }
@@ -258,7 +263,7 @@
             this.messageInit()
              let vm = this
             window.onbeforeunload = function() {
-            vm.closeWebSocket();
+            vm.closeWebScoket();
             }
             
         },
