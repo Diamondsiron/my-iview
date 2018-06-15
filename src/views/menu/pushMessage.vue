@@ -15,27 +15,23 @@
         <FormItem label="收件人">
           <Cascader :data="data" change-on-select @on-change="xx" style="width:300px"></Cascader>
                   
-                    
-                    <div style="padding: 5px;
-                              margin-top: 10px;
-                              width: 320px;
-                              background: #e3dfdf;
-                              border-radius: 4px;">
-                    <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px;margin-bottom:6px;">
+                    <transition name="fade">
+                    <div v-if="show"  class="user-content">
+                    <!-- <div class="user-content-header">
                         <Checkbox
                             :indeterminate="indeterminate"
                             :value="checkAll"
                             @click.prevent.native="handleCheckAll">全选</Checkbox>
-                    </div>
+                    </div> -->
                       <div>
-                        <CheckboxGroup v-model="list" @on-change="checkAllGroupChange">
-                        <Checkbox   v-for="(item,index) in userList"  :key="index" :label="item.operator_id" @on-change="userChange(item.operator_id)">{{item.name}}</Checkbox>
-                        </CheckboxGroup>
+                        
+                       <!--  <Checkbox   v-for="(item,index) in userList" :value="include(item.operator_id)" :key="index" :label="item.operator_id" @on-change="userChange(item.operator_id)"><Icon type="plus-round"></Icon>{{item.name}}</Checkbox> -->
+                        <div class="user-item"  v-bind:class="{ chose: include(item.operator_id) }"  v-for="(item,index) in userList" :key="index" @click="userChange(item.operator_id)"><Icon v-if="!include(item.operator_id)" type="plus-round"></Icon>{{item.name}}</div>
                       </div>
 
                     </div>
-                    
-                    {{list}}
+                    </transition>
+                   <!--  {{list}} -->
         </FormItem>
          <FormItem label="消息类型">
             <Select v-model="formValidate.type" style="width:200px">
@@ -113,7 +109,7 @@ export default{
       orgList:[],
       roleList:[],
       userList:[],
-      show:true,
+      show:false,
       list:[],
       checkAll: true,
       sendType:"角色",
@@ -138,29 +134,26 @@ export default{
         return
       }
       this.select(a[1])
+      this.show=true
     },
     cancel(){
 
     },
-    selectType(){
-       if(this.sendType=="角色"){
-        this.show=true
+    include(value){
+      if(this.list.indexOf(value)>-1){
+        return true
       }else{
-        this.show = false
+        return false
       }
-      this.list=[]
     },
     userChange(value){
-      console.log(value)
+     // console.log(value)
       if(this.list.indexOf(value)>-1){
         this.list.splice(this.list.indexOf(value),1)
       }else{
         this.list.push(value)
       }
-      
-    },
-    checkAllGroupChange(){
-        if (this.list.length === this.userList.length) {
+       if (this.list.length === this.userList.length) {
               this.indeterminate = false;
               this.checkAll = true;
           } else if (this.list.length > 0) {
@@ -170,7 +163,9 @@ export default{
               this.indeterminate = false;
               this.checkAll = false;
           }
+      
     },
+    
     handleCheckAll () {
         if (this.indeterminate) {
             this.checkAll = false;
@@ -213,6 +208,8 @@ export default{
        for(let i=0; i<this.userList.length; i++){
           this.list.push(this.userList[i].operator_id)
         }
+        this.checkAll=true
+        this.indeterminate=false
     },
     init(){
                 let vm = this;
@@ -373,6 +370,39 @@ export default{
 <style scoped>
 li{
   list-style: none;
+}
+.fade-enter-active {
+  transition: all .2s ease;
+}
+.fade-leave-active {
+  transition: all .2s ease;
+}
+.fade-enter, .slide-fade-leave-to {
+  transform: translateY(100px);
+  opacity: 0;
+}
+.user-content{
+  padding: 5px;
+  margin-top: 10px;
+  width: 320px;
+  background: rgb(245, 247, 249);
+  border-radius: 4px;
+}
+.user-content-header{
+  border-bottom: 1px solid #e9e9e9;padding-bottom:6px;margin-bottom:6px;
+}
+.user-item{
+    display: inline-block;
+    margin: 3px;
+    border-radius: 4px;
+    padding: 3px;
+}
+.chose{
+    background-color: #2d8cf0;
+    
+    /* font-size: 16px; */
+    color: #fff;
+   
 }
 </style>
 
