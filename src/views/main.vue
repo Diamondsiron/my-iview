@@ -35,7 +35,7 @@
             <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}">
                 <div class="message">
                        <ul style="position: absolute;" id="list">
-                           <li @click="info(item,index)" v-for="(item,index) in messageList" :key="index" class="message-item">{{item.msgContent}}</li>
+                           <li @click="info(item,index)" v-for="(item,index) in messageList" :key="index" class="message-item">{{item.msgContent|capitalize}}</li>
                           
                       </ul>    
                 </div>
@@ -105,6 +105,11 @@
             },
            username(){
                 return localStorage.getItem("UserName")
+            }
+        },
+        filters:{
+            capitalize:function(value){
+                return value.replace(/<[^>]+>/g,"")
             }
         },
         methods:{

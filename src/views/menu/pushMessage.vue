@@ -47,7 +47,10 @@
         <FormItem>
             <Button type="primary" @click="send">发送</Button>
          <!--    <Button type="primary" @click="sendAll">群发</Button> -->
-            <Button type="ghost" style="margin-left: 8px">重置</Button>
+            <!-- <Button type="ghost" style="margin-left: 8px">重置</Button>
+            <a href="https://www.baidu.com" target="view_window">www.baidu.com</a>
+<a href="https://www.baidu.com">www.baidu.com</a>
+<a href="http://localhost:8080/#/menu/listmenu" >登录</a> -->
         </FormItem>
     </Form>
   
