@@ -13,20 +13,29 @@
     </div> -->
    <Form ref="formValidate" :model="formValidate"  :label-width="80" style="width: 600px">
         <FormItem label="收件人">
-                  <Select v-model="sendType" style="width:200px" >
-                      <Option  value="角色" >角色</Option>
-                      <Option  value="机构" >机构</Option>
-                    </Select>
-                    <Select v-model="formValidate.name" style="width:200px" @on-change="select" v-if="show">
-                      <Option v-for="(item,index) in roleList" :value="item.role_id" :key="index">{{ item.role_name }}</Option>
-                    </Select>
-                    <Select v-model="formValidate.name" style="width:200px" @on-change="select"  v-if="!show">
-                      <Option v-for="(item,index) in orgList" :value="item.org_id" :key="index">{{ item.org_name }}</Option>
-                    </Select>
-                     <CheckboxGroup v-model="list">
-                    <Checkbox   v-for="(item,index) in userList"  :key="index" :label="item.operator_id">{{item.name}}</Checkbox>
-                    </CheckboxGroup>
-                    <!-- {{list}} -->
+          <Cascader :data="data" change-on-select @on-change="xx" style="width:300px"></Cascader>
+                  
+                    
+                    <div style="padding: 5px;
+                              margin-top: 10px;
+                              width: 320px;
+                              background: #e3dfdf;
+                              border-radius: 4px;">
+                    <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px;margin-bottom:6px;">
+                        <Checkbox
+                            :indeterminate="indeterminate"
+                            :value="checkAll"
+                            @click.prevent.native="handleCheckAll">全选</Checkbox>
+                    </div>
+                      <div>
+                        <CheckboxGroup v-model="list" @on-change="checkAllGroupChange">
+                        <Checkbox   v-for="(item,index) in userList"  :key="index" :label="item.operator_id" @on-change="userChange(item.operator_id)">{{item.name}}</Checkbox>
+                        </CheckboxGroup>
+                      </div>
+
+                    </div>
+                    
+                    {{list}}
         </FormItem>
          <FormItem label="消息类型">
             <Select v-model="formValidate.type" style="width:200px">
@@ -67,11 +76,46 @@ export default{
   name:'pushMessage',
   data(){
     return{
+       data: [{
+                    value: 'beijing',
+                    label: '人员',
+                    children: [
+                        {
+                            value: 'gugong',
+                            label: '人员1'
+                        },
+                        {
+                            value: 'tiantan',
+                            label: '人员2'
+                        },
+                        {
+                            value: 'wangfujing',
+                            label: '人员3'
+                        }
+                    ]
+                }, {
+                    value: 'jiangsu',
+                    label: '机构',
+                    children: [
+                        {
+                            value: 'nanjing',
+                            label: '天津市加也值得科技有限公司哈哈哈哈哈哈哈',
+                            
+                        },
+                        {
+                            value: 'suzhou',
+                            label: '机构1',
+                            
+                        }
+                    ],
+                }],
+      indeterminate: false,
       orgList:[],
       roleList:[],
       userList:[],
       show:true,
       list:[],
+      checkAll: true,
       sendType:"角色",
       modal1:false,
       formValidate:{
@@ -84,24 +128,71 @@ export default{
       
     }
   },
-  watch:{
-    sendType:function(){
-      if(this.sendType=="角色"){
-        this.show=true
-      }else{
-        this.show = false
-      }
-    }
-  },
   methods:{
     ok(){
 
     },
+    xx(a,b){
+      console.log("选择的结构",a)
+      if(a.length==1){
+        return
+      }
+      this.select(a[1])
+    },
     cancel(){
 
     },
-    select(value){
+    selectType(){
+       if(this.sendType=="角色"){
+        this.show=true
+      }else{
+        this.show = false
+      }
+      this.list=[]
+    },
+    userChange(value){
+      console.log(value)
+      if(this.list.indexOf(value)>-1){
+        this.list.splice(this.list.indexOf(value),1)
+      }else{
+        this.list.push(value)
+      }
+      
+    },
+    checkAllGroupChange(){
+        if (this.list.length === this.userList.length) {
+              this.indeterminate = false;
+              this.checkAll = true;
+          } else if (this.list.length > 0) {
+              this.indeterminate = true;
+              this.checkAll = false;
+          } else {
+              this.indeterminate = false;
+              this.checkAll = false;
+          }
+    },
+    handleCheckAll () {
+        if (this.indeterminate) {
+            this.checkAll = false;
+        } else {
+            this.checkAll = !this.checkAll;
+        }
+        this.indeterminate = false;
+
+        if (this.checkAll) {
+            console.log("全选")
+            for(let i=0; i<this.userList.length; i++){
+              this.list.push(this.userList[i].operator_id)
+            }
+            //this.list = [...this.userList];
+        } else {
+          console.log("全不选")
+            this.list = [];
+        }
+    },
+     select(value){
       let vm = this
+      console.log("清空了")
       vm.list=[]
       //console.log(value)
       if(value.indexOf("RL")>-1){
@@ -119,6 +210,9 @@ export default{
           }
         }
       }
+       for(let i=0; i<this.userList.length; i++){
+          this.list.push(this.userList[i].operator_id)
+        }
     },
     init(){
                 let vm = this;
@@ -136,20 +230,66 @@ export default{
                   }
                 }
                 //emporg/queryRoleOperator  emporg/queryOrgOperator
-                axios.post('api/emporg/queryOrgOperator',req).then(function(res){ 
+                function role(){
+                  return new Promise(function(resolve,reject){
+                    resolve(axios.post('api/emporg/queryOrgOperator',req).then(function(res){ 
                      console.log("data",res.data)
                     vm.orgList = res.data.jyau_content.jyau_resData[0].orgemp_list
+                   
                   // vm.userList=res.data.jyau_content.jyau_resData[0].orgemp_list[0].emp_list
                     }).catch(function(error){
                         console.log(error)
-                    }) 
-                axios.post('api/emporg/queryRoleOperator',req).then(function(res){ 
-                  console.log("data",res.data)
-                 vm.roleList = res.data.jyau_content.jyau_resData[0].roleemp_list
-                
-                }).catch(function(error){
-                    console.log(error)
-                }) 
+                    }) );
+                  })
+                   
+                }
+                 function org(){
+                   return new Promise(function(resolve,reject){
+                     resolve(axios.post('api/emporg/queryRoleOperator',req).then(function(res){ 
+                      console.log("data",res.data)
+                    vm.roleList = res.data.jyau_content.jyau_resData[0].roleemp_list
+                   
+                    }).catch(function(error){
+                        console.log(error)
+                    }) )
+                   })
+                    
+                }
+                function initData(){
+                  console.log("initData",vm.roleList,vm.orgList)
+                  vm.data=[]
+                  let role = {
+                    value: 'role',
+                    label: '角色',
+                    children:[]
+                  }
+                  for(let i=0; i<vm.roleList.length;i++){
+                    let obj ={}
+                    obj.value=vm.roleList[i].role_id
+                    obj.label=vm.roleList[i].role_name
+                    role.children.push(obj)
+                  }
+                  let org = {
+                    value: 'org',
+                    label: '机构',
+                    children:[]
+                  }
+                   for(let j=0; j<vm.orgList.length;j++){
+                    let obj1 ={}
+                    obj1.value=vm.orgList[j].org_id
+                    obj1.label=vm.orgList[j].org_name
+                    org.children.push(obj1)
+                  }
+                  vm.data.push(role)
+                  vm.data.push(org)
+                  console.log("vm.data",vm.data)
+                }
+              async function init(){
+                await role();
+                await org();
+               initData();
+              }
+               init()
       },
     send(){
         
