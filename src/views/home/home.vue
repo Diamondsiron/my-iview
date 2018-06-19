@@ -47,6 +47,7 @@ import axios from 'axios';
     },
     computed:{
         username(){
+            console.log("")
                 return localStorage.getItem("UserName")
             },
         last_login(){
