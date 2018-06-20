@@ -17,12 +17,14 @@
                   
                     <transition name="fade">
                     <div v-if="show"  class="user-content">
-                    <!-- <div class="user-content-header">
-                        <Checkbox
+                    <div class="user-content-header">
+                       <!--  <Checkbox
                             :indeterminate="indeterminate"
                             :value="checkAll"
-                            @click.prevent.native="handleCheckAll">全选</Checkbox>
-                    </div> -->
+                            @click.prevent.native="handleCheckAll">全选</Checkbox> -->
+                            <span class="user-item" v-if="!checkAll" v-bind:class="{ chose: checkAll }" @click="handleCheckAll">全选</span>
+                            <span class="user-item" v-if="checkAll" v-bind:class="{ chose: !checkAll }" @click="handleCheckAll">取消全选</span>
+                    </div>
                       <div>
                         
                        <!--  <Checkbox   v-for="(item,index) in userList" :value="include(item.operator_id)" :key="index" :label="item.operator_id" @on-change="userChange(item.operator_id)"><Icon type="plus-round"></Icon>{{item.name}}</Checkbox> -->
