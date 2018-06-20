@@ -24,7 +24,8 @@
 
 <script>
 //import Cookies from 'js-cookie';
-import axios from 'axios';
+//import axios from 'axios';
+import Util from '@/libs/util';
 export default {
     name: 'Unlock',
     data () {
@@ -57,20 +58,20 @@ export default {
                     }],
                     "jyau_pubData": {
                         "operator_id": "",
-                        "account_id": localStorage.getItem("UserName"),
+                        "account_id": Util.getStorge("UserName"),
                         "ip_address": "10.2.0.116",
                         "system_id": "10909"
                     }
                 }
             }
-              axios.post('api/login',req).then(function(res){
+              Util.axios.post('api/login',req).then(function(res){
                     console.log(res)
                     if(res.data.jyau_content.jyau_resHead.return_code=="0000"){
                         vm.avatorLeft = '0px';
                         vm.inputLeft = '400px';
                         vm.password = '';
                         //Cookies.set('locking', '0');
-                        localStorage.removeItem("locking");
+                        Util.removeStorge("locking");
                         vm.$emit('on-unlock');
                        
                     
@@ -101,6 +102,9 @@ export default {
         unlockMouseup () {
             this.$refs.unlockBtn.className = 'unlock-btn';
         }
+    },
+    mounted(){
+        Util.setStorge("locking","locking");
     }
 };
 </script>
