@@ -39,6 +39,7 @@
             <Select v-model="formValidate.type" style="width:200px">
                       <Option  :value="0">非必须接受</Option>
                       <Option  :value="1">必须接受</Option>
+                      <Option  :value="2">警告</Option>
              </Select>
             
         </FormItem>
@@ -317,9 +318,9 @@ export default{
             return;
           };
           //接收到消息的回调方法
-          websocket.onmessage = function(event) {
+         /*  websocket.onmessage = function(event) {
             console.log("event",event.data);
-          }
+          } */
           //连接关闭的回调方法
          websocket.onclose = function() {
             console.log("WebSocket连接关闭");

@@ -6,7 +6,8 @@
       </div>
 </template>
 <script>
-import axios from 'axios';
+import Util from '@/libs/util';
+/* import axios from 'axios'; */
   export default{
     name:"logout",
     data(){
@@ -26,17 +27,18 @@ import axios from 'axios';
                             "req_no": "AU2018048201802051125231351"
                         }],
                             "jyau_pubData": {
-                                "operator_id": JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id,
+                                "operator_id": JSON.parse( Util.getStorge("User")).jyau_content.jyau_resData[0].operator_id,
                                 "account_id": "systemman",
                                 "ip_address": "10.2.0.116",
                                 "system_id": "10909"
                             }
                         }
                     }
-                axios.post("api/logout",req).then(function(res){
-                  localStorage.removeItem("organization");
-                localStorage.removeItem("UserName");
-                 localStorage.removeItem("User");
+                Util.axios.post("api/logout",req).then(function(res){
+                    Util.removeStorge("organization")
+                    Util.removeStorge("UserName")
+                    Util.removeStorge("User")
+               
                      console.log(res)
                 },error=>{
                     console.log(error)

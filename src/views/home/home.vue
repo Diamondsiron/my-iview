@@ -36,7 +36,7 @@
     </div>
 </template>
 <script>
-import axios from 'axios';
+import Util from '@/libs/util';
   export default{
     name:'home',
     data(){
@@ -48,22 +48,22 @@ import axios from 'axios';
     computed:{
         username(){
             console.log("")
-                return localStorage.getItem("UserName")
+                return Util.getStorge("UserName")
             },
         last_login(){
-            return JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].last_login
+            return JSON.parse(Util.getStorge("User")).jyau_content.jyau_resData[0].last_login
         },
         org(){
-            return localStorage.getItem("organization").name
+            return Util.getStorge("organization").name
         }
     },
     methods:{
         init(){
             
             let vm = this
-            vm.list = JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].org_list
+            vm.list = JSON.parse(Util.getStorge("User")).jyau_content.jyau_resData[0].org_list
 
-            if(localStorage.getItem("organization")){
+            if(Util.getStorge("organization")){
                 vm.organization = true
             }
             let req = {
@@ -79,7 +79,7 @@ import axios from 'axios';
                         }
                     }
                 }
-            axios.post('api/emporg',req).then(function(res){
+            Util.axios.post('api/emporg',req).then(function(res){
                 console.log(res.data)
             }).catch(function(e){
                 console.log(e)
@@ -90,7 +90,7 @@ import axios from 'axios';
             let obj ={}
             obj.name = name
             obj.id = id
-            localStorage.setItem("organization",JSON.stringify(obj))
+            Util.setStorge("organization",JSON.stringify(obj))
             this.organization = true
             let vm = this
             let req = {
@@ -100,7 +100,7 @@ import axios from 'axios';
                         "org_id": id
                     }],
                     "jyau_pubData": {
-                        "operator_id": JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id,
+                        "operator_id": JSON.parse(Util.getStorge("User")).jyau_content.jyau_resData[0].operator_id,
                         "account_id": "systemman",
                         "ip_address": "10.2.0.116",
                         "system_id": "10909"
@@ -108,7 +108,7 @@ import axios from 'axios';
                 }
             }
             console.log("req",JSON.stringify(req))
-            axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
+            Util.axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
                 console.log(res.data.jyau_content.jyau_resData[0].multi_menuList)
                  let list =res.data.jyau_content.jyau_resData[0].multi_menuList
                     let menuList = {}

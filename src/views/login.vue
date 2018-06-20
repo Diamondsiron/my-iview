@@ -78,7 +78,7 @@
 </template>
 <script>
 import Util from '@/libs/util';
-import axios from 'axios';
+//import axios from 'axios';
   export default{
     name:'login',
     data(){
@@ -112,13 +112,14 @@ import axios from 'axios';
     methods:{
         initList(){
             let vm = this
-            vm.list = JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].org_list
+            vm.list = JSON.parse(Util.getStorge("User")).jyau_content.jyau_resData[0].org_list
         },
          chooseO(name,id){
             let obj ={}
             obj.name = name
             obj.id = id
-            localStorage.setItem("organization",JSON.stringify(obj))
+            Util.setStorge("organization",JSON.stringify(obj))
+           
            // this.organization = true
             let vm = this
             let req = {
@@ -128,7 +129,7 @@ import axios from 'axios';
                         "org_id": id
                     }],
                     "jyau_pubData": {
-                        "operator_id": JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id,
+                        "operator_id": JSON.parse(Util.getStorge("User")).jyau_content.jyau_resData[0].operator_id,
                         "account_id": "systemman",
                         "ip_address": "10.2.0.116",
                         "system_id": "10909"
@@ -136,7 +137,7 @@ import axios from 'axios';
                 }
             }
             console.log("req",JSON.stringify(req))
-            axios.post(Util.ajaxUrl+"/api/menuAuth/queryOperatorMenu",req).then(function(res){
+            Util.axios.post(Util.ajaxUrl+"/api/menuAuth/queryOperatorMenu",req).then(function(res){
                 console.log(res.data.jyau_content.jyau_resData[0].multi_menuList)
                  let list =res.data.jyau_content.jyau_resData[0].multi_menuList
                     let menuList = {}
@@ -214,13 +215,13 @@ import axios from 'axios';
         }
 
 
-         axios.post(Util.ajaxUrl+'/api/login',req)
+         Util.axios.post(Util.ajaxUrl+'/api/login',req)
         .then(function(res){
             console.log(res)
             if(res.data.jyau_content.jyau_resHead.return_code=="0000"){
-                
-                localStorage.setItem("UserName",vm.formInline.name);
-                localStorage.setItem("User",JSON.stringify(res.data));
+                Util.setStorge("UserName",vm.formInline.name)
+                 Util.setStorge("User",JSON.stringify(res.data))
+               
                
                 vm.initList()
                 vm.showLogin=false

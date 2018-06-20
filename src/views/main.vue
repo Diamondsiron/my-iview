@@ -64,6 +64,14 @@
                
            
         </Layout>
+         <Modal
+            v-model="modal"
+            title="消息"
+            @on-ok="ok"
+            @on-cancel="cancel">
+            <p>{{message}}</p>
+        
+        </Modal>
     </div>
 </template>
 <script>
@@ -71,7 +79,7 @@
 //const url ="ws://10.2.0.101:8182/AuthorityM_Serv/websocket/";
 // const url ="ws://10.2.0.155:8199/AuthorityM_Serv/websocket/" 
   var websocket
-  import axios from 'axios';
+  import Util from '@/libs/util';
   import lockScreen from '@/components/lockscreen/lockscreen.vue';
   import logout from '@/components/logout/logout.vue';
   import fullScreen from '@/components/fullscreen/fullscreen.vue';
@@ -93,7 +101,9 @@
                 open: [],
                 active: '1-1',
                 menuList:[],
-                messageList:[]
+                messageList:[],
+                modal:false,
+                message:""
             }
         },
         computed: {
@@ -104,7 +114,7 @@
                 return this.$store.state.app.menuList
             },
            username(){
-                return localStorage.getItem("UserName")
+                return  Util.getStorge("UserName")
             }
         },
         filters:{
@@ -113,6 +123,12 @@
             }
         },
         methods:{
+            ok(){
+
+            },
+            cancel(){
+
+            },
             logouts(){
                 let vm =this
                 vm.closeWebScoket();
@@ -174,24 +190,24 @@
                     .catch(function(error){
                     console.log(error)
                     })  */
-                    if(!JSON.parse(localStorage.getItem("organization"))){
+                    if(!JSON.parse(Util.getStorge("organization"))){
                         return
                     }
                     let req = {
                     "jyau_content": {
                         " jyau_reqData": [{
                             "req_no": "AU2018048201802051125231351",
-                            "org_id": JSON.parse(localStorage.getItem("organization")).id
+                            "org_id": JSON.parse(Util.getStorge("organization")).id
                         }],
                             "jyau_pubData": {
-                                "operator_id": JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id,
+                                "operator_id": JSON.parse(Util.getStorge("User")).jyau_content.jyau_resData[0].operator_id,
                                 "account_id": "systemman",
                                 "ip_address": "10.2.0.116",
                                 "system_id": "10909"
                             }
                         }
                     }
-                    axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
+                    Util.axios.post("api/menuAuth/queryOperatorMenu",req).then(function(res){
                         let list =res.data.jyau_content.jyau_resData[0].multi_menuList
                         let menuList = {}
                         menuList.name="菜单"
@@ -220,7 +236,7 @@
                     let vm = this
                 	if ('WebSocket' in window) {
                        // websocket = new WebSocket(url+"OP201805241441037573"+"/0/0");
-                          websocket = new WebSocket(url+JSON.parse(localStorage.getItem("User")).jyau_content.jyau_resData[0].operator_id+"/0/0");
+                          websocket = new WebSocket(url+JSON.parse(Util.getStorge("User")).jyau_content.jyau_resData[0].operator_id+"/0/0");
                     } else {
                     alert('当前浏览器 Not support websocket')
                     return;
@@ -242,9 +258,13 @@
                                 desc: JSON.parse(event.data).msgContent ,
                                 duration: 0
                             }); 
-                        }else{
+                        }else if(JSON.parse(event.data).msgType==0){
                              vm.messageList.push(JSON.parse(event.data))
                              //console.log("event",vm.messageList,JSON.parse(event.data));
+                        }else if(JSON.parse(event.data).msgType==2){
+                            console.log("这是警告消息")
+                            vm.message=JSON.parse(event.data).msgContent
+                            vm.modal=true
                         }
                        
                     }

@@ -2,6 +2,8 @@
 import env from '../../build/env';
 import semver from 'semver';
 import packjson from '../../package.json'; */
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 let util = {
 
@@ -21,6 +23,19 @@ util.search =function(data, argumentObj) {
     }
     return res;
 }
+util.getStorge = function(name){
+   return Cookies.get(name);
+   // return localStorage.getItem(name)
+}
+util.setStorge = function(name,value){
+    return Cookies.set(name,value,{ expires: 1 });
+   // return localStorage.setItem(name,value)
+}
+util.removeStorge = function(name){
+    return Cookies.remove(name)
+    //return  localStorage.removeItem(name);
+}
 //util.ajaxUrl="https://authoritymserv.jiayecaifu.com:8023/AuthorityM_Serv"
 util.ajaxUrl=""
+util.axios=axios
 export default util;
