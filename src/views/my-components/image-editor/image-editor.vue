@@ -13,14 +13,14 @@
                             </Row>
                             <div class="image-editor-con1-btn-con margin-top-10">
                                 <input type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="handleChange1" id="fileinput1" class="fileinput" />
-                                <label class="filelabel" for="fileinput1"><Icon type="image"></Icon>&nbsp;选择图片</label>
-                                <span><Button @click="handlecrop1" type="primary" icon="crop">裁剪</Button></span>
+                                
+                                <span><Button @click="handlecrop2" type="primary" icon="crop">裁剪</Button></span>
                             </div>
-                            <Modal v-model="option1.showCropedImage">
+                           <!--  <Modal v-model="option1.showCropedImage">
                                 <p slot="header">预览裁剪之后的图片</p>
                                 <img :src="option1.cropedImg" alt="" v-if="option1.showCropedImage" style="width: 100%;">
-                            </Modal>
-
+                            </Modal> -->
+                            <img :src="option1.cropedImg" alt="" v-if="option1.showCropedImage" style="width: 100%;">
                 
             </Col>
             <Col span="12">
@@ -59,7 +59,13 @@ export default {
             let file = this.cropper1.getCroppedCanvas().toDataURL();
             this.option1.cropedImg = file;
             this.option1.showCropedImage = true;
-        }
+        },
+         handlecrop2 () {
+             console.log(this.cropper1)
+            let file = this.cropper1("getCroppedCanvas",{ "width": 640, "height": 320 });
+            this.option1.cropedImg = file;
+            this.option1.showCropedImage = true;
+        } 
     },
     mounted () {
          let img1 = document.getElementById('cropimg1');
