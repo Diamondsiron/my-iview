@@ -15,7 +15,7 @@ export const router = new Router(RouterConfig);
 
 router.beforeEach((to,from,next) => {
   iView.LoadingBar.start();
-  console.log("这是啥",!!Util.getStorge("locking"))
+  //console.log("这是啥",!!Util.getStorge("locking"))
     if(Util.getStorge("locking") && to.name !== 'locking'){
       next({
           replace: true,

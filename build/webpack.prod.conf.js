@@ -25,8 +25,8 @@ const webpackConfig = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
-    //chunkFilename: utils.assetsPath('js/[name].[chunkhash].asyncChunk.js')  // 配合懒加载打包重命名
+    //chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    chunkFilename: utils.assetsPath('js/[name].[chunkhash].asyncChunk.js')  // 配合懒加载打包重命名
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html

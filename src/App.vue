@@ -11,7 +11,12 @@ export default {
 </script>
 
 <style>
-html,body{
+html{
+    width: 100%;
+    height: 100%;
+    background: #f5f7f9 
+}
+body{
     width: 100%;
     height: 100%;
     background: #f5f7f9

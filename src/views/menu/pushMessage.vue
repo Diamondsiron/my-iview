@@ -318,9 +318,24 @@ export default{
             return;
           };
           //接收到消息的回调方法
-         /*  websocket.onmessage = function(event) {
-            console.log("event",event.data);
-          } */
+          websocket.onmessage = function(event) {
+            /* console.log("收到消息",JSON.parse(event.data).msgContent)
+           if(JSON.parse(event.data).msgType==1){
+                    vm.$Notice.info({
+                      title: '消息',
+                      desc: JSON.parse(event.data).msgContent ,
+                      duration: 0
+                  }); 
+              }else if(JSON.parse(event.data).msgType==0){
+                console.log(vm.$parent)
+                   // vm.$parent.messageList.push(JSON.parse(event.data))
+                    //console.log("event",vm.messageList,JSON.parse(event.data));
+              }else if(JSON.parse(event.data).msgType==2){
+                  console.log("这是警告消息")
+                  vm.$parent.message=JSON.parse(event.data).msgContent
+                  vm.$parent.modal=true
+              } */
+          }
           //连接关闭的回调方法
          websocket.onclose = function() {
             console.log("WebSocket连接关闭");
