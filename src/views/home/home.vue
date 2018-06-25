@@ -59,10 +59,8 @@ import Util from '@/libs/util';
     },
     methods:{
         init(){
-            
             let vm = this
             vm.list = JSON.parse(Util.getStorge("User")).jyau_content.jyau_resData[0].org_list
-
             if(Util.getStorge("organization")){
                 vm.organization = true
             }
