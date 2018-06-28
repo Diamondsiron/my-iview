@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>每日优鲜</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+  <link href="https://cdn.bootcss.com/mint-ui/2.2.13/actionsheet/style.min.css" rel="stylesheet">
+ <!--  <link href="https://cdn.bootcss.com/mint-ui/2.2.13/style.min.css" rel="stylesheet"> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+  <script src="https://cdn.bootcss.com/mint-ui/2.2.13/index.js"></script>
+
+
+  <style>
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: #f5f7f9;
+    font-size: 16px
+        
+}
+header{
+  width: 100%;
+  height: 30px;
+  background-color:orange ;
+  top: 0px;
+  position: fixed;
+  z-index: 9999;
+  text-align: center;
+  position: relative;
+  padding-top: 10px;
+}
+header span{
+  position: absolute;
+    right: 5%;
+}
+
+.content{
+  margin:10px;margin: 10px;position: relative;
+}
+.content>span{
+  display: inline-block;
+    position: relative;
+}
+.banner{
+  
+  width: 100%;
+  height: 200px;
+}
+.desc{
+  padding: 5px;
+  position: relative
+}
+.desc-span{
+  color: black;
+  font-size: 12px;
+}
+.desc-footer{
+  position: relative;
+}
+.desc p{
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+.desc-footer-price{
+  color: #999;
+}
+.desc-right{
+  font-size: 24px;
+    color: orange;
+    position: absolute;
+    right: 5%;
+    top: 35%;
+}
+.desc-icon{
+    border: 1px solid rgb(190, 127, 72);
+    border-radius: 50%;
+    font-size: 8px;
+    width: 26px;
+    height: 26px;
+    background-color: #fff;
+    color: rgb(190, 127, 72);
+    outline: none;
+}
+.orderForm{
+  margin-top: 10px;
+    background-color: #fff;
+   
+}
+.detail{
+
+}
+.detail div{
+  width: 100%;
+  height: 120px;
+  background-color: #fff
+
+}
+footer{
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 30px;
+  background-color: chocolate;
+   text-align: center;
+      padding-top: 10px;
+}
+.question{
+  padding: 20px;
+    background-color: #fff;
+}
+.question p{
+  font-size: 14px;
+  color: #999;
+}
+.bar {
+  top: 25px;
+	width:50px;
+	height:3px;
+	position:absolute;
+	bottom:0px;
+}
+.bar .color {
+	width:36px;
+	margin:0 auto;
+	height:3px;
+	background:orange;
+}
+.show-detail{
+      height: 90%;
+    /* width: 100%; */
+    background-color: #e5c8c8;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+}
+.title{
+  margin-top: -7px;
+    line-height: 1;
+    font-size: 14px;
+    color: #999;
+}
+.selective {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    /* color: #999; */
+    line-height: 1;
+    font-size: 0px;
+    margin-top: -7px;
+}
+.selective span {
+    
+    font-size: 14px;
+  
+}
+.selective-button{
+    border: 1px solid rgb(190, 127, 72);
+    border-radius: 4px;
+    background-color: #fff;
+    color: #999;
+    outline: none;
+}
+.selective-button-check{
+    border: 1px solid #999;
+   /*  border-radius: 4px; */
+    background-color: #fff;
+    color: #999;
+    outline: none;
+}
+.selective-button-check_center{
+    width: 40px;
+    border-left: none;
+    border-right: none;
+  
+}
+    
+.li-item{
+      text-align: left;
+      list-style: none;
+    background-color: #fff;
+    padding: 15px 0px;
+    position: relative;
+}
+    </style>
+</head>
+<body>
+<div id="el">
+  <div class="hello">
+    <header >
+      商品名称
+      <span @click="sheetVisible=true" >分享</span>
+      </header>
+    <div class="banner">
+    <div class="swiper-container" id="banner">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-color:#fff;height:200px" v-for="item in showList" :key="item">
+              <div class="show-detail">
+                {{item}}
+              </div>  
+            </div>
+          
+          </div>
+        </div>
+    </div>
+    <div class="desc">
+      <h4>商品名称</h4>
+      <p>描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言描述语言</p>
+      <div class="desc-footer">
+        <div class="desc-footer-price">
+            <span><span style="color:orange">400</span> 麻豆 </span><span>市场价格<s>98元</s></span>
+        </div>
+       
+       <button class="desc-icon">正</button> <span class="desc-span"> 正品保障</span>
+       <button class="desc-icon">包</button>  <span class="desc-span"> 全场包邮</span>
+        <button class="desc-icon">后</button> <span class="desc-span">售后无忧</span>
+        <span class="desc-right">></span>
+      </div>
+    </div>
+    <div class="orderForm">
+      <div>
+        <ul>
+          <li class="li-item">
+             <span class="title">款式</span>
+             <span class="selective">
+             <button class="selective-button">盒装</button> 
+            
+               </span>
+          </li>
+          <li class="li-item">
+             <span class="title">数量</span>
+             <span class="selective">
+               <button class="selective-button-check" @click="counts()">-</button>
+               <button class="selective-button-check selective-button-check_center">{{count}}</button>
+               <button class="selective-button-check" @click="count++">+</button>
+             </span>
+          </li>
+          <li class="li-item">
+             <span class="title">获取方式</span>
+              <span class="selective"><button class="selective-button">麻豆兑换</button> </span>
+          </li>
+          <li class="li-item">
+              <span class="title">麻豆兑换</span>
+              <span class="selective">
+                <span>
+                     {{totalPrice}}麻豆
+                </span>
+               
+                </span>
+         </li>
+        
+        </ul>
+        
+        
+      </div>
+    
+    </div>
+    <div>
+      <div  class="content">
+        <span @click="showDefault=true" >商品介绍 <div class="bar" v-if="showDefault">
+          <div class="color"></div>
+        </div></span>
+        <span @click="showDefault=false">常见问题 <div class="bar" v-if="!showDefault">
+          <div class="color"></div>
+        </div></span>
+       
+      </div>
+      <div class="detail" v-if="showDefault">
+        <div>详情图片1</div>
+        <div>详情图片2</div>
+        <div>详情图片3</div>
+        <div>详情图片4</div>
+        <div>详情图片5</div>
+      </div>
+      <div class="question" v-if="!showDefault">
+        <div>
+          <h4>1</h4>
+          <p>描述描述描述描述描述描述描述描述描述描述</p>
+          <h4>2</h4>
+          <p>描述描述描述描述描述描述描述描述描述描述</p>
+          <h4>3</h4>
+          <p>描述描述描述描述描述描述描述描述描述描述</p>
+          <h4>4</h4>
+          <p>描述描述描述描述描述描述描述描述描述描述</p>
+          <h4>5</h4>
+          <p>描述描述描述描述描述描述描述描述描述描述</p>
+        </div>
+      </div>
+    </div>
+    <div style="height:40px">
+
+    </div>
+    <footer>
+      立即兑换
+    </footer>
+    <mt-actionsheet
+      :actions="actions"
+      v-model="sheetVisible">
+     
+    </mt-actionsheet>
+  </div>
+</div>
+  
+<!-- <script src="js/swiper.min.js"></script> -->
+
+<script>
+  var vm = new Vue({
+    el: '#el',
+    name: 'HelloWorld',
+  data () {
+    return {
+      sheetVisible:false,
+      count:1,
+      price:1400,
+     
+      actions:[{name:"0",method:null},{name:"1",method:null},{name:"2",method:null}],
+       showList:["展示1","展示2","展示3","展示4","展示5","展示6","展示7"],
+       showDefault:true
+    }
+  },
+  computed:{
+    totalPrice(){
+      return this.price*this.count
+    }
+  },
+  methods:{
+    
+    counts(){
+      if(this.count<2){
+        return
+      }else{
+        this.count--
+      }
+    }, 
+    init(){
+       var swiper = new Swiper('#banner',{
+          autoplay:true,
+         
+       });
+       
+
+   
+    }
+  },
+  mounted() {
+    this.init()
+   
+  },
+  }) 
+</script>
+</body>
+</html>
