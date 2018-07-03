@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>  
+  <style>
+  .week{
+    display: flex;
+    padding: 0px;
+    flex-wrap:  wrap ;
+  }
+  .week-item{
+    flex:1;
+    list-style: none;
+    text-align: center;
+  }
+  .day{
+  display: flex;
+    flex-wrap:  wrap ;
+    padding: 0px;
+  
+  }
+  .day-item{
+    list-style: none;
+    text-align: center;
+  flex: 0 0 14%;
+  }
+</style>
+</head>
+<body>
+  <div id="main">
+  
+    <div>
+      2018年7月
+    </div>
+    <div>
+      <ul class="week">
+        <li class="week-item" v-for="(item,index) in week" :key="index">
+          {{item.name}}
+        </li>
+      </ul>
+      <ul class="day">
+        <li class="day-item" v-for="(item,index) in list" :key="index">
+          {{item}}
+        </li>
+      </ul>
+    </div>
+  </div> 
+  <script>
+    var vm =new Vue({
+      el:"#main",
+      name: 'HelloWorld',
+      data () {
+        return {
+          list:[],
+          week:[
+            {index:0,name:"日"},
+            {index:1,name:"一"},
+            {index:2,name:"二"},
+            {index:3,name:"三"},
+            {index:4,name:"四"},
+            {index:5,name:"五"},
+            {index:6,name:"六"}
+            ]
+        }
+      },
+      computed:{
+      
+      },
+      methods:{
+        check(value){
+          
+        },
+        init(){
+          let date = new Date();
+          let first = new Date(date.setDate(date.getDay()-date.getDay()+1))
+          first.toDateString()
+          first.getDate()
+          first.getDay()
+          console.log(first.getDate(),first.getDay(),first.getMonth())
+          date.setMonth(date.getMonth()+1);
+          let end = new Date(date.setDate(1)) 
+          end.setDate(end.getDate()-1)
+          console.log(end.getDate(),end.getDay(),end.getMonth())
+          
+            for(let i=0; i<first.getDay();i++){
+            this.list.push("")
+          }
+          for(let i=0; i<end.getDate();i++){
+            this.list.push(i+1)
+          }
+      
+        }
+      },
+      mounted() {
+        this.init()
+      
+      },
+    })
+  </script>
+</body>
+</html>
