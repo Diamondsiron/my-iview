@@ -5,48 +5,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+
+
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+ 
   <style>
-  .week{
-    display: flex;
-    padding: 0px;
-    flex-wrap:  wrap ;
-  }
-  .week-item{
-    flex:1;
-    list-style: none;
-    text-align: center;
-  }
-  .day{
-  display: flex;
-    flex-wrap:  wrap ;
-    padding: 0px;
-  
-  }
-  .day-item{
-    list-style: none;
-    text-align: center;
-  flex: 0 0 14%;
-  }
-</style>
+    html{
+        width: 100%;
+        height: 100%;
+        background: #f5f7f9 
+    }
+    body{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        background: #f5f7f9
+            
+    }
+    .footer{
+      margin-top: 90px;
+      background-color: #fff;
+      width: 100%;
+      height:90px;
+      text-align: center;
+    }
+    .footer-btn{
+      background-color: orange;
+      height: 40px;
+      color: #fff;
+      width: 90%;
+      margin: 10px auto;
+      border-radius: 5px;
+      outline: none;
+      cursor: pointer;
+      border: none;
+    }
+    .footer-content{
+      display: flex;
+    }
+    .footer-content-l{
+      flex:1
+    }
+    .footer-content-r{
+      flex:1
+    }
+    .week{
+      display: flex;
+      padding: 0px;
+       flex-wrap:  wrap ;
+       background-color: #fff;
+       margin-bottom: 0px;
+    }
+    .week-item{
+      flex:1;
+      list-style: none;
+      text-align: center;
+      border-bottom: solid 1px #fafafa;
+    }
+    .day{
+     display: flex;
+      flex-wrap:  wrap ;
+       padding: 0px;
+       margin-top: 0px;
+       background-color: #fff;
+     
+    }
+    .day-item{
+       list-style: none;
+       text-align: center;
+       border-bottom: solid 1px #fafafa;
+       flex: 0 0 14%;
+    }
+    .header{
+      width: 90%;
+      text-align: center;
+      margin: 10px auto;
+      height: 90px;
+      background-color: #fff;
+      border-radius: 5px;
+    }
+    </style>
 </head>
 <body>
   <div id="main">
   
-    <div>
-      2018年7月
+    <div class="header">
+      2018年{{month}}月
+      <div>
+        本月没有待收回款
+      </div>
     </div>
     <div>
-      <ul class="week">
-        <li class="week-item" v-for="(item,index) in week" :key="index">
-          {{item.name}}
-        </li>
-      </ul>
-      <ul class="day">
-        <li class="day-item" v-for="(item,index) in list" :key="index">
-          {{item}}
-        </li>
-      </ul>
+        <div class="swiper-container" id="banner">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" style="background-color:#fff;height:200px"  v-for="(item,index) in list" :key="index">
+                <ul class="week">
+                  <li class="week-item" v-for="(item,index) in week" :key="index">
+                    {{item.name}}
+                  </li>
+                </ul>
+                <ul class="day">
+                  <li class="day-item" v-for="(item2,index) in item" :key="index">
+                    {{item2}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+      <button class="footer-btn">查看我的投资</button>
+      <div class="footer-content">
+        <div class="footer-content-l">当前日期</div>
+        <div class="footer-content-r">回款日期</div>
+      </div>
+      
     </div>
   </div> 
   <script>
@@ -56,6 +131,8 @@
       data () {
         return {
           list:[],
+          month:"",
+          defaultMonth:"",
           week:[
             {index:0,name:"日"},
             {index:1,name:"一"},
@@ -70,35 +147,50 @@
       computed:{
       
       },
+      created() {
+        let vm = this;
+          let date = new Date();
+          for(let i = 0; i<(12-date.getMonth()); i++){
+            let month =[];
+            let first = new Date(date.setDate(date.getDay()-date.getDay()+1))
+              vm.month=first.getMonth()+1;
+              vm.defaultMonth=first.getMonth()+1;
+              first.setMonth(first.getMonth()+i);
+              let end = new Date(first.setDate(1)) 
+              end.setDate(end.getDate()-1)
+              for(let i=0; i<first.getDay();i++){
+                month.push("")
+              }
+              for(let i=0; i<end.getDate();i++){
+                month.push(i+1)
+              }
+              this.list.push(month)
+          }
+      },
       methods:{
         check(value){
           
         },
         init(){
-          let date = new Date();
-          let first = new Date(date.setDate(date.getDay()-date.getDay()+1))
-          first.toDateString()
-          first.getDate()
-          first.getDay()
-          console.log(first.getDate(),first.getDay(),first.getMonth())
-          date.setMonth(date.getMonth()+1);
-          let end = new Date(date.setDate(1)) 
-          end.setDate(end.getDate()-1)
-          console.log(end.getDate(),end.getDay(),end.getMonth())
+          let vm =this;
+          var swiper = new Swiper('#banner',{
+          /*   observer:true,//修改swiper自己或子元素时，自动初始化swiper
+            observeParents:true,//修改swiper的父元素时，自动初始化swiper */
+            
+            
+          });
+          swiper.on('slideChangeTransitionEnd', function () {
+              vm.month= vm.defaultMonth+swiper.activeIndex;
           
-            for(let i=0; i<first.getDay();i++){
-            this.list.push("")
-          }
-          for(let i=0; i<end.getDate();i++){
-            this.list.push(i+1)
-          }
-      
+
+            });
+          
         }
       },
       mounted() {
         this.init()
       
-      },
+      }
     })
   </script>
 </body>
