@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>  
+</head>
+<body>
+  <style>
+    html,body{
+      padding: 0px;
+      margin: 0px;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;;
+      overflow: hidden;
+    }
+    header{
+      width: 100%;
+      height: 120px;
+      background-color: rgb(100, 46, 46);
+    }
+    .btn{
+      width: 80%;
+      display: flex;
+      margin: 10px auto;
+      background-color: #fff;
+      border-radius: 15px;
+      height: 40px;
+      border:solid 1px #fafafa
+    }
+    .login{
+      width: 80%;
+      margin: 10px auto;
+      border: none;
+      height: 40px;
+      outline: none;
+      display: block;
+      border-radius: 10px;
+      color: #fff;
+    }
+    .btn input{
+     border: none;
+     height: 40px;
+     padding: 0px;
+     margin: 0px;
+     outline: none;
+    }
+  </style>
+  <div id="main">
+    <header>
+      背景图片
+    </header>
+    <form action="">
+      <div class="btn">
+         <div style="flex:0 0 40px"></div> 
+         <input type="text" style="flex:1" placeholder="请输入账号">
+         <div style="flex:0 0 40px"></div> 
+      </div>
+      <div class="btn">
+          <div style="flex:0 0 40px"></div> 
+          <input type="password" style="flex:1" placeholder="请输入密码">
+          <div style="flex:0 0 40px"></div> 
+       </div>
+      <a href=""></a>
+      <div>
+          <button class="login">登录</button>
+       </div>
+    </form>
+    <div style="margin-top: 40px;text-align: center; height: 1px; 
+    margin-top: 40px;
+    text-align: center; 
+    border-top: 1px solid #e2e2e2;">
+     <span style="  position: relative;
+     top:-11px;
+     background: #fff;
+     display: inline-block;">第三方登录</span> 
+    </div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el:"#main"
+    })
+  </script>
+</body>
+</html>
