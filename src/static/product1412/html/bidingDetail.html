@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+  <script>
+      document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+   </script>
+   <style>
+      html,body{
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: #f2f2f2;;
+      }
+      .card{
+        margin-top: 0.48rem;
+        width: 100%;
+        height: 6.66rem;
+        background: url(../image/cp_5.png) no-repeat;
+        background-size: contain;
+        position: relative;
+        overflow: hidden;
+      }
+      .card>div:nth-child(1){
+        color:#989898;
+        position: absolute;
+        font-size: 0.12rem;
+        left:3.12rem;
+        top:1.12rem;
+        width: 1.44rem;
+      }
+      .card>div:nth-child(2){
+        color:#ff3a49;
+        position: absolute;
+        font-size: 0.12rem;
+        left:8.19rem;
+        top:1.12rem;
+        width: 1.46rem;
+        border-radius: 5px;
+        border:solid 1px #ff3a49;
+      }
+      .card>div:nth-child(3){
+        text-align: center;
+        font-size: 0.9rem;
+        margin-top: 1.8rem;
+        color: #998675;
+        
+      }
+      .font3{
+        color: #ff3a49;
+      }
+      .font4{
+        font-size: 0.45rem;
+      }
+      .card>div:nth-child(4){
+        text-align: center;
+        font-size: 0.36rem;
+        color: #998675;
+        margin-top: 0.27rem;
+      }
+      .card-bottom{
+        display: flex;
+        margin-top: 1.17rem;
+      }
+      .card-bottom-l{
+        color: #998675;
+        flex: 1;
+        font-size: 0.54rem;
+        text-align: center;
+        border-right:solid 1px #f2f2f2; 
+      }
+      .card-bottom-l div{
+       width: 4.2rem;
+       margin-left: 1.44rem;
+      }
+      .card-bottom-r{
+        flex: 1;
+        font-size: 0.54rem;
+        text-align: left;
+      }
+      .card-bottom-r div div:nth-child(1){
+        margin-left:0.56rem; 
+        font-size: 0.36rem;
+        height: 0.36rem;
+      
+        color: #989898;
+      }
+      .card-bottom-r div div:nth-child(2){
+        margin-left:0.56rem; 
+        margin-top: 0.18rem;
+        font-size: 0.58rem;
+        color:#998675;
+      }
+      .table{
+        width: 7.26rem;
+        height: 0.66rem;
+        margin: 0.51rem auto;
+        background: url(../image/cp_6.png) no-repeat;
+        background-size: contain;
+      }
+      .table-desc{
+        width: 100%;
+        height: 0.9rem;
+        margin-top: 0.3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .table-desc>div:nth-child(1){
+        
+       position: absolute;
+       left: 2.16rem;
+       font-size: 0.36rem;
+       width: 1.53rem;
+      }
+      .table-desc>div:nth-child(2){
+        position: absolute;
+       left: 5.43rem;
+       font-size: 0.36rem;
+       width: 1.53rem;
+      }
+      .table-desc>div:nth-child(3){
+        position: absolute;
+       right:2.16rem ;
+       font-size: 0.36rem;
+       width: 1.53rem;
+       
+      }
+      .font1{
+        color:#656565;
+        font-weight: bold;
+      }
+      .font2{
+        color:#989898;
+      }
+      .context{
+        width: 100%;
+        height: 5.22rem;
+        margin-top: 0.54rem;
+        font-size: 0.36rem;
+        background: url(../image/cp_7.png) no-repeat;
+        background-size: contain;
+        overflow: hidden;
+        position: relative;
+      }
+      .context-title{
+        font-size: 0.36rem;
+        margin-top: 0.64rem;
+        margin-left: auto;
+        margin-right:auto; 
+        text-align: center;
+        color: #989898;
+      }
+      .context-input{
+        width: 9.98rem;
+        margin: 0.27rem auto;
+        height: 1.14rem;
+        border:none;
+        display: block;
+        text-align: center;
+        background-color: #f2f2f2;
+        outline: none;
+        font-size: 0.54rem;
+      }
+      .context>div:nth-child(3){
+        position: absolute;
+        left: 2.64rem;
+        top: 2.89rem;
+        font-size: 0.54rem;
+        color:#998675;
+      }
+      .context>div:nth-child(4){
+        position: absolute;
+        right: 1.86rem;
+        top: 2.89rem;
+        font-size: 0.6rem;
+        color:#ff3a49;
+      }
+      .context>div:nth-child(5){
+        text-align: center;
+       
+        margin: 1.59rem auto;
+        font-size: 0.36rem;
+        color: #989898;
+      }
+      .foot-touch{
+        font-size: 0.36rem;
+        margin-top: 0.87rem;
+        text-align: center;
+        color: #989898;
+      }
+      .foot-title{
+        font-size: 0.36rem;
+        color: #656565;
+        text-align: center;
+        margin-top: 0.6rem;
+        margin-bottom: 0.3rem;
+      }
+      .foot-content{
+        height: 2.1rem;
+        overflow: hidden;
+        margin: 0.3rem auto;
+        width: 11.34rem;
+      }
+      .foot-content-btn{
+        height: 1.5rem;
+        width: 100%;
+        color: #fff;
+        font-size: 0.5rem;
+        text-align: center;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        background: -webkit-linear-gradient(#ff6a55, #ee1e27); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(#ff6a55, #ee1e27); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
+        background: linear-gradient(#ff6a55, #ee1e27); /* 标准的语法 */
+      }
+      btn:hover{
+        border: none;
+        outline: none;
+      }
+    
+      a:link { 
+        color:#3b92f0;
+        text-decoration:none;
+        }
+        input::-webkit-input-placeholder{
+            color:#c3c3c3;
+            font-size: 0.54rem;
+        }
+        input::-moz-placeholder{  
+          color:#c3c3c3;
+          font-size: 0.54rem;
+        }
+        input:-moz-placeholder{    
+          color:#c3c3c3;
+          font-size: 0.54rem;
+        }
+        input:-ms-input-placeholder{  
+          color:#c3c3c3;
+          font-size: 0.54rem;
+        }
+   </style>
+</head>
+<body>
+<div id="main">
+  <div class="card">
+    <div>
+      年化利率
+    </div>
+    <div>
+      出借奖励
+    </div>
+    <div>64.24<span class="font4">%</span>+<span class="font3">1.76<span  class="font4">%</span></span></div>
+    <div>资金由江西银行全程存管</div>
+    <div></div>
+      <div class="card-bottom">
+        <div class="card-bottom-l">
+          <div>服务期限180天</div> 
+        </div>
+        <div class="card-bottom-r">
+          <div>
+            <div>剩余可出借（元）</div>
+            <div>200000.00</div>
+          </div>
+        </div>
+      </div>
+  </div>
+ 
+    <div class="table"></div>
+    <div class="table-desc">
+      <div>
+        <div class="font1">今日出借</div>
+        <div class="font2">立即匹配</div>
+      </div>
+      <div>
+        <div class="font1">匹配成功</div>
+        <div class="font2">开始计息</div>
+      </div>
+      <div>
+        <div class="font1">到期转出</div>
+        <div class="font2">2018.3.1</div>
+      </div>
+      
+    </div>
+ 
+  <div class="context">
+    <div class="context-title">出借金额（元）</div>
+    <input class="context-input" type="text" placeholder="最低出借5000元">
+    
+    <div>预期回报</div>
+    <div>11725.00元</div>
+    
+    <div>
+      (参考历史数据得出，以实际到账为准)
+    </div>
+  </div>
+  <footer>
+    <div class="foot-touch" id="touch">
+      -向上滑动，查看更多详情-
+    </div>
+    <div class="foot-title">
+        出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
+     
+    </div>
+    <div class="foot-content">
+        <button class="foot-content-btn" @click="submit()">立即出借</button>
+    </div>
+  </footer>
+</div>
+<script>
+ 
+        
+        function getScrollTop() {
+            var scrollTop = 0;
+            if(document.documentElement && document.documentElement.scrollTop) {
+                scrollTop = document.documentElement.scrollTop;
+            } else if(document.body) {
+                scrollTop = document.body.scrollTop;
+            }
+            return scrollTop;
+        }
+
+        
+        function getClientHeight() {
+            var clientHeight = 0;
+            if(document.body.clientHeight && document.documentElement.clientHeight) {
+                clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
+            } else {
+                clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
+            }
+            return clientHeight;
+        }
+
+        
+        function getScrollHeight() {
+            return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+        }
+        
+        
+        window.onscroll = function() {
+            //console.log(getScrollTop() , getClientHeight(),getScrollHeight(),document.getElementById("touch").getBoundingClientRect())
+            if(getScrollTop() + getClientHeight() == getScrollHeight()) {
+              console.log("跳转")
+             // window.location.href="bidingDetailExtend.html"
+             }
+        }
+       
+  var vm = new Vue({
+
+  })
+</script>
+</body>
+</html>

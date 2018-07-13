@@ -13,7 +13,7 @@ import iviewArea from 'iview-area';
 Vue.config.productionTip = false
 Vue.use(iView);
 Vue.use(iviewArea);
-/* eslint-disable no-new */
+
 new Vue({
   el: '#app',
   router,
