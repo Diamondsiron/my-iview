@@ -44,17 +44,17 @@
     .head-content-item_choose{
       border-bottom: solid 2px #c7b299;
     }
-    #choose2 .context-title{
+    #choose3 .context-title{
       font-size: 0.36rem;
       color: #989898;
       text-align: center;
       margin-top: 0.54rem;
       margin-bottom: 0.6rem;
     }
-    #choose2 td{
+    #choose3 td{
       padding: 0px;
     }
-    #choose2 .context-table{
+    #choose3 .context-table{
       width: 11.34rem;
       margin: 0 auto;
       background-color: #ffffff;
@@ -64,20 +64,20 @@
       border-collapse: collapse;
       
     }
-    #choose2 th{
+    #choose3 th{
       color: #998675; 
     }
-    #choose2 tr{
+    #choose3 tr{
       height: 1.35rem;
       border-bottom: solid 0.02rem #f2f2f2;
     }
-    #choose2 tr>td:nth-child(1){
+    #choose3 tr>td:nth-child(1){
       width: 3rem;
     }
-    #choose2 tr>td:nth-child(2){
+    #choose3 tr>td:nth-child(2){
       width: 2.79rem;
     }
-    #choose2 tr>td:nth-child(3){
+    #choose3 tr>td:nth-child(3){
       width: 3.51rem;
     }
     .foot-title{
@@ -116,9 +116,7 @@
         color:#3b92f0;
         text-decoration:none;
         }
-     /*  a:active{color: red; } 
-      a:visited {color:purple;text-decoration:none;} 
-      a:hover {color: red; text-decoration:underline;}  */
+    
   </style>  
 </head>
 <body>
@@ -130,83 +128,30 @@
       <div  class="head-content-item">加入记录</div>
     </div>
   </header>
-  <div id="choose2">
+  <div id="choose3">
       <div class="context">
           <div class="context-title">为保护借款人信息仅展示部分内容，具体匹配以实际情况为准。</div>
           <div class="context-table-wrap">
             <table class="context-table">
               <tr>
-                <th>借款标的</th>
-                <th>类型</th>
-                <th>剩余金额（元）</th>
-                <th></th>
+                <th>出借人</th>
+                <th>加入金额（元）</th>
+                <th>加入期限</th>
+                <th>加入时间</th>
               </tr>
-              <tr>
-                <td>扩大经营</td>
-                <td>信A</td>
-                <td>100000.00</td>
-                <td>></td>
+              <tr v-for="(item,index) in list" :key="index">
+                <td>137****8833</td>
+                <td>1000000.00</td>
+                <td>60天</td>
+                <td>2017-7-8 11:11:44</td>
               </tr>
-              <tr>
-                <td>度假旅游</td>
-                <td>车AA</td>
-                <td>10000.00</td>
-                <td>></td>
-              </tr>
-              <tr>
-                <td>扩大经营</td>
-                <td>信A</td>
-                <td>100000.00</td>
-                <td>></td>
-              </tr>
-              <tr>
-                <td>度假旅游</td>
-                <td>车AA</td>
-                <td>10000.00</td>
-                <td>></td>
-              </tr>
-              <tr>
-                <td>扩大经营</td>
-                <td>信A</td>
-                <td>100000.00</td>
-                <td>></td>
-              </tr>
-              <tr>
-                <td>度假旅游</td>
-                <td>车AA</td>
-                <td>10000.00</td>
-                <td>></td>
-              </tr>
-              <tr>
-                <td>扩大经营</td>
-                <td>信A</td>
-                <td>100000.00</td>
-                <td>></td>
-              </tr>
-              <tr>
-                <td>度假旅游</td>
-                <td>车AA</td>
-                <td>10000.00</td>
-                <td>></td>
-              </tr>
-              <tr>
-                <td>扩大经营</td>
-                <td>信A</td>
-                <td>100000.00</td>
-                <td>></td>
-              </tr>
-              <tr>
-                <td>度假旅游</td>
-                <td>车AA</td>
-                <td>10000.00</td>
-                <td>></td>
-              </tr>
+             
              
             </table>
           </div>
         </div>
   </div>
-  
+ 
  
   <footer>
     <div class="foot-title">
@@ -224,12 +169,12 @@
      el:"#main",
      data(){
        return{
-
+           list:[0,1,2,3,4,5,6,7,8,9]
        }
      },
      methods:{
       submit(){
-       /* req 是参数 url是连接 提交方式是post */
+      
         let req  =  {}
         let url  = ""
         axios.post(url,req).then(res=>{
@@ -237,11 +182,6 @@
         }).catch(function(e){
             console.log("error",e)
         })
-      /*   axios.get(url,req).then(res=>{
-          console.log("success",res)
-        }).catch(function(e){
-            console.log("error",e)
-        }) */
       }
      }
    })

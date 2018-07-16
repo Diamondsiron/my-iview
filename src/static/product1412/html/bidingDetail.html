@@ -15,10 +15,10 @@
         padding: 0px;
         margin: 0px;
         width: 100%;
-        height: 100%;
+       /*  height: 100%; */
         background-color: #f2f2f2;;
       }
-      .card{
+      #top .card{
         margin-top: 0.48rem;
         width: 100%;
         height: 6.66rem;
@@ -27,7 +27,7 @@
         position: relative;
         overflow: hidden;
       }
-      .card>div:nth-child(1){
+      #top .card>div:nth-child(1){
         color:#989898;
         position: absolute;
         font-size: 0.12rem;
@@ -35,7 +35,7 @@
         top:1.12rem;
         width: 1.44rem;
       }
-      .card>div:nth-child(2){
+      #top .card>div:nth-child(2){
         color:#ff3a49;
         position: absolute;
         font-size: 0.12rem;
@@ -45,100 +45,89 @@
         border-radius: 5px;
         border:solid 1px #ff3a49;
       }
-      .card>div:nth-child(3){
+      #top .card>div:nth-child(3){
         text-align: center;
         font-size: 0.9rem;
         margin-top: 1.8rem;
         color: #998675;
         
       }
-      .font3{
-        color: #ff3a49;
-      }
-      .font4{
-        font-size: 0.45rem;
-      }
-      .card>div:nth-child(4){
+     
+      #top .card>div:nth-child(4){
         text-align: center;
         font-size: 0.36rem;
         color: #998675;
         margin-top: 0.27rem;
       }
-      .card-bottom{
+      #top .card-bottom{
         display: flex;
         margin-top: 1.17rem;
       }
-      .card-bottom-l{
+      #top  .card-bottom-l{
         color: #998675;
         flex: 1;
         font-size: 0.54rem;
         text-align: center;
         border-right:solid 1px #f2f2f2; 
       }
-      .card-bottom-l div{
+      #top .card-bottom-l div{
        width: 4.2rem;
        margin-left: 1.44rem;
       }
-      .card-bottom-r{
+      #top .card-bottom-r{
         flex: 1;
         font-size: 0.54rem;
         text-align: left;
       }
-      .card-bottom-r div div:nth-child(1){
+      #top  .card-bottom-r div div:nth-child(1){
         margin-left:0.56rem; 
         font-size: 0.36rem;
         height: 0.36rem;
       
         color: #989898;
       }
-      .card-bottom-r div div:nth-child(2){
+      #top  .card-bottom-r div div:nth-child(2){
         margin-left:0.56rem; 
         margin-top: 0.18rem;
         font-size: 0.58rem;
         color:#998675;
       }
-      .table{
+      #top .table{
         width: 7.26rem;
         height: 0.66rem;
         margin: 0.51rem auto;
         background: url(../image/cp_6.png) no-repeat;
         background-size: contain;
       }
-      .table-desc{
+      #top  .table-desc{
         width: 100%;
         height: 0.9rem;
         margin-top: 0.3rem;
         position: relative;
         overflow: hidden;
       }
-      .table-desc>div:nth-child(1){
+      #top .table-desc>div:nth-child(1){
         
        position: absolute;
        left: 2.16rem;
        font-size: 0.36rem;
        width: 1.53rem;
       }
-      .table-desc>div:nth-child(2){
+      #top .table-desc>div:nth-child(2){
         position: absolute;
        left: 5.43rem;
        font-size: 0.36rem;
        width: 1.53rem;
       }
-      .table-desc>div:nth-child(3){
+      #top .table-desc>div:nth-child(3){
         position: absolute;
        right:2.16rem ;
        font-size: 0.36rem;
        width: 1.53rem;
        
       }
-      .font1{
-        color:#656565;
-        font-weight: bold;
-      }
-      .font2{
-        color:#989898;
-      }
-      .context{
+     
+      #top .context{
         width: 100%;
         height: 5.22rem;
         margin-top: 0.54rem;
@@ -148,7 +137,7 @@
         overflow: hidden;
         position: relative;
       }
-      .context-title{
+      #top .context-title{
         font-size: 0.36rem;
         margin-top: 0.64rem;
         margin-left: auto;
@@ -156,7 +145,7 @@
         text-align: center;
         color: #989898;
       }
-      .context-input{
+      #top .context-input{
         width: 9.98rem;
         margin: 0.27rem auto;
         height: 1.14rem;
@@ -167,21 +156,21 @@
         outline: none;
         font-size: 0.54rem;
       }
-      .context>div:nth-child(3){
+      #top .context>div:nth-child(3){
         position: absolute;
         left: 2.64rem;
         top: 2.89rem;
         font-size: 0.54rem;
         color:#998675;
       }
-      .context>div:nth-child(4){
+      #top .context>div:nth-child(4){
         position: absolute;
         right: 1.86rem;
         top: 2.89rem;
         font-size: 0.6rem;
         color:#ff3a49;
       }
-      .context>div:nth-child(5){
+     #top .context>div:nth-child(5){
         text-align: center;
        
         margin: 1.59rem auto;
@@ -246,114 +235,589 @@
           color:#c3c3c3;
           font-size: 0.54rem;
         }
+        .font1{
+        color:#656565;
+        font-weight: bold;
+      }
+      .font2{
+        color:#989898;
+      }
+      .font3{
+        color: #ff3a49;
+      }
+      .font4{
+        font-size: 0.45rem;
+      }
    </style>
+   <style>
+    html,body{
+      padding: 0px;
+      margin: 0px;
+      width: 100%;
+      /* height: 100%; */
+      background-color: #f2f2f2;;
+    }
+    header{
+      width: 100%;
+      height: 1.46rem;
+      margin: 0 auto;
+      display: flex;
+      border-bottom: solid 0.01rem #c7b299;
+    }
+    .head-content{
+      width: 11.34rem;
+      height: 1.46rem;
+      margin: 0 auto;
+      display: flex;
+    }
+    .head-content-item{
+      flex: 1;
+      text-align: center;
+      height: 1.40rem;
+      line-height: 1.40rem;
+      color: #656565;
+      font-size: 0.42rem;
+    }
+    .head-content-item_choose{
+      border-bottom: solid 2px #c7b299;
+    }
+    #choose1 .context{
+      font-size: 0.36rem;
+      color: #989898;
+    }
+    #choose1 .context-desc{
+      margin-top: 0.66rem;
+      margin-left: 1.08rem;
+      line-height: 0.18rem;
+    }
+    #choose1 .context-safety{
+      margin-top: 0.75rem;
+      margin-left: 0.54rem;
+    }
+    #choose1 .context-safety-desc{
+      margin-top: 0.66rem;
+    
+     
+      
+    }
+    #choose1 .context-safety-desc div{
+      display: inline-block;
+      width: 1.5rem;
+    }
+    #choose1 .context-safety-desc img{
+      
+      width: 100%;
+    }
+    #choose1 .context-safety-desc div:nth-child(1){
+      margin-left: 1.89rem;
+    }
+    #choose1 .context-safety-desc div:nth-child(2){
+      margin-left: 2.07rem;
+    }
+    #choose1 .context-safety-desc div:nth-child(3){
+      margin-left: 2.07rem;
+    }
+    #choose1 .context-serve{
+      margin-top: 0.78rem;
+      margin-left: 0.54rem;
+    }
+    #choose1 .context-serve-desc{
+      margin-top: 0.66rem;
+      margin-left: 1.08rem;
+      margin-right: 1.08rem;
+     
+    }
+    #choose1 .context-advanced{
+      margin-top: 0.84rem;
+      margin-left: 0.54rem;
+    }
+    #choose1 .context-advanced-desc{
+      margin-top: 0.66rem;
+      margin-left: 1.08rem;
+      margin-right: 1.08rem;
+    }
+    #choose1 .context-theory{
+      margin-top: 0.84rem;
+      margin-left: 0.54rem;
+    }
+    #choose1 .context-theory-desc{
+      margin-top: 0.66rem;
+      margin-left: 1.08rem;
+      margin-right: 1.08rem;
+    }
+    #choose1 .context-theory-desc img{
+      margin-top: 1.02rem;
+      width: 8.16rem;
+      height: 4.44rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #choose1 .context-title{
+      display: inline-block;;
+      width: 2.58rem;
+      height: 0.72rem;
+      color: #f2f2f2;
+      
+      border-radius: 10px;
+      background-color: #c7b299;
+      text-align: center;
+      
+    }
+    #choose1 .context-line{
+      display: inline-block;
+      
+      height: 1px;
+      border-bottom: solid 1px #c7b299;
+      width: 8.76rem;
+     
+    }
+    #choose1 .context-title p{
+      margin-top: 0.1rem;
+     
+    }
+    #choose2 .context-title{
+    font-size: 0.36rem;
+    color: #989898;
+    text-align: center;
+    margin-top: 0.54rem;
+    margin-bottom: 0.6rem;
+  }
+  #choose2 td{
+    padding: 0px;
+  }
+  #choose2 .context-table{
+    width: 11.34rem;
+    margin: 0 auto;
+    background-color: #ffffff;
+    color: #989898;
+    font-size: 0.42rem;
+    text-align: center;
+    border-collapse: collapse;
+    
+  }
+  #choose2 th{
+    color: #998675; 
+  }
+  #choose2 tr{
+    height: 1.35rem;
+    border-bottom: solid 0.02rem #f2f2f2;
+  }
+  #choose2 tr>td:nth-child(1){
+    width: 3rem;
+  }
+  #choose2 tr>td:nth-child(2){
+    width: 2.79rem;
+  }
+  #choose2 tr>td:nth-child(3){
+    width: 3.51rem;
+  }
+  .head-content-item_choose{
+    border-bottom: solid 2px #c7b299;
+  }
+  #choose3 .context-title{
+    font-size: 0.36rem;
+    color: #989898;
+    text-align: center;
+    margin-top: 0.54rem;
+    margin-bottom: 0.6rem;
+  }
+  #choose3 td{
+    padding: 0px;
+  }
+  #choose3 .context-table{
+    width: 11.34rem;
+    margin: 0 auto;
+    background-color: #ffffff;
+    color: #989898;
+    font-size: 0.42rem;
+    text-align: center;
+    border-collapse: collapse;
+    
+  }
+  #choose3 th{
+    color: #998675; 
+  }
+  #choose3 tr{
+    height: 1.35rem;
+    border-bottom: solid 0.02rem #f2f2f2;
+  }
+  #choose3 tr>td:nth-child(1){
+    width: 3rem;
+  }
+  #choose3 tr>td:nth-child(2){
+    width: 3.18rem;
+  }
+  #choose3 tr>td:nth-child(3){
+    width: 2.31rem;
+  }
+  #choose3 tr>td:nth-child(4){
+    width: 2.85rem;
+  }
+    .foot-title{
+      font-size: 0.36rem;
+      color: #656565;
+      text-align: center;
+      margin-top: 0.63rem;
+      margin-bottom: 0.3rem;
+    }
+    .foot-content{
+      height: 2.1rem;
+      overflow: hidden;
+      margin: 0.3rem auto;
+      width: 11.34rem;
+    }
+    .foot-content-btn{
+      height: 1.5rem;
+      width: 100%;
+      color: #fff;
+      font-size: 0.5rem;
+      text-align: center;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      background: -webkit-linear-gradient(#ff6a55, #ee1e27); /* Safari 5.1 - 6.0 */
+      background: -o-linear-gradient(#ff6a55, #ee1e27); /* Opera 11.1 - 12.0 */
+      background: -moz-linear-gradient(#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
+      background: linear-gradient(#ff6a55, #ee1e27); /* 标准的语法 */
+    }
+    btn:hover{
+      border: none;
+      outline: none;
+    }
+  
+    a:link { 
+      color:#3b92f0;
+      text-decoration:none;
+      }
+ </style>
 </head>
 <body>
 <div id="main">
-  <div class="card">
-    <div>
-      年化利率
-    </div>
-    <div>
-      出借奖励
-    </div>
-    <div>64.24<span class="font4">%</span>+<span class="font3">1.76<span  class="font4">%</span></span></div>
-    <div>资金由江西银行全程存管</div>
-    <div></div>
-      <div class="card-bottom">
-        <div class="card-bottom-l">
-          <div>服务期限180天</div> 
-        </div>
-        <div class="card-bottom-r">
+  <div id="top">
+      <div class="card">
           <div>
-            <div>剩余可出借（元）</div>
-            <div>200000.00</div>
+            年化利率
+          </div>
+          <div>
+            出借奖励
+          </div>
+          <div>64.24<span class="font4">%</span>+<span class="font3">1.76<span  class="font4">%</span></span></div>
+          <div>资金由江西银行全程存管</div>
+          <div></div>
+            <div class="card-bottom">
+              <div class="card-bottom-l">
+                <div>服务期限180天</div> 
+              </div>
+              <div class="card-bottom-r">
+                <div>
+                  <div>剩余可出借（元）</div>
+                  <div>200000.00</div>
+                </div>
+              </div>
+            </div>
+        </div>
+       
+          <div class="table"></div>
+          <div class="table-desc">
+            <div>
+              <div class="font1">今日出借</div>
+              <div class="font2">立即匹配</div>
+            </div>
+            <div>
+              <div class="font1">匹配成功</div>
+              <div class="font2">开始计息</div>
+            </div>
+            <div>
+              <div class="font1">到期转出</div>
+              <div class="font2">2018.3.1</div>
+            </div>
+            
+          </div>
+       
+        <div class="context">
+          <div class="context-title">出借金额（元）</div>
+          <input class="context-input" type="text" placeholder="最低出借5000元">
+          
+          <div>预期回报</div>
+          <div>11725.00元</div>
+          
+          <div>
+            (参考历史数据得出，以实际到账为准)
           </div>
         </div>
-      </div>
+        <footer>
+          <div class="foot-touch" id="touch">
+            -向上滑动，查看更多详情-
+          </div>
+          <div class="foot-title">
+              出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
+           
+          </div>
+          <div class="foot-content">
+              <button class="foot-content-btn"  >立即出借</button>
+          </div>
+        </footer>
   </div>
  
-    <div class="table"></div>
-    <div class="table-desc">
-      <div>
-        <div class="font1">今日出借</div>
-        <div class="font2">立即匹配</div>
+  <div style="width: 100%;height: 200px;background-color: #f2f2f2;" id="h3" ></div>
+  <div style="display: block;" id="h2" >
+    <header>
+      <div class="head-content" id="head-content">
+        <div class="head-content-item " @click="choose=1" :class={"head-content-item_choose":choose==1}>服务介绍</div>
+        <div  class="head-content-item " @click="choose=2" :class={"head-content-item_choose":choose==2}>标的组成</div>
+        <div  class="head-content-item" @click="choose=3" :class={"head-content-item_choose":choose==3}>加入记录</div>
       </div>
-      <div>
-        <div class="font1">匹配成功</div>
-        <div class="font2">开始计息</div>
+    </header>
+    <div id="choose1" v-if="choose==1">
+        <div class="context">
+            <div class="context-desc">
+              <p>服务名称：JJF0902012018052301</p>
+              <p>筹集期限：3个工作日</p>
+              <p>期待年回报率：7.5%，包含基础年化利率6.2%+出借奖励1.3%</p>
+              <p>服务年限：180天</p>
+              <p>出借范围：车辆抵押借款标、信用借款标</p>
+              <p>出借金额：出借金额100元起</p>
+              <p>出借时间：09：00~20：00</p>
+              <p>预计起息日期：2017-6-28，具体以匹配完成时间为准</p>
+              <p>账户管理费：单笔标的利息的0%</p>
+              <p>提前转出：服务期满30天后可申请提前转出</p>
+              <p>提前转出服务费：转出本金的6%</p>
+            </div>
+            <div class="context-safety">
+              <div class="context-title">
+               <p>安全保障</p> 
+              </div>
+              <div class="context-line"></div>
+            </div>
+            <div class="context-safety-desc">
+              <div>
+                  <img src="../image/sy_18.gif" alt="">
+              </div>
+              <div>
+                  <img src="../image/sy_19.gif" alt="">
+              </div>
+              <div>
+                <img src="../image/sy_20.gif" alt="">
+              </div>
+            </div>
+            <div class="context-serve">
+              <div class="context-title">
+                <p>服务说明</p> 
+              </div>
+              <div class="context-line"></div>
+            </div>
+            <div class="context-serve-desc">
+              <p>
+                用户在申请出借后资金会被冻结，系统会在用户授权范围内，为用户匹配通过平台评估审核合格，并符合用户风险评级结果的借款标的或债权装让标的；
+                在用户无异议的情况下，平台在用户已授权的情况下，利用电子签章与存证服务系统为出借、借款或债券转让用户双方生成电子签章，以备服务器永久储存。
+                同时，出借资金划拨至借款人或债券转让人在江西银行开立的账户中，形成债权债务关系。若匹配失败，出借资金将解冻，可由出借用户自由支配。
+              </p>
+            </div>
+            <div class="context-advanced">
+                <div class="context-title">
+                    <p>提前转出</p> 
+                  </div>
+                  <div class="context-line"></div>
+            </div>
+            <div class="context-advanced-desc">
+              <p>
+                除指定服务外，服务满30天后，您可申请提前转出。平台处理提前转出的债务周期一般为自用户提交之日起的3个工作日，如未能在发起日后3个工作日内
+                转让退出成功，用户将继续持有该债权。具体转让完成时间视市场交易情况而定。
+              </p>
+            </div>
+            <div class="context-theory">
+                <div class="context-title">
+                    <p>原理图</p> 
+                  </div>
+                  <div class="context-line"></div>
+            </div>
+            <div class="context-theory-desc">
+              <img src="../image/cp_11.png" alt="展示图片">
+            </div>
+        </div>
+    </div>
+    <div id="choose2" v-if="choose==2">
+        <div class="context">
+            <div class="context-title">为保护借款人信息仅展示部分内容，具体匹配以实际情况为准。</div>
+            <div class="context-table-wrap">
+              <table class="context-table">
+                <tr>
+                  <th>借款标的</th>
+                  <th>类型</th>
+                  <th>剩余金额（元）</th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td>扩大经营</td>
+                  <td>信A</td>
+                  <td>100000.00</td>
+                  <td>></td>
+                </tr>
+                <tr>
+                  <td>度假旅游</td>
+                  <td>车AA</td>
+                  <td>10000.00</td>
+                  <td>></td>
+                </tr>
+                <tr>
+                  <td>扩大经营</td>
+                  <td>信A</td>
+                  <td>100000.00</td>
+                  <td>></td>
+                </tr>
+                <tr>
+                  <td>度假旅游</td>
+                  <td>车AA</td>
+                  <td>10000.00</td>
+                  <td>></td>
+                </tr>
+                <tr>
+                  <td>扩大经营</td>
+                  <td>信A</td>
+                  <td>100000.00</td>
+                  <td>></td>
+                </tr>
+                <tr>
+                  <td>度假旅游</td>
+                  <td>车AA</td>
+                  <td>10000.00</td>
+                  <td>></td>
+                </tr>
+                <tr>
+                  <td>扩大经营</td>
+                  <td>信A</td>
+                  <td>100000.00</td>
+                  <td>></td>
+                </tr>
+                <tr>
+                  <td>度假旅游</td>
+                  <td>车AA</td>
+                  <td>10000.00</td>
+                  <td>></td>
+                </tr>
+                <tr>
+                  <td>扩大经营</td>
+                  <td>信A</td>
+                  <td>100000.00</td>
+                  <td>></td>
+                </tr>
+                <tr>
+                  <td>度假旅游</td>
+                  <td>车AA</td>
+                  <td>10000.00</td>
+                  <td>></td>
+                </tr>
+               
+              </table>
+            </div>
+          </div>
+    </div>
+    <div id="choose3" v-if="choose==3">
+        <div class="context">
+            <div class="context-title"></div>
+            <div class="context-table-wrap">
+              <table class="context-table">
+                <tr>
+                  <th>出借人</th>
+                  <th>加入金额（元）</th>
+                  <th>加入期限</th>
+                  <th>加入时间</th>
+                </tr>
+                <tr v-for="(item,index) in list" :key="index">
+                  <td>137****8833</td>
+                  <td>1000000.00</td>
+                  <td>60天</td>
+                  <td>2017-7-8 11:11:44</td>
+                </tr>
+               
+               
+              </table>
+            </div>
+          </div>
+    </div>
+    <footer>
+      <div class="foot-title">
+        出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
       </div>
-      <div>
-        <div class="font1">到期转出</div>
-        <div class="font2">2018.3.1</div>
+      <div class="foot-content">
+          <button class="foot-content-btn" @click="submit()">立即出借</button>
       </div>
       
-    </div>
- 
-  <div class="context">
-    <div class="context-title">出借金额（元）</div>
-    <input class="context-input" type="text" placeholder="最低出借5000元">
-    
-    <div>预期回报</div>
-    <div>11725.00元</div>
-    
-    <div>
-      (参考历史数据得出，以实际到账为准)
-    </div>
+    </footer>
   </div>
-  <footer>
-    <div class="foot-touch" id="touch">
-      -向上滑动，查看更多详情-
-    </div>
-    <div class="foot-title">
-        出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
-     
-    </div>
-    <div class="foot-content">
-        <button class="foot-content-btn" @click="submit()">立即出借</button>
-    </div>
-  </footer>
 </div>
+
 <script>
- 
-        
-        function getScrollTop() {
-            var scrollTop = 0;
-            if(document.documentElement && document.documentElement.scrollTop) {
-                scrollTop = document.documentElement.scrollTop;
-            } else if(document.body) {
-                scrollTop = document.body.scrollTop;
-            }
-            return scrollTop;
-        }
-
-        
-        function getClientHeight() {
-            var clientHeight = 0;
-            if(document.body.clientHeight && document.documentElement.clientHeight) {
-                clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
-            } else {
-                clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight);
-            }
-            return clientHeight;
-        }
-
-        
-        function getScrollHeight() {
-            return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-        }
-        
-        
-        window.onscroll = function() {
-            //console.log(getScrollTop() , getClientHeight(),getScrollHeight(),document.getElementById("touch").getBoundingClientRect())
-            if(getScrollTop() + getClientHeight() == getScrollHeight()) {
-              console.log("跳转")
-             // window.location.href="bidingDetailExtend.html"
-             }
-        }
-       
   var vm = new Vue({
+    el:"#main",
+    data(){
+      return{
+        h1:"",
+        h2:"",
+        list:[0,1,2,3,4,5,6,7,8,9],
+        choose:1
+      }
+    },
+    methods:{
+      submit(){
+      
+      }
+    },
+    mounted() {
+     
+       var h1 = document.getElementById("touch").getBoundingClientRect().top;
+       var h2 = document.getElementById("h2").getBoundingClientRect().top;
+       document.getElementById("h2").style.display="none"
+       document.getElementById("h3").style.display="none"
+       function pullUpLoad(){
+        document.getElementById("h2").style.display="block"
+        document.getElementById("h3").style.display="block"
+        var x = h1
+        var timer = setInterval(function(){
+          x = x+50;
+          if(x<h2){
+            console.log("x",x)
+            window.scrollTo(0, x);
+          }else{
+            document.getElementById("top").style.display="none"
+            document.getElementById("h3").style.display="none"
+            window.clearInterval(timer)
+            window.scrollTo(0,0);
+          }
+        },50)
+       
+        document.getElementById("touch").removeEventListener("touchmove",pullUpLoad)
+        document.getElementById("head-content").addEventListener("touchmove",pullDown)
+     }
+      
+      document.getElementById("touch").addEventListener("touchmove",pullUpLoad)
+      function animation() {
 
+      }
+      function pullDown() {
+        document.getElementById("top").style.display="block"
+        document.getElementById("h3").style.display="block"
+        window.scrollTo(0, h2);
+        var x = h2
+        var timer = setInterval(function(){
+          x = x-50;
+          if(x>0){
+            console.log("x",x)
+            window.scrollTo(0, x);
+          }else{
+            document.getElementById("h2").style.display="none"
+            document.getElementById("h3").style.display="none"
+            window.clearInterval(timer)
+            window.scrollTo(0,0);
+          }
+        },50)
+        document.getElementById("head-content").removeEventListener("touchmove",pullDown)
+        document.getElementById("touch").addEventListener("touchmove",pullUpLoad)
+      }
+      /* 
+     
+       */
+    },
   })
 </script>
 </body>
