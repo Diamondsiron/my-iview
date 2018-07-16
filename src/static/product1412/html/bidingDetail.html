@@ -178,26 +178,26 @@
         font-size: 0.36rem;
         color: #989898;
       }
-      .foot-touch{
+      #top .foot-touch{
         font-size: 0.36rem;
         margin-top: 0.87rem;
         text-align: center;
         color: #989898;
       }
-      .foot-title{
+      #top .foot-title{
         font-size: 0.36rem;
         color: #656565;
         text-align: center;
         margin-top: 0.6rem;
         margin-bottom: 0.3rem;
       }
-      .foot-content{
+      #top .foot-content{
         height: 2.1rem;
         overflow: hidden;
         margin: 0.3rem auto;
         width: 11.34rem;
       }
-      .foot-content-btn{
+      #top .foot-content-btn{
         height: 1.5rem;
         width: 100%;
         color: #fff;
@@ -211,10 +211,7 @@
         background: -moz-linear-gradient(#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
         background: linear-gradient(#ff6a55, #ee1e27); /* 标准的语法 */
       }
-      btn:hover{
-        border: none;
-        outline: none;
-      }
+      
     
       a:link { 
         color:#3b92f0;
@@ -278,6 +275,9 @@
       line-height: 1.40rem;
       color: #656565;
       font-size: 0.42rem;
+    }
+    .head-content-item:hover{
+      color:red
     }
     .head-content-item_choose{
       border-bottom: solid 2px #c7b299;
@@ -802,18 +802,34 @@
           if(vms.scroll.maxScrollY>pos.y+50){
             
             console.log("上拉")
-            document.getElementById("top").style.display="none";
+           /*  ";
+             */
+            
+           
             document.getElementById("bottom").style.display="block";
             vms.scroll.refresh();
-            vms.scroll.scrollTo(0, 0);
-            
+            vms.scroll.scrollTo(0, -786,1000);
+           
+           
+            setTimeout(() => {
+              document.getElementById("top").style.display="none"
+              vms.scroll.scrollTo(0, 0);
+            }, 1000);
+           
           }
           if(pos.y>100){
             console.log("下拉")
+            vms.scroll.scrollTo(0, -786);
             document.getElementById("top").style.display="block";
-            document.getElementById("bottom").style.display="none";
             vms.scroll.refresh();
-            vms.scroll.scrollTo(0, 0);
+           
+            vms.scroll.scrollTo(0, 0,1000);
+            setTimeout(function(){
+              document.getElementById("bottom").style.display="none";
+            },1000)
+           
+           
+            
            
           
           }
