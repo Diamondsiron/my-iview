@@ -507,7 +507,7 @@
   <div class="wrapper" id="main">
     <div class="content">
       <div >
-          <div id="top" style="display: block;height: 800px;">
+          <div id="top" style="display: block;">
               <div class="card">
                   <div>
                     年化利率
@@ -577,9 +577,9 @@
           <div style="display: none;" id="bottom" >
             <header>
               <div class="head-content" id="head-content">
-                <div class="head-content-item " @click="choose=1" :class={"head-content-item_choose":choose==1}>服务介绍</div>
-                <div  class="head-content-item " @click="choose=2" :class={"head-content-item_choose":choose==2}>标的组成</div>
-                <div  class="head-content-item" @click="choose=3" :class={"head-content-item_choose":choose==3}>加入记录</div>
+                <div class="head-content-item " v-on:click="changeCurrent(1)" :class={"head-content-item_choose":choose==1}>服务介绍</div>
+                <div  class="head-content-item " v-on:click="changeCurrent(2)" :class={"head-content-item_choose":choose==2}>标的组成</div>
+                <div  class="head-content-item" v-on:click="changeCurrent(3)" :class={"head-content-item_choose":choose==3}>加入记录</div>
               </div>
             </header>
             <div id="choose1" v-if="choose==1">
@@ -772,110 +772,67 @@
         h1:"",
         h2:"",
         list:[0,1,2,3,4,5,6,7,8,9],
-        choose:1
+        choose:1,
+        scroll
       }
+    },
+    created() {
+      console.log(document.documentElement.clientHeight)
     },
     methods:{
       submit(){
       
+      },
+      changeCurrent(value){
+        this.choose=value;
+        this.scroll.refresh();
+        //console.log("change")
+      },
+      _initScroll(){
+        let vms = this
+        //this.scroll
+        vms.scroll = new BScroll(document.querySelector(".content"), {
+          probeType: 3,
+          click:true
+        });
+        
+        
+        
+        vms.scroll.on('scroll', function (pos) {
+          if(vms.scroll.maxScrollY>pos.y+50){
+            
+            console.log("上拉")
+            document.getElementById("top").style.display="none";
+            document.getElementById("bottom").style.display="block";
+            vms.scroll.refresh();
+            vms.scroll.scrollTo(0, 0);
+            
+          }
+          if(pos.y>100){
+            console.log("下拉")
+            document.getElementById("top").style.display="block";
+            document.getElementById("bottom").style.display="none";
+            vms.scroll.refresh();
+            vms.scroll.scrollTo(0, 0);
+           
+          
+          }
+        console.log(Math.round(pos.y));
+        
+      })
       }
     },
     mounted() {
-     
-       /* var h1 = document.getElementById("touch").getBoundingClientRect().top;
-       var h2 = document.getElementById("h2").getBoundingClientRect().top;
-       document.getElementById("h2").style.display="none"
-       document.getElementById("h3").style.display="none"
-       function pullUpLoad(){
-        document.getElementById("h2").style.display="block"
-        document.getElementById("h3").style.display="block"
-        var x = h1
-        var timer = setInterval(function(){
-          x = x+50;
-          if(x<h2){
-            console.log("x",x)
-            window.scrollTo(0, x);
-          }else{
-            document.getElementById("top").style.display="none"
-            document.getElementById("h3").style.display="none"
-            window.clearInterval(timer)
-            window.scrollTo(0,0);
-          }
-        },50)
-       
-        document.getElementById("touch").removeEventListener("touchmove",pullUpLoad)
-        document.getElementById("head-content").addEventListener("touchmove",pullDown)
-     }
+      document.getElementById("top").style.height=(document.documentElement.clientHeight+50)+"px";
+      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight+50)+"px";
+      this.$nextTick(() => {
+       this._initScroll();
+      });
       
-      document.getElementById("touch").addEventListener("touchmove",pullUpLoad)
-      function animation() {
-
-      }
-      function pullDown() {
-        document.getElementById("top").style.display="block"
-        document.getElementById("h3").style.display="block"
-        window.scrollTo(0, h2);
-        var x = h2
-        var timer = setInterval(function(){
-          x = x-50;
-          if(x>0){
-            console.log("x",x)
-            window.scrollTo(0, x);
-          }else{
-            document.getElementById("h2").style.display="none"
-            document.getElementById("h3").style.display="none"
-            window.clearInterval(timer)
-            window.scrollTo(0,0);
-          }
-        },50)
-        document.getElementById("head-content").removeEventListener("touchmove",pullDown)
-        document.getElementById("touch").addEventListener("touchmove",pullUpLoad)
-      } */
       
     },
   })
 
-  var scroll
- /*  document.getElementById("bottom").style.display="none"; */
-  function init(){
-    scroll = new BScroll(document.querySelector(".content"), {
-      probeType: 3
-    });
-    
-    
-    console.log(scroll.maxScrollY)
-    scroll.on("pullingDown",function(){
-      
-      console.log("成功")
-    })
-    scroll.on("pullingUp",function(){
-     
-      console.log("失败")
-    })
-    scroll.on('scroll', function (pos) {
-      if(scroll.maxScrollY>pos.y+50){
-        
-        console.log("上拉")
-        document.getElementById("top").style.display="none";
-        document.getElementById("bottom").style.display="block";
-        scroll.refresh();
-        scroll.scrollTo(0, 0);
-      }
-      if(pos.y>50){
-        console.log("下拉")
-        document.getElementById("top").style.display="block";
-        document.getElementById("bottom").style.display="none";
-        scroll.refresh();
-        scroll.scrollTo(0, 0);
-       
-      }
-     console.log(Math.round(pos.y));
-     
-   })
-    
-  }
-  init();
- // setTimeout(init(),2000)
 </script>
 </body>
 </html>
