@@ -807,13 +807,14 @@
             
            
             document.getElementById("bottom").style.display="block";
-            vms.scroll.refresh();
+           
             vms.scroll.scrollTo(0, -786,1000);
            
            
             setTimeout(() => {
               document.getElementById("top").style.display="none"
               vms.scroll.scrollTo(0, 0);
+              vms.scroll.refresh();
             }, 1000);
            
           }
@@ -821,18 +822,13 @@
             console.log("下拉")
             vms.scroll.scrollTo(0, -786);
             document.getElementById("top").style.display="block";
-            vms.scroll.refresh();
-           
-            vms.scroll.scrollTo(0, 0,1000);
+            /* 
+             vms.scroll.scrollTo(0, 0,2000);
             setTimeout(function(){
               document.getElementById("bottom").style.display="none";
-            },1000)
-           
-           
-            
-           
-          
-          }
+              vms.scroll.refresh();
+            },2000) */
+        }
         console.log(Math.round(pos.y));
         
       })
@@ -848,7 +844,6 @@
       
     },
   })
-
 </script>
 </body>
 </html>

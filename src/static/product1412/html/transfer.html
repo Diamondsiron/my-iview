@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+  <!-- <script src="../js/bscroll.min.js"></script> -->
+  <script>
+      document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+   </script>
+   <style>
+      html,body{
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+       /*  height: 100%; */
+        background-color: #f2f2f2;;
+      }
+      #top .card{
+        margin-top: 0.48rem;
+        width: 100%;
+        height: 6.66rem;
+        background: url(../image/cp_5.png) no-repeat;
+        background-size: contain;
+        position: relative;
+        overflow: hidden;
+      }
+      #top .card>div:nth-child(1){
+       
+        position: absolute;
+        background: url(../image/cp_cheaa.png) no-repeat;
+        background-size: contain;
+        left:0.9rem;
+        top:0.6rem;
+        width: 1.26rem;
+        height: 0.51rem;
+      }
+      #top .card>div:nth-child(2){
+        color:#656565;
+        position: absolute;
+        font-size: 0.42rem;
+        left:2.58rem;
+        top:0.66rem;
+        width: 4.5rem;
+        height: 0.42rem;
+        
+      }
+      #top .card>div:nth-child(3){
+        position: absolute;
+        height: 0.72rem;
+        right: 1.8rem;
+        font-size: 0.36rem;
+        color: #998675;
+        font-weight: bold;
+        top: 0.72rem;
+      }
+     
+      #top .card>div:nth-child(4){
+          margin-top: 1.47rem ;
+          font-size: 0.36rem;
+        text-align: center
+      }
+      #top .card>div:nth-child(5){
+        margin-top: 0.24rem ;
+        font-size: 0.78rem;
+        text-align: center
+      }
+      #top .card>div:nth-child(6){
+        margin-top: 0.39rem ;
+        font-size: 0.42rem;
+       text-align: center
+      }
+      
+      #top .card-bottom{
+       
+        margin-top: 0.81rem;
+      }
+      #top  .card-bottom-l{
+        color: #998675;
+       display: inline-block;
+       margin-left: 1.26rem;
+       width: 3.06rem;
+        font-size: 0.36rem;
+        text-align: center;
+        border-right:solid 1px #f2f2f2; 
+      }
+      #top  .card-bottom-c{
+        display: inline-block;
+        color: #998675;
+        margin-left: 0.72rem;
+       width: 3.06rem;
+        font-size: 0.36rem;
+        text-align: center;
+        border-right:solid 1px #f2f2f2; 
+      }
+     
+      #top .card-bottom-r{
+        display: inline-block;
+        margin-left: 0.54rem;
+        color: #998675;
+        font-size: 0.36rem;
+        text-align: left;
+      }
+     /*  #top  .card-bottom-r div div:nth-child(1){
+        margin-left:0.56rem; 
+        font-size: 0.36rem;
+        height: 0.36rem;
+      
+        color: #989898;
+      }
+      #top  .card-bottom-r div div:nth-child(2){
+        margin-left:0.56rem; 
+        margin-top: 0.18rem;
+        font-size: 0.58rem;
+        color:#998675;
+      } */
+      #top .table{
+        width: 7.26rem;
+        height: 0.66rem;
+        margin: 0.51rem auto;
+        background: url(../image/cp_6.png) no-repeat;
+        background-size: contain;
+      }
+      #top  .table-desc{
+        width: 100%;
+        height: 0.9rem;
+        margin-top: 0.3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      #top .table-desc>div:nth-child(1){
+        
+       position: absolute;
+       left: 2.16rem;
+       font-size: 0.36rem;
+       width: 1.53rem;
+      }
+      #top .table-desc>div:nth-child(2){
+        position: absolute;
+       left: 5.43rem;
+       font-size: 0.36rem;
+       width: 1.53rem;
+      }
+      #top .table-desc>div:nth-child(3){
+        position: absolute;
+       right:2.16rem ;
+       font-size: 0.36rem;
+       width: 1.53rem;
+       
+      }
+     
+      #top .context{
+        width: 100%;
+        margin-top: 0.72rem;
+        font-size: 0.36rem;
+        color: #989898;
+      }
+      #top .context ul{
+        padding: 0px
+      }
+      #top .context ul li{
+        list-style: none;
+        position: relative;
+        width: 100%;
+        height: 0.36rem;
+        margin-bottom: 0.18rem;
+      }
+      #top .context ul li p:nth-child(1){
+        left: 1.08rem;
+        position: absolute;
+      }
+      #top .context ul li p:nth-child(2){
+        right: 1.08rem;
+        position: absolute;
+      }
+      
+      #top .foot-touch{
+        font-size: 0.36rem;
+        margin-top: 0.87rem;
+        text-align: center;
+        color: #989898;
+      }
+      #top .foot-title{
+        font-size: 0.36rem;
+        color: #656565;
+        text-align: center;
+        margin-top: 0.6rem;
+        margin-bottom: 0.3rem;
+      }
+      #top .foot-content{
+        height: 2.1rem;
+        overflow: hidden;
+        margin: 0.3rem auto;
+        width: 11.34rem;
+      }
+      #top .foot-content-btn{
+        height: 1.5rem;
+        width: 100%;
+        color: #fff;
+        font-size: 0.5rem;
+        text-align: center;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        background: -webkit-linear-gradient(#ff6a55, #ee1e27); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(#ff6a55, #ee1e27); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
+        background: linear-gradient(#ff6a55, #ee1e27); /* 标准的语法 */
+      }
+      
+    
+      a:link { 
+        color:#3b92f0;
+        text-decoration:none;
+        }
+        input::-webkit-input-placeholder{
+            color:#c3c3c3;
+            font-size: 0.54rem;
+        }
+        input::-moz-placeholder{  
+          color:#c3c3c3;
+          font-size: 0.54rem;
+        }
+        input:-moz-placeholder{    
+          color:#c3c3c3;
+          font-size: 0.54rem;
+        }
+        input:-ms-input-placeholder{  
+          color:#c3c3c3;
+          font-size: 0.54rem;
+        }
+        .font1{
+        color:#656565;
+        font-weight: bold;
+      }
+      .font2{
+        color:#989898;
+      }
+      .font3{
+        color: #ff3a49;
+      }
+      .font4{
+        font-size: 0.45rem;
+      }
+   
+    #bottom header{
+      width: 100%;
+      height: 1.46rem;
+      margin: 0 auto;
+      display: flex;
+      border-bottom: solid 0.01rem #c7b299;
+    }
+    #bottom .head-content{
+      width: 11.34rem;
+      height: 1.46rem;
+      margin: 0 auto;
+      display: flex;
+    }
+    #bottom .head-content-item{
+      flex: 1;
+      text-align: center;
+      height: 1.40rem;
+      line-height: 1.40rem;
+      color: #656565;
+      font-size: 0.42rem;
+    }
+    
+    #bottom .head-content-item_choose{
+      border-bottom: solid 2px #c7b299;
+    }
+    #choose1 .context{
+      font-size: 0.36rem;
+      color: #989898;
+    }
+    
+    #choose1 .context-message{
+     margin-top: 0.78rem;
+     margin-left: 0.54rem;
+    }
+    #choose1 .context-message-desc{
+        
+      position: relative;
+     
+      
+    }
+    #choose1 .context-message-desc div{
+      margin-top: 0.66rem;
+      margin-left: 1.08rem;
+     font-size: 0.36rem;
+     color: #656565;
+     font-weight: bold;
+     width: 3.87rem;
+      
+    }
+    #choose1  ul{
+      margin-top: 0.21rem;
+      font-size: 0.36rem;
+      padding: 0px;
+      color: #989898;
+      
+    }
+    #choose1  ul li{
+      margin-top: 0.18rem;
+      position: relative;
+      height: 0.36rem;
+      list-style:none
+    }
+    #choose1  ul li p:nth-child(1){
+      position: absolute;
+      left: 1.08rem;
+      top: 0px;
+      
+    }
+    #choose1  ul li p:nth-child(2){
+      position: absolute;
+      right: 1.08rem;
+      top: 0px;
+      
+    }
+    #choose1 .context-record{
+        margin-top: 0.81rem;
+       margin-left: 0.54rem;
+    }
+    #choose1 .context-record-desc{
+       
+     
+    }
+    #choose1 .context-borrow{
+        margin-top: 0.81rem;
+       margin-left: 0.54rem;
+    }
+    #choose1 .context-borrow-desc div {
+        margin-top: 0.66rem;
+        margin-left: 1.08rem;
+        font-size: 0.36rem;
+        color: #656565;
+       
+    }
+    #choose1 .context-borrow-desc div span{
+        color: #656565;
+        font-weight: bold;
+    }
+    #choose1 .context-borrow-desc div p{
+        color: #989898;
+        line-height: 0.12rem;
+    }
+    #choose1 .context-audit{
+        margin-top: 0.81rem;
+       margin-left: 0.54rem;
+    }
+    #choose1 .context-audit-desc{
+     
+    }
+    
+    #choose1 .context-title{
+      display: inline-block;;
+      width: 2.58rem;
+      height: 0.72rem;
+      color: #f2f2f2;
+      
+      border-radius: 10px;
+      background-color: #c7b299;
+      text-align: center;
+      
+    }
+    #choose1 .context-line{
+      display: inline-block;
+      
+      height: 1px;
+      border-bottom: solid 1px #c7b299;
+      width: 8.76rem;
+     
+    }
+    #choose1 .context-title p{
+      margin-top: 0.1rem;
+     
+    }
+    #choose2 .context-title{
+    font-size: 0.36rem;
+    color: #989898;
+    text-align: center;
+    margin-top: 0.54rem;
+    margin-bottom: 0.6rem;
+  }
+  #choose2 td{
+    padding: 0px;
+  }
+  #choose2 .context-table{
+    width: 11.34rem;
+    margin: 0 auto;
+    background-color: #ffffff;
+    color: #989898;
+    font-size: 0.42rem;
+    text-align: center;
+    border-collapse: collapse;
+    
+  }
+  #choose2 th{
+    color: #998675; 
+  }
+  #choose2 tr{
+    height: 1.35rem;
+    border-bottom: solid 0.02rem #f2f2f2;
+  }
+  #choose2 tr>td:nth-child(1){
+    width: 3.12rem;
+  }
+  #choose2 tr>td:nth-child(2){
+    width: 4.02rem;
+  }
+  #choose2 tr>td:nth-child(3){
+    width: 4.20rem;
+  }
+  .head-content-item_choose{
+    border-bottom: solid 2px #c7b299;
+  }
+  #choose3 .context-title{
+    font-size: 0.36rem;
+    color: #989898;
+    text-align: center;
+    margin-top: 0.54rem;
+    margin-bottom: 0.6rem;
+  }
+  #choose3 .card{
+    margin-top: 0.18rem;
+    width: 12.42rem;
+    height: 4.23rem;
+    background: url(../image/cp_12.png) no-repeat;
+    background-size: contain;
+    position: relative;
+    overflow: hidden; 
+  }
+  #choose3 .card:nth-child(1){
+    margin-top: 0.48rem;
+    width: 12.42rem;
+    height: 4.23rem;
+    background: url(../image/cp_12.png) no-repeat;
+    background-size: contain;
+    position: relative;
+    overflow: hidden; 
+  }
+  #choose3 .card div:nth-child(1){
+      position: absolute;
+    font-size: 0.48rem;
+    color: #998675;
+    top: 0.66rem;
+    
+    left: 1.17rem;
+    height: 0.48rem;
+  }
+  #choose3 .card div:nth-child(2){
+    position: absolute;
+    font-weight: bold;
+    font-size: 0.48rem;
+    color: #998675;
+    top: 0.66rem;
+    right: 1.17rem;
+    height: 0.48rem;
+  }
+#choose3 .card div:nth-child(3){
+    position: absolute;
+    font-size: 0.36rem;
+    color: #656565;
+    top: 1.8rem;
+    left: 1.17rem;
+    height: 0.36rem;
+}
+ #choose3 .card div:nth-child(4){
+    color: #656565;
+    position: absolute;
+    font-size: 0.36rem;
+    top: 1.8rem;
+    right: 1.17rem;
+    height: 0.36rem;
+ }
+ #choose3 .card div:nth-child(5){
+    color: #656565;
+    position: absolute;
+    font-size: 0.36rem;
+    top: 2.4rem;
+    left: 1.17rem;
+    height: 0.36rem;
+ }
+ #choose3 .card div:nth-child(6){
+    position: absolute;
+    color: #656565;
+    font-size: 0.36rem;
+    top: 2.4rem;
+    right: 1.17rem;
+    height: 0.36rem;
+ }
+ #choose3 .card div:nth-child(7){
+    color: #656565;
+    position: absolute;
+    font-size: 0.36rem;
+    top: 3rem;
+    left: 1.17rem;
+    height: 0.36rem;
+ }
+ #choose3 .card div:nth-child(8){
+    color: #656565;
+    position: absolute;
+    font-size: 0.36rem;
+    top: 3rem;
+    right: 1.17rem;
+    height: 0.36rem;
+ }
+  
+#choose3 .grayblock{
+    width: 5.13rem;
+    height: 5.13rem;
+    margin: 2.22rem auto 0 auto;
+    background-color: #c3c3c3
+}  
+#choose3 .grayblock-desc{
+    margin: 0.42rem auto;
+    width: 2.61rem;
+    font-size: 0.42rem;
+    color: #c3c3c3;
+}
+  #bottom .foot-title{
+      font-size: 0.36rem;
+      color: #656565;
+      text-align: center;
+      margin-top: 0.9rem;
+      width: 10.1rem;;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 0.18rem;
+    }
+    #bottom .foot-title p:nth-child(2){
+     
+      margin-top: 0.24rem;
+     
+    }
+    #bottom .foot-content{
+      height: 2.1rem;
+      overflow: hidden;
+      margin: 0.3rem auto;
+      width: 11.34rem;
+    }
+    #bottom .foot-content-btn{
+      height: 1.5rem;
+      width: 100%;
+      color: #fff;
+      font-size: 0.5rem;
+      text-align: center;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      background: -webkit-linear-gradient(#ff6a55, #ee1e27); /* Safari 5.1 - 6.0 */
+      background: -o-linear-gradient(#ff6a55, #ee1e27); /* Opera 11.1 - 12.0 */
+      background: -moz-linear-gradient(#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
+      background: linear-gradient(#ff6a55, #ee1e27); /* 标准的语法 */
+    }
+    btn:hover{
+      border: none;
+      outline: none;
+    }
+  
+    a:link { 
+      color:#3b92f0;
+      text-decoration:none;
+      }
+      .wrapper{
+       /*  width: 100%;
+        position:absolute;
+        top: 0px;
+        bottom: 0px;
+        overflow: hidden;
+        z-index: 1; */
+      }
+      .content{
+       /*  height:100%; */
+      }
+ </style>
+</head>
+<body>
+  <div class="wrapper" id="main">
+    <div class="content">
+      <div >
+          <div id="top" style="display: block;">
+              <div class="card">
+                  <div>
+                   
+                  </div>
+                  <div>
+                   资金周转
+                  </div>
+                  <div>等额本息</div>
+                  <div>年化利率</div>
+                  <div>6.24%</div>
+                 
+                  <div>
+                    剩余时间:1天23小时59分
+                  </div>
+                  
+                  <div></div>
+                    <div class="card-bottom">
+                    <div class="card-bottom-l">
+                        <div>
+                            <div>剩余期限</div>
+                            <div>12期+25天</div>
+                        </div>
+                    </div>
+                    <div class="card-bottom-c">
+                        <div>
+                            <div>转让金额（元）</div>
+                            <div>200000.00</div>
+                        </div>
+                    </div>
+                      <div class="card-bottom-r">
+                        <div>
+                          <div>借款额（元）</div>
+                          <div>200000.00</div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+               
+                  
+               
+                <div class="context">
+                  <ul>
+                      <li>
+                          <p>转让编号:</p>
+                          <p>22222222</p>
+                      </li>
+                      <li>
+                            <p>本金折扣:</p>
+                            <p>0%</p>
+                        </li>
+                        <li>
+                            <p>还款方式:</p>
+                            <p>等额本息</p>
+                        </li>
+                        <li>
+                            <p>发布时间:</p>
+                            <p>2017-11-2</p>
+                        </li>
+                        <li>
+                            <p>下一个还款日:</p>
+                            <p>2017-11-30</p>
+                        </li>
+                       
+                  </ul>
+                </div>
+                <footer>
+                  <div class="foot-touch" id="touch">
+                    -向上滑动，查看更多详情-
+                  </div>
+                 
+                  <div class="foot-content">
+                      <button class="foot-content-btn"  >还款中</button>
+                  </div>
+                </footer>
+          </div>
+         
+          <!-- <div style="width: 100%;height: 200px;background-color: #f2f2f2;" id="h3" ></div> -->
+          <div style="display: block;" id="bottom" >
+            <header>
+              <div class="head-content" id="head-content">
+                <div class="head-content-item " v-on:click="changeCurrent(1)" :class={"head-content-item_choose":choose==1}>借款信息</div>
+                <div  class="head-content-item " v-on:click="changeCurrent(2)" :class={"head-content-item_choose":choose==2}>出借记录</div>
+                <div  class="head-content-item" v-on:click="changeCurrent(3)" :class={"head-content-item_choose":choose==3}>还款计划</div>
+              </div>
+            </header>
+            <div id="choose1" v-if="choose==1">
+                <div class="context">
+                    
+                    <div class="context-message">
+                      <div class="context-title">
+                       <p>借款人信息</p> 
+                      </div>
+                      <div class="context-line"></div>
+                    </div>
+                    <div class="context-message-desc">
+                     <div>借款人主体性质:自然人</div>
+                     <ul>
+                         <li>
+                             <p>姓名</p>
+                             <p>张**</p>
+                         </li>
+                         <li>
+                            <p>身份证号</p>
+                            <p>1*****************</p>
+                        </li>
+                         <li>
+                            <p>性别</p>
+                            <p>男</p>
+                        </li>
+                        <li>
+                            <p>婚姻</p>
+                            <p>已婚</p>
+                        </li>
+                        <li>
+                            <p>最高学历</p>
+                            <p>本科</p>
+                        </li>
+                        <li>
+                            <p>现居地</p>
+                            <p>省-市-区</p>
+                        </li>
+                        <li>
+                            <p>房产信息</p>
+                            <p>无</p>
+                        </li>
+                        <li>
+                            <p>车产信息</p>
+                            <p>有</p>
+                        </li>
+                        <li>
+                            <p>工作行业</p>
+                            <p>金融</p>
+                        </li>
+                        <li>
+                            <p>月收入</p>
+                            <p>4000.00</p>
+                        </li>
+                        <li>
+                            <p>工作年限</p>
+                            <p>两年以上</p>
+                        </li>
+                        <li>
+                            <p>工作职务</p>
+                            <p>中基管理人员</p>
+                        </li>
+                     </ul>
+                    
+                    </div>
+                   
+                    <div class="context-record">
+                        <div class="context-title">
+                            <p>借款人信用档案</p> 
+                          </div>
+                          <div class="context-line"></div>
+                    </div>
+                    <div class="context-record-desc">
+                     <ul>
+                         <li>
+                             <p>逾期次数</p>
+                             <p>0次</p>
+                         </li>
+                         <li>
+                            <p>逾期总金额</p>
+                            <p>0元</p>
+                        </li>
+                        <li>
+                            <p>待还总额</p>
+                            <p>0元</p>
+                        </li>
+                        <li>
+                            <p>借款人在其他网络借款平台借款情况</p>
+                            <p>未获知</p>
+                        </li>
+                     </ul>
+                    </div>
+                    <div class="context-borrow">
+                        <div class="context-title">
+                            <p>借款信息</p> 
+                          </div>
+                          <div class="context-line"></div>
+                    </div>
+                    <div class="context-borrow-desc">
+                      <ul>
+                          <li>
+                              <p>借款用途</p>
+                              <p>资金周转</p>
+                          </li>
+                          <li>
+                            <p>借款时间</p>
+                            <p>2017-11-30 22:22:22</p>
+                        </li>
+                        <li>
+                            <p>借款类型</p>
+                            <p>车辆抵押借款标</p>
+                        </li>
+                      </ul>
+                      <div>
+                          <span>
+                              还款来源及保障措施
+                          </span>
+                          <p>1、日常收入，借款人按相关约定按时，足额偿还本息</p>
+                          <p>2、借款人未能按时、足额偿还本息时，处置抵押质押车辆，所</p>
+                          <p>得款足额偿还借款本息</p>
+                          <p>3、由中吉财富融资担保有限公司承担100%保障责任</p>
+                      </div>
+                      </div>
+                      <div class="context-audit">
+                            <div class="context-title">
+                                <p>借款信息</p> 
+                                </div>
+                                <div class="context-line"></div>
+                        </div>
+                      <div class="context-audit-desc">
+                        <ul>
+                            <li>
+                                <p>身份证明</p>
+                                <p>通过</p>
+                            </li>
+                            <li>
+                                <p>收入证明</p>
+                                <p>通过</p>
+                            </li>
+                            <li>
+                                <p>面审</p>
+                                <p>通过</p>
+                            </li>
+                            <li>
+                                <p>实地考察</p>
+                                <p>通过</p>
+                            </li>
+                            <li>
+                                <p>个人信用报告</p>
+                                <p>通过</p>
+                            </li>
+                            <li>
+                                <p>住址证明</p>
+                                <p>通过</p>
+                            </li>
+                            <li>
+                                <p>借款合同</p>
+                                <p>通过</p>
+                            </li>
+                            <li>
+                                <p>借款申请表</p>
+                                <p>通过</p>
+                            </li>
+                            <li>
+                                <p>信用咨询与管理服务协议</p>
+                                <p>通过</p>
+                            </li>
+                            <li>
+                                <p>平台委托授权书</p>
+                                <p>通过</p>
+                            </li>
+                            <li>
+                                <p>其他</p>
+                                <p>通过</p>
+                            </li>
+                        </ul>
+                      </div>
+                    </div>
+                
+            </div>
+            <div id="choose2" v-if="choose==2">
+                <div class="context">
+                    <div class="context-title"></div>
+                    <div class="context-table-wrap">
+                      <table class="context-table">
+                        <tr>
+                          <th>借款人</th>
+                          <th>出借金额（元）</th>
+                          <th>出借记录</th>
+                          <th></th>
+                        </tr>
+                        <tr v-for="(item,index) in list" :key="index">
+                          <td>137***8833</td>
+                          <td>100000.00</td>
+                          <td>2017-7-8 11:11:44</td>
+                        </tr>
+                        
+                       
+                      </table>
+                    </div>
+                  </div>
+            </div>
+            <div id="choose3" v-if="choose==3">
+                <div class="context">
+                    <div class="context-title"></div>
+                    <div class="context-table-wrap">
+                      <div class="card">
+                        <div>第1期/共12期</div>
+                        <div>已还款</div>
+                        <div>应还本金</div>
+                        <div>1444.72</div>
+                        <div>应还利息</div>
+                        <div>772.27</div>
+                        <div>总款金额</div>
+                        <div>2327.4</div>
+                      </div>
+                      <div class="card">
+                        <div>第2期/共12期</div>
+                        <div>已还款</div>
+                        <div>应还本金</div>
+                        <div>1444.72</div>
+                        <div>应还利息</div>
+                        <div>772.27</div>
+                        <div>总款金额</div>
+                        <div>2327.4</div>
+                      </div>      
+                   
+                    <!--  -->
+                   <!--  <div class="grayblock">
+
+                    </div>
+                    <div class="grayblock-desc">
+                        尚未生成数据
+                    </div> -->
+                  </div>
+            </div>
+        </div> 
+            <footer>
+              <div class="foot-title">
+                  <p>出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《担保函》</a></p>
+                  <p><a href="javascript:void(0)">《风险提示书》</a>、<a href="javascript:void(0)">《风险提示书》</a></p>
+               
+              </div>
+              <div class="foot-content">
+                  <button class="foot-content-btn" @click="submit()">还款中</button>
+              </div>
+              
+            </footer>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+<script>
+  var vm = new Vue({
+    el:"#main",
+    data(){
+      return{
+        h1:"",
+        h2:"",
+        list:[0,1,2,3,4,5,6,7,8,9],
+        choose:1,
+        scroll
+      }
+    },
+    created() {
+      console.log(document.documentElement.clientHeight)
+    },
+    methods:{
+      submit(){
+      
+      },
+      changeCurrent(value){
+        this.choose=value;
+        this.scroll.refresh();
+        //console.log("change")
+      },
+      _initScroll(){
+        let vms = this
+        //this.scroll
+        vms.scroll = new BScroll(document.querySelector(".content"), {
+          probeType: 3,
+          click:true
+        });
+        
+        
+        
+        vms.scroll.on('scroll', function (pos) {
+          if(vms.scroll.maxScrollY>pos.y+50){
+            
+            console.log("上拉")
+           /*  ";
+             */
+            
+           
+            document.getElementById("bottom").style.display="block";
+            vms.scroll.refresh();
+            vms.scroll.scrollTo(0, -786,1000);
+           
+           
+            setTimeout(() => {
+              document.getElementById("top").style.display="none"
+              vms.scroll.scrollTo(0, 0);
+            }, 1000);
+           
+          }
+          if(pos.y>100){
+            console.log("下拉")
+            vms.scroll.scrollTo(0, -786);
+            document.getElementById("top").style.display="block";
+            vms.scroll.refresh();
+           
+            vms.scroll.scrollTo(0, 0,1000);
+            setTimeout(function(){
+              document.getElementById("bottom").style.display="none";
+            },1000)
+           
+           
+            
+           
+          
+          }
+        console.log(Math.round(pos.y));
+        
+      })
+      }
+    },
+    mounted() {
+      document.getElementById("top").style.height=(document.documentElement.clientHeight+50)+"px";
+      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight+50)+"px";
+    /*   this.$nextTick(() => {
+       this._initScroll();
+      }); */
+      
+      
+    },
+  })
+</script>
+</body>
+</html>
