@@ -26,7 +26,7 @@
                   </div>
                   <div>等额本息</div>
                   <div>年化利率</div>
-                  <div>6.24%</div>
+                  <div>6.24<span style="font-size: 0.39rem">%</span></div>
                  
                   <div>
                     剩余时间:1天23小时59分
@@ -36,20 +36,20 @@
                     <div class="card-bottom">
                     <div class="card-bottom-l">
                         <div>
-                            <div>剩余期限</div>
-                            <div>12期+25天</div>
+                            <div class="card-bottom-top">剩余期限</div>
+                            <div class="card-bottom-bottom">12期+25天</div>
                         </div>
                     </div>
                     <div class="card-bottom-c">
                         <div>
-                            <div>转让金额（元）</div>
-                            <div>200000.00</div>
+                            <div class="card-bottom-top">转让金额（元）</div>
+                            <div class="card-bottom-bottom">200000.00</div>
                         </div>
                     </div>
                       <div class="card-bottom-r">
                         <div>
-                          <div>借款额（元）</div>
-                          <div>200000.00</div>
+                          <div class="card-bottom-top">借款额（元）</div>
+                          <div class="card-bottom-bottom">200000.00</div>
                         </div>
                       </div>
                     </div>
@@ -82,7 +82,7 @@
                        
                   </ul>
                 </div>
-                <footer>
+                <footer class="top-footer">
                   <div class="foot-touch" id="touch">
                     -向上滑动，查看更多详情-
                   </div>
@@ -93,8 +93,8 @@
                 </footer>
           </div>
          
-          <!-- <div style="width: 100%;height: 200px;background-color: #f2f2f2;" id="h3" ></div> -->
-          <div style="display: block;" id="bottom" >
+          
+          <div style="display: none;" id="bottom" >
             <header>
               <div class="head-content" id="head-content">
                 <div class="head-content-item " v-on:click="changeCurrent(1)" :class={"head-content-item_choose":choose==1}>借款信息</div>
@@ -167,10 +167,10 @@
                     </div>
                    
                     <div class="context-record">
-                        <div class="context-title">
+                        <div class="context-title" style="width:3.72rem">
                             <p>借款人信用档案</p> 
                           </div>
-                          <div class="context-line"></div>
+                          <div class="context-line" style="width:8.04rem"></div>
                     </div>
                     <div class="context-record-desc">
                      <ul>
@@ -214,7 +214,7 @@
                         </li>
                       </ul>
                       <div>
-                          <span>
+                          <span style="margin-top: 0.72rem;display: block;">
                               还款来源及保障措施
                           </span>
                           <p>1、日常收入，借款人按相关约定按时，足额偿还本息</p>
@@ -278,6 +278,9 @@
                         </ul>
                       </div>
                     </div>
+                    <div class="foot-touch-bottom">
+                        -点击查看借款人回访-
+                      </div>
                 
             </div>
             <div id="choose2" v-if="choose==2">
@@ -325,7 +328,17 @@
                         <div>772.27</div>
                         <div>总款金额</div>
                         <div>2327.4</div>
-                      </div>      
+                      </div>   
+                      <div class="card">
+                          <div>第3期/共12期</div>
+                          <div>未还款</div>
+                          <div>应还本金</div>
+                          <div>1444.72</div>
+                          <div>应还利息</div>
+                          <div>772.27</div>
+                          <div>总款金额</div>
+                          <div>2327.4</div>
+                        </div>     
                    
                     <!--  -->
                    <!--  <div class="grayblock">
@@ -337,12 +350,11 @@
                   </div>
             </div>
         </div> 
-            <footer>
-              <div class="foot-title">
-                  <p>出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《担保函》</a></p>
-                  <p><a href="javascript:void(0)">《风险提示书》</a>、<a href="javascript:void(0)">《风险提示书》</a></p>
-               
-              </div>
+            <div style="widows: 100%;height:2.25rem;">
+
+            </div>
+            <footer class="footer">
+              
               <div class="foot-content">
                   <button class="foot-content-btn" @click="submit()">还款中</button>
               </div>
@@ -376,8 +388,8 @@
       },
       changeCurrent(value){
         this.choose=value;
-        this.scroll.refresh();
-        //console.log("change")
+        //this.scroll.refresh();
+       
       },
       _initScroll(){
         let vms = this
