@@ -16,7 +16,7 @@
   <div class="wrapper" id="main">
     <div class="content">
       <div >
-          <div id="top" style="display: none;">
+          <div id="top" style="display: block;">
               <div class="card">
                   <div>
                    
@@ -94,7 +94,7 @@
           </div>
          
           
-          <div style="display: block;" id="bottom" >
+          <div style="display: none;" id="bottom" >
             <header>
               <div class="head-content" id="head-content">
                 <div class="head-content-item " v-on:click="changeCurrent(1)" :class={"head-content-item_choose":choose==1}>借款信息</div>
@@ -350,9 +350,9 @@
                   </div>
             </div>
         </div> 
-            <div style="widows: 100%;height:2.25rem;">
+            <!-- <div style="widows: 100%;height:2.25rem;">
 
-            </div>
+            </div> -->
             <footer class="footer">
               
               <div class="foot-content">
@@ -444,9 +444,9 @@
     mounted() {
       document.getElementById("top").style.height=(document.documentElement.clientHeight+50)+"px";
       document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight+50)+"px";
-    /*   this.$nextTick(() => {
+      this.$nextTick(() => {
        this._initScroll();
-      }); */
+      });
       
       
     },

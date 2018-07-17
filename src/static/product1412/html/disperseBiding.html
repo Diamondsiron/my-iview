@@ -15,7 +15,7 @@
   <div class="wrapper" id="main">
     <div class="content">
       <div >
-          <div id="top" style="display: none;">
+          <div id="top" style="display: block;">
               <div class="card">
                   <div>
                    
@@ -95,7 +95,7 @@
           </div>
          
           <!-- <div style="width: 100%;height: 200px;background-color: #f2f2f2;" id="h3" ></div> -->
-          <div style="display: block;" id="bottom" >
+          <div style="display: none;" id="bottom" >
             <header>
               <div class="head-content" id="head-content">
                 <div class="head-content-item " v-on:click="changeCurrent(1)" :class={"head-content-item_choose":choose==1}>借款信息</div>
@@ -338,9 +338,9 @@
                   </div>
             </div>
         </div> 
-        <div style="widows: 100%;height:4.25rem;">
+       <!--  <div style="widows: 100%;height:4.25rem;">
 
-          </div>
+          </div> -->
             <footer class="bottom-footer">
               <div class="foot-title">
                   <p>出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《担保函》</a></p>
@@ -434,11 +434,11 @@
       }
     },
     mounted() {
-      document.getElementById("top").style.height=(document.documentElement.clientHeight+50)+"px";
-      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight+50)+"px";
-    /*   this.$nextTick(() => {
+        document.getElementById("top").style.height=(document.documentElement.clientHeight+50)+"px";
+        document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight+50)+"px";
+      this.$nextTick(() => {
        this._initScroll();
-      }); */
+      });
       
       
     },

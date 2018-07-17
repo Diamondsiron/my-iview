@@ -193,11 +193,7 @@ html,body{
   position: absolute;
 }
 .top-footer{
-  width: 100%;
-    position: fixed;
-    bottom: 0rem;
-    left: 0rem;
-    background-color: #f2f2f2;
+  margin-top: 4.62rem;
 }
 #top .foot-touch{
   font-size: 0.36rem;
@@ -551,11 +547,11 @@ font-size: 0.42rem;
 color: #c3c3c3;
 }
 .bottom-footer{
-  width: 100%;
+ /*  width: 100%;
   position: fixed;
   bottom: 0rem;
   left: 0rem;
-  background-color: #f2f2f2;
+  background-color: #f2f2f2; */
 }
 #bottom .foot-title{
 font-size: 0.36rem;
@@ -604,13 +600,13 @@ color:#3b92f0;
 text-decoration:none;
 }
 .wrapper{
- /*  width: 100%;
+  width: 100%;
   position:absolute;
   top: 0px;
   bottom: 0px;
   overflow: hidden;
-  z-index: 1; */
+  z-index: 1;
 }
 .content{
- /*  height:100%; */
+  height:100%;
 }
