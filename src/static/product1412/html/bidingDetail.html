@@ -793,45 +793,46 @@
         //this.scroll
         vms.scroll = new BScroll(document.querySelector(".content"), {
           probeType: 3,
-          click:true
-        });
-        
-        
-        
-        vms.scroll.on('scroll', function (pos) {
-          if(vms.scroll.maxScrollY>pos.y+50){
-            
+          click:true,
+         });
+       function up(pos){
+        if(vms.scroll.maxScrollY>pos.y+50){
             console.log("上拉")
-           /*  ";
-             */
-            
-           
             document.getElementById("bottom").style.display="block";
-           
-            vms.scroll.scrollTo(0, -786,1000);
-           
-           
-            setTimeout(() => {
+            vms.scroll.refresh();
+            vms.scroll.scrollTo(0, -786,1000,"bounce");
+            //vms.scroll.scrollToElement(document.getElementById("bottom"), 1000, )
+           setTimeout(() => {
               document.getElementById("top").style.display="none"
               vms.scroll.scrollTo(0, 0);
               vms.scroll.refresh();
+              vms.scroll.off('scroll', up)
+              vms.scroll.on('scroll', down)
             }, 1000);
            
           }
-          if(pos.y>100){
+          console.log(Math.round(pos.y));
+       }
+       function down(pos) {
+        if(pos.y>50){
             console.log("下拉")
             vms.scroll.scrollTo(0, -786);
             document.getElementById("top").style.display="block";
-            /* 
-             vms.scroll.scrollTo(0, 0,2000);
+            vms.scroll.refresh();
+            vms.scroll.scrollTo(0, 0,1000);
             setTimeout(function(){
               document.getElementById("bottom").style.display="none";
               vms.scroll.refresh();
-            },2000) */
-        }
-        console.log(Math.round(pos.y));
-        
-      })
+              vms.scroll.off('scroll', down)
+              vms.scroll.on('scroll', up)
+            },1000)
+          }
+          console.log(Math.round(pos.y));
+       }
+       vms.scroll.on('scroll', up)
+
+       
+      
       }
     },
     mounted() {
