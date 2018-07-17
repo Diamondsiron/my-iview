@@ -14,7 +14,7 @@
   <div class="wrapper" id="main">
     <div class="content">
       <div >
-          <div id="top" style="display: none;">
+          <div id="top" style="display: block;">
               <div class="card">
                   <div>
                     年化利率
@@ -66,7 +66,7 @@
                     (参考历史数据得出，以实际到账为准)
                   </div>
                 </div>
-                <footer>
+                <footer class="top-footer">
                   <div class="foot-touch" id="touch">
                     -向上滑动，查看更多详情-
                   </div>
@@ -81,7 +81,7 @@
           </div>
          
           
-          <div style="display: block;" id="bottom" >
+          <div style="display: none;" id="bottom" >
             <header>
               <div class="head-content" id="head-content">
                 <div class="head-content-item " v-on:click="changeCurrent(1)" :class={"head-content-item_choose":choose==1}>服务介绍</div>
@@ -313,19 +313,12 @@
           click:true,
           
          });
-         /* vms.scroll.on('pullDown', (pos) => {
-           console.log("pullDown",pos)
-          }) */
+         
        function up(pos){
         if(vms.scroll.maxScrollY>pos.y+50){
             console.log("上拉")
-            //vms.scroll.stop();
+            vms.scroll.stop();
             //vms.scroll.disable();
-            upEnd()
-           }
-          console.log(Math.round(pos.y));
-       }
-       function upEnd() {
             document.getElementById("bottom").style.display="block";
             vms.scroll.refresh();
             vms.scroll.scrollTo(0, -786,800,"bounce");
@@ -334,12 +327,14 @@
             vms.scroll.stop();
              document.getElementById("top").style.display="none"
               vms.scroll.refresh();
-              vms.scroll.scrollTo(0, 0);
+              vms.scroll.scrollTo(0, 0,800,"bounce");
               
              
-              vms.scroll.off('scroll', up)
+              vms.scroll.off('touchEnd', up)
               vms.scroll.on('scroll', down)
-           }, 1000);
+           }, 800);
+           }
+          console.log(Math.round(pos.y));
        }
        function down(pos) {
         if(pos.y>50){
@@ -352,12 +347,12 @@
               document.getElementById("bottom").style.display="none";
               vms.scroll.refresh();
               vms.scroll.off('scroll', down)
-              vms.scroll.on('scroll', up)
+              vms.scroll.on('touchEnd', up)
             },1000)
           }
           console.log(Math.round(pos.y));
        }
-       vms.scroll.on('scroll', up)
+       vms.scroll.on('touchEnd', up)
       
      /*   vms.scroll.on('scrollEnd', (pos) => {
            console.log("scrollEnd",pos)
@@ -371,8 +366,8 @@
       }
     },
     mounted() {
-      document.getElementById("top").style.height=(document.documentElement.clientHeight+50)+"px";
-      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight+50)+"px";
+     document.getElementById("top").style.height=(document.documentElement.clientHeight+50)+"px";
+     document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight+50)+"px";
       this.$nextTick(() => {
        this._initScroll();
       });

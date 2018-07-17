@@ -17,7 +17,7 @@ html,body{
 #top .card>div:nth-child(1){
   color:#989898;
   position: absolute;
-  font-size: 0.12rem;
+  font-size: 0.36rem;
   left:3.12rem;
   top:1.12rem;
   width: 1.44rem;
@@ -25,10 +25,11 @@ html,body{
 #top .card>div:nth-child(2){
   color:#ff3a49;
   position: absolute;
-  font-size: 0.12rem;
+  font-size: 0.36rem;
   left:8.19rem;
   top:1.12rem;
   width: 1.46rem;
+  text-align: center;
   border-radius: 5px;
   border:solid 1px #ff3a49;
 }
@@ -164,6 +165,13 @@ html,body{
   font-size: 0.36rem;
   color: #989898;
 }
+.top-footer{
+  /* width: 100%;
+  position:absolute;
+  bottom: 0rem;
+  left: 0rem;
+  background-color: #f2f2f2; */
+}
 #top .foot-touch{
   font-size: 0.36rem;
   margin-top: 0.87rem;
@@ -180,11 +188,12 @@ html,body{
 #top .foot-content{
   height: 2.1rem;
   overflow: hidden;
-  margin: 0.3rem auto;
+  margin: 0.3rem auto 0 auto;
   width: 11.34rem;
 }
 #top .foot-content-btn{
   height: 1.5rem;
+  margin-top: 0.3rem;
   width: 100%;
   color: #fff;
   font-size: 0.5rem;
@@ -266,6 +275,7 @@ color:red
 }
 .head-content-item_choose{
 border-bottom: solid 2px #c7b299;
+color: #c7b299;
 }
 #choose1 .context{
 font-size: 0.36rem;
