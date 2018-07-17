@@ -309,57 +309,63 @@
         let vms = this
         //this.scroll
         vms.scroll = new window.BScroll(document.querySelector(".content"), {
-          probeType: 3,
+          probeType: 2,
           click:true,
+          pullUpLoad: true ,
           
          });
          
        function up(pos){
         if(vms.scroll.maxScrollY>pos.y+50){
             console.log("上拉")
-            vms.scroll.stop();
+          
+            vms.scroll.disable();  
+           // vms.scroll.scrollTo(0, -50,300,"bounce");
             //vms.scroll.disable();
             document.getElementById("bottom").style.display="block";
             vms.scroll.refresh();
             vms.scroll.scrollTo(0, -786,800,"bounce");
-            
+            vms.scroll.disable();  
            setTimeout(() => {
-            vms.scroll.stop();
+            
              document.getElementById("top").style.display="none"
               vms.scroll.refresh();
-              vms.scroll.scrollTo(0, 0,800,"bounce");
-              
+              //vms.scroll.scrollTo(0, 0,800,"bounce");
+              vms.scroll.enable();  
              
               vms.scroll.off('touchEnd', up)
-              vms.scroll.on('scroll', down)
+              vms.scroll.on('touchEnd', down)
            }, 800);
            }
           console.log(Math.round(pos.y));
        }
        function down(pos) {
+        
         if(pos.y>50){
+           
             console.log("下拉")
-            vms.scroll.scrollTo(0, -786);
+            vms.scroll.stop();  
+            vms.scroll.disable();  
+            vms.scroll.destroy();
             document.getElementById("top").style.display="block";
-            vms.scroll.refresh();
-            vms.scroll.scrollTo(0, 0,1000);
-            setTimeout(function(){
+           
+           /*  vms.scroll.refresh(); */
+           
+           // vms.scroll.enable(); 
+            //vms.scroll.scrollTo(0, -786);
+             //vms.scroll.scrollTo(0, 0,1000);
+             /*  setTimeout(function(){
               document.getElementById("bottom").style.display="none";
               vms.scroll.refresh();
-              vms.scroll.off('scroll', down)
+              vms.scroll.off('touchEnd', down)
               vms.scroll.on('touchEnd', up)
-            },1000)
+            },1000) */
           }
           console.log(Math.round(pos.y));
        }
        vms.scroll.on('touchEnd', up)
       
-     /*   vms.scroll.on('scrollEnd', (pos) => {
-           console.log("scrollEnd",pos)
-          }) */
-     /*  vms.scroll.on('touchEnd', (pos) => {
-        console.log("touchEnd",pos)
-      }) */
+   
       
        
       
