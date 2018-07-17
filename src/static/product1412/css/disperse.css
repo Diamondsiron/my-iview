@@ -32,11 +32,12 @@ html,body{
   top:0.66rem;
   width: 4.5rem;
   height: 0.42rem;
+  font-weight: bold;
   
 }
 #top .card>div:nth-child(3){
   position: absolute;
-  height: 0.72rem;
+  top: 0.72rem;
   right: 1.8rem;
   font-size: 0.36rem;
   color: #998675;
@@ -50,13 +51,14 @@ html,body{
   top: 1.47rem;
   width: 2.82rem;
   font-size: 0.78rem;
+  color: #998675;
 }
 #top .card>div:nth-child(5){
   position: absolute;
   top: 1.89rem;
   right: 3.09rem;
   font-size: 0.36rem;
-
+  color: #989898;
 }
 #top .card>div:nth-child(6){
   position: absolute;
@@ -64,8 +66,21 @@ html,body{
   left: 1.26rem;
   height: 0.36rem;
   width: 9.90rem;
-  border-radius: 5px;
+  border-radius:0.13rem;
   background-color: #f3f3f3;
+}
+#top .card>div:nth-child(6) div{
+  position: absolute;
+  top: 0.06rem;
+  left: 0.06rem;
+  height: 0.24rem;
+  width: 9rem;
+  border-radius: 0.09rem;
+ 
+  background: -webkit-linear-gradient(#ff6a55, #ee1e27); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#ff6a55, #ee1e27); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#ff6a55, #ee1e27); /* 标准的语法 */
 }
 #top .card>div:nth-child(7){
   position: absolute;
@@ -83,7 +98,7 @@ html,body{
 }
 #top .card-bottom{
   display: flex;
-  margin-top: 4.35rem;
+  margin-top: 4.71rem;
 }
 #top  .card-bottom-l{
   color: #998675;
@@ -94,6 +109,7 @@ html,body{
 }
 #top .card-bottom-l div{
  width: 4.2rem;
+ margin-top: 0.3rem;
  margin-left: 1.44rem;
 }
 #top .card-bottom-r{
@@ -156,9 +172,12 @@ html,body{
   color: #989898;
 }
 #top .context ul{
-  padding: 0px
+  padding: 0px;
+  margin: 0px;
+  line-height: 0px;
 }
 #top .context ul li{
+  font-size: 0.36rem;
   list-style: none;
   position: relative;
   width: 100%;
@@ -173,7 +192,13 @@ html,body{
   right: 1.08rem;
   position: absolute;
 }
-
+.top-footer{
+  width: 100%;
+    position: fixed;
+    bottom: 0rem;
+    left: 0rem;
+    background-color: #f2f2f2;
+}
 #top .foot-touch{
   font-size: 0.36rem;
   margin-top: 0.87rem;
@@ -181,19 +206,22 @@ html,body{
   color: #989898;
 }
 #top .foot-title{
+  line-height: 0.24rem;
   font-size: 0.36rem;
   color: #656565;
   text-align: center;
   margin-top: 0.6rem;
   margin-bottom: 0.3rem;
+
 }
 #top .foot-content{
   height: 2.1rem;
   overflow: hidden;
-  margin: 0.3rem auto;
+  margin: 0.3rem auto 0 auto;
   width: 11.34rem;
 }
 #top .foot-content-btn{
+  margin-top: 0.15rem;
   height: 1.5rem;
   width: 100%;
   color: #fff;
@@ -267,6 +295,7 @@ font-size: 0.42rem;
 
 #bottom .head-content-item_choose{
 border-bottom: solid 2px #c7b299;
+color: #c7b299;
 }
 #choose1 .context{
 font-size: 0.36rem;
@@ -306,16 +335,19 @@ height: 0.36rem;
 list-style:none
 }
 #choose1  ul li p:nth-child(1){
-position: absolute;
-left: 1.08rem;
-top: 0px;
+  position: absolute;
+  left: 1.08rem;
+  height: 0.36rem;
+  top: 0px;
+  line-height: 0px;
 
 }
 #choose1  ul li p:nth-child(2){
-position: absolute;
-right: 1.08rem;
-top: 0px;
-
+  position: absolute;
+  right:  1.08rem;
+  height: 0.36rem;
+  top: 0px;
+  line-height: 0px;
 }
 #choose1 .context-record{
   margin-top: 0.81rem;
@@ -518,6 +550,13 @@ width: 2.61rem;
 font-size: 0.42rem;
 color: #c3c3c3;
 }
+.bottom-footer{
+  width: 100%;
+  position: fixed;
+  bottom: 0rem;
+  left: 0rem;
+  background-color: #f2f2f2;
+}
 #bottom .foot-title{
 font-size: 0.36rem;
 color: #656565;
@@ -527,6 +566,7 @@ width: 10.1rem;;
 margin-left: auto;
 margin-right: auto;
 margin-bottom: 0.18rem;
+line-height: 0.12rem;
 }
 #bottom .foot-title p:nth-child(2){
 
@@ -536,13 +576,14 @@ margin-top: 0.24rem;
 #bottom .foot-content{
 height: 2.1rem;
 overflow: hidden;
-margin: 0.3rem auto;
+margin: 0.3rem auto 0 auto;
 width: 11.34rem;
 }
 #bottom .foot-content-btn{
 height: 1.5rem;
 width: 100%;
 color: #fff;
+margin-top: 0.3rem;
 font-size: 0.5rem;
 text-align: center;
 border: none;
