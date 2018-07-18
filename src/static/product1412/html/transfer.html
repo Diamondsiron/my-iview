@@ -94,7 +94,7 @@
           </div>
          
           
-          <div style="display: none;" id="bottom" >
+          <div style="display: block;" id="bottom" >
             <header>
               <div class="head-content" id="head-content">
                 <div class="head-content-item " v-on:click="changeCurrent(1)" :class={"head-content-item_choose":choose==1}>借款信息</div>
@@ -394,56 +394,103 @@
       _initScroll(){
         let vms = this
         //this.scroll
-        vms.scroll = new BScroll(document.querySelector(".content"), {
-          probeType: 3,
-          click:true
-        });
-        
-        
-        
-        vms.scroll.on('scroll', function (pos) {
-          if(vms.scroll.maxScrollY>pos.y+50){
-            
+        vms.scroll = new window.BScroll(document.querySelector(".content"), {
+          scrollX: false,
+          scrollY: true,
+          momentum: false,
+          click:true,
+          snap: {
+            loop: false,
+            threshold: 0.3,
+            speed: 400,
+            easing: {
+              style: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            }
+          },
+          bounce: false,
+          click: true,
+          });
+         
+       function up(pos){
+        if(vms.scroll.maxScrollY>pos.y+50){
             console.log("上拉")
-           /*  ";
-             */
-            
-           
+          
+            vms.scroll.disable();  
+           // vms.scroll.scrollTo(0, -50,300,"bounce");
+            //vms.scroll.disable();
             document.getElementById("bottom").style.display="block";
             vms.scroll.refresh();
-            vms.scroll.scrollTo(0, -786,1000);
-           
-           
-            setTimeout(() => {
-              document.getElementById("top").style.display="none"
-              vms.scroll.scrollTo(0, 0);
-            }, 1000);
-           
-          }
-          if(pos.y>100){
-            console.log("下拉")
-            vms.scroll.scrollTo(0, -786);
-            document.getElementById("top").style.display="block";
-            vms.scroll.refresh();
-           
-            vms.scroll.scrollTo(0, 0,1000);
-            setTimeout(function(){
-              document.getElementById("bottom").style.display="none";
-            },1000)
-           
-           
+            vms.scroll.scrollTo(0, -786,800,"bounce");
+            vms.scroll.disable();  
+           setTimeout(() => {
             
-           
-          
-          }
-        console.log(Math.round(pos.y));
+            // document.getElementById("top").style.display="none"
+             // vms.scroll.refresh();
+              //vms.scroll.scrollTo(0, 0,800,"bounce");
+              //vms.scroll.enable();  
+             
+              vms.scroll.off('touchEnd', up)
+              vms.scroll.on('touchEnd', down)
+           }, 800);
+           }
+          console.log(Math.round(pos.y));
+       }
+       function down(pos) {
         
-      })
+        if(pos.y>50){
+           
+            console.log("下拉")
+            vms.scroll.stop();  
+            vms.scroll.disable();  
+            vms.scroll.destroy();
+            document.getElementById("top").style.display="block";
+           
+           /*  vms.scroll.refresh(); */
+           
+           // vms.scroll.enable(); 
+            //vms.scroll.scrollTo(0, -786);
+             //vms.scroll.scrollTo(0, 0,1000);
+             /*  setTimeout(function(){
+              document.getElementById("bottom").style.display="none";
+              vms.scroll.refresh();
+              vms.scroll.off('touchEnd', down)
+              vms.scroll.on('touchEnd', up)
+            },1000) */
+          }
+          console.log(Math.round(pos.y));
+       }
+       //vms.scroll.on('touchEnd', up)
+       vms.scroll.on('touchEnd', upSide)
+       function upSide(pos) {
+        if(pos.y<-50){
+          vms.scroll.next()
+          vms.scroll.off("touchEnd",upSide)
+          vms.scroll.on("touchEnd",downSide)
+        }
+        
+        
+        }
+        function downSide(pos){
+         // vms.scroll.prev() 
+          if(pos.y>-document.documentElement.clientHeight+20){
+            vms.scroll.prev() 
+            vms.scroll.off("touchEnd",downSide)
+            vms.scroll.on("touchEnd",upSide)
+          }else{
+            vms.scroll.scrollTo(0, pos.y);
+           
+          }
+          
+        }
+   
+      
+       
+      
       }
     },
     mounted() {
-      document.getElementById("top").style.height=(document.documentElement.clientHeight+50)+"px";
-      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight+50)+"px";
+        document.getElementById("top").style.height=(document.documentElement.clientHeight)+"px";
+     document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
       this.$nextTick(() => {
        this._initScroll();
       });
