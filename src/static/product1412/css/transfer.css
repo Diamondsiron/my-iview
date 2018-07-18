@@ -32,6 +32,7 @@ html,body{
   top:0.66rem;
   width: 4.5rem;
   height: 0.42rem;
+  font-weight: bold;
   
 }
 #top .card>div:nth-child(3){
@@ -51,6 +52,7 @@ html,body{
   color: #989898;
 }
 #top .card>div:nth-child(5){
+  font-weight: 100;
   margin-top: 0.24rem ;
   font-size: 0.78rem;
   text-align: center;
@@ -199,6 +201,7 @@ html,body{
 }
 #top .foot-content-btn{
   margin-top: 0.3rem;
+  font-weight: 100;
   height: 1.5rem;
   width: 100%;
   color: #656565;
@@ -562,7 +565,7 @@ margin-top: 0.24rem;
   background-color: #f2f2f2; */
 }
 #bottom .foot-content{
-
+  margin: 0 auto;
 height: 2.1rem;
 overflow: hidden;
 

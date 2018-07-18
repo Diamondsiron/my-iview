@@ -193,13 +193,13 @@ html,body{
   position: absolute;
   right: 1.86rem;
   top: 2.89rem;
+  font-weight: 100;
   font-size: 0.6rem;
   color:#ff3a49;
 }
 #top .context>div:nth-child(5){
   text-align: center;
- 
-  margin: 1.59rem auto 0  auto;
+  margin: 1.5rem auto 0  auto;
   font-size: 0.36rem;
   color: #989898;
 }
