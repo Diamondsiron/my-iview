@@ -373,7 +373,7 @@ list-style:none
   line-height: 0.12rem;
 }
 #choose1 .context-audit{
-  margin-top: 0.81rem;
+  margin-top: 0.93rem;
  margin-left: 0.54rem;
 }
 #choose1 .context-audit-desc{
@@ -547,11 +547,18 @@ font-size: 0.42rem;
 color: #c3c3c3;
 }
 .bottom-footer{
+  overflow: hidden;
  /*  width: 100%;
   position: fixed;
   bottom: 0rem;
   left: 0rem;
   background-color: #f2f2f2; */
+}
+.bottom-footer-3{
+  position: absolute;
+    left: 0.59rem;
+    right: auto;
+    bottom: 0.15rem;
 }
 #bottom .foot-title{
 font-size: 0.36rem;
@@ -561,7 +568,7 @@ margin-top: 0.9rem;
 /* width: 10.1rem;; */
 margin-left: auto;
 margin-right: auto;
-margin-bottom: 0.18rem;
+height: 0.36rem;
 line-height: 0.12rem;
 }
 #bottom .foot-title p:nth-child(2){
