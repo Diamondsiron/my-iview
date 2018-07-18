@@ -81,7 +81,7 @@
           </div>
          
           
-          <div style="display: none;" id="bottom" >
+          <div style="display: none;" id="bottom" class="bottom"  >
             <header>
               <div class="head-content" id="head-content">
                 <div class="head-content-item " v-on:click="changeCurrent(1)" :class={"head-content-item_choose":choose==1}>服务介绍</div>
@@ -327,7 +327,8 @@
        }
        function down(pos) {
         
-        if(pos.y>-736){
+        var h = document.getElementById("top").offsetHeight
+        if(pos.y>-h+20){
            
             console.log("下拉")
             vms.scroll.scrollToElement(document.querySelector(".top"),800,0,0);
