@@ -3,11 +3,9 @@ html,body{
   margin: 0px;
   width: 100%;
  /*  height: 100%; */
-  background-color: #f2f2f2;;
+  background-color: #f0f0f0;
 }
-*{
-  font-family: PingFangSC-Regular, sans-serif;
-}
+
 @font-face{
   font-family: 'PingFangSC-Regular';
   src : url('../font/PingFang-Jian-ChangGuiTi-2.ttf');
@@ -15,6 +13,12 @@ html,body{
 *{
   font-family: PingFangSC-Regular, sans-serif;
 }
+/* *{
+  font-family:"Microsoft YaHei"
+} */
+/* *{
+  font-family:"SimSun"
+} */
 #top .card{
   margin-top: 0.48rem;
   width: 100%;
@@ -33,29 +37,52 @@ html,body{
   /* width: 1.44rem; */
 }
 #top .card>div:nth-child(2){
-  color:#ff3a49;
+ 
   position: absolute;
-  font-size: 0.36rem;
+  background: url(../image/sy_21.png) no-repeat;
+  background-size: contain;
   left:8.19rem;
   top:1.12rem;
- /*  width: 1.46rem; */
-  text-align: center;
-  border-radius: 5px;
-  border:solid 1px #ff3a49;
+  width: 1.47rem;
+  height: 0.51rem;
+  
 }
 #top .card>div:nth-child(3){
   text-align: center;
-  font-size: 0.9rem;
-  margin-top: 1.8rem;
+  height: 0.9rem;
+  margin-top: 1.98rem;
   color: #998675;
-  
+  line-height: 0.45rem;
 }
-
+.card-font-1{
+  color:#988675;
+  font-weight: 100;
+  font-size: 0.72rem;
+ /*  vertical-align: text-bottom; */
+}
+.card-font-2{
+  color:#988675;
+  font-weight: 100;
+  font-size: 0.45rem;
+  /* vertical-align: text-bottom; */
+}
+.card-font-3{
+  color:#ff3a49;
+  font-weight: 100;
+  font-size: 0.9rem;
+ /*  vertical-align: text-bottom; */
+}
+.card-font-4{
+  color:#ff3a49;
+  font-weight: 100;
+  font-size: 0.9rem;
+ /*  vertical-align: text-bottom; */
+}
 #top .card>div:nth-child(4){
   text-align: center;
   font-size: 0.36rem;
   color: #998675;
-  margin-top: 0.27rem;
+ /*  margin-top: 0.27rem; */
 }
 #top .card-bottom{
   display: flex;
@@ -138,6 +165,7 @@ html,body{
 #top .context-title{
   font-size: 0.36rem;
   margin-top: 0.64rem;
+  height: 0.36rem;
   margin-left: auto;
   margin-right:auto; 
   text-align: center;
@@ -145,7 +173,7 @@ html,body{
 }
 #top .context-input{
   width: 9.98rem;
-  margin: 0.27rem auto;
+  margin: 0.27rem auto 0 auto;
   height: 1.14rem;
   border:none;
   display: block;
@@ -171,7 +199,7 @@ html,body{
 #top .context>div:nth-child(5){
   text-align: center;
  
-  margin: 1.59rem auto;
+  margin: 1.59rem auto 0  auto;
   font-size: 0.36rem;
   color: #989898;
 }
@@ -212,6 +240,7 @@ html,body{
   border: none;
   outline: none;
   border-radius: 5px;
+  font-weight: 100;
   background: -webkit-linear-gradient(#ff6a55, #ee1e27); /* Safari 5.1 - 6.0 */
   background: -o-linear-gradient(#ff6a55, #ee1e27); /* Opera 11.1 - 12.0 */
   background: -moz-linear-gradient(#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
@@ -226,6 +255,7 @@ a:link {
   input::-webkit-input-placeholder{
       color:#c3c3c3;
       font-size: 0.54rem;
+      font-weight: 100;
   }
   input::-moz-placeholder{  
     color:#c3c3c3;
@@ -245,6 +275,7 @@ a:link {
 }
 .font2{
   color:#989898;
+  font-weight: 100;
 }
 .font3{
   color: #ff3a49;
@@ -265,7 +296,7 @@ width: 100%;
 height: 1.46rem;
 margin: 0 auto;
 display: flex;
-border-bottom: solid 0.01rem #c7b299;
+border-bottom: solid 1px #c7b299;
 }
 .head-content{
 width: 11.34rem;
@@ -407,7 +438,7 @@ color: #998675;
 }
 #choose2 tr{
 height: 1.35rem;
-border-bottom: solid 0.02rem #f2f2f2;
+border-bottom: solid 1px #f2f2f2;
 }
 #choose2 tr>td:nth-child(1){
 width: 3rem;
@@ -446,7 +477,7 @@ color: #998675;
 }
 #choose3 tr{
 height: 1.35rem;
-border-bottom: solid 0.02rem #f2f2f2;
+border-bottom: solid 2px #f2f2f2;
 }
 #choose3 tr>td:nth-child(1){
 width: 3rem;
@@ -466,6 +497,7 @@ color: #656565;
 text-align: center;
 margin-top: 0.63rem;
 margin-bottom: 0.3rem;
+font-weight: 100;
 }
 .foot-content{
 height: 2.1rem;
@@ -474,6 +506,7 @@ margin: 0.3rem auto;
 width: 11.34rem;
 }
 .foot-content-btn{
+  font-weight: 100;
 height: 1.5rem;
 width: 100%;
 color: #fff;
