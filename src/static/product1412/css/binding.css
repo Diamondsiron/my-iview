@@ -82,7 +82,7 @@ html,body{
   text-align: center;
   font-size: 0.36rem;
   color: #998675;
- /*  margin-top: 0.27rem; */
+  margin-top: 0.1rem;
 }
 #top .card-bottom{
   display: flex;
@@ -199,7 +199,7 @@ html,body{
 }
 #top .context>div:nth-child(5){
   text-align: center;
-  margin: 1.5rem auto 0  auto;
+  margin: 1.4rem auto 0  auto;
   font-size: 0.36rem;
   color: #989898;
 }
