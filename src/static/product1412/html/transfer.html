@@ -444,8 +444,8 @@
       }
     },
     mounted() {
-        //document.getElementById("top").style.height=(document.documentElement.clientHeight)+"px";
-     //document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
+    document.getElementById("top").style.minHeight=(document.documentElement.clientHeight)+"px";
+     document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
       this.$nextTick(() => {
        this._initScroll();
       });
