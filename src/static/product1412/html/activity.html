@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+  <link rel="stylesheet" href="../css/activity.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <div class="context">
+      <ul>
+        <li>
+          <div>
+            <div>活动主标题</div>
+            <div>活动副标题</div>
+            <div>活动图片</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el:"#main",
+      data(){
+        return{
+          list:[0,1,2,3,4,5]
+        }
+      },
+      methods:{
+
+      },
+      mounted() {
+        
+      },
+    })
+  </script>
+</body>
+</html>
