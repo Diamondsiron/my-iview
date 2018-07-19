@@ -51,6 +51,8 @@ html,body{
     font-size: 0.36rem;
   text-align: center;
   color: #989898;
+  height: 0.36rem;
+  line-height: 100%;
 }
 #top .card>div:nth-child(5){
   font-weight: 100;

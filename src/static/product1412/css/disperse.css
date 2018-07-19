@@ -109,7 +109,7 @@ html,body{
 #top  .card-bottom-l{
   color: #998675;
   flex: 1;
-  height: 0.54rem;
+/*   height: 0.54rem; */
   line-height: 100%;
 
   font-size: 0.54rem;

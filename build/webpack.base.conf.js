@@ -1,5 +1,6 @@
 'use strict'
-const path = require('path')
+const path = require('path');
+require('babel-polyfill');
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
@@ -12,8 +13,11 @@ function resolve (dir) {
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
-  entry: {
+  /* entry: {
     app: './src/main.js'
+  }, */
+  entry: {
+    app: ['babel-polyfill', './src/main.js']
   },
   output: {
     path: config.build.assetsRoot,
