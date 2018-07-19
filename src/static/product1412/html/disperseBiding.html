@@ -476,7 +476,7 @@
       }
     },
     mounted() {
-      document.getElementById("top").style.minHeight=(document.documentElement.clientHeight)+"px";
+        document.getElementById("top").style.minHeight=(document.documentElement.clientHeight+50)+"px";;
      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
       this.$nextTick(() => {
        this._initScroll();

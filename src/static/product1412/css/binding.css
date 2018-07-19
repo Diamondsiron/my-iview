@@ -50,9 +50,9 @@ html,body{
 #top .card>div:nth-child(3){
   text-align: center;
   height: 0.9rem;
-  margin-top: 1.98rem;
+  margin-top: 1.93rem;
   color: #998675;
-  line-height: 0.45rem;
+  line-height: 100%;
 }
 .card-font-1{
   color:#988675;
@@ -82,7 +82,9 @@ html,body{
   text-align: center;
   font-size: 0.36rem;
   color: #998675;
-  margin-top: 0.1rem;
+  line-height: 100%;
+  height: 0.36rem;
+  margin-top: 0.27rem;
 }
 #top .card-bottom{
   display: flex;
@@ -163,6 +165,7 @@ html,body{
   position: relative;
 }
 #top .context-title{
+  line-height: 100%;
   font-size: 0.36rem;
   margin-top: 0.64rem;
   height: 0.36rem;
@@ -187,6 +190,8 @@ html,body{
   left: 2.64rem;
   top: 2.89rem;
   font-size: 0.54rem;
+  height: 0.54rem;
+  line-height: 100%;
   color:#998675;
 }
 #top .context>div:nth-child(4){
@@ -195,13 +200,17 @@ html,body{
   top: 2.89rem;
   font-weight: 100;
   font-size: 0.6rem;
+  height: 0.6rem;
+  line-height: 100%;
   color:#ff3a49;
 }
 #top .context>div:nth-child(5){
   text-align: center;
-  margin: 1.4rem auto 0  auto;
+  margin: 1.59rem auto 0  auto;
   font-size: 0.36rem;
   color: #989898;
+  line-height: 100%;
+    height: 0.36rem;
 }
 .top-footer{
   /* width: 100%;
