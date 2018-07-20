@@ -197,6 +197,7 @@ html,body{
 footer{
   display: flex;
   height: 1.68rem;
+  background-color: #fff;
 }
 footer>div{
   flex: 1;
@@ -205,4 +206,22 @@ footer>div{
 footer>div:nth-child(1){
   position: relative;
   font-size: 0.36rem;
+}
+footer>div:nth-child(1)>div:nth-child(1){
+ margin-top:0.33rem ;
+ margin-left: 0.78rem;
+ height: 0.36rem;
+ line-height: 0.36rem;
+}
+footer>div:nth-child(1)>div:nth-child(2){
+  margin-top:0.18rem ;
+  margin-left: 0.78rem;
+  height: 0.54rem;
+  position: relative;
+}
+.font1{
+  color: #989898;
+}
+.font2{
+  color: #3b92f0;
 }
