@@ -13,35 +13,52 @@
   <div id="main">
     <div class="content">
       <ul>
-        <li>
+          <li v-for="(item,index) in list" ::key="index">
           <div class="card">
-            <div>
-              <img src="" alt="">
+            <div class="card-img">
+              <div>
+                  <div @click="modalShow()">
+                      <img src="../image/fx_app.png" alt="">
+                  </div>
+                 
+              </div>
+              
             </div>
-            <div>
-              <div>icon 微信服务号</div>
-              <div>微信号:jiayejinfu</div>
+            <div class="card-title">
+              
+                  <div class="card-title-main">
+                   <img src="../image/fx_6.png" alt="">
+                   
+                    <div>微信服务号</div>
+                  </div>
+                  <div class="card-title-sub">微信号:jiayejinfu</div>
+              
+             
             </div>
           </div>
         </li>
       </ul>
     </div>
-    <div class="modal">
+    <div class="modal" @click="modalShow()" v-if="modal">
       <div>
-        <img src="" alt="">
+        <img src="../image/fx_app.png" alt="">
       </div>
     </div>
   </div>
   <script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
     var vm = new Vue({
       el:"#main",
       data(){
         return{
-
+          list:[0,1,2,3,4,5],
+          modal:false
         }
       },
       methods:{
-
+        modalShow(){
+          this.modal = !this.modal
+        }
       },
       mounted() {
         

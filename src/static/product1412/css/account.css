@@ -13,3 +13,124 @@ html,body{
 *{
   font-family: PingFangSC-Regular, sans-serif;
 }
+.context{
+  overflow: hidden;
+}
+ul{
+  margin: 0px;
+  padding: 0px;
+}
+li{
+  list-style: none;
+  width: 100%;
+  height: 4.89rem;
+  background-color: #fff;
+  margin-top: 0.18rem;
+  position: relative;
+  overflow: hidden;
+  background: url("../image/fx_13.png");
+  background-size: contain;
+}
+.card{
+ display: block;
+ height: 4.89rem;
+ width: 100%;
+ position: relative;
+}
+.card-img{
+  width: 4.8rem;
+  display: inline-block;
+}
+.card-img div{
+  width: 3.3rem;
+  height: 3.3rem;
+  margin-top: 0.69rem;
+  margin-left: 1.5rem;
+  background: url("../image/fx_19.png");
+  background-size: contain;
+  overflow: hidden;
+} 
+.card-img div div{
+  width: 2.85rem;
+  height: 2.85rem;
+  margin: 0.225rem auto;
+}
+.card-img div div img{
+  width: 100%;
+  height: 100%;
+}
+.card-title{
+  position:absolute;
+  width: 5.4rem;
+  top: 1.74rem;
+  left: 6.27rem;
+  height: 1.47rem;
+}
+
+.card-title-main{
+  line-height: 100%;
+  height: 0.57rem;
+  width: 100%;
+  position: relative;
+}
+.card-title-main div:nth-child(1){
+  
+}
+.card-title-main img{
+ 
+  position: absolute;
+  width: 0.57rem;
+  height: 0.57rem;
+  top: 0px;
+  left: 0px
+}
+
+.card-title-main div:nth-child(2){
+  position: absolute;
+ top: 0.03rem;
+ left: 0.96rem;
+ height: 0.54rem;
+  font-size: 0.54rem;
+  line-height: 100%;
+  font-weight: bold;
+  color: #656565;
+}
+.card-title-sub{
+  margin-top: 0.54rem;
+  height: 0.36rem;
+  font-size: 0.36rem;
+  color: #989898;
+  line-height: 100%
+}
+.modal{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(106,105,105,.7)
+ 
+}
+.modal div{
+  position: fixed;
+  z-index:80;
+  top: 5.01rem;
+  left: 2.56rem;
+  width: 7.29rem;
+  height: 7.29rem;
+  background:url("../image/fx_19.png");
+  background-size: contain;
+  
+ }
+ .modal div img{
+  position: fixed;
+  z-index:80;
+  top: 5.61rem;
+  left: 3.01rem;
+  width: 6.09rem;
+  height:6.09rem;
+  
+ }

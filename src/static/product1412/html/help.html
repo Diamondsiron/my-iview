@@ -6,24 +6,28 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
   <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <!-- 引入组件库 -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   <link rel="stylesheet" href="../css/help.css">
-  <script src="../js/bscroll.min.js"></script>
+  
   <title>Document</title>
 </head>
 <body>
     <div id="main">
       <header>
-        <div>
-          <div>
+        <div class="head-content" >
+          <div class="head-content-item head-content-item_choose">
             账户管理
           </div>
-          <div>
+          <div class="head-content-item">
             资金管理
           </div>
-          <div>
+          <div class="head-content-item">
             我要出借
           </div>
-          <div>
+          <div class="head-content-item">
             服务介绍
           </div>
         </div>
@@ -35,60 +39,91 @@
                <div class="context-line"></div>
             </div>
             <div class="context-message-desc">
-              <div>
-                <div>如何进行注册</div>
-                <ul>
-
-                </ul>
-              </div>
+                <div class="context-message-desc-title" id="desc2">
+                  <div class="context-message-desc-title-l">1、如何进行注册？</div>
+                  <div class="context-message-desc-title-r"> </div>
+                </div>
+                <div  class="context-message-desc-context" id="desc1">
+                  <p>第一步，在注册页面根据提示正确填写注册信息，然后点击获取验证码。</p>
+                  <p>第二步，输入短信验证码，然后点击【注册】即可</p>
+                  <p>第三部，注册成功，可前往开通银行存管账户</p>
+                </div>
             </div>
             <div class="context-message">
                 <div class="context-title"><p>存管开户</p></div>
                  <div class="context-line"></div>
               </div>
               <div class="context-message-desc">
-                <div>
-                  <div>如何进行注册</div>
-                  <ul>
-  
-                  </ul>
-                </div>
+                  <div class="context-message-desc-title context-message-desc-title_bottom">
+                      <div class="context-message-desc-title-l">1、如何开通银行存管账户？</div>
+                      <div class="context-message-desc-title-r"> </div>
+                  </div>
+                  <div class="context-message-desc-title context-message-desc-title_bottom">
+                      <div class="context-message-desc-title-l">2、如何绑定银行卡？</div>
+                      <div class="context-message-desc-title-r"> </div>
+                  </div>
+                  <div class="context-message-desc-title context-message-desc-title_bottom">
+                      <div class="context-message-desc-title-l">3、是否可以解绑/更换银行卡？</div>
+                      <div class="context-message-desc-title-r"> </div>
+                  </div>
+                  <div class="context-message-desc-title context-message-desc-title_bottom">
+                      <div class="context-message-desc-title-l">4、如何解绑/更换银行卡？</div>
+                      <div class="context-message-desc-title-r"> </div>
+                  </div>
               </div>
               <div class="context-message">
                 <div class="context-title"><p>密码管理</p></div>
                 <div class="context-line"></div>
               </div>
-              <div class="context-message-desc">
-                <div>
-                  <div>如何进行注册</div>
-                  <ul>
-  
-                  </ul>
-                </div>
+              <div class="context-message-desc" >
+                  <div class="context-message-desc-title">
+                    <div class="context-message-desc-title-l">1、如何修改登录密码？</div>
+                    <div class="context-message-desc-title-r"></div>
+                  </div>
+                  <div class="context-message-desc-title context-message-desc-title_bottom">
+                    <div class="context-message-desc-title-l">2、如何找回登录密码？</div>
+                    <div class="context-message-desc-title-r"></div>
+                  </div>
+                  <div class="context-message-desc-title context-message-desc-title_bottom">
+                    <div class="context-message-desc-title-l">3、如何设置银行存管账户交易密码？</div>
+                    <div class="context-message-desc-title-r"></div>
+                  </div>
+                  <div class="context-message-desc-title context-message-desc-title_bottom">
+                    <div class="context-message-desc-title-l">4、如何重置银行存管账户交易密码？</div>
+                    <div class="context-message-desc-title-r"></div>
+                  </div>
               </div>
               <div class="context-message">
                 <div class="context-title"><p>认证手机</p></div>
                   <div class="context-line"></div>
               </div>
               <div class="context-message-desc">
-                <div>
-                  <div>如何进行注册</div>
-                  <ul>
-  
-                  </ul>
-                </div>
+                  <div class="context-message-desc-title ">
+                      <div class="context-message-desc-title-l">1、如何修改手机号？</div>
+                      <div class="context-message-desc-title-r"> </div>
+                    </div>
               </div>
               <div class="context-message">
                   <div class="context-title"><p>嘉金币</p></div>
                    <div class="context-line"></div>
                 </div>
                 <div class="context-message-desc">
-                  <div>
-                    <div>如何进行注册</div>
-                    <ul>
-    
-                    </ul>
-                  </div>
+                    <div class="context-message-desc-title ">
+                      <div class="context-message-desc-title-l">1、嘉金币是什么？</div>
+                      <div class="context-message-desc-title-r"> </div>
+                    </div>
+                    <div class="context-message-desc-title context-message-desc-title_bottom">
+                      <div class="context-message-desc-title-l">2、嘉金币的获取方式有哪些？</div>
+                      <div class="context-message-desc-title-r"> </div>
+                    </div>
+                    <div class="context-message-desc-title context-message-desc-title_bottom">
+                      <div class="context-message-desc-title-l">3、嘉金币如何使用？</div>
+                      <div class="context-message-desc-title-r"> </div>
+                    </div>
+                    <div class="context-message-desc-title context-message-desc-title_bottom">
+                      <div class="context-message-desc-title-l">4、如何查询我的嘉金币？</div>
+                      <div class="context-message-desc-title-r"> </div>
+                    </div>
                 </div>
         </div>
         <footer>
@@ -100,16 +135,26 @@
       </div>
     </div>
     <script>
+       document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
       var vm = new Vue({
         el:"#main",
         data(){
           return
         },
         methods:{
-
+          handleOpen(key, keyPath) {
+            console.log(key, keyPath);
+          },
+          handleClose(key, keyPath) {
+            console.log(key, keyPath);
+          }
         },
         mounted() {
-          
+         
+            document.getElementById("desc2").addEventListener("click",function(){
+              var openSubContent = document.querySelector("#desc1")
+               openSubContent.style.height = openSubContent.scrollHeight+"px";
+            })
         }
       })
     </script>

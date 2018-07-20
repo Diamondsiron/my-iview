@@ -19,3 +19,114 @@ html,body{
 /* *{
   font-family:"SimSun"
 } */
+header{
+  width: 100%;
+  height: 1.46rem;
+  margin: 0 auto;
+  display: flex;
+  border-bottom: solid 1px #c7b299;
+}
+.head-content{
+  width: 11.34rem;
+  height: 1.46rem;
+  margin: 0 auto;
+  display: flex;
+}
+.head-content-item{
+  flex: 1;
+  text-align: center;
+  height: 1.40rem;
+  line-height: 1.40rem;
+  color: #656565;
+  font-size: 0.42rem;
+}
+.head-content-item_choose{
+  border-bottom: solid 2px #c7b299;
+  color: #c7b299;
+}
+.content{
+  overflow: hidden;
+}
+#choose1 .context-title{
+  display: inline-block;
+  width: 2.48rem;
+  height: 0.72rem;
+  color: #f2f2f2;
+  border-radius: 10px;
+  background-color: #c7b299;
+  text-align: center;
+  font-size: 0.42rem;
+  position: absolute;
+}
+#choose1 .context-line{
+  position: absolute;
+  display: inline-block;
+  height: 1px;
+  border-bottom: solid 1px #c7b299;
+  width: 8.76rem;
+  top: 0.36rem;
+  left: 2.58rem;
+}
+.context-title p{
+    margin-top: 0.1rem;
+}
+#choose1 .context-message{
+  margin-top: 0.84rem;
+  margin-left: 0.55rem;
+  position: relative;
+  height: 0.72rem;
+}
+#choose1 .context-message-desc{
+  margin-top: 0.84rem;
+  
+  position: relative;
+  
+}
+#choose1 .context-message-desc-title{
+  
+  font-size: 0.42rem;
+  color: #656565;
+  height: 1.35rem;
+  widows: 100%;
+  position: relative;
+  background-color: #fff;
+}
+#choose1 .context-message-desc-title-l{
+  
+  font-size: 0.42rem;
+  color: #656565;
+  height: 1.35rem;
+  line-height: 1.35rem;
+  top: 0px;
+  left: 0.96rem;
+  position: absolute;
+}
+#choose1 .context-message-desc-title-r{
+  top: 0.4rem;
+  right:0.54rem ;
+  height: 0.54rem;
+  width: 0.54rem;
+  position: absolute;
+  background: url("../image/fx_4.png");
+  background-size: contain;
+  /* transform: rotate(180deg); */
+}
+#choose1 .context-message-desc-context{
+  width: 10.26rem;
+  margin: 0.66rem auto 0 auto;
+  font-size: 0.36rem;
+  color: #989898;
+  overflow: hidden;
+}
+#choose1 .context-message-desc-title_bottom{
+  border-top: solid 1px #f2f2f2;
+  
+}
+#choose1 .context-message-desc-context p{
+  
+  margin: 0;
+}
+#desc1{
+  height: 0px;
+  transition: height 0.4s ease-in-out;
+}
