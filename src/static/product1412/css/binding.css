@@ -331,9 +331,9 @@ line-height: 1.40rem;
 color: #656565;
 font-size: 0.42rem;
 }
-.head-content-item:hover{
+/* .head-content-item:hover{
 color:red
-}
+} */
 .head-content-item_choose{
 border-bottom: solid 2px #c7b299;
 color: #c7b299;
