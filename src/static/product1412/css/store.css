@@ -13,3 +13,136 @@ html,body{
 *{
   font-family: PingFangSC-Regular, sans-serif;
 }
+.context{
+  width: 100%;
+  /* height: 500px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+/* 单数 */
+.card{
+  height: 8.52rem;
+  flex: 0 0 50%;
+  overflow: hidden;
+}
+/* 单数 */
+.card:nth-child(odd) .card-img{
+  background: url("../image/fx_14.png");
+  background-size: contain;
+  width: 5.94rem;
+  height: 5.94rem;
+  overflow: hidden;
+  position: relative;
+  margin-top: 0.48rem;
+  margin-left: 0.24rem
+}
+/* 双数 */
+.card:nth-child(even) .card-img{
+  background: url("../image/fx_14.png");
+  background-size: contain;
+  width: 5.94rem;
+  height: 5.94rem;
+  overflow: hidden;
+  position: relative;
+  margin-top: 0.48rem;
+  margin-left: 0.03rem
+}
+.card-img-detail{
+  width: 4.17rem;
+  height: 4.17rem;
+  margin:0.3rem auto 0 auto; 
+}
+.card-img-detail img{
+  width: 100%;
+  height: 100%;
+}
+.card-img-title{
+  font-size: 0.42rem;
+  color: #fff;
+  height: 0.42rem;
+  width: 1.74rem;
+  line-height: 0.42rem;
+  position: absolute;
+  bottom: 0.51rem;
+  left: 1.89rem;
+
+}
+.card:nth-child(odd) .card-title-main{
+margin-top: 0.36rem;
+margin-left: 0.57rem;
+font-size: 0.42rem;
+line-height: 0.42rem;
+height: 0.42rem;
+width: 5.31rem;
+color: #656565;
+}
+.card:nth-child(even) .card-title-main{
+  margin-top: 0.36rem;
+  margin-left: 0.33rem;
+  font-size: 0.42rem;
+  line-height: 0.42rem;
+  height: 0.42rem;
+  width: 5.31rem;
+  color: #656565;
+  }
+.card:nth-child(odd) .card-title-sub{
+  margin-top: 0.18rem;
+  margin-left: 0.57rem;
+  font-size: 0.36rem;
+  line-height: 0.36rem;
+  height: 0.36rem;
+  width: 5.31rem;
+  color: #989898;
+}
+.card:nth-child(even) .card-title-sub{
+  margin-top: 0.18rem;
+  margin-left: 0.33rem;
+  font-size: 0.36rem;
+  line-height: 0.36rem;
+  height: 0.36rem;
+  width: 5.31rem;
+  color: #989898;
+}
+.card:nth-child(odd) .card-title-bottom{
+  margin-top: 0.3rem;
+  margin-left: 0.57rem;
+  font-size: 0.36rem;
+  line-height: 0.36rem;
+  height: 0.36rem;
+  width: 5.31rem;
+  position: relative;
+}
+.card:nth-child(even) .card-title-bottom{
+  margin-top: 0.3rem;
+  margin-left: 0.33rem;
+  font-size: 0.36rem;
+  line-height: 0.36rem;
+  height: 0.36rem;
+  width: 5.31rem;
+  position: relative;
+}
+.card-title-bottom-l{
+  left: 0px;
+  bottom: 0px;
+  font-size: 0.36rem;
+  position: absolute;
+  letter-spacing: -1px;
+}
+.card-title-bottom-r{
+  right: 0px;
+  bottom: 0px;
+  font-size: 0.36rem;
+  position: absolute;
+  color: #989898;
+}
+.font-1{
+  font-size: 0.42rem;
+  color: #ff3a49;
+  font-weight: 100;
+}
+.font-2{
+  font-size: 0.32rem;
+  color: #989898;
+  font-weight: 100;
+}

@@ -12,32 +12,36 @@
 <body>
   <div id="main">
     <div class="context">
-      <div>
+      <div class="card" v-for="(item,index) in list" ::key="index">
         <div>
-          <div>
-            图片
+          <div class="card-img">
+              <div class="card-img-detail">
+                  <img src="../image/fx_15.png" alt="">
+              </div>
+              <div class="card-img-title">
+                立即兑换
+              </div>
           </div>
-          <div>
-            立即兑换
-          </div>
-          <div>
-            <div>苏泊尔电饼铛家用煎烤机</div>
-            <div>双面加热，悬浮烤盘涉及</div>
-            <div>
-              <div>12000000000000嘉金币</div>
-              <div>已兑换:38件</div>
+          <div class="card-title-main">苏泊尔电饼铛家用煎烤机</div>
+          <div class="card-title-sub">双面加热，悬浮烤盘涉及</div>
+          <div class="card-title-bottom">
+            <div class="card-title-bottom-l">
+              <span class="font-1">1200000000<span class="font-2">嘉金币</span></span>
+             
             </div>
+            <div class="card-title-bottom-r">已兑换:38件</div>
           </div>
         </div>
       </div>
     </div>
   </div>
   <script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
     var vm = new Vue({
       el:"#main",
       data(){
         return{
-
+          list:[0,1,2,3]
         }
       },
       methods:{
