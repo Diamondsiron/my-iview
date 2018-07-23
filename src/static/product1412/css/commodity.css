@@ -99,6 +99,7 @@ html,body{
   line-height: 0.42rem;
   position: absolute;
   width: 4.8rem;
+  text-align: right;
 }
 .desc>div:nth-child(5){
   margin: 0.63rem auto 0 auto;
