@@ -41,7 +41,7 @@
             <div class="context-message-desc">
                 <div class="context-message-desc-title" id="desc2" @click="handleOpen">
                   <div class="context-message-desc-title-l">1、如何进行注册？</div>
-                  <div class="context-message-desc-title-r"> </div>
+                  <div class="context-message-desc-title-r" id="desc3"> </div>
                 </div>
                 <div  class="context-message-desc-context" id="desc1">
                   <div style="height: 0.66rem;">
@@ -150,11 +150,14 @@
           handleOpen() {
             let vms = this;
             var openSubContent = document.querySelector("#desc1");
+            var desc3 = document.querySelector("#desc3");
             if(vms.open){
               openSubContent.style.height = "0px";
+              desc3.style.transform="rotate(0deg)"
               vms.open=!vms.open
             }else{
               openSubContent.style.height = openSubContent.scrollHeight+"px";
+              desc3.style.transform="rotate(180deg)"
               vms.open=!vms.open
             }
           }

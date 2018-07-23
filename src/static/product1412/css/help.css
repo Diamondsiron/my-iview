@@ -109,7 +109,11 @@ header{
   position: absolute;
   background: url("../image/fx_4.png");
   background-size: contain;
+  transition: all 0.4s ease-in-out;
   /* transform: rotate(180deg); */
+}
+.deg180{
+  transform: rotate(180deg);
 }
 #choose1 .context-message-desc-context{
   width: 10.26rem;
