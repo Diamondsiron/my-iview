@@ -225,3 +225,100 @@ footer>div:nth-child(1)>div:nth-child(2){
 .font2{
   color: #3b92f0;
 }
+footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(1){
+  position: absolute;
+  left: 0px;
+  bottom: 0.04rem;
+  color: #989898;
+  /* width: 0.99rem; */
+}
+footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(2){
+  position: absolute;
+  left: 1.53rem;
+  bottom: 0.00rem;
+  width: 0.6rem;
+  height: 0.54rem;
+  background-color: #c3c3c3;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 0.04rem;
+}
+footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(3){
+  position: absolute;
+  /* bottom: 0.04rem; */
+  left:2.13rem;
+  width: 0.75rem;
+  height: 0.54rem;
+  text-align: center;
+  color: #989898;
+  
+}
+footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(4){
+  position: absolute;
+  bottom: 0.00rem;
+  left:2.88rem;
+  width: 0.6rem;
+  height: 0.54rem;
+  background-color: #c3c3c3;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 0.04rem;
+}
+footer>div:nth-child(2){
+  padding-right:0.54rem ;
+}
+footer button{
+  font-weight: 100;
+  height: 1.5rem;
+  width: 100%;
+  height: 1.09rem;
+  color: #fff;
+  font-size: 0.5rem;
+  text-align: center;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;;
+  background: -webkit-linear-gradient(left,#ff6a55, #ee1e27); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(left,#ff6a55, #ee1e27); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(left,#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
+  background: linear-gradient(left,#ff6a55, #ee1e27); /* 标准的语法 */
+}
+#choose2>div:nth-child(1){
+  width: 2.7rem;
+  height: 0.36rem;
+  line-height: 100%;
+  font-size: 0.36rem;
+  color: #989898;
+  margin: 0.88rem auto 0.72rem auto;
+}
+#choose2 td{
+  padding: 0px;
+  }
+ .context-table{
+  width: 11.34rem;
+  margin: 0 auto;
+  background-color: #ffffff;
+  color: #989898;
+  font-size: 0.42rem;
+  text-align: center;
+  border-collapse: collapse;
+  
+  }
+ 
+  #choose2>.context-table>table tr:nth-child(1){
+    color: #998675;
+  }
+ 
+  #choose2 tr{
+  height: 1.35rem;
+  border-bottom: solid 1px #f2f2f2;
+  }
+  #choose2 tr>td:nth-child(1){
+  width: 3.54rem;
+  }
+  #choose2 tr>td:nth-child(2){
+  width: 3.6rem;
+  }
+  #choose2 tr>td:nth-child(3){
+  width: 4.2rem;
+  }

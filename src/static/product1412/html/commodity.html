@@ -55,21 +55,38 @@
           <div class="head-content-item ">兑换记录</div>
         </div>
       </header>
-        <div id="choose1">
+        <div id="choose1" style="display: none">
           <div>
             图片
           </div>
           <div>
             图片
           </div>
+          <footer>
+            <div>
+              <div>
+                <span class="font1">当前金币数量:</span> 
+                <span class="font2">登录</span>
+              </div>
+              <div>
+                <div>数量：</div>
+                <div>-</div>
+                <div>1</div>
+                <div>+</div>
+              </div>
+            </div>
+            <div>
+              <button>立即兑换</button>
+            </div>
+          </footer>
         </div>
-        <div id="choose2" style="display: none;">
+        <div id="choose2" style="display: block;">
           <div>
             共80条兑换记录
           </div>
-          <div>
+          <div class="context-table">
             <table>
-              <tr>
+              <tr v-for="(item,index) in list" ::key="index">
                 <td>137****8833</td>
                 <td>300件</td>
                 <td>2017-7-8</td>
@@ -77,26 +94,25 @@
             </table>
           </div>
         </div>
-     </div>
-    <footer>
-      <div>
-        <div>
-          <span class="font1">当前金币数量:</span> 
-          <span class="font2">登录</span>
-        </div>
-        <div>
-          <div>数量：</div>
+        <footer style="margin-top:1.8rem ">
           <div>
-            <div>-</div>
-            <div>1</div>
-            <div>+</div>
-          </div>  
-        </div>
-      </div>
-      <div>
-        <button>立即兑换</button>
-      </div>
-    </footer>
+            <div>
+              <span class="font1">当前金币数量:</span> 
+              <span class="font2">登录</span>
+            </div>
+            <div>
+              <div>数量：</div>
+              <div>-</div>
+              <div>1</div>
+              <div>+</div>
+            </div>
+          </div>
+          <div>
+            <button>立即兑换</button>
+          </div>
+        </footer>
+     </div>
+   
   </div>
   <script>
     document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
