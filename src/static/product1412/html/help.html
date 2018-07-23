@@ -39,7 +39,7 @@
                <div class="context-line"></div>
             </div>
             <div class="context-message-desc">
-                <div class="context-message-desc-title" id="desc2">
+                <div class="context-message-desc-title" id="desc2" @click="handleOpen">
                   <div class="context-message-desc-title-l">1、如何进行注册？</div>
                   <div class="context-message-desc-title-r"> </div>
                 </div>
@@ -139,22 +139,27 @@
       var vm = new Vue({
         el:"#main",
         data(){
-          return
+          return{
+            open:false
+          }
         },
         methods:{
-          handleOpen(key, keyPath) {
-            console.log(key, keyPath);
-          },
-          handleClose(key, keyPath) {
-            console.log(key, keyPath);
+          handleOpen() {
+            let vms = this;
+            var openSubContent = document.querySelector("#desc1");
+            if(vms.open){
+              openSubContent.style.height = "0px";
+              vms.open=!vms.open
+            }else{
+              openSubContent.style.height = openSubContent.scrollHeight+"px";
+              vms.open=!vms.open
+            }
           }
+         
         },
         mounted() {
          
-            document.getElementById("desc2").addEventListener("click",function(){
-              var openSubContent = document.querySelector("#desc1")
-               openSubContent.style.height = openSubContent.scrollHeight+"px";
-            })
+           
         }
       })
     </script>

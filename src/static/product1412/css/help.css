@@ -113,7 +113,8 @@ header{
 }
 #choose1 .context-message-desc-context{
   width: 10.26rem;
-  margin: 0.66rem auto 0 auto;
+  margin: 0 auto 0 auto;
+  padding-top: 0.66rem;
   font-size: 0.36rem;
   color: #989898;
   overflow: hidden;
