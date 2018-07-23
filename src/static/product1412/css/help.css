@@ -114,17 +114,15 @@ header{
 #choose1 .context-message-desc-context{
   width: 10.26rem;
   margin: 0 auto 0 auto;
-  padding-top: 0.66rem;
+/*   padding-top: 0.66rem; */
   font-size: 0.36rem;
   color: #989898;
   overflow: hidden;
 }
 #choose1 .context-message-desc-title_bottom{
   border-top: solid 1px #f2f2f2;
-  
 }
 #choose1 .context-message-desc-context p{
-  
   margin: 0;
 }
 #desc1{

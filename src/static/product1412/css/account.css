@@ -126,10 +126,8 @@ li{
   
  }
  .modal div img{
-  position: fixed;
+  margin: 0.6rem;
   z-index:80;
-  top: 5.61rem;
-  left: 3.01rem;
   width: 6.09rem;
   height:6.09rem;
   

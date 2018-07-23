@@ -68,9 +68,9 @@
               </div>
               <div>
                 <div>数量：</div>
-                <div>-</div>
-                <div>1</div>
-                <div>+</div>
+                <div @click="removeCount">-</div>
+                <div>{{count}}</div>
+                <div  @click="addCount">+</div>
               </div>
             </div>
             <div>
@@ -99,9 +99,9 @@
               </div>
               <div>
                 <div>数量：</div>
-                <div>-</div>
-                <div>1</div>
-                <div>+</div>
+                <div @click="removeCount">-</div>
+                <div>{{count}}</div>
+                <div  @click="addCount">+</div>
               </div>
             </div>
             <div>
@@ -119,8 +119,9 @@
       el: "#main",
       data(){
         return{
-          list:["展示1","展示2","展示3","展示4","展示5","展示6","展示7"],
+          list:["展示1","展示2","展示3","展示4","展示5","展示6","展示7","展示8","展示9","展示10"],
           choose:1,
+          count:1,
           imageList:["../image/store2.png","../image/store2.png","../image/store2.png","../image/store2.png"]
         }
       },
@@ -132,6 +133,14 @@
                 el: '.swiper-pagination',
               },
           });
+        },
+        addCount(){
+          this.count++
+        },
+        removeCount(){
+          if(this.count>1){
+            this.count--
+          }
         },
         changeCurrent(value){
           this.choose=value;
