@@ -15,14 +15,14 @@
       <ul>
         <li v-for="(item,index) in list" ::key="index">
           <div class="card">
-            <div class="card-main-title">活动主标题活动主标题活动主标题活动主标题活动主
-               
+            <div class="card-main-title">
+               {{item.main}}
             </div>
             <div class="card-subtitle">
-              活动副标题活动副标题活动副标题
+              {{item.sub}}
             </div>
             <div class="card-image">
-              <img src="../image/actitvty_06.png" alt="活动图片">
+              <img V-bind:src="item.img" alt="活动图片">
             </div>
           </div>
         </li>
@@ -35,7 +35,23 @@
       el:"#main",
       data(){
         return{
-          list:[0,1,2,3,4,5]
+          list:[
+            {
+              main:"活动主标题活动主标题活动主标题活动主标题活动主",
+              sub:"活动副标题活动副标题活动副标题",
+              img:"../image/actitvty_05.png"
+            },
+            {
+              main:"活动主标题活动主标题活动主标题活动主标题活动主",
+              sub:"活动副标题活动副标题活动副标题",
+              img:"../image/actitvty_06.png"
+            },
+            {
+              main:"活动主标题活动主标题活动主标题活动主标题活动主",
+              sub:"活动副标题活动副标题活动副标题",
+              img:"../image/actitvty_07.png"
+            }
+          ]
         }
       },
       methods:{
