@@ -17,8 +17,8 @@
           <div class="card">
             <div class="card-img">
               <div>
-                  <div @click="modalShow()">
-                      <img src="../image/fx_app.png" alt="">
+                  <div @click="modalShow(item.img)">
+                      <img v-bind:src="item.img" alt="">
                   </div>
                  
               </div>
@@ -27,11 +27,11 @@
             <div class="card-title">
               
                   <div class="card-title-main">
-                   <img src="../image/fx_6.png" alt="">
+                   <img v-bind:src="item.icon" alt="">
                    
-                    <div>微信服务号</div>
+                    <div>{{item.name}}</div>
                   </div>
-                  <div class="card-title-sub">微信号:jiayejinfu</div>
+                  <div class="card-title-sub">{{item.url}}</div>
               
              
             </div>
@@ -39,9 +39,9 @@
         </li>
       </ul>
     </div>
-    <div class="modal" @click="modalShow()" v-if="modal">
+    <div class="modal" @click="modalClose()" v-if="modal">
       <div>
-        <img src="../image/fx_app.png" alt="">
+        <img  v-bind:src="currentUrl" alt="">
       </div>
     </div>
   </div>
@@ -51,12 +51,42 @@
       el:"#main",
       data(){
         return{
-          list:[0,1,2,3,4,5],
-          modal:false
+          list:[
+                {
+                  img:"../image/fx_jinfu.png",
+                  icon:"../image/fx_6.png",
+                  name:"微信服务号",
+                  url:"微信号:jiayejinfu"
+                },
+                {
+                  img:"../image/fx_hz.png",
+                  icon:"../image/fx_6.png",
+                  name:"微信订阅号",
+                  url:"微信号:jiayehuizhong"
+                },
+                {
+                  img:"../image/fx_app.png",
+                  icon:"../image/fx_7.png",
+                  name:"嘉e贷App",
+                  url:"搜索嘉e贷"
+                },
+                {
+                  img:"../image/fx_weibo.png",
+                  icon:"../image/fx_8.png",
+                  name:"嘉e贷微博",
+                  url:"http://weibo.com/jiayedaicom"
+                },
+            ],
+          modal:false,
+          currentUrl:""
         }
       },
       methods:{
-        modalShow(){
+        modalShow(url){
+          this.currentUrl = url
+          this.modal = !this.modal
+        },
+        modalClose(){
           this.modal = !this.modal
         }
       },
