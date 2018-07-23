@@ -19,11 +19,11 @@
             <div class="swiper-wrapper">
               <div class="swiper-slide" v-for="(item,index) in list" :key="index">
                 <div class="show-detail">
-                  {{item}}
+                 <img v-bind:src="item" v-for="(item,index) in imageList" alt="" ::key="index">
                 </div>  
               </div>
-            
             </div>
+            <div class="swiper-pagination"></div>
           </div>
     </div>
     <div class="desc">
@@ -51,17 +51,15 @@
     <div class="content">
       <header>
         <div class="head-content" >
-          <div class="head-content-item head-content-item_choose">商品详情</div>
-          <div class="head-content-item ">兑换记录</div>
+          <div class="head-content-item" v-on:click="changeCurrent(1)" :class={"head-content-item_choose":choose==1}>商品详情</div>
+          <div class="head-content-item " v-on:click="changeCurrent(2)" :class={"head-content-item_choose":choose==2}>兑换记录</div>
         </div>
       </header>
-        <div id="choose1" style="display: none">
+        <div id="choose1" v-if="choose==1">
           <div>
-            图片
+            <img src="../image/store.png" alt="">
           </div>
-          <div>
-            图片
-          </div>
+         
           <footer>
             <div>
               <div>
@@ -80,7 +78,7 @@
             </div>
           </footer>
         </div>
-        <div id="choose2" style="display: block;">
+        <div id="choose2" v-if="choose==2">
           <div>
             共80条兑换记录
           </div>
@@ -93,24 +91,25 @@
               </tr>
             </table>
           </div>
+          <footer style="margin-top:1.8rem ">
+            <div>
+              <div>
+                <span class="font1">当前金币数量:</span> 
+                <span class="font2">登录</span>
+              </div>
+              <div>
+                <div>数量：</div>
+                <div>-</div>
+                <div>1</div>
+                <div>+</div>
+              </div>
+            </div>
+            <div>
+              <button>立即兑换</button>
+            </div>
+          </footer>
         </div>
-        <footer style="margin-top:1.8rem ">
-          <div>
-            <div>
-              <span class="font1">当前金币数量:</span> 
-              <span class="font2">登录</span>
-            </div>
-            <div>
-              <div>数量：</div>
-              <div>-</div>
-              <div>1</div>
-              <div>+</div>
-            </div>
-          </div>
-          <div>
-            <button>立即兑换</button>
-          </div>
-        </footer>
+       
      </div>
    
   </div>
@@ -121,14 +120,22 @@
       data(){
         return{
           list:["展示1","展示2","展示3","展示4","展示5","展示6","展示7"],
+          choose:1,
+          imageList:["../image/store2.png","../image/store2.png","../image/store2.png","../image/store2.png"]
         }
       },
       methods:{
         init(){
           var swiper = new Swiper('#banner',{
               autoplay:true,
+              pagination: {
+                el: '.swiper-pagination',
+              },
           });
-        }
+        },
+        changeCurrent(value){
+          this.choose=value;
+        },
       },
       mounted() {
         this.init()

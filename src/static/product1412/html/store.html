@@ -16,20 +16,20 @@
         <div>
           <div class="card-img">
               <div class="card-img-detail">
-                  <img src="../image/fx_15.png" alt="">
+                  <img v-bind:src="item.img" alt="">
               </div>
               <div class="card-img-title">
                 立即兑换
               </div>
           </div>
-          <div class="card-title-main">苏泊尔电饼铛家用煎烤机</div>
-          <div class="card-title-sub">双面加热，悬浮烤盘涉及</div>
+          <div class="card-title-main">{{item.main}}</div>
+          <div class="card-title-sub">{{item.sub}}</div>
           <div class="card-title-bottom">
             <div class="card-title-bottom-l">
-              <span class="font-1">1200000000<span class="font-2">嘉金币</span></span>
+              <span class="font-1">{{item.count}}<span class="font-2">{{item.unit}}</span></span>
              
             </div>
-            <div class="card-title-bottom-r">已兑换:38件</div>
+            <div class="card-title-bottom-r">已兑换:{{item.sales}}件</div>
           </div>
         </div>
       </div>
@@ -41,7 +41,40 @@
       el:"#main",
       data(){
         return{
-          list:[0,1,2,3]
+          list:[
+            {
+              img:"../image/fx_15.png",
+              main:"苏泊尔电饼铛家用煎烤机",
+              sub:"双面加热，悬浮烤盘涉及",
+              count:"1200000000",
+              unit:"嘉金币",
+              sales:"38"
+            },
+            {
+              img:"../image/fx_15.png",
+              main:"苏泊尔电饼铛家用煎烤机",
+              sub:"双面加热，悬浮烤盘涉及",
+              count:"1200000000",
+              unit:"嘉金币",
+              sales:"38"
+            },
+            {
+              img:"../image/fx_15.png",
+              main:"苏泊尔电饼铛家用煎烤机",
+              sub:"双面加热，悬浮烤盘涉及",
+              count:"1200000000",
+              unit:"嘉金币",
+              sales:"38"
+            },
+            {
+              img:"../image/fx_15.png",
+              main:"苏泊尔电饼铛家用煎烤机",
+              sub:"双面加热，悬浮烤盘涉及",
+              count:"1200000000",
+              unit:"嘉金币",
+              sales:"38"
+            }
+          ]
         }
       },
       methods:{

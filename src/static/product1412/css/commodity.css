@@ -34,7 +34,7 @@ html,body{
   margin: 0.27rem auto 0 auto;
   height: 0.56rem;
   font-size: 0.54rem;
-  font-weight: blod;
+  font-weight:bold;
   color: #656565;
   line-height: 0.56rem;
 }
@@ -219,6 +219,9 @@ footer>div:nth-child(1)>div:nth-child(2){
   height: 0.54rem;
   position: relative;
 }
+.show-detail >img{
+  width: 100%;
+}
 .font1{
   color: #989898;
 }
@@ -265,11 +268,14 @@ footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(4){
   border-radius: 0.04rem;
 }
 footer>div:nth-child(2){
-  padding-right:0.54rem ;
+  position: relative;
 }
 footer button{
   font-weight: 100;
-  height: 1.5rem;
+  position: absolute;
+  right: 0.54rem;
+  top: 50%;
+  margin-top: -0.54rem;
   width: 100%;
   height: 1.09rem;
   color: #fff;
@@ -282,6 +288,12 @@ footer button{
   background: -o-linear-gradient(left,#ff6a55, #ee1e27); /* Opera 11.1 - 12.0 */
   background: -moz-linear-gradient(left,#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
   background: linear-gradient(left,#ff6a55, #ee1e27); /* 标准的语法 */
+}
+#choose1>div:nth-child(1){
+  width: 100%;
+}
+#choose1>div:nth-child(1)>img{
+  width: 100%;
 }
 #choose2>div:nth-child(1){
   width: 2.7rem;
