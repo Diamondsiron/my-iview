@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
   <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
-  <link href="https://cdn.bootcss.com/mint-ui/2.2.13/actionsheet/style.min.css" rel="stylesheet">
+ 
   <link rel="stylesheet" href="../css/commodity.css">
   <title>Document</title>
 </head>
@@ -57,7 +57,7 @@
       </header>
         <div id="choose1" v-if="choose==1">
           <div>
-            <img src="../image/store.png" alt="">
+            <img src="../image/store.png" alt="图片">
           </div>
          
           <footer>
@@ -131,7 +131,10 @@
               autoplay:true,
               pagination: {
                 el: '.swiper-pagination',
+                bulletClass : 'mybanner-bullet',
+                bulletActiveClass:"mybanner-bullet-active",
               },
+             
           });
         },
         addCount(){

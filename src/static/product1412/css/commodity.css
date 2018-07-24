@@ -197,7 +197,7 @@ html,body{
 }
 footer{
   display: flex;
-  height: 1.68rem;
+  height: 1.86rem;
   background-color: #fff;
 }
 footer>div{
@@ -334,4 +334,18 @@ footer button{
   }
   #choose2 tr>td:nth-child(3){
   width: 4.2rem;
+  }
+ 
+  .mybanner-bullet{
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 100%;
+    background: #b3b3b3;
+    margin: 0 4px;
+    /* opacity: .2; */
+  }
+  .mybanner-bullet-active{
+   /*  opacity: 1; */
+    background: #998675;
   }
