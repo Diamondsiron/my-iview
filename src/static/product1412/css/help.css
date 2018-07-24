@@ -10,9 +10,9 @@ html,body{
   font-family: 'PingFangSC-Regular';
   src : url('../font/PingFang-Jian-ChangGuiTi-2.ttf');
 }
-*{
+/* *{
   font-family: PingFangSC-Regular, sans-serif;
-}
+} */
 /* *{
   font-family:"Microsoft YaHei"
 } */

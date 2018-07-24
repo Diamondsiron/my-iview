@@ -110,20 +110,20 @@ html,body{
 .icon-freight{
   width: 1.05rem;
   height: 1.05rem;
-  background: url("../image/fx_16.png");
-  background-size: contain;
+ /*  background: url("../image/fx_16.png"); */
+ /*  background-size: contain; */
 }
 .icon-sale{
   width: 1.05rem;
   height: 1.05rem;
-  background: url("../image/fx_18.png");
-  background-size: contain;
+  /* background: url("../image/fx_18.png"); */
+  /* background-size: contain; */
 }
 .icon-week{
   width: 1.05rem;
   height: 1.05rem;
-  background: url("../image/fx_17.png");
-  background-size: contain;
+  /* background: url("../image/fx_17.png"); */
+  /* background-size: contain; */
 }
 .desc>div:nth-child(5)>div:nth-child(1){
  position: absolute;
