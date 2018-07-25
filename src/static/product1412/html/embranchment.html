@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/axios.min.js"></script>
+  <link rel="stylesheet" href="../css/embranchment.css">
+  <title>Document</title>
+</head>
+<body>
+<div id="main">
+  <div class="content">
+    <article>
+      <section v-for="(item,index) in list" ::key="index">
+        <div>
+          <div>
+              <img src="../image/embranchment.png" alt="">
+          </div>
+        </div>
+        <div>
+          <table class="context-table">
+            <tbody>
+              <tr>
+                <td><div>公司全称</div> </td>
+                <td><div>天津嘉业投资管理有限公司</div></td>
+              </tr>
+              <tr >
+                <td style="border: none"><div>所在地</div></td>
+                <td rowspan="2">
+                  <div>
+                    天津自贸试验区(中心商务区)滨海华贸中心-340
+                  </div>
+              </td>
+              </tr>
+              <tr>
+                  <td rowspan="1"><div>&nbsp;</div></td>
+                 
+                </tr>
+              <tr>
+                <td><div>成立日期</div></td>
+                <td><div>2012-06-19</div></td>
+              </tr>
+              <tr>
+                <td><div>负责人姓名</div></td>
+                <td><div>郭之瑞</div></td>
+              </tr>
+              <tr>
+                <td><div>联系电话</div></td>
+                <td><div>022-27817787</div></td>
+              </tr>
+              <tr>
+                <td><div>投诉电话</div></td>
+                <td><div>4008780777</div></td>
+              </tr>
+              <tr>
+                <td><div>员工人数</div></td>
+                <td><div>78</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </article>
+  </div>
+</div>
+<script>
+  document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+  var vm = new Vue({
+    el:"#main",
+    data(){
+      return{
+        list:[0,1,2,3,4,5]
+      }
+    },
+    methods:{
+
+    },
+    mounted() {
+      
+    },
+  })
+</script>
+</body>
+</html>
