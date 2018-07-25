@@ -6,13 +6,13 @@ html,body{
   background-color: #f0f0f0;
 }
 
-@font-face{
+/* @font-face{
   font-family: 'PingFangSC-Regular';
   src : url('../font/PingFang-Jian-ChangGuiTi-2.ttf');
 }
 *{
   font-family: PingFangSC-Regular, sans-serif;
-}
+} */
 .context{
   overflow: hidden;
 }

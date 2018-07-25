@@ -6,13 +6,13 @@ html,body{
   background-color: #f0f0f0;
 }
 
-@font-face{
+/* @font-face{
   font-family: 'PingFangSC-Regular';
   src : url('../font/PingFang-Jian-ChangGuiTi-2.ttf');
 }
 *{
   font-family: PingFangSC-Regular, sans-serif;
-}
+} */
 .banner{
   width: 100%;
   height: 10.29rem;
@@ -238,7 +238,7 @@ footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(1){
 }
 footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(2){
   position: absolute;
-  left: 1.53rem;
+  left: 1.33rem;
   bottom: 0.00rem;
   width: 0.6rem;
   height: 0.54rem;
@@ -250,7 +250,7 @@ footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(2){
 footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(3){
   position: absolute;
   /* bottom: 0.04rem; */
-  left:2.13rem;
+  left:1.93rem;
   width: 0.75rem;
   height: 0.54rem;
   text-align: center;
@@ -260,7 +260,7 @@ footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(3){
 footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(4){
   position: absolute;
   bottom: 0.00rem;
-  left:2.88rem;
+  left:2.68rem;
   width: 0.6rem;
   height: 0.54rem;
   background-color: #c3c3c3;
@@ -277,7 +277,8 @@ footer button{
   right: 0.54rem;
   
   margin-top: 0.33rem;
-  width: 100%;
+  /* width: 100%; */
+  width: 5.63rem;
   height: 1.09rem;
   color: #fff;
   font-size: 0.5rem;
