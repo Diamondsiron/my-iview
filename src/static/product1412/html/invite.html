@@ -6,14 +6,29 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
-  <link rel="stylesheet" href="../css/activity.css">
+  <link rel="stylesheet" href="../css/invite.css">
   <title>Document</title>
 </head>
 <body>
 <div id="main">
-
+  <div class="content">
+    <header>
+      <img src="../image/fx_1.png" alt="">
+    </header>
+    <article>
+      <div>邀请好友出借成功可得现金奖励</div>
+      <div>邀请还有成功注册后，好友在注册之日起1年内参与嘉e优选服务出借成功后，邀请人可获得奖励;奖励可叠加，无门槛，无上限！</div>
+    </article>
+    <footer>
+        <div class="foot-content">
+          <button class="foot-content-btn">分享给好友</button>
+        </div>
+        <div>邀请规则</div>
+    </footer>
+  </div>
 </div>
 <script>
+  document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
   var vm = new Vue({
     el:"#main",
     data(){

@@ -4,7 +4,7 @@ html,body{
   width: 100%;
   background-color: #f0f0f0;
 }
-.context{
+.content{
   overflow: hidden;
 }
 article{
@@ -47,7 +47,7 @@ section>div:nth-child(2){
   letter-spacing: -1px;
 }
 tr {
-  min-height: 0.57rem;
+  height: 0.57rem;
  
 }
 td{

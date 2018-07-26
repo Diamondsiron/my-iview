@@ -7,3 +7,69 @@ html,body{
 .context{
   overflow: hidden;
 }
+header{
+  width: 100%;
+  /* height: 10.8rem; */
+}
+header>img{
+  width: 100%
+}
+article{
+  position: absolute;
+  z-index: 10;
+  top:6.28rem ;
+  width: 100%;
+  height: 5.22rem;
+  background: url("../image/cp_7.png");
+  background-size: contain;
+  overflow: hidden;
+}
+article>div:nth-child(1){
+margin-top: 0.9rem;
+text-align: center;
+font-size: 0.6rem;
+height: 0.64rem;
+font-weight: bold;
+color: #ff3a49;
+}
+article>div:nth-child(2){
+  margin-top: 0.66rem;
+  margin-left: 1.08rem;
+  width: 10.26rem;
+  color: #989898;
+  font-size: 0.42rem;
+
+}
+footer{
+  overflow: hidden;
+  margin-top: 3.12rem;
+}
+.foot-content {
+  height: 2.1rem;
+  overflow: hidden;
+  margin: 0 auto 0 auto;
+  width: 11.34rem;
+}
+.foot-content-btn {
+  height: 1.5rem;
+  margin-top: 0.3rem;
+  width: 100%;
+  color: #fff;
+  font-size: 0.5rem;
+  text-align: center;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-weight: 100;
+  background: -webkit-linear-gradient(#ff6a55, #ee1e27);
+  background: -o-linear-gradient(#ff6a55, #ee1e27);
+  background: -moz-linear-gradient(#ff6a55, #ee1e27);
+  background: linear-gradient(#ff6a55, #ee1e27);
+}
+footer>div:nth-child(2){
+  text-align: center;
+  height: 0.48rem;
+  font-size: 0.48rem;
+  color: #998675;
+  line-height: 0.48rem;
+}
