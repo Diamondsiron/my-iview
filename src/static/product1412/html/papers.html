@@ -6,19 +6,104 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
-  <link rel="stylesheet" href="../css/activity.css">
+  <link rel="stylesheet" href="../css/papers.css">
   <title>Document</title>
 </head>
 <body>
 <div id="main">
-
+  <div class="content">
+      <div class="context-basic">
+          <div class="context-title">
+              <p>备案信息</p>
+          </div> 
+          <div class="context-line"></div>
+      </div>
+      <div class="context-basic-desc">
+          <table class="context-table">
+              <tbody>
+                <tr>
+                  <td><div>备案登记地方金融监管部门</div></td>
+                  <td><div>落实中</div></td>
+                </tr>
+                <tr>
+                  <td><div>备案登记时间</div></td>
+                  <td><div>落实中</div></td>
+                </tr>
+                <tr>
+                  <td><div>备案登记编号</div></td>
+                  <td><div>落实中</div></td>
+                </tr>
+                <tr>
+                  <td><div>电信业务经营许可证</div></td>
+                  <td><div>根据指引在备案完成后规定时间内获取</div></td>
+                </tr>
+                <tr>
+                  <td><div>公安机关核发的网站备案</div></td>
+                  <td><div>根据指引在备案完成后规定时间内获取</div></td>
+                </tr>
+                <tr>
+                  <td><div>图标及标号平台</div></td>
+                  <td><div></div></td>
+                </tr>
+                <tr>
+                  <td><div>资金存管银行全程</div></td>
+                  <td><div>江西银行股份有限公司</div></td>
+                </tr>
+                <tr>
+                  <td><div>资金存管上线时间</div></td>
+                  <td><div>2018年2月7日</div></td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+      <div class="context-basic">
+          <div class="context-title">
+              <p>相关证明</p>
+          </div> 
+          <div class="context-line"></div>
+      </div>
+      <div class="context-basic-desc">
+          <article>
+              <section v-for="(item,index) in list" ::key="index">
+                  <div class="card">
+                      <div class="card-title">
+                      <p>{{item.name1}}</p>
+                      <p>{{item.name2}}</p> 
+                      </div>
+                      <div class="card-icon">
+                        <img src="../image/fx_20.png" alt="">
+                      </div>
+                  </div>
+                 
+              </section>
+            </article>
+      </div>
+  </div>
 </div>
 <script>
+   document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
   var vm = new Vue({
     el:"#main",
     data(){
       return{
-
+        list:[
+          {
+            name1:"资金存管情况",
+            name2:"",
+            name3:"查看详情",
+          },
+          {
+            name1:"信息安全",
+            name2:"测评认证",
+            name3:"出具中",
+          },
+          {
+            name1:"风险管理信息",
+            name2:"",
+            name3:"出具中",
+          },
+         
+        ]
       }
     },
     methods:{

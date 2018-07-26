@@ -6,14 +6,56 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
-  <link rel="stylesheet" href="../css/activity.css">
+  <link rel="stylesheet" href="../css/otherInformation.css">
   <title>Document</title>
 </head>
 <body>
 <div id="main">
-
+  <div class="content">
+      <div class="context-basic">
+          <div class="context-title">
+              <p>重大事项</p>
+          </div> 
+          <div class="context-line"></div>
+      </div>
+      <div class="context-basic-desc">
+          <table class="context-table">
+              <tbody>
+                <tr>
+                  <td><div>公司减资、合并、分立、解散或申请破产</div></td>
+                  <td>无</td>
+                </tr>
+                <tr>
+                    <td><div>公司依法进入破产程序</div></td>
+                  <td>无</td>
+                </tr>
+                <tr>
+                    <td><div>公司被责令停业、整顿、关闭</div></td>
+                  <td>无</td>
+                </tr>
+                <tr style="height: 1.14rem;">
+                    <td><div>公司涉及重大诉讼、仲裁，或涉嫌违法违规被有权机关调查，或受到刑事处罚、重大行政处罚</div></td>
+                  <td>无</td>
+                </tr>
+                <tr style="height: 2.28rem;">
+                    <td><div>公司发定代表人、实际控制人、主要责任人、董事、监事、高级管理人员涉及重大诉讼、仲裁，或涉嫌违法违规被有权机关调查，或受到刑事处罚、重大行政处罚，或被采取强制措施</div></td>
+                  <td>无</td>
+                </tr>
+                <tr>
+                    <td><div>公司主要或全部业务陷入停顿</div></td>
+                  <td>无</td>
+                </tr>
+                <tr style="height: 1.14rem;">
+                    <td><div>存在欺诈、损害出借人利益等其他影响网络借贷信息中介机构经营活动的重大事项</div></td>
+                  <td>无</td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+  </div>
 </div>
 <script>
+   document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
   var vm = new Vue({
     el:"#main",
     data(){

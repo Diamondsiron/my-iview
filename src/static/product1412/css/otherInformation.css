@@ -4,6 +4,75 @@ html,body{
   width: 100%;
   background-color: #f0f0f0;
 }
-.context{
+.content{
   overflow: hidden;
+}
+.context-basic{
+  margin-top: 0.75rem;
+  margin-left: 0.55rem;
+  position: relative;
+  height: 0.72rem;
+  
+}
+.context-basic-desc{
+  margin-top: 0.66rem;
+  margin-left: 0.84rem;
+}
+.context-basic-desc>.context-table>tbody>tr>td:nth-child(1){
+ width: 8.79rem;
+}
+.context-basic-desc>.context-table>tbody>tr>td:nth-child(2){
+width: 1.95rem;
+}
+.context-message {
+  margin-top: 0.84rem;
+  margin-left: 0.55rem;
+  position: relative;
+  height: 0.72rem;
+}
+.context-title {
+  display: inline-block;
+  width: 2.48rem;
+  height: 0.72rem;
+  color: #f2f2f2;
+  border-radius: 10px;
+  background-color: #c7b299;
+  text-align: center;
+  font-size: 0.42rem;
+  position: absolute;
+}
+.context-title p {
+  margin-top: 0.1rem;
+}
+.context-line {
+  position: absolute;
+  display: inline-block;
+  height: 1px;
+  border-bottom: solid 1px #c7b299;
+  width: 8.76rem;
+  top: 0.36rem;
+  left: 2.58rem;
+}
+.context-table {
+  width: 10.74rem;
+  background-color: #ffffff;
+  color: #989898;
+  font-size: 0.32rem;
+  text-align: left;
+  border-collapse: collapse;
+  letter-spacing: -1px;
+}
+tr {
+  height: 0.57rem;
+}
+td{
+  border-bottom: solid 1px #f2f2f2;
+  padding: 0px;
+}
+tr>td:nth-child(1)>div{
+  margin-left: 0.36rem;
+}
+tr>td:nth-child(2){
+  text-align: center;
+  vertical-align: text-top;
 }
