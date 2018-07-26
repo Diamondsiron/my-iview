@@ -4,6 +4,12 @@ html,body{
   width: 100%;
   background-color: #f0f0f0;
 }
-.context{
+.content{
   overflow: hidden;
+  width: 100%
+}
+.content>img{
+  width: 10.95rem;
+  display: block;
+  margin: 0.5rem auto 0 auto;
 }
