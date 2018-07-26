@@ -7,3 +7,42 @@ html,body{
 .context{
   overflow: hidden;
 }
+article{
+  overflow: hidden;
+  margin-top: 0.66rem;
+}
+section{
+  margin: 0.69rem auto 0 auto;
+  width: 10.26rem;
+}
+section>div:nth-child(1){
+  width: 3.69rem;
+  height: 3.69rem;
+  margin: 0 auto 0 auto;
+}
+section>div:nth-child(1)>img{
+  width: 3.69rem;
+  height: 3.69rem;
+}
+section>div:nth-child(2){
+  margin-top: 0.27rem;
+  text-align: center;
+  height: 0.36rem;
+  font-size: 0.36rem;
+  color: #656565;
+  line-height: 0.36rem;
+}
+section>div:nth-child(3){
+  margin-top: 0.18rem;
+  text-align: center;
+  height: 0.32rem;
+  font-size: 0.32rem;
+  color: #989898;
+  line-height: 0.32rem;
+}
+section>div:nth-child(4){
+  margin-top: 0.45rem;
+  font-size: 0.36rem;
+  color: #989898;
+  line-height: 0.58rem;
+}
