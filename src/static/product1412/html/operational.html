@@ -6,19 +6,46 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
-  <link rel="stylesheet" href="../css/activity.css">
+  <link rel="stylesheet" href="../css/operational.css">
   <title>Document</title>
 </head>
 <body>
 <div id="main">
-
+  <div class="content">
+    <article>
+      <section v-for="(item,index) in list" ::key="index">
+        <div>{{item.main}}</div>
+        <div>{{item.sub}}</div>
+        <div>
+          <img v-bind:src="item.img" alt="">
+        </div>
+      </section>
+    </article>
+  </div>
 </div>
 <script>
+   document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
   var vm = new Vue({
     el:"#main",
     data(){
       return{
-
+        list:[
+          {
+            main:"嘉e贷5月运营报告",
+            sub:"发布时间：2018年4月30日",
+            img:"../image/operational_01.png"
+          },
+          {
+            main:"嘉e贷6月运营报告",
+            sub:"发布时间：2018年5月30日",
+            img:"../image/operational_02.png"
+          },
+          {
+            main:"嘉e贷7月运营报告",
+            sub:"发布时间：2018年6月30日",
+            img:"../image/operational_03.png"
+          },
+        ]
       }
     },
     methods:{

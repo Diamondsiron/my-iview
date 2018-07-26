@@ -4,6 +4,40 @@ html,body{
   width: 100%;
   background-color: #f0f0f0;
 }
-.context{
+.content{
   overflow: hidden;
+}
+section{
+  margin-bottom: 0.15rem;
+  overflow: hidden;
+  height: 6.35rem;
+  background-color: #fff
+}
+section>div:nth-child(1){
+  width: 10.26rem;
+  margin-left: 1.08rem;
+  margin-top: 0.42rem;
+  height: 0.42rem;
+  line-height: 0.42rem;
+  font-size: 0.42rem;
+  color: #656565;
+  
+}
+section>div:nth-child(2){
+  width: 10.26rem;
+  margin-left: 1.08rem;
+  margin-top: 0.39rem;
+  height: 0.32rem;
+  line-height: 0.32rem;
+  font-size: 0.32rem;
+  color: #989898
+}
+section>div:nth-child(3){
+  width: 10.26rem;
+  height: 4.32rem;
+  margin-left: 1.08rem;
+  margin-top: 0.18rem;
+}
+img{
+  width: 100%;
 }
