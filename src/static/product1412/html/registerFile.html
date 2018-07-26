@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
+  <script src="../js/swiper.min.js"></script>
+  <link rel="stylesheet" href="../css/swiper.min.css">
   <link rel="stylesheet" href="../css/registerFile.css">
   <title>Document</title>
 </head>
@@ -18,44 +20,82 @@
           </div> 
           <div class="context-line"></div>
       </div>
-      <div class="context-basic-desc">
-        <img src="" alt="">
+      <div class="context-basic-desc w588h825">
+        <img src="../image/fx_36.png" alt="">
       </div>
-      <div class="context-basic">
+      <div class="context-basic mt120">
           <div class="context-title">
               <p>开户许可证</p>
           </div> 
           <div class="context-line"></div>
       </div>
-      <div class="context-basic-desc">
-        <img src="" alt="">
+      <div class="context-basic-desc w851h587">
+        <img src="../image/fx_34.png" alt="">
       </div>
-      <div class="context-basic">
+      <div class="context-basic mt120">
           <div class="context-title">
               <p>会员证书</p>
           </div> 
           <div class="context-line"></div>
       </div>
-      <div class="context-basic-desc">
-        <img src="" alt="">
+      <div class="context-basic-desc w767h531">
+        <img src="../image/fx_35.png" alt="">
       </div>
-      <div class="context-basic">
+      <div class="context-basic mt120">
           <div class="context-title">
               <p>ICP备案信息</p>
           </div> 
           <div class="context-line"></div>
       </div>
       <div class="context-basic-desc">
-        <img src="" alt="">
+          <table class="context-table">
+              <tbody>
+                 <tr>
+                  <td><div>主办单位名称</div></td>
+                  <td><div>天津嘉业投资管理有限公司</div></td>
+                </tr>
+                <tr>
+                  <td><div>主办单位性质</div></td>
+                  <td><div>企业</div></td>
+                </tr>
+                <tr>
+                  <td><div>网站备案/许可证号</div></td>
+                  <td><div>津ICP备12007078号-9</div></td>
+                </tr>
+                 <tr>
+                    <td><div>网站名称</div></td>
+                    <td><div>嘉e贷</div></td>
+                  </tr>
+                  <tr>
+                    <td><div>网站首页网址</div></td>
+                    <td><div>www.jiayidai.com</div></td>
+                  </tr>
+                  <tr>
+                    <td><div>审核通过时间</div></td>
+                    <td><div>2016-04-22</div></td>
+                  </tr>
+              </tbody>
+            </table>
       </div>
-      <div class="context-basic">
+      <div class="context-basic mt120">
           <div class="context-title">
               <p>企业荣誉</p>
           </div> 
           <div class="context-line"></div>
       </div>
-      <div class="context-basic-desc">
-        <img src="" alt="">
+      <div class="context-basic-desc w843h576">
+         
+              <div class="swiper-container" id="banner">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="(item,index) in imageList" :key="index">
+                      <div class="show-detail">
+                       <img v-bind:src="item">
+                      </div>  
+                    </div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                </div>
+         
       </div>
   </div>
 </div>
@@ -65,14 +105,24 @@
     el:"#main",
     data(){
       return{
-
+        imageList:["../image/fx_38.jpg","../image/fx_39.jpg","../image/fx_40.jpg","../image/fx_41.jpg"]
       }
     },
     methods:{
-
+      init(){
+          var swiper = new Swiper('#banner',{
+              autoplay:true,
+              pagination: {
+                el: '.swiper-pagination',
+                bulletClass : 'mybanner-bullet',
+                bulletActiveClass:"mybanner-bullet-active",
+              },
+             
+          });
+        },
     },
     mounted() {
-      
+      this.init()
     },
   })
 </script>
