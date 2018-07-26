@@ -6,19 +6,83 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
-  <link rel="stylesheet" href="../css/activity.css">
+  <link rel="stylesheet" href="../css/inviteRecord.css">
   <title>Document</title>
 </head>
 <body>
 <div id="main">
-
+  <div class="content">
+    <header>
+      <div>
+        <div>累计邀请人数</div>
+        <div>10<span class="font1">人</span></div>
+      </div>
+      <div>
+        <div>累计获得奖励</div>
+        <div>23000.00<span class="font1">元</span></div>
+      </div>
+    </header>
+    <article>
+      <table class="context-table">
+        <tbody>
+          <tr>
+            <th>好友</th>
+            <th>注册时间</th>
+            <th>累计获得奖励</th>
+          </tr>
+          <tr v-for="(item,index) in list" ::key="index">
+            <td>{{item.tel}}</td>
+            <td>{{item.data}}</td>
+            <td>{{item.money}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
 </div>
 <script>
+  document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
   var vm = new Vue({
     el:"#main",
     data(){
       return{
-
+        list:[
+          {
+            tel:"156****657",
+            data:"2016/7/20",
+            money:"2.04元"
+          },
+          {
+            tel:"156****657",
+            data:"2016/7/20",
+            money:"2.04元"
+          },
+          {
+            tel:"156****657",
+            data:"2016/7/20",
+            money:"2.04元"
+          },
+          {
+            tel:"156****657",
+            data:"2016/7/20",
+            money:"2.04元"
+          },
+          {
+            tel:"156****657",
+            data:"2016/7/20",
+            money:"2.04元"
+          },
+          {
+            tel:"156****657",
+            data:"2016/7/20",
+            money:"2.04元"
+          },
+          {
+            tel:"156****657",
+            data:"2016/7/20",
+            money:"2.04元"
+          },
+        ]
       }
     },
     methods:{
