@@ -112,3 +112,24 @@ section {
 .card-icon>img {
   width: 100%;
 }
+.mt_115{
+  margin-top: 1.15rem
+}
+.lh9{
+  line-height: 0.9rem;
+}
+.lh45{
+ 
+  height: 0.45rem;
+}
+.card-title45{
+  position: absolute;
+  left: 0.5rem;
+  top: 1.7rem;
+  width: 2.22rem;
+  font-size: 0.36rem;
+  color: #656565;
+  text-align: center;
+  line-height: 0.45rem;
+  height: 0.45rem;
+}
