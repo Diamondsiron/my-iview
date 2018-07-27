@@ -88,7 +88,7 @@ html,body{
   display: inline-block;
   color: #998675;
   margin-left: 0.72rem;
- width: 3.06rem;
+ min-width: 3.06rem;
   font-size: 0.36rem;
   text-align: left;
   border-right:solid 1px #f2f2f2; 

@@ -44,11 +44,11 @@ section>div:nth-child(2){
   font-size: 0.32rem;
   text-align: left;
   border-collapse: collapse;
-  letter-spacing: -1px;
+ /*  letter-spacing: -1px;  */
 }
 tr {
   height: 0.57rem;
- 
+ /*  vertical-align: baseline; */
 }
 td{
   border-bottom: solid 1px #f2f2f2;
@@ -57,5 +57,71 @@ tr>td:nth-child(1) {
   width: 2.04rem;
 }
 td>div{
-  margin-left: 0.32rem
+  margin-left: 0.24rem;
+  transform: scale(0.88,0.88);
+  /* transform-origin: 0 0; */
 }
+@media screen and  (width:375px){
+  td>div{
+    margin-left: 0.19rem;
+    transform: scale(0.88,0.88);
+  }
+  .context-table {
+    width: 6.87rem;
+    margin: 0.12rem 0 0 0.42rem;
+    background-color: #ffffff;
+    color: #989898;
+    font-size: 0.32rem;
+    text-align: left;
+    border-collapse: collapse;
+    letter-spacing: -1px; 
+  }
+  .td_375{
+    vertical-align: top;
+  }
+  .td-div_375{
+    margin-top: 0.11rem
+  }
+ }
+ @media screen and (width:320px){
+  td>div{
+    margin-left: 0rem;
+    transform: scale(0.88,0.88);
+  }
+  .context-table {
+    width: 6.87rem;
+    margin: 0.12rem 0 0 0.42rem;
+    background-color: #ffffff;
+    color: #989898;
+    font-size: 0.32rem;
+    text-align: left;
+    border-collapse: collapse;
+    letter-spacing: -1px; 
+  }
+  .td_320{
+    vertical-align: top;
+  }
+  
+ }
+ @media screen and (min-width:360px) and (max-width:374px){
+  td>div{
+    margin-left: 0.19rem;
+    transform: scale(0.88,0.88);
+  }
+  .context-table {
+    width: 6.87rem;
+    margin: 0.12rem 0 0 0.42rem;
+    background-color: #ffffff;
+    color: #989898;
+    font-size: 0.32rem;
+    text-align: left;
+    border-collapse: collapse;
+    letter-spacing: -1px; 
+  }
+  .td_360{
+    vertical-align: top;
+  }
+  .td-div_360{
+   /*  margin-top: 0.11rem */
+  }
+ }

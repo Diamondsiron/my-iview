@@ -134,3 +134,23 @@ li{
   height:6.09rem;
   
  }
+ @media screen and (min-width:321px) and (max-width:375px){
+   
+ .card-title {
+    position: absolute;
+    width: 5.4rem;
+    top: 1.74rem;
+    left: 5.7rem;
+    height: 1.47rem;
+  }
+}
+@media screen and (max-width:320px){
+  .card-title {
+    position: absolute;
+    width: 5.4rem;
+    top: 1.74rem;
+    left: 5.2rem;
+    height: 1.47rem;
+    transform: scale(0.9,0.9)
+  }
+}

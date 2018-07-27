@@ -60,7 +60,7 @@ width: 6.24rem;
   font-size: 0.32rem;
   text-align: left;
   border-collapse: collapse;
- /*  letter-spacing: -1px; */
+  /* letter-spacing: -1px; */
 }
 tr {
   height: 0.57rem;
@@ -70,8 +70,9 @@ td{
   padding: 0px;
   vertical-align: text-bottom;
 }
-tr>td:nth-child(1)>div{
-  margin-left: 0.36rem;
+tr>td>div{
+  margin-left: 0.24rem;
+  transform: scale(0.88,0.88);
 }
 
 article {

@@ -108,3 +108,16 @@ article>section:nth-child(even)>.title{
 article>section:nth-child(odd)>.title{
   margin-left: 1.86rem;
 }
+@media screen and (min-width:320px) and (max-width:375px){
+   
+  .card-title {
+    position: absolute;
+    left: 0;
+    top: 1.11rem;
+    width: 100%;
+    height: 0.9rem;
+    font-size: 0.36rem;
+    color: #656565;
+    text-align: center;
+    }
+ }

@@ -44,7 +44,7 @@ html,body{
  
   text-align: left;
   border-collapse: collapse;
-  letter-spacing: -1px;
+  letter-spacing: -0.7px;
 }
 tr {
   height: 0.57rem;
@@ -54,7 +54,8 @@ td{
   padding: 0px;
 }
 td>div{
-  margin-left: 0.36rem;
+  margin-left: 0.2rem;
+  transform: scale(0.88,0.88);
 }
 .context-basic{
   margin-top: 0.75rem;
@@ -491,4 +492,25 @@ height: 0.36rem;
   .context-employee-desc-r-footer-b>div:nth-child(4){
     display: inline-block;
   }
-  
+  @media screen and  (min-width:360px) and (max-width:375px){
+    
+    .td_360{
+      vertical-align: top;
+    }
+    .context-employee-desc-l>div:nth-child(1) {
+        margin-left: 1rem;
+        height: 0.32rem;
+        font-size: 0.32rem;
+        line-height: 0.32rem;
+    }
+    
+   }
+   @media screen and  (min-width:320px) and (max-width:359px){
+    
+    .td_320{
+      vertical-align: top;
+    }
+    
+    
+   }
+ 
