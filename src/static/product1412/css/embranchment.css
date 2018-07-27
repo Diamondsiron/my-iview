@@ -14,7 +14,7 @@ article{
 }
 section{
   display: flex;
-  height: 4.89rem;
+  min-height: 4.89rem;
   width: 100%;
   margin-top: 0.51rem;
   /* overflow: hidden; */
