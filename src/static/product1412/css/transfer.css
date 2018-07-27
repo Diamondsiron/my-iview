@@ -298,6 +298,8 @@ color: #989898;
 #choose1 .context-message{
 margin-top: 0.78rem;
 margin-left: 0.54rem;
+position: relative;
+  height: 0.72rem;
 }
 #choose1 .context-message-desc{
   
@@ -350,6 +352,8 @@ line-height: 0px;
 #choose1 .context-record{
   margin-top: 0.81rem;
  margin-left: 0.54rem;
+ position: relative;
+  height: 0.72rem;
 
 }
 #choose1 .context-record-desc{
@@ -359,6 +363,8 @@ line-height: 0px;
 #choose1 .context-borrow{
   margin-top: 0.81rem;
  margin-left: 0.54rem;
+ position: relative;
+  height: 0.72rem;
 
 }
 #choose1 .context-borrow-desc div {
@@ -379,6 +385,8 @@ line-height: 0px;
 #choose1 .context-audit{
   margin-top: 0.81rem;
  margin-left: 0.54rem;
+ position: relative;
+  height: 0.72rem;
 }
 #choose1 .context-audit-desc{
 
@@ -386,7 +394,7 @@ line-height: 0px;
 
 #choose1 .context-title{
 display: inline-block;;
-width: 2.58rem;
+width: 2.48rem;
 height: 0.72rem;
 color: #f2f2f2;
 
@@ -401,6 +409,9 @@ display: inline-block;
 height: 1px;
 border-bottom: solid 1px #c7b299;
 width: 8.76rem;
+position: absolute;
+    top: 0.36rem;
+    left: 2.58rem;
 
 }
 #choose1 .context-title p{
