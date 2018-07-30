@@ -59,12 +59,14 @@ tr>td:nth-child(1) {
 td>div{
   margin-left: 0.24rem;
   transform: scale(0.88,0.88);
+  width: 100%;
   /* transform-origin: 0 0; */
 }
 @media screen and  (width:375px){
   td>div{
     margin-left: 0.19rem;
     transform: scale(0.88,0.88);
+    width: 100%;
   }
   .context-table {
     width: 6.87rem;
@@ -87,6 +89,7 @@ td>div{
   td>div{
     margin-left: 0rem;
     transform: scale(0.88,0.88);
+    width: 100%;
   }
   .context-table {
     width: 6.87rem;
@@ -107,6 +110,7 @@ td>div{
   td>div{
     margin-left: 0.19rem;
     transform: scale(0.88,0.88);
+    width: 100%;
   }
   .context-table {
     width: 6.87rem;

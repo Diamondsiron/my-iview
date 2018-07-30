@@ -44,7 +44,7 @@ html,body{
  
   text-align: left;
   border-collapse: collapse;
-  letter-spacing: -0.7px;
+ /*  letter-spacing: -0.7px; */
 }
 tr {
   height: 0.57rem;
@@ -52,10 +52,13 @@ tr {
 td{
   border-bottom: solid 1px #f2f2f2;
   padding: 0px;
+  vertical-align: text-bottom;
+ 
 }
 td>div{
   margin-left: 0.2rem;
   transform: scale(0.88,0.88);
+  width: 100%;
 }
 .context-basic{
   margin-top: 0.75rem;

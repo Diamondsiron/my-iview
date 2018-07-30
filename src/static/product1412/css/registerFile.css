@@ -82,7 +82,7 @@ html,body{
   font-size: 0.32rem;
   text-align: left;
   border-collapse: collapse;
-  letter-spacing: -1px;
+ /*  letter-spacing: -1px; */
 }
 tr {
   height: 0.57rem;
