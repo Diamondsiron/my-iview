@@ -15,11 +15,11 @@
     <header>
       <div>
         <div>累计邀请人数</div>
-        <div>10<span class="font1">人</span></div>
+        <div>{{people}}<span class="font1">人</span></div>
       </div>
       <div>
         <div>累计获得奖励</div>
-        <div>23000.00<span class="font1">元</span></div>
+        <div>{{money}}<span class="font1">元</span></div>
       </div>
     </header>
     <article>
@@ -46,43 +46,9 @@
     el:"#main",
     data(){
       return{
-        list:[
-         /*  {
-            tel:"156****657",
-            data:"2016/7/20",
-            money:"2.04元"
-          },
-          {
-            tel:"156****657",
-            data:"2016/7/20",
-            money:"2.04元"
-          },
-          {
-            tel:"156****657",
-            data:"2016/7/20",
-            money:"2.04元"
-          },
-          {
-            tel:"156****657",
-            data:"2016/7/20",
-            money:"2.04元"
-          },
-          {
-            tel:"156****657",
-            data:"2016/7/20",
-            money:"2.04元"
-          },
-          {
-            tel:"156****657",
-            data:"2016/7/20",
-            money:"2.04元"
-          },
-          {
-            tel:"156****657",
-            data:"2016/7/20",
-            money:"2.04元"
-          }, */
-        ]
+        list:[],
+        people:"",
+        money:""
       }
     },
     methods:{
@@ -101,6 +67,8 @@
        
         axios.post("/api/invest",req).then(res=>{
           vms.list = res.data.invest_list
+          vms.people = res.data.count_people
+          vms.money = res.data.sum_money
           console.log(vms.list)
         }).catch(err=>{
           console.log(res);
