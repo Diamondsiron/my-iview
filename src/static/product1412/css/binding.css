@@ -569,3 +569,13 @@ text-decoration:none;
 .content{
   height:100%;
 }
+.wrappers{
+  
+  overflow: hidden;
+ height: 200px;
+}
+.contents{
+  height: 200px;
+  background-color: red;
+  overflow: hidden;
+}

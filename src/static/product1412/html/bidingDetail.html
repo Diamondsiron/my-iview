@@ -181,10 +181,10 @@
                 </footer>
             </div>
             <div id="choose2" v-if="choose==2">
-                <div class="context">
-                    <div class="context-title">为保护借款人信息仅展示部分内容，具体匹配以实际情况为准。</div>
-                    <div class="context-table-wrap">
-                      <table class="context-table">
+                <div class="context wrappers">
+                   <!--  <div class="context-title">为保护借款人信息仅展示部分内容，具体匹配以实际情况为准。</div> -->
+                    <div class="context-table-wrap contents">
+                      <table class="context-table ">
                         <tr>
                           <th>借款标的</th>
                           <th>类型</th>
@@ -313,7 +313,7 @@
         h1:"",
         h2:"",
         list:[0,1,2,3,4,5,6,7,8,9],
-        choose:1,
+        choose:2,
         scroll
       }
     },
@@ -380,6 +380,15 @@
       
        
       
+      },
+      intss(){
+        let vms = this;
+        var scrolls;
+        scrolls = new BScroll(document.querySelector(".wrappers"), {
+        probeType: 2,
+        click:true,
+        momentum:false,
+      });
       }
     },
     mounted() {
@@ -387,6 +396,7 @@
      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
       this.$nextTick(() => {
        this._initScroll();
+       this.intss();
       });
      document.getElementById("main").addEventListener("resize",function(){
        console.log("resize")
