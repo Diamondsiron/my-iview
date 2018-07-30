@@ -26,17 +26,17 @@
           </div>
     </div>
     <div class="desc">
-      <div>苏泊尔电饼铛家用煎烤机</div>
+      <div>{{goods_detail.gd_name}}</div>
       <div>
-        双面加热，悬浮磁盘设计，上下烤盘独立控温，营养缩水圈无油不粘不糊锅
+        {{goods_detail.gd_summer}}
       </div>
       <div>
         <div>兑换嘉金币</div>
-        <div>12000000000000</div>
+        <div>{{goods_detail.gd_price}}</div>
       </div>
       <div>
-        <div>已兑换:38件</div>
-        <div>还剩:20500000件</div>
+        <div>已兑换:{{goods_detail.gd_sellcnt}}件</div>
+        <div>还剩:{{goods_detail.gd_totalcnt}}件</div>
       </div>
       <div>
          <div> <img src="../image/fx_16.png" alt="" class="icon-freight"></div>
@@ -58,6 +58,7 @@
       </header>
         <div id="choose1" v-if="choose==1">
           <div>
+            <!-- <img v-bind:src="goods_detail.gd_bigimg" alt="图片"> -->
             <img src="../image/store.png" alt="图片">
           </div>
          
@@ -81,14 +82,14 @@
         </div>
         <div id="choose2" v-if="choose==2">
           <div>
-            共80条兑换记录
+            共{{list.length}}条兑换记录
           </div>
           <div >
             <table class="context-table">
               <tr v-for="(item,index) in list" ::key="index">
-                <td>137****8833</td>
-                <td>300件</td>
-                <td>2017-7-8</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.cr_num}}</td>
+                <td>{{item.cr_time}}</td>
               </tr>
             </table>
           </div>
@@ -106,7 +107,7 @@
               </div>
             </div>
             <div>
-              <button>立即兑换</button>
+              <button @click="exchange()">立即兑换</button>
             </div>
           </footer>
         </div>
@@ -120,9 +121,21 @@
       el: "#main",
       data(){
         return{
-          list:["展示1","展示2","展示3","展示4","展示5","展示6","展示7","展示8","展示9","展示10"],
+          list:[],
           choose:1,
           count:1,
+          goods_detail:{
+            gd_price:"",
+            gd_id:"",
+            gd_sellcnt:"",
+            gd_totalcnt:"",
+            gd_name:"",
+            gd_smallimg:"",
+            gd_bigimg:"",
+            gd_summer:"",
+            gd_descript:"",
+            gd_status:"",
+          },
           imageList:["../image/store2.png","../image/store2.png","../image/store2.png","../image/store2.png"]
         }
       },
@@ -137,6 +150,26 @@
               },
              
           });
+          var vms = this
+          var id = this.getRequest()
+          let req ={
+                    "goods_id": id.id,
+                    "jyd_pubData": {
+                            "user_id": "4", 
+                            "source_type": "0001", 
+                            "system_id": "Android 7", 
+                            "network_type": "wifi", 
+                            "token_id": "123235h5e3"
+                        }
+                  }
+
+          axios.post("/api/goods/goodsDetails",req).then(res=>{
+            vms.list = res.data.exchange_records
+            vms.goods_detail = res.data.goods_detail
+            console.log(res);
+          }).catch(err=>{
+            console.log(err)
+          })
         },
         addCount(){
           this.count++
@@ -149,9 +182,44 @@
         changeCurrent(value){
           this.choose=value;
         },
+        getRequest(){
+          var url = location.search; //获取url中"?"符后的字串
+          var theRequest = new Object();  
+          if (url.indexOf("?") != -1) {  
+              var str = url.substr(1);  
+              strs = str.split("&");  
+              for(var i = 0; i < strs.length; i ++) {  
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+              }  
+          }  
+          return theRequest;
+        },
+        exchange(){
+          var vms = this
+          var id = this.getRequest.id
+          let req = {
+                      "goods_id": id, 
+                      "tel_phone": "15822753827",
+                      "exchange_num": vms.count, 
+                      "jyd_pubData": 
+                      {
+                          "user_id": 2, 
+                          "source_type": "0001", 
+                          "system_id": "Android 7", 
+                          "network_type": "wifi", 
+                          "token_id": "123235h5e3"
+                      }
+                  }
+          axios.post("/api/goods/exchange",req).then(res=>{
+            console.log("exchange",res);
+          }).catch(err=>{
+            console.log("exchange",err)
+          })
+        }
       },
       mounted() {
-        this.init()
+        this.init();
+        
       },
     })
   </script>

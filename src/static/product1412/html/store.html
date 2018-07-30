@@ -12,24 +12,24 @@
 <body>
   <div id="main">
     <div class="context">
-      <div class="card" v-for="(item,index) in list" ::key="index">
+      <div class="card" v-for="(item,index) in list" ::key="index" @click="handleChange(item.gd_id)">
         <div>
           <div class="card-img">
               <div class="card-img-detail">
-                  <img v-bind:src="item.img" alt="">
+                  <img v-bind:src="item.gd_smallimg" alt="">
               </div>
               <div class="card-img-title">
                 立即兑换
               </div>
           </div>
-          <div class="card-title-main">{{item.main}}</div>
-          <div class="card-title-sub">{{item.sub}}</div>
+          <div class="card-title-main">{{item.gd_name}}</div>
+          <div class="card-title-sub">{{item.gd_summer}}</div>
           <div class="card-title-bottom">
             <div class="card-title-bottom-l">
-              <span class="font-1">{{item.count}}<span class="font-2">{{item.unit}}</span></span>
+              <span class="font-1">{{item.gd_price}}<span class="font-2">嘉金币</span></span>
              
             </div>
-            <div class="card-title-bottom-r">已兑换:{{item.sales}}件</div>
+            <div class="card-title-bottom-r">已兑换:{{item.gd_sellcnt}}件</div>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
       data(){
         return{
           list:[
-            {
+           /*  {
               img:"../image/fx_15.png",
               main:"苏泊尔电饼铛家用煎烤机",
               sub:"双面加热，悬浮烤盘设计",
@@ -73,15 +73,37 @@
               count:"1200000000",
               unit:"嘉金币",
               sales:"38"
-            }
+            } */
           ]
         }
       },
       methods:{
+        init(){
+          var vms = this;
+          let req = {
+                    "jyd_pubData": {
+                        "user_id": "4", 
+                        "source_type": "0001", 
+                        "system_id": "Android 7", 
+                        "network_type": "wifi", 
+                        "token_id": "123235h5e3"
+                    }
+                }
 
+       
+          axios.post("/api/goods",req).then(res=>{
+            console.log(res)
+            vms.list = res.data.gd_list;
+          }).catch(err=>{
+            console.log(res);
+          })
+        },
+        handleChange(id){
+          window.location.href="commodity.html"+"?id="+id
+        }
       },
       mounted() {
-      
+        this.init();
       }
     })
   </script>
