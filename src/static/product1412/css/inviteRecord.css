@@ -90,3 +90,17 @@ tr>td:nth-child(2) {
 tr>td:nth-child(3) {
  width: 4.02rem;
 }
+.wrappers{
+    height: 14.85rem;
+    overflow: hidden;
+    background: #fff;
+    width: 11.34rem;
+    margin: 0 auto 0 auto;
+}
+.contents{
+  height: 14.85rem;
+  overflow: hidden;
+  background: #fff;
+  width: 11.34rem;
+  margin: 0 auto 0 auto;
+}

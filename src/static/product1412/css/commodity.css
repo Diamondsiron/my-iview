@@ -298,7 +298,8 @@ footer button{
   width: 100%;
 }
 #choose2>div:nth-child(1){
-  width: 2.7rem;
+  /* width: 2.7rem; */
+  text-align: center;
   height: 0.36rem;
   line-height: 100%;
   font-size: 0.36rem;

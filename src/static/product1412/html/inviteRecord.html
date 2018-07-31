@@ -24,8 +24,8 @@
       </div>
     </header>
     <article>
-        <div class="wrappers" style="height:14.85rem;overflow: hidden;">
-            <div class="contents" style="height: 14.85rem;overflow: hidden;">
+        <div class="wrappers">
+            <div class="contents">
             <table class="context-table">
                 <tbody>
                   <tr>
@@ -33,7 +33,7 @@
                     <th>注册时间</th>
                     <th>累计获得奖励</th>
                   </tr>
-                  <tr v-for="(item,index) in list" ::key="index">
+                  <tr v-for="(item,index) in showList" ::key="index">
                     <td>{{item.phone  | myFilter}}</td>
                     <td>{{item.register_date}}</td>
                     <td>{{item.money}}元</td>
@@ -52,7 +52,9 @@
     el:"#main",
     data(){
       return{
-        list:[],
+        list:[0,1,2,3,4,5,6,7,8,9],
+        showList:[],
+        page:1,
         people:"",
         money:""
       }
@@ -72,10 +74,11 @@
               }
        
         axios.post("/api/invest",req).then(res=>{
-          vms.list = res.data.invest_list
+          vms.list = res.data.invest_list.slice()
+          vms.showList = res.data.invest_list.slice(0,10)
           vms.people = res.data.count_people
           vms.money = res.data.sum_money
-          console.log(vms.list)
+          //console.log(vms.list)
         }).catch(err=>{
           console.log(res);
         })
@@ -91,6 +94,17 @@
           pullUpLoad: true ,
           
          });
+         function up(pos){
+          if(vms.scrolls.maxScrollY>pos.y+50){
+              //console.log("上拉")
+              vms.page++
+              vms.showList=vms.showList.concat(vms.list.slice((vms.page-1+"0"),(vms.page+"0")))
+              //console.log(vms.showList)
+          } 
+            //console.log(Math.round(pos.y));
+            vms.scrolls.refresh();
+        }
+        vms.scrolls.on('touchEnd', up)
       }
     },
     filters:{

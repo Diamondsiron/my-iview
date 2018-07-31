@@ -7,6 +7,7 @@
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
   <script src="../js/swiper.min.js"></script>
+  <script src="../js/bscroll.min.js"></script>
   <link rel="stylesheet" href="../css/swiper.min.css">
   <link rel="stylesheet" href="../css/commodity.css">
   <title>Document</title>
@@ -58,7 +59,7 @@
       </header>
         <div id="choose1" v-if="choose==1">
           <div>
-            <img v-bind:src="item" alt="图片">
+            <img v-bind:src="goods_detail.gd_descript" alt="图片">
             <!-- gd_descript -->
            <!--  <img src="../image/store.png" alt="图片"> -->
           </div>
@@ -86,13 +87,18 @@
             共{{list.length}}条兑换记录
           </div>
           <div >
-            <table class="context-table">
-              <tr v-for="(item,index) in list" ::key="index">
-                <td>{{item.phone}}</td>
-                <td>{{item.cr_num}}</td>
-                <td>{{item.cr_time}}</td>
-              </tr>
-            </table>
+              <div class="wrappers" style="height:14.85rem;">
+                  <div class="contents" style="height: 14.85rem;overflow: hidden;">
+                  <table class="context-table">
+                      <tr v-for="(item,index) in list" ::key="index">
+                        <td>{{item.phone}}</td>
+                        <td>{{item.cr_num}}</td>
+                        <td>{{item.cr_time}}</td>
+                      </tr>
+                  </table>
+              </div>
+            </div>
+           
           </div>
           <footer style="margin-top:1.8rem ">
             <div>
@@ -125,6 +131,8 @@
           list:[],
           choose:1,
           count:1,
+          showlist:[],
+          page:1,
           goods_detail:{
             gd_price:"",
             gd_id:"",
@@ -137,7 +145,7 @@
             gd_descript:"",
             gd_status:"",
           },
-          imageList:["../image/store2.png","../image/store2.png","../image/store2.png","../image/store2.png"]
+          imageList:[],
         }
       },
       methods:{
@@ -168,11 +176,16 @@
                   }
 
           axios.post("/api/goods/goodsDetails",req).then(res=>{
-            vms.list = res.data.exchange_records
+            vms.list = res.data.exchange_records.splice();
+            vms.showlist = res.data.exchange_records.splice(0,9);
             vms.goods_detail = res.data.goods_detail
             var list = vms.goods_detail.gd_bigimg
-            vms.imageList = list.split(",")
-            vms.initSwiper()
+            //vms.imageList = list.split(",")
+            vms.imageList = list
+            vms.$nextTick(() => {
+              vms.initSwiper()
+          });
+            
             console.log(res);
           }).catch(err=>{
             console.log(err)
@@ -186,8 +199,27 @@
             this.count--
           }
         },
+        initScroll(){
+        let vms = this
+        //this.scroll
+        vms.scrolls = new window.BScroll(document.querySelector(".contents"), {
+          probeType: 2,
+          click:true,
+          momentum:false,
+          pullUpLoad: true ,
+          
+         });
+        
+        },
         changeCurrent(value){
+          let vms = this
           this.choose=value;
+          if(value==2){
+          this.$nextTick(() => {
+            vms.initScroll()
+          });
+         
+        }
         },
         getRequest(){
           var url = location.search; //获取url中"?"符后的字串
@@ -225,6 +257,7 @@
         }
       },
       mounted() {
+        
         this.init();
         //this.initSwiper();
         
