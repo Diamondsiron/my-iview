@@ -180,80 +180,97 @@
                   
                 </footer>
             </div>
-            <div id="choose2" v-if="choose==2">
-                <div class="context wrappers">
-                   <!--  <div class="context-title">为保护借款人信息仅展示部分内容，具体匹配以实际情况为准。</div> -->
-                    <div class="context-table-wrap contents">
-                      <table class="context-table ">
-                        <tr>
-                          <th>借款标的</th>
-                          <th>类型</th>
-                          <th>剩余金额（元）</th>
-                          <th></th>
-                        </tr>
-                        <tr>
-                          <td>扩大经营</td>
-                          <td>信A</td>
-                          <td>100000.00</td>
-                          <td>></td>
-                        </tr>
-                        <tr>
-                          <td>度假旅游</td>
-                          <td>车AA</td>
-                          <td>10000.00</td>
-                          <td>></td>
-                        </tr>
-                        <tr>
-                          <td>扩大经营</td>
-                          <td>信A</td>
-                          <td>100000.00</td>
-                          <td>></td>
-                        </tr>
-                        <tr>
-                          <td>度假旅游</td>
-                          <td>车AA</td>
-                          <td>10000.00</td>
-                          <td>></td>
-                        </tr>
-                        <tr>
-                          <td>扩大经营</td>
-                          <td>信A</td>
-                          <td>100000.00</td>
-                          <td>></td>
-                        </tr>
-                        <tr>
-                          <td>度假旅游</td>
-                          <td>车AA</td>
-                          <td>10000.00</td>
-                          <td>></td>
-                        </tr>
-                        <tr>
-                          <td>扩大经营</td>
-                          <td>信A</td>
-                          <td>100000.00</td>
-                          <td>></td>
-                        </tr>
-                        <tr>
-                          <td>度假旅游</td>
-                          <td>车AA</td>
-                          <td>10000.00</td>
-                          <td>></td>
-                        </tr>
-                        <tr>
-                          <td>扩大经营</td>
-                          <td>信A</td>
-                          <td>100000.00</td>
-                          <td>></td>
-                        </tr>
-                        <tr>
-                          <td>度假旅游</td>
-                          <td>车AA</td>
-                          <td>10000.00</td>
-                          <td>></td>
-                        </tr>
-                       
-                      </table>
+            <div id="choose2" v-if="choose==2" >
+                <div class="context" >
+                    <div class="context-title">为保护借款人信息仅展示部分内容，具体匹配以实际情况为准。</div>
+                    <div class="wrappers" style="height:14.85rem;">
+                      <div class="contents" style="height: 14.85rem;overflow: hidden;">
+                        <div class="context-table-wrap ">
+                          <table class="context-table">
+                            <tr>
+                              <th>借款标的</th>
+                              <th>类型</th>
+                              <th>剩余金额（元）</th>
+                              <th></th>
+                            </tr>
+                            <tr>
+                              <td>扩大经营</td>
+                              <td>信A</td>
+                              <td>100000.00</td>
+                              <td>></td>
+                            </tr>
+                            <tr>
+                              <td>度假旅游</td>
+                              <td>车AA</td>
+                              <td>10000.00</td>
+                              <td>></td>
+                            </tr>
+                            <tr>
+                              <td>扩大经营</td>
+                              <td>信A</td>
+                              <td>100000.00</td>
+                              <td>></td>
+                            </tr>
+                            <tr>
+                              <td>度假旅游</td>
+                              <td>车AA</td>
+                              <td>10000.00</td>
+                              <td>></td>
+                            </tr>
+                            <tr>
+                              <td>扩大经营</td>
+                              <td>信A</td>
+                              <td>100000.00</td>
+                              <td>></td>
+                            </tr>
+                            <tr>
+                              <td>度假旅游</td>
+                              <td>车AA</td>
+                              <td>10000.00</td>
+                              <td>></td>
+                            </tr>
+                            <tr>
+                              <td>扩大经营</td>
+                              <td>信A</td>
+                              <td>100000.00</td>
+                              <td>></td>
+                            </tr>
+                            <tr>
+                              <td>度假旅游</td>
+                              <td>车AA</td>
+                              <td>10000.00</td>
+                              <td>></td>
+                            </tr>
+                            <tr>
+                              <td>扩大经营</td>
+                              <td>信A</td>
+                              <td>100000.00</td>
+                              <td>></td>
+                            </tr>
+                            <tr>
+                              <td>度假旅游</td>
+                              <td>车AA</td>
+                              <td>10000.00</td>
+                              <td>></td>
+                            </tr>
+                            <tr>
+                              <td>扩大经营</td>
+                              <td>信A</td>
+                              <td>100000.00</td>
+                              <td>></td>
+                            </tr>
+                            <tr>
+                              <td>度假旅游</td>
+                              <td>车AA</td>
+                              <td>10000.00</td>
+                              <td>></td>
+                            </tr>
+                          
+                          </table>
+                        </div>
+                      </div>
                     </div>
+                    
                   </div>
                   <footer style="overflow: hidden;">
                     <div class="foot-title">
@@ -313,8 +330,9 @@
         h1:"",
         h2:"",
         list:[0,1,2,3,4,5,6,7,8,9],
-        choose:2,
-        scroll
+        choose:1,
+        scroll:{},
+        scrolls:{}
       }
     },
     created() {
@@ -329,8 +347,15 @@
         
       },
       changeCurrent(value){
+        let vms = this
         this.choose=value;
         this.scroll.refresh();
+       if(value==2){
+        this.$nextTick(() => {
+          vms.initX()
+          });
+         
+        }
         
       },
       _initScroll(){
@@ -374,21 +399,26 @@
           }
           console.log(Math.round(pos.y));
        }
-       vms.scroll.on('touchEnd', up)
-      
-   
-      
-       
-      
+      // vms.scroll.on('touchEnd', up)
       },
-      intss(){
-        let vms = this;
-        var scrolls;
-        scrolls = new BScroll(document.querySelector(".wrappers"), {
-        probeType: 2,
-        click:true,
-        momentum:false,
-      });
+      initX(){
+        let vms = this
+        //this.scroll
+        vms.scrolls = new window.BScroll(document.querySelector(".contents"), {
+          probeType: 2,
+          click:true,
+          momentum:false,
+          pullUpLoad: true ,
+          
+         });
+         vms.scrolls.on('beforeScrollStart', aaa)
+         function aaa() {
+          vms.scroll.disable()
+         }
+         vms.scrolls.on('touchEnd', bbb)
+         function bbb(){
+          vms.scroll.enable()
+         }
       }
     },
     mounted() {
@@ -396,12 +426,8 @@
      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
       this.$nextTick(() => {
        this._initScroll();
-       this.intss();
+      // this.initX()
       });
-     document.getElementById("main").addEventListener("resize",function(){
-       console.log("resize")
-     })
-      
     },
   })
 </script>

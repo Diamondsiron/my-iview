@@ -572,10 +572,8 @@ text-decoration:none;
 .wrappers{
   
   overflow: hidden;
- height: 200px;
+ 
 }
 .contents{
-  height: 200px;
-  background-color: red;
-  overflow: hidden;
+  
 }
