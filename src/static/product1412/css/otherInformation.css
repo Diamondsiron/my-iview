@@ -70,14 +70,15 @@ td{
   padding: 0px;
 }
 tr>td:nth-child(1)>div{
-  margin-left: 0.24rem;
+  margin-left: 0.36rem;
+ /*  margin-left: 0.24rem;
   transform: scale(0.88,0.88);
-  width: 100%;
+  width: 100%; */
 }
 tr>td:nth-child(2){
   text-align: center;
   vertical-align: text-top;
 }
 tr>td:nth-child(2)>div{
-  transform: scale(0.88,0.88);
+ /*  transform: scale(0.88,0.88); */
 }

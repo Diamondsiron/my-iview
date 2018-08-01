@@ -59,7 +59,7 @@
       </header>
         <div id="choose1" v-if="choose==1">
           <div>
-            <img v-bind:src="goods_detail.gd_descript" alt="图片">
+            <img v-bind:src="goods_detail.gd_descript" alt="">
             <!-- gd_descript -->
            <!--  <img src="../image/store.png" alt="图片"> -->
           </div>
@@ -72,13 +72,13 @@
               </div>
               <div>
                 <div>数量：</div>
-                <div @click="removeCount">-</div>
+                <button @click="removeCount">-</button>
                 <div>{{count}}</div>
-                <div  @click="addCount">+</div>
+                <button  @click="addCount">+</button>
               </div>
             </div>
             <div>
-              <button @click="exchange()" type="button">立即兑换</button>
+              <button class="button" @click="exchange()" type="button">立即兑换</button>
             </div>
           </footer>
         </div>
@@ -87,10 +87,10 @@
             共{{list.length}}条兑换记录
           </div>
           <div >
-              <div class="wrappers" style="height:14.85rem;">
-                  <div class="contents" style="height: 14.85rem;overflow: hidden;">
+              <div class="wrappers" style="height:13.5rem;">
+                  <div class="contents" style="height: 13.5rem;overflow: hidden;">
                   <table class="context-table">
-                      <tr v-for="(item,index) in list" ::key="index">
+                      <tr v-for="(item,index) in showlist" ::key="index">
                         <td>{{item.phone}}</td>
                         <td>{{item.cr_num}}</td>
                         <td>{{item.cr_time}}</td>
@@ -108,13 +108,13 @@
               </div>
               <div>
                 <div>数量：</div>
-                <div @click="removeCount">-</div>
+                <button @click="removeCount">-</button>
                 <div>{{count}}</div>
-                <div  @click="addCount">+</div>
+                <button  @click="addCount">+</button>
               </div>
             </div>
             <div>
-              <button @click="exchange()" type="button">立即兑换</button>
+                <button class="button" @click="exchange()" type="button">立即兑换</button>
             </div>
           </footer>
         </div>
@@ -177,7 +177,7 @@
 
           axios.post("/api/goods/goodsDetails",req).then(res=>{
             vms.list = res.data.exchange_records.splice();
-            vms.showlist = res.data.exchange_records.splice(0,9);
+            vms.showlist = res.data.exchange_records.splice(0,11);
             vms.goods_detail = res.data.goods_detail
             var list = vms.goods_detail.gd_bigimg
             //vms.imageList = list.split(",")
@@ -209,6 +209,17 @@
           pullUpLoad: true ,
           
          });
+         function up(pos){
+          if(vms.scrolls.maxScrollY>pos.y+50){
+              //console.log("上拉")
+              vms.page++
+              vms.showList=vms.showList.concat(vms.list.slice((vms.page-1+"1"),(vms.page+"1")))
+              //console.log(vms.showList)
+          } 
+            //console.log(Math.round(pos.y));
+            vms.scrolls.refresh();
+        }
+        vms.scrolls.on('touchEnd', up)
         
         },
         changeCurrent(value){
@@ -259,7 +270,7 @@
       mounted() {
         
         this.init();
-        //this.initSwiper();
+        
         
       },
     })

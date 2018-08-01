@@ -90,17 +90,28 @@ tr>td:nth-child(2) {
 tr>td:nth-child(3) {
  width: 4.02rem;
 }
+tr>th:nth-child(1) {
+  width: 3.78rem;
+}
+tr>th:nth-child(2) {
+ width: 3.54rem;
+}
+tr>th:nth-child(3) {
+ width: 4.02rem;
+}
 .wrappers{
-    height: 14.85rem;
+   /*  height: 14.85rem; */
+    height: 13.5rem;
     overflow: hidden;
-    background: #fff;
+    /* background: #fff */;
     width: 11.34rem;
     margin: 0 auto 0 auto;
 }
 .contents{
-  height: 14.85rem;
+  height: 13.5rem;
+  /* height: 14.85rem; */
   overflow: hidden;
-  background: #fff;
+ /*  background: #fff; */
   width: 11.34rem;
   margin: 0 auto 0 auto;
 }
