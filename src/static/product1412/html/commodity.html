@@ -182,7 +182,7 @@
             var list = vms.goods_detail.gd_bigimg
             //vms.imageList = list.split(",")
             vms.imageList = list
-            if(vms.list.length!=0){
+            if(vms.list.length>0){
               vms.$nextTick(() => {
                   vms.initSwiper()
               });
@@ -230,10 +230,13 @@
           this.choose=value;
           if(value==2){
           this.$nextTick(() => {
-            vms.initScroll()
+            if(vms.list.length>0){
+              vms.initScroll()
+            }
+           
           });
          
-        }
+         }
         },
         getRequest(){
           var url = location.search; //获取url中"?"符后的字串
