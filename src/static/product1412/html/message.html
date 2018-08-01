@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/axios.min.js"></script>
+  <link rel="stylesheet" href="../css/message.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <header>
+        <div class="head-content" >
+            <div class="head-content-item" v-on:click="changeCurrent(1)" :class={"head-content-item_choose":choose==1}>
+              公告信息
+            </div>
+            <div class="head-content-item" v-on:click="changeCurrent(2)" :class={"head-content-item_choose":choose==2}>
+              站内信
+            </div>
+          </div>
+    </header>
+    <div class="content">
+      <div v-if="choose==1">
+        <div v-for="(item,index) in listAnnouncement" class="item">
+          <div class="item-main" :class={"item-main_read":item.ua_readstatus=='02'} @click="go_an(item.an_id)"> {{item.an_title}}</div>
+          <div class="item-time">{{item.an_inputtime}}</div>
+        </div>
+      </div>
+      <div v-if="choose==2">
+          <div v-for="(item,index) in listUsermail" class="item">
+            <div class="item-main" :class={"item-main_read":item.um_readstatus=='02'} @click="go_um(item.um_id)"> {{item.um_title}}</div>
+            <div class="item-time">{{item.um_inputtime}}</div>
+          </div>
+        </div>
+     
+
+    </div>
+  </div>
+  <script>
+     document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+    var vm = new Vue({
+      el:"#main",
+      data(){
+        return{
+          choose:1,
+          list:[0,1,2,3],
+          listAnnouncement:[],
+          listUsermail:[]
+        }
+      },
+      methods:{
+        changeCurrent(value){
+          let vms = this
+          this.choose=value;
+       },
+       init(){
+         //公告
+         let vms = this
+         let req ={
+                  "page_number": "1",
+                  "jyd_pubData": {
+                          "user_id": "4", 
+                          "source_type": "0001", 
+                          "system_id": "Android 7", 
+                          "network_type": "wifi", 
+                          "token_id": "123235h5e3"
+                      }
+                  }
+
+         axios.post("/api/userMail/announcement",req).then(res=>{
+          
+            vms.listAnnouncement = res.data.record_list
+           console.log(res)
+         }).catch(err=>{
+           console.log(err)
+         })
+         //站内信
+         let req1 = {
+                    "page_number": "1",
+                    "jyd_pubData": {
+                            "user_id": "4", 
+                            "source_type": "0001", 
+                            "system_id": "Android 7", 
+                            "network_type": "wifi", 
+                            "token_id": "123235h5e3"
+                        }
+                    }
+
+        axios.post("/api/userMail/usermail",req).then(res=>{
+          console.log(res)
+          vms.listUsermail = res.data.record_list
+        }).catch(err=>{
+          console.log(err)
+        })
+       },
+       go_an(value){
+         console.log(value)
+       },
+       go_um(value){
+         console.log(value)
+       }
+      },
+      mounted() {
+        this.init();
+      },
+    })
+  </script>
+</body>
+</html>

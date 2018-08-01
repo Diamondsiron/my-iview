@@ -87,8 +87,8 @@
             共{{list.length}}条兑换记录
           </div>
           <div >
-              <div class="wrappers" style="height:13.5rem;" v-if="showList.length>0">
-                  <div class="contents" style="height: 13.5rem;overflow: hidden;">
+              <div class="wrappers" style="max-height:13.5rem;" v-if="showList.length>0">
+                  <div class="contents" style="max-height: 13.5rem;overflow: hidden;">
                   <table class="context-table">
                       <tr v-for="(item,index) in showList" ::key="index">
                         <td>{{item.phone}}</td>

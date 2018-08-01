@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/axios.min.js"></script>
+  <link rel="stylesheet" href="../css/messageDetail.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+
+  </div>
+  <script>
+  document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+    var vm = new Vue({
+      el:"#main",
+      data(){
+        return{
+
+        }
+      },
+      methods:{
+        init(){
+          let req = {
+          "an_id": "1", 
+          "jyd_pubData": {
+              "user_id": "1",
+              "source_type": "0001", 
+              "system_id": "Android 7", 
+              "network_type": "wifi", 
+              "token_id": "123235h5e3"
+              }
+          }
+        axios.post("/api/userMail/readAnnouncement",req).then(res=>{
+          console.log(res)
+        }).catch(err=>{
+          console.log(err)
+        })
+       }
+      },
+      mounted() {
+        this.init()
+      },
+    })
+  </script>
+</body>
+</html>
