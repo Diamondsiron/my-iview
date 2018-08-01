@@ -213,6 +213,7 @@ footer>div:nth-child(1)>div:nth-child(1){
  margin-left: 0.78rem;
  height: 0.36rem;
  line-height: 0.36rem;
+ user-select: none;
 }
 footer>div:nth-child(1)>div:nth-child(2){
   margin-top:0.18rem ;
@@ -234,6 +235,7 @@ footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(1){
   left: 0px;
   bottom: 0.04rem;
   color: #989898;
+  user-select: none;
   /* width: 0.99rem; */
 }
 footer>div:nth-child(1)>div:nth-child(2)>button:nth-child(2){
@@ -248,6 +250,8 @@ footer>div:nth-child(1)>div:nth-child(2)>button:nth-child(2){
   border-radius: 0.04rem;
   outline: none;
     border: none;
+    user-select: none;
+  -webkit-tap-highlight-color:rgba(255,255,255,0)
 }
 footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(3){
   position: absolute;
@@ -257,6 +261,7 @@ footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(3){
   height: 0.54rem;
   text-align: center;
   color: #989898;
+  user-select: none;
   
 }
 footer>div:nth-child(1)>div:nth-child(2)>button:nth-child(4){
@@ -271,15 +276,26 @@ footer>div:nth-child(1)>div:nth-child(2)>button:nth-child(4){
   border-radius: 0.04rem;
   outline: none;
     border: none;
+    user-select: none;
+  -webkit-tap-highlight-color:rgba(255,255,255,0)
 }
 footer>div:nth-child(2){
   position: relative;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color:rgba(255,255,255,0);
 }
 footer .button{
   font-weight: 100;
   position: absolute;
   right: 0.68rem;
-  
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color:rgba(255,255,255,0);
   margin-top: 0.33rem;
   /* width: 100%; */
   width: 5.63rem;
@@ -354,6 +370,9 @@ footer .button{
   .mybanner-bullet-active{
    /*  opacity: 1; */
     background: #998675;
+  }
+   button:active{
+    opacity:0.7;
   }
   @media screen and (min-width:321px) and (max-width:375px){
    

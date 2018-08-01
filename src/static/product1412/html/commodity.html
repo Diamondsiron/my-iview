@@ -72,13 +72,13 @@
               </div>
               <div>
                 <div>数量：</div>
-                <button @click="removeCount">-</button>
+                <button ontouchstart="" @click="removeCount">-</button>
                 <div>{{count}}</div>
-                <button  @click="addCount">+</button>
+                <button ontouchstart=""  @click="addCount">+</button>
               </div>
             </div>
             <div>
-              <button class="button" @click="exchange()" type="button">立即兑换</button>
+              <button class="button" ontouchstart="" @click="exchange()" type="button">立即兑换</button>
             </div>
           </footer>
         </div>
@@ -87,10 +87,10 @@
             共{{list.length}}条兑换记录
           </div>
           <div >
-              <div class="wrappers" style="height:13.5rem;">
+              <div class="wrappers" style="height:13.5rem;" v-if="showList.length>0">
                   <div class="contents" style="height: 13.5rem;overflow: hidden;">
                   <table class="context-table">
-                      <tr v-for="(item,index) in showlist" ::key="index">
+                      <tr v-for="(item,index) in showList" ::key="index">
                         <td>{{item.phone}}</td>
                         <td>{{item.cr_num}}</td>
                         <td>{{item.cr_time}}</td>
@@ -108,13 +108,13 @@
               </div>
               <div>
                 <div>数量：</div>
-                <button @click="removeCount">-</button>
+                <button ontouchstart="" @click="removeCount">-</button>
                 <div>{{count}}</div>
-                <button  @click="addCount">+</button>
+                <button ontouchstart="" @click="addCount">+</button>
               </div>
             </div>
             <div>
-                <button class="button" @click="exchange()" type="button">立即兑换</button>
+                <button class="button" ontouchstart="" @click="exchange()" type="button">立即兑换</button>
             </div>
           </footer>
         </div>
@@ -131,7 +131,7 @@
           list:[],
           choose:1,
           count:1,
-          showlist:[],
+          showList:[],
           page:1,
           goods_detail:{
             gd_price:"",
@@ -176,15 +176,18 @@
                   }
 
           axios.post("/api/goods/goodsDetails",req).then(res=>{
-            vms.list = res.data.exchange_records.splice();
-            vms.showlist = res.data.exchange_records.splice(0,11);
+            vms.list = res.data.exchange_records.slice();
+            vms.showList = res.data.exchange_records.slice(0,11);
             vms.goods_detail = res.data.goods_detail
             var list = vms.goods_detail.gd_bigimg
             //vms.imageList = list.split(",")
             vms.imageList = list
-            vms.$nextTick(() => {
-              vms.initSwiper()
-          });
+            if(vms.list.length!=0){
+              vms.$nextTick(() => {
+                  vms.initSwiper()
+              });
+            }
+           
             
             console.log(res);
           }).catch(err=>{

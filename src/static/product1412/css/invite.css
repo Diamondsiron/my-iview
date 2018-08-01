@@ -49,6 +49,10 @@ footer{
   overflow: hidden;
   margin: 0 auto 0 auto;
   width: 11.34rem;
+  -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .foot-content-btn {
   height: 1.5rem;
@@ -65,6 +69,14 @@ footer{
   background: -o-linear-gradient(#ff6a55, #ee1e27);
   background: -moz-linear-gradient(#ff6a55, #ee1e27);
   background: linear-gradient(#ff6a55, #ee1e27);
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color:rgba(255,255,255,0)
+}
+.foot-content-btn:active{
+  opacity:0.7;
 }
 footer>div:nth-child(2){
   text-align: center;
