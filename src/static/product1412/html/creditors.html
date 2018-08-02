@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <link rel="stylesheet" href="../css/creditors.css">
+    <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <div>
+      <article>
+        <table class="content-table">
+          <tr>
+            <th>借款用途</th>
+            <th>借款人</th>
+            <th>出借金额（元）</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr v-for="(item,index) in list" :key="index">
+            <td>扩大经营</td>
+            <td><img src="../image/me_29.png" alt=""></td>
+            <td>100000.00</td>
+            <td>
+              <div class="tr-td-l">查看协议</div>  
+              <div class="tr-td-r">汇款协议</div>  
+            </td>
+            <td></td>
+          </tr>
+        </table>
+      </article>
+    </div>
+  </div>
+  <script>
+     document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+     var vm = new Vue({
+       el:"#main",
+       data(){
+         return{
+           list:[0,1,2,3,4,5]
+         }
+       },
+       methods:{
+         init(){
+
+         },
+       },
+       mounted() {
+         this.init()
+       },
+     })
+  </script>
+</body>
+</html>
