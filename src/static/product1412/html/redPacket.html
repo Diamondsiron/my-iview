@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <link rel="stylesheet" href="../css/redPacket.css">
+    <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <div class="content">
+     <p class="title">1、红包是什么？</p>
+     <p class="desc">红包是嘉e贷平台通过活动、会员奖励等形式发放给用户，用户可在打开后直接享用的一种现金奖励措施。</p>
+     <p class="title">2、红包的获取方式有哪些？</p>
+     <p class="desc">红包主要可通过在嘉e贷官方网站及APP参与出借获得，也可通过参与邀请好友、会员活动等方式获得。</p>
+     <p class="title">3、红包如何使用？</p>
+     <p class="desc">红包可以通过<span class="desc_blod">【打开红包】</span>功能直接兑换为现金。红包与人民币面值比例1:1</p>
+     <p class="title">4、如何查询我的红包？</p>
+     <p class="desc">点击 <span class="desc_blod">【我的】</span>-<span class="desc_blod">【我的奖励】</span>，可查看红包相关信息</p>
+    </div>
+  </div>
+  <script>
+     document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+     var vm = new Vue({
+       el:"#main",
+       data(){
+         return{
+           list:[0,1,2,3,4,5]
+         }
+       },
+       methods:{
+         init(){
+
+         },
+       },
+       mounted() {
+         this.init()
+       },
+     })
+  </script>
+</body>
+</html>

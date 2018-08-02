@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <link rel="stylesheet" href="../css/particulars.css">
+    <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <div>
+        <header>
+            <div class="head-content" >
+                <div class="head-content-item" v-on:click="changeCurrent(1)" :class={"head-content-item_choose":choose==1}>
+                  近期明细
+                </div>
+                <div class="head-content-item" v-on:click="changeCurrent(2)" :class={"head-content-item_choose":choose==2}>
+                  历史明细
+                </div>
+              </div>
+        </header>
+        <div class="content">
+          <div v-if="choose==1">
+            <article>
+              <div v-for="(item,index) in list" class="item">
+                <div class="item-l">
+                  <div class="item-l-t">签到领红包</div>
+                  <div class="item-l-b">流水号：721109</div>
+                </div>
+                <div class="item-r">
+                  <div class="item-r-t">+0.01</div>
+                  <div class="item-r-b">2018.6.15</div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div v-if="choose==2">
+              <article>
+                  <div v-for="(item,index) in list" class="item">
+                    <div class="item-l">
+                      <div class="item-l-t">提取现金</div>
+                      <div class="item-l-b">流水号：721109</div>
+                    </div>
+                    <div class="item-r">
+                      <div class="item-r-t item-r-t_remove">-0.01</div>
+                      <div class="item-r-b">2018.6.15</div>
+                    </div>
+                  </div>
+                </article>
+          </div>
+        </div>
+    </div>
+  </div>
+  <script>
+     document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+     var vm = new Vue({
+       el:"#main",
+       data(){
+         return{
+          choose:1,
+          list:[0,1,2,3],
+         }
+       },
+       methods:{
+        changeCurrent(value){
+            let vms = this
+            this.choose=value;
+        },
+         init(){
+
+         },
+       },
+       mounted() {
+         this.init()
+       },
+     })
+  </script>
+</body>
+</html>

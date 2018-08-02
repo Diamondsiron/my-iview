@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<html>
+
+</html><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,24 +8,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="../js/vue.min.js"></script>
     <script src="../js/axios.min.js"></script>
-    <link rel="stylesheet" href="../css/returnedMoney.css">
+    <link rel="stylesheet" href="../css/QRCode.css">
     <title>Document</title>
 </head>
 <body>
   <div id="main">
-    <div>
-        <article>
-            <div class="card" v-for="(item,index) in list" ::key="item">
-              <div>第1期/共12期</div>
-              <div>已还款</div>
-              <div>应还本金</div>
-              <div>1444.72</div>
-              <div>应还利息</div>
-              <div>772.27</div>
-              <div>总款金额</div>
-              <div>2327.4</div>
-            </div>
-        </article>
+    <div class="content">
+      <div class="content-img">
+        <img src="../image/me_24.png" alt="">
+      </div>
+      <div class="content-title">
+        邀请好友扫描二维码，加入嘉e贷
+      </div>
     </div>
   </div>
   <script>
@@ -32,12 +28,11 @@
        el:"#main",
        data(){
          return{
-          choose:1,
-          list:[0,1,2,3],
+           list:[0,1,2,3,4,5]
          }
        },
        methods:{
-        init(){
+         init(){
 
          },
        },
