@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <link rel="stylesheet" href="../css/modelAgreement.css">
+    <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <div>
+      <article>
+        <div class="main-title">嘉e贷注册协议</div>
+        <p class="title">第一章 注册协议的确认和接纳</p>
+        <p class="desc">一、您一经勾选同意《嘉e贷注册协议》并按照本平台规定的注册程序点击确认提交注册申请，即表示您已充分阅读、理解并同意接受本服务协议的条款和条件，并签署了本服务协议，本服务协议即在您和嘉e贷之间产生法律效力，本协议及本协议项下任何授权、许可、认可及确认一经作出不得撤销</p>
+        <p class="title">第二章 嘉e贷使用限制说明</p>
+        <p class="desc">一、在使用嘉e贷服务前，您必须先在嘉e贷注册，成为嘉e贷用户。</p>
+        <p class="title">第三章 知识产权保护说明</p>
+        <p class="desc">一、嘉e贷平台上的所有内容的知识产权全部为嘉e贷所有。该等内容包括但不限于文本、数据、文章、音频、视频、网页设计、源代码、软件、图片、照片及其他全部信息</p>
+        <p class="title">第四章 嘉e贷服务内容</p>
+        <p class="desc">一、嘉e贷为用户提供的服务包括但不限于：以互联网为主要渠道，提供交易平台为借款人与出借人实现直接借贷提供信息搜集、信息公布、匹配与撮合、信用资质审核服务、用户账户管理、交易文本和信息管理、提前还款通知、还款提醒及通知、登记以及催收等网络借贷信息中介服务，但不包括提供增信、归集资金等服务。具体内容以嘉e贷届时与用户签署及不时修订的服务协议内容为准。部分服务需要用户完成身份认证才能享用。用户因未完成身份认证而无法享受服务的，嘉e贷不承担任何责任。用户遵循借贷自愿、诚实守信、责任自负、风险自担的原则承担借贷风险。嘉e贷不承担借贷违约风险。</p>
+      </article>
+    </div>
+  </div>
+  <script>
+      document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+      var vm = new Vue({
+        el:"#main",
+        data(){
+          return{
+           choose:1,
+           list:[0,1,2,3],
+          }
+        },
+        methods:{
+         changeCurrent(value){
+             let vms = this
+             this.choose=value;
+         },
+          init(){
+ 
+          },
+        },
+        mounted() {
+          this.init()
+        },
+      })
+   </script>
+</body>
+</html>
