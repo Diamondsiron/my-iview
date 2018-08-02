@@ -101,14 +101,14 @@ tr>th:nth-child(3) {
 }
 .wrappers{
    /*  height: 14.85rem; */
-    height: 13.5rem;
+   height: 9.45rem;
     overflow: hidden;
     /* background: #fff */;
     width: 11.34rem;
     margin: 0 auto 0 auto;
 }
 .contents{
-  height: 13.5rem;
+  height: 9.45rem;
   /* height: 14.85rem; */
   overflow: hidden;
  /*  background: #fff; */

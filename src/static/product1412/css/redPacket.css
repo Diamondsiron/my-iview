@@ -15,11 +15,15 @@ html,body{
   font-size: 0.36rem;
   font-weight: bold;
   color: #656565;
+  line-height: 0.36rem;
+  height: 0.36rem;
 }
 .desc{
   font-size: 0.36rem;
   margin: 0.18rem 0 0 0;
   color: #989898;
+ /*  text-align: justify; */
+    word-break: break-all;
 }
 .desc_blod{
   font-weight: bold;
