@@ -12,48 +12,69 @@
 <body>
   <div id="main">
     <header>
-      <div class="header-main">【重要通知】及时修改登录密码</div>
-      <div class="header-sub">2018-6-15</div>
+      <div class="header-main">{{obj.an_title}}</div>
+      <div class="header-sub">{{obj.an_inputtime}}</div>
     </header>
     <div class="content">
-      <div class="content-desc">
-          阿拉路上看见对方那可就是当年曾经看得出速度可能仓库就是当年触控机身内存空间是我打开煤气哦i的魔力什么的卡拉苏门答腊顺利打开你妈离开谁都能卢卡斯拿到了看书阿斯利康到那时考虑到那里可是当年拉上你阿斯利康到那里开始的哪里看到来看收到了
-
-
-          阿三
+      <div class="content-desc" id="data">
+        {{obj.an_content}}
       </div>
     </div>
   </div>
   <script>
+   
   document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
     var vm = new Vue({
       el:"#main",
       data(){
         return{
+          obj:{
+              an_content:"",
+              an_id:"",
+              an_inputtime:"",
+              an_title:"",
+              an_status:"",
+              return_msg:"",
+              return_code:""
+            }
 
         }
       },
       methods:{
-        init(){
-          let req = {
-          "an_id": "1", 
-          "jyd_pubData": {
-              "user_id": "1",
-              "source_type": "0001", 
-              "system_id": "Android 7", 
-              "network_type": "wifi", 
-              "token_id": "123235h5e3"
-              }
-          }
+        init(id){
+          var vms = this;
+          let req = JSON.parse(id)
+
         axios.post("/api/userMail/readAnnouncement",req).then(res=>{
-          console.log(res)
+          vms.obj=res.data
+          //alert(res.data.return_msg)
+          //console.log(res)
         }).catch(err=>{
           console.log(err)
         })
        }
       },
       mounted() {
-        //this.init()
+        let vms = this
+        var data = 0;
+        window.onload = function () {
+            document.addEventListener('message', function (e) {
+                //document.getElementById('data').textContent = e.data;
+                vms.init(e.data)
+            })
+            
+        }
+        var refreshIntervalId = setInterval(function(){
+            if (window.originalPostMessage) {
+                window.postMessage("");
+                stop();
+            } 
+        }, 500);
+
+        function stop(){
+            clearInterval(refreshIntervalId);
+        }
+        //this.init(8)
       },
     })
   </script>
