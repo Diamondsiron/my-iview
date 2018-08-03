@@ -146,3 +146,14 @@ color: #656565;
   color: #989898;
   font-weight: 100;
 }
+.wrapper{
+  width: 100%;
+  position:absolute;
+  top: 0px;
+  bottom: 0px;
+  overflow: hidden;
+  z-index: 1;
+}
+.content{
+  height:100%;
+}

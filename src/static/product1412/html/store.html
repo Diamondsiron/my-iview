@@ -6,33 +6,38 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
+  <script src="../js/bscroll.min.js"></script>
   <link rel="stylesheet" href="../css/store.css">
   <title>Document</title>
 </head>
 <body>
-  <div id="main">
-    <div class="context">
-      <div class="card" v-for="(item,index) in list" ::key="index" @click="handleChange(item.gd_id)">
-        <div>
-          <div class="card-img">
-              <div class="card-img-detail">
-                  <img v-bind:src="item.gd_smallimg" alt="">
-              </div>
-              <div class="card-img-title">
-                立即兑换
-              </div>
-          </div>
-          <div class="card-title-main">{{item.gd_name}}</div>
-          <div class="card-title-sub">{{item.gd_summer}}</div>
-          <div class="card-title-bottom">
-            <div class="card-title-bottom-l">
-              <span class="font-1">{{item.gd_price}}<span class="font-2">嘉金币</span></span>
-             
-            </div>
-            <div class="card-title-bottom-r">已兑换:{{item.gd_sellcnt}}件</div>
-          </div>
-        </div>
-      </div>
+  <div id="main" class="wrapper">
+    <div class="content">
+        <div class="context" id="top">
+            
+                <div class="card" v-for="(item,index) in list" ::key="index" @click="handleChange(item.gd_id)">
+                  <div>
+                    <div class="card-img">
+                        <div class="card-img-detail">
+                            <img v-bind:src="item.gd_smallimg" alt="">
+                        </div>
+                        <div class="card-img-title">
+                          立即兑换
+                        </div>
+                    </div>
+                    <div class="card-title-main">{{item.gd_name}}</div>
+                    <div class="card-title-sub">{{item.gd_summer}}</div>
+                    <div class="card-title-bottom">
+                      <div class="card-title-bottom-l">
+                        <span class="font-1">{{item.gd_price}}<span class="font-2">嘉金币</span></span>
+                        
+                      </div>
+                      <div class="card-title-bottom-r">已兑换:{{item.gd_sellcnt}}件</div>
+                    </div>
+                  </div>
+                </div>
+           
+       </div>
     </div>
   </div>
   <script>
@@ -42,7 +47,7 @@
       data(){
         return{
           list:[
-           /*  {
+            /* {
               img:"../image/fx_15.png",
               main:"苏泊尔电饼铛家用煎烤机",
               sub:"双面加热，悬浮烤盘设计",
@@ -73,14 +78,17 @@
               count:"1200000000",
               unit:"嘉金币",
               sales:"38"
-            } */
-          ]
+            },{},{},{},{},{},{} */
+          ],
+          page:1,
         }
       },
       methods:{
         init(){
           var vms = this;
           let req = {
+                    "page_number": "1",
+                    "tel_phone": " 15822753827",
                     "jyd_pubData": {
                         "user_id": "4", 
                         "source_type": "0001", 
@@ -90,20 +98,100 @@
                     }
                 }
 
+
+
        
           axios.post("/api/goods",req).then(res=>{
             console.log(res)
             vms.list = res.data.gd_list;
+            vms.$nextTick(() => {
+              vms._initScroll()
+              });
           }).catch(err=>{
             console.log(res);
           })
         },
         handleChange(id){
           window.location.href="commodity.html"+"?id="+id
-        }
+        },
+        _initScroll(){
+        let vms = this
+        //this.scroll
+        vms.scroll = new window.BScroll(document.querySelector(".content"), {
+          probeType: 2,
+          click:true,
+          momentum:false,
+          pullUpLoad: true ,
+          
+         });
+         
+       
+       function down(pos) {
+          if(pos.y>50){
+            console.log("下拉刷新")
+            
+            let req = {
+                    "page_number": "1",
+                    "tel_phone": " 15822753827",
+                    "jyd_pubData": {
+                        "user_id": "4", 
+                        "source_type": "0001", 
+                        "system_id": "Android 7", 
+                        "network_type": "wifi", 
+                        "token_id": "123235h5e3"
+                    }
+                }
+            axios.post("/api/goods",req).then(res=>{
+                console.log(res)
+                vms.list = res.data.gd_list;
+                vms.page = 1
+                vms.$nextTick(() => {
+                  vms.scroll.refresh()
+                  });
+              }).catch(err=>{
+                console.log(res);
+              })
+          }
+          if(vms.scroll.maxScrollY>pos.y+50){
+              console.log("上拉加载更多")
+              vms.page++
+              //vms.showList=vms.showList.concat(vms.list.slice((vms.page-1+"1"),(vms.page+"1")))
+              //console.log(vms.showList)
+              let req = {
+                    "page_number": vms.page,
+                    "tel_phone": " 15822753827",
+                    "jyd_pubData": {
+                        "user_id": "4", 
+                        "source_type": "0001", 
+                        "system_id": "Android 7", 
+                        "network_type": "wifi", 
+                        "token_id": "123235h5e3"
+                    }
+                }
+            axios.post("/api/goods",req).then(res=>{
+                vms.list=vms.list.concat(res.data.gd_list)
+                vms.$nextTick(() => {
+                  vms.scroll.refresh()
+                  });
+              }).catch(err=>{
+                console.log(res);
+              })
+          } 
+        
+          console.log(Math.round(pos.y));
+       }
+         vms.scroll.on('touchEnd', down)
+      },
+      },
+      created() {
+        //document.getElementById("top").style.minHeight=(document.documentElement.clientHeight+10)+"px";  
       },
       mounted() {
+        
+       
         this.init();
+        
+       
       }
     })
   </script>
