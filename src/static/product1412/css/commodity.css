@@ -238,7 +238,7 @@ footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(1){
   user-select: none;
   /* width: 0.99rem; */
 }
-footer>div:nth-child(1)>div:nth-child(2)>button:nth-child(2){
+.remove{
   position: absolute;
   font-size: 0.42rem;
   line-height: 0.54rem;
@@ -268,11 +268,11 @@ footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(3){
   user-select: none;
   
 }
-footer>div:nth-child(1)>div:nth-child(2)>button:nth-child(4){
+.add{
   position: absolute;
   bottom: 0.00rem;
   font-size: 0.42rem;
-  line-height: 0.54rem;
+ /*  line-height: 0.54rem; */
   left:2.73rem;
   width: 0.6rem;
   height: 0.54rem;
@@ -381,6 +381,12 @@ footer .button{
    button:active{
     opacity:0.7;
   }
+  .remove:active{
+    opacity:0.7;
+  }
+  .add:active{
+    opacity:0.7;
+  } 
   @media screen and (min-width:321px) and (max-width:375px){
    
     .desc>div:nth-child(5)>div:nth-child(5) {
