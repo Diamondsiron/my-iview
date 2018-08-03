@@ -240,6 +240,9 @@ footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(1){
 }
 footer>div:nth-child(1)>div:nth-child(2)>button:nth-child(2){
   position: absolute;
+  font-size: 0.42rem;
+  line-height: 0.54rem;
+  padding: 0px 0px 0px 0px ;
   left: 1.38rem;
   bottom: 0.00rem;
   width: 0.6rem;
@@ -259,6 +262,7 @@ footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(3){
   left:1.98rem;
   width: 0.75rem;
   height: 0.54rem;
+  
   text-align: center;
   color: #989898;
   user-select: none;
@@ -267,10 +271,13 @@ footer>div:nth-child(1)>div:nth-child(2)>div:nth-child(3){
 footer>div:nth-child(1)>div:nth-child(2)>button:nth-child(4){
   position: absolute;
   bottom: 0.00rem;
-  left:2.71rem;
+  font-size: 0.42rem;
+  line-height: 0.54rem;
+  left:2.73rem;
   width: 0.6rem;
   height: 0.54rem;
   background-color: #c3c3c3;
+  padding: 0px 0px 0px 0px ;
   text-align: center;
   color: #ffffff;
   border-radius: 0.04rem;
