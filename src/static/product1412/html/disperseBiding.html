@@ -24,7 +24,7 @@
                    资金周转
                   </div>
                   <div>等额本息</div>
-                  <div>6.24<span style="font-size: 0.39rem">%</span> </div>
+                  <div>6.24{{objData.Borrow.YearRate}}<span style="font-size: 0.39rem">%</span> </div>
                   <div>年化利率</div>
                   <div>
                     <div></div>
@@ -34,7 +34,7 @@
                   <div></div>
                     <div class="card-bottom">
                       <div class="card-bottom-l">
-                        <div>借款期限12期</div> 
+                        <div>借款期限12{{objData.Borrow.BorrowMonth}}期</div> 
                       </div>
                       <div class="card-bottom-r">
                         <div>
@@ -51,7 +51,7 @@
                   <ul>
                       <li>
                           <p>借款编号:</p>
-                          <p>22222222</p>
+                          <p>{{objData.Borrow.BorrowNo}}</p>
                       </li>
                       <li>
                             <p>出借限额(元):</p>
@@ -63,11 +63,11 @@
                         </li>
                         <li>
                             <p>借款人:</p>
-                            <p>张**</p>
+                            <p>{{objData.Borrow.Name}}</p>
                         </li>
                         <li>
                             <p>起息日期:</p>
-                            <p>2017-11-30</p>
+                            <p>{{objData.Borrow.StartTime1}}</p>
                         </li>
                         <li>
                             <p></p>
@@ -75,7 +75,7 @@
                         </li>
                         <li>
                             <p>募集截止时间:</p>
-                            <p>2017-11-30</p>
+                            <p>{{objData.Borrow.ApplyEndDate}}</p>
                         </li>
                   </ul>
                 </div>
@@ -527,11 +527,28 @@
       },
       initData(){
           let vms = this 
+          let req = {
+                    "BorrowId": "20180704035229010122", 
+                    "jyd_pubData": {
+                        "user_id": 39, 
+                        "source_type": "0001", 
+                        "system_id": "Android 7", 
+                        "network_type": "wifi", 
+                        "token_id": "123235h5e3"
+                    }
+                    }
+         axios.post("/api/productDetails/queryStandardpowderDetail",req).then(res=>{
+             console.log(res)
+             vms.objData = res.data;
+         }).catch(err=>{
+             console.log(err)
+         })
       }
     },
     mounted() {
         document.getElementById("top").style.minHeight=(document.documentElement.clientHeight+50)+"px";;
      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
+     this.initData();
       this.$nextTick(() => {
        this._initScroll();
       });

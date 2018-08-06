@@ -35,7 +35,7 @@
                       <div class="card-bottom-r">
                         <div>
                           <div>剩余可出借（元）</div>
-                          <div>200000.00</div>
+                          <div>200000.00{{objData.selllimitconfig.RestMoney}}</div>
                         </div>
                       </div>
                     </div>
@@ -107,16 +107,16 @@
             <div id="choose1" v-if="choose==1">
                 <div class="context">
                     <div class="context-desc">
-                      <p>服务名称：JJF0902012018052301</p>
+                      <p>服务名称：JJF0902012018052301 {{objData.sellInfo.SellName}}</p>
                       <p>筹集期限：3个工作日</p>
-                      <p>期待年回报率：7.5%，包含基础年化利率6.2%+出借奖励1.3%</p>
+                      <p>期待年回报率：7.5%{{objData.sellInfo.ExpectedYearYield}}，包含基础年化利率6.2%+出借奖励1.3%</p>
                       <p>服务年限：180天</p>
                       <p>出借范围：车辆抵押借款标、信用借款标</p>
-                      <p>出借金额：出借金额100元起</p>
-                      <p>出借时间：09：00~20：00</p>
+                      <p>出借金额：出借金额100{{objData.sellInfo.MinInvestMoney}}元起</p>
+                      <p>出借时间：09：00~20：00{{objData.validtime}}</p>
                       <p>预计起息日期：2017-6-28，具体以匹配完成时间为准</p>
-                      <p>账户管理费：单笔标的利息的0%</p>
-                      <p>提前转出：服务期满30天后可申请提前转出</p>
+                      <p>账户管理费：单笔标的利息的0%{{objData.sellInfo.AccountFeeRate}}</p>
+                      <p>提前转出：服务期满30{{objData.sellInfo.AdvanceDays}}天后可申请提前转出</p>
                       <p>提前转出服务费：转出本金的6%</p>
                     </div>
                     <div class="context-safety">
@@ -414,10 +414,27 @@
     },
     methods:{
       submit(){
-        let vms = this
+       /*  let vms = this
         document.getElementById("bottom").style.display="block";
         this.scroll.refresh();
-        vms.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0);
+        vms.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0); */
+        let req = {
+                  "tel_phone": "15822753827", 
+                  "sell_id": "JE0602018072001", 
+                    "jyd_pubData": {
+                      "user_id": 91, 
+                      "source_type": "0001", 
+                      "system_id": "Android 7", 
+                      "network_type": "wifi", 
+                      "token_id": "123235h5e3"
+                    }
+                  }
+          axios.post("/api/redEnvelope/personProLend",req).then(res=>{
+            console.log(res)
+          }).catch(err=>{
+            console.log(err)
+          })
+
         
       },
       changeCurrent(value){
