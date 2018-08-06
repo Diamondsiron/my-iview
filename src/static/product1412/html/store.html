@@ -157,11 +157,12 @@
                 }
             axios.post("/api/goods",req).then(res=>{
                 console.log(res)
-                document.getElementById("loadTop").style.display="none"
-               vms.scroll.refresh()
+               
+               //vms.scroll.refresh()
                 vms.list = res.data.gd_list;
                 vms.page = 1
                 vms.$nextTick(() => {
+                  document.getElementById("loadTop").style.display="none"
                   vms.scroll.refresh()
                   });
               }).catch(err=>{
@@ -187,10 +188,11 @@
                     }
                 } 
             axios.post("/api/goods",req).then(res=>{
-              document.getElementById("loadBottom").style.display="none"
-              vms.scroll.refresh()
+             
+             // vms.scroll.refresh()
                 vms.list=vms.list.concat(res.data.gd_list)
                 vms.$nextTick(() => {
+                  document.getElementById("loadBottom").style.display="none"
                   vms.scroll.refresh()
                   });
               }).catch(err=>{
