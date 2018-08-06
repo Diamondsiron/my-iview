@@ -12,7 +12,7 @@
 <body>
   <div id="main">
     <header>
-      <div class="header-main">{{obj.an_title}}apps</div>
+      <div class="header-main">{{obj.an_title}}</div>
       <div class="header-sub">{{obj.an_inputtime}}</div>
     </header>
     <div class="content">
@@ -25,16 +25,7 @@
   <script>
    
   document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
-  var refreshIntervalId = setInterval(function(){
-              if (window.originalPostMessage) {
-                  window.postMessage("");
-                  stop();
-              } 
-          }, 500);
-
-          function stop(){
-              clearInterval(refreshIntervalId);
-          }
+  
     var vm = new Vue({
       el:"#main",
       data(){
@@ -68,11 +59,26 @@
        },
        initMessage(){
         let vms = this
+        window.onload = function () {
+            document.addEventListener('message', function (e) {
+                //document.getElementById('data').textContent = e.data;
+                vms.init(e.data)
+            })
+            
+        }
+        var refreshIntervalId = setInterval(function(){
+            if (window.originalPostMessage) {
+              
+                stop();
+            } 
+        }, 500);
+
+        function stop(){
+            window.postMessage("");
+            clearInterval(refreshIntervalId);
+        }
        
-        document.addEventListener('message', function (e) {
-            //document.getElementById('data').textContent = e.data;
-            vms.init(e.data)
-        })
+       
        }
       },
       mounted() {

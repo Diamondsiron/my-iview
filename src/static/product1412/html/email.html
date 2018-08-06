@@ -53,11 +53,9 @@
         }).catch(err=>{
           console.log(err)
         })
-       }
-      },
-      mounted() {
+       },
+       initMessage(){
         let vms = this
-        var data = 0;
         window.onload = function () {
             document.addEventListener('message', function (e) {
                 //document.getElementById('data').textContent = e.data;
@@ -67,14 +65,21 @@
         }
         var refreshIntervalId = setInterval(function(){
             if (window.originalPostMessage) {
-                window.postMessage("");
+              
                 stop();
             } 
         }, 500);
 
         function stop(){
+            window.postMessage("");
             clearInterval(refreshIntervalId);
         }
+       
+       
+       }
+      },
+      mounted() {
+        this.initMessage()
         //this.init(8)
       },
     })
