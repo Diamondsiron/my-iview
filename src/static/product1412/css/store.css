@@ -213,3 +213,16 @@ animation: donut-rotate 1000ms cubic-bezier(.4,0,.22,1) infinite;
 50% { transform: rotate(-140deg) }
 100% { transform: rotate(0) }
 }
+.loadTop{
+  flex: 0 0 100%;
+  text-align: center;
+  height: 0px;
+  transition: height 0.4s ease-in-out;
+  overflow: hidden;
+}
+.loadBottom{
+  flex: 0 0 100%;
+  text-align: center;
+  display: none;
+  overflow: hidden;
+}

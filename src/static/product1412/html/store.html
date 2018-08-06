@@ -15,7 +15,7 @@
   <div id="main" class="wrapper">
     <div class="content">
         <div class="context" id="top">
-                <div style="flex: 0 0 100%;display: none;text-align: center" id="loadTop">
+                <div class="loadTop" id="loadTop">
                     <div class="pswp__preloader__icn">
                         <div class="pswp__preloader__cut">
                           <div class="pswp__preloader__donut"></div>
@@ -43,7 +43,7 @@
                     </div>
                   </div>
                 </div>
-             <div style="flex: 0 0 100%;display: none;text-align: center" id="loadBottom">
+             <div class="loadBottom" id="loadBottom">
                 <div class="pswp__preloader__icn">
                     <div class="pswp__preloader__cut">
                       <div class="pswp__preloader__donut"></div>
@@ -142,7 +142,7 @@
        function down(pos) {
           if(pos.y>50){
             console.log("下拉刷新")
-             document.getElementById("loadTop").style.display="block"
+             document.getElementById("loadTop").style.height="44px"
              vms.scroll.refresh()
             let req = {
                     "page_number": "1",
@@ -162,7 +162,7 @@
                 vms.list = res.data.gd_list;
                 vms.page = 1
                 vms.$nextTick(() => {
-                  document.getElementById("loadTop").style.display="none"
+                  document.getElementById("loadTop").style.height="0px"
                   vms.scroll.refresh()
                   });
               }).catch(err=>{

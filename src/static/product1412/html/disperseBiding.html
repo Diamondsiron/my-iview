@@ -408,7 +408,58 @@
         h2:"",
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
-        scroll
+        scroll,
+        objData:{
+                Borrow: {
+                    DayRate: "",
+                    ReleaseSource: "",
+                    IfClient: null,
+                    Description: "",
+                    EndTime: null,
+                    ApplyEndDate: "",
+                    Rating: "",
+                    BorrowMonth: "",
+                    SellLimitConfigId: null,
+                    YearRate: "",
+                    BusinessStatus: null,
+                    StartTime1: null,
+                    Name: "",
+                    BorrowSource: "",
+                    InvestWayOut: "",
+                    BorrowNo: "",
+                    ExceptionLog: null,
+                    SendDate: null,
+                    BusinessId: null,
+                    Status: "",
+                    Nature: null,
+                    InputTime: "",
+                    BorrowUserId: "",
+                    StartTime: "",
+                    BorrowTypeId: "",
+                    OriginalAmount: "",
+                    CardNo: "",
+                    BorrowId: "",
+                    UserId: "",
+                    ApplyDays: "",
+                    CollectedAmount: "",
+                    ExceptionFlag: "",
+                    RealLendPayFee: null,
+                    BorrowerName: "",
+                    CollectFailTime: null,
+                    LendPayFee: "",
+                    OverdueStatus: ""
+                },
+                fundAccountInfo: {
+                    AccountId: "",
+                    SignStatus: null,
+                    BankNo: "",
+                    Id: "",
+                    TradePasswordStatus: ""
+                },
+                return_msg: "",
+                return_code: ""
+                }
+
       }
     },
     created() {
@@ -473,6 +524,9 @@
       
        
       
+      },
+      initData(){
+          let vms = this 
       }
     },
     mounted() {

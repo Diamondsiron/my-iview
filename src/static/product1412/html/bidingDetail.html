@@ -60,7 +60,8 @@
                
                 <div class="context">
                   <div class="context-title">出借金额（元）</div>
-                  <input class="context-input" type="text" placeholder="最低出借5000元">
+                  <input class="context-input" type="text" v-bind:placeholder="objData.sellInfo.MinInvestMoney">
+                   <!-- <input class="context-input" type="text" placeholder="最低出借500元"> -->
                   <div>
                     <div>
                     
@@ -332,7 +333,80 @@
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
         scroll:{},
-        scrolls:{}
+        scrolls:{},
+        objData:{
+                fundAccountInfo: {
+                  AccountId: "",
+                  SignStatus: null,
+                  BankNo: "",
+                  Id: "",
+                  TradePasswordStatus: ""
+                },
+                return_msg: "",
+                sellInfo: {
+                  ImproveRate: null,
+                  InvestMaxTimes: null,
+                  EndTime: "",
+                  MinInvestMoney: "",
+                  SellLimitConfigId: "",
+                  ProductId: "",
+                  OrderNo: "",
+                  ProductMaxMoney: null,
+                  InComeType: "",
+                  ProductFirstAwardRate: "",
+                  ProductConfigId: "",
+                  AdvanceWay: "",
+                  IntorduceLimit:"",
+                  LabelText: "",
+                  ActivityRuleIds: null,
+                  AdvanceWayValue: "",
+                  ActivateIntegralRate: "",
+                  IntorduceInvestRate:"",
+                  Status: "",
+                  ExpectedYearYield: "",
+                  SellName: "",
+                  InvestMaxMoney: "",
+                  InputPerson: "",
+                  AccountFeeRate: "",
+                  InputTime: "",
+                  StartTime: "",
+                  RatingLevelId: "",
+                  IncrementMoney: "",
+                  SelfInvestRate: "",
+                  validtime: "",
+                  ProductTypeId: "",
+                  PromptText: "",
+                  AdvanceDays: "",
+                  Intro: "",
+                  ProductMaxTimes: null,
+                  ImproveYearRate: "",
+                  buyStatus: "",
+                  ExpiresDays: "",
+                  Endday: "",
+                  Id: "",
+                  ExpectedYield: null,
+                  SellConfigId: "",
+                  SendIntegralRate: "",
+                  LastTime: null
+                },
+                return_code: "",
+                selllimitconfig: {
+                  Status: "",
+                  SellAmount: "",
+                  InputPerson:"",
+                  SellStatus: "",
+                  InputTime: "",
+                  GroupId: null,
+                  BuyKey: null,
+                  SellCreateDate: "",
+                  Type: "",
+                  ProductConfigId: "",
+                  SellDate: "",
+                  Id: "",
+                  RestMoney: ""
+                }
+              }
+
       }
     },
     created() {
@@ -419,11 +493,33 @@
          function bbb(){
           vms.scroll.enable()
          }
+      },
+      initData(){
+        let vms = this
+        let req = {
+                  "sellInfoId": "JE0902018072001", 
+                  "jyd_pubData": {
+                    "user_id": 39, 
+                    "source_type": "0001", 
+                    "system_id": "Android 7", 
+                    "network_type": "wifi", 
+                    "token_id": "123235h5e3"
+                  }
+                }
+                ;
+        axios.post("/api/productDetails/querySellinDetail",req).then(res=>{
+         
+          vms.objData = res.data
+          console.log(" vms.objData", vms.objData)
+        }).catch(err=>{
+          console.log(err)
+        })
       }
     },
     mounted() {
       document.getElementById("top").style.minHeight=(document.documentElement.clientHeight+50)+"px";
      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
+     this.initData();
       this.$nextTick(() => {
        this._initScroll();
       // this.initX()
