@@ -165,15 +165,17 @@
           var vms = this
           var data = this.getRequest()
           let req ={
-                    "goods_id": data.id,
-                    "jyd_pubData": {
-                            "user_id": "4", 
-                            "source_type": "0001", 
-                            "system_id": "Android 7", 
-                            "network_type": "wifi", 
-                            "token_id": "123235h5e3"
-                        }
-                  }
+                "goods_id":data.id,
+                "tel_phone": " 15822753827",
+                "jyd_pubData": {
+                        "user_id": "4", 
+                        "source_type": "0001", 
+                        "system_id": "Android 7", 
+                        "network_type": "wifi", 
+                        "token_id": "123235h5e3"
+                    }
+                }
+
 
           axios.post("/api/goods/goodsDetails",req).then(res=>{
             vms.list = res.data.exchange_records.slice();

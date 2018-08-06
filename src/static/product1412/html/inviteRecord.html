@@ -67,15 +67,16 @@
       init(){
         var vms = this
         let req = {
-                  "tel_phone": "17188120744",
-                  "jyd_pubData": {
-                      "user_id": "24", 
-                      "source_type": "0001", 
-                      "system_id": "Android 7", 
-                      "network_type": "wifi", 
-                      "token_id": "123235h5e3"
-                  }
-              }
+                    "tel_phone": "17188120744",
+                    "jyd_pubData": {
+                        "user_id": "148", 
+                        "source_type": "0001", 
+                        "system_id": "Android 7", 
+                        "network_type": "wifi", 
+                        "token_id": "123235h5e3"
+                    }
+                }
+
        
         axios.post("/api/invest",req).then(res=>{
           vms.list = res.data.invest_list.slice()

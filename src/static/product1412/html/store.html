@@ -11,10 +11,17 @@
   <title>Document</title>
 </head>
 <body>
+
   <div id="main" class="wrapper">
     <div class="content">
         <div class="context" id="top">
-            
+                <div style="flex: 0 0 100%;display: none;text-align: center" id="loadTop">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                          <div class="pswp__preloader__donut"></div>
+                        </div>
+                      </div>
+                </div>
                 <div class="card" v-for="(item,index) in list" ::key="index" @click="handleChange(item.gd_id)">
                   <div>
                     <div class="card-img">
@@ -36,7 +43,13 @@
                     </div>
                   </div>
                 </div>
-           
+             <div style="flex: 0 0 100%;display: none;text-align: center" id="loadBottom">
+                <div class="pswp__preloader__icn">
+                    <div class="pswp__preloader__cut">
+                      <div class="pswp__preloader__donut"></div>
+                    </div>
+                  </div>
+             </div>
        </div>
     </div>
   </div>
@@ -129,7 +142,8 @@
        function down(pos) {
           if(pos.y>50){
             console.log("下拉刷新")
-            
+             document.getElementById("loadTop").style.display="block"
+             vms.scroll.refresh()
             let req = {
                     "page_number": "1",
                     "tel_phone": " 15822753827",
@@ -143,6 +157,8 @@
                 }
             axios.post("/api/goods",req).then(res=>{
                 console.log(res)
+                document.getElementById("loadTop").style.display="none"
+               vms.scroll.refresh()
                 vms.list = res.data.gd_list;
                 vms.page = 1
                 vms.$nextTick(() => {
@@ -154,6 +170,8 @@
           }
           if(vms.scroll.maxScrollY>pos.y+50){
               console.log("上拉加载更多")
+              document.getElementById("loadBottom").style.display="block"
+             vms.scroll.refresh()
               vms.page++
               //vms.showList=vms.showList.concat(vms.list.slice((vms.page-1+"1"),(vms.page+"1")))
               //console.log(vms.showList)
@@ -167,8 +185,10 @@
                         "network_type": "wifi", 
                         "token_id": "123235h5e3"
                     }
-                }
+                } 
             axios.post("/api/goods",req).then(res=>{
+              document.getElementById("loadBottom").style.display="none"
+              vms.scroll.refresh()
                 vms.list=vms.list.concat(res.data.gd_list)
                 vms.$nextTick(() => {
                   vms.scroll.refresh()
@@ -176,6 +196,8 @@
               }).catch(err=>{
                 console.log(res);
               })
+
+           
           } 
         
           console.log(Math.round(pos.y));
