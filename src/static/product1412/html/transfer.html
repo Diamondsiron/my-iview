@@ -487,32 +487,34 @@
                     }
         axios.post("/api/productDetails/queryTransferDetail",req).then(res=>{
             vms.objData = res.data
-            this.countDown
+            vms.countDown()
             console.log("vms.objData",vms.objData)
         }).catch(err=>{
 
         })
       },
       countDown(){
-        
-              //获取当前时间
+           let vms = this
+            function countDownTime(){
+            //获取当前时间
               var date = new Date();  
               var now = date.getTime();  
              //设置截止时间
-             var str=this.objData.Obligatoryrightrealation.countdowntime;
-             var endDate = new Date(str); 
-             var end = endDate.getTime();  
-             var leftTime = end-now; 
+             var str=vms.objData.Obligatoryrightrealation.countdowntime;
+             //var str=1533648919181;
+             var leftTime = str-now; 
              if (leftTime>=0) {  
-                 this.d = Math.floor(leftTime/1000/60/60/24);  
-                 this.h = Math.floor(leftTime/1000/60/60%24);  
-                 this.m = Math.floor(leftTime/1000/60%60);  
+                vms.d = Math.floor(leftTime/1000/60/60/24);  
+                vms.h = Math.floor(leftTime/1000/60/60%24);  
+                vms.m = Math.floor(leftTime/1000/60%60);  
                  //s = Math.floor(leftTime/1000%60);                     
              }  
                
-			console.log(d,h,m,s)
+			//console.log(vms.d,vms.h,vms.m)
              //递归每秒调用countTime方法，显示动态时间效果
-             setTimeout(this.countDown,1000);  
+            }
+            
+            setInterval(countDownTime,1000);  
    
         
       },
