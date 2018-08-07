@@ -403,10 +403,26 @@
     },
     methods:{
       submit(){
-        let vms = this
+       /*  let vms = this
         document.getElementById("bottom").style.display="block";
         this.scroll.refresh();
-        vms.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0);
+        vms.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0); */
+        let req = {
+                  "tel_phone": "15822753827", 
+                  "sell_id": "JE0602018072001", 
+                    "jyd_pubData": {
+                      "user_id": 91, 
+                      "source_type": "0001", 
+                      "system_id": "Android 7", 
+                      "network_type": "wifi", 
+                      "token_id": "123235h5e3"
+                    }
+                  }
+          axios.post("/api/redEnvelope/personProLend",req).then(res=>{
+            console.log(res)
+          }).catch(err=>{
+            console.log(err)
+          })
       },
       changeCurrent(value){
         this.choose=value;
