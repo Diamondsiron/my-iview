@@ -421,7 +421,7 @@
       }
     },
     created() {
-      //console.log(document.documentElement.clientHeight)
+      this.initMainData();
     },
     methods:{
       submit(){
@@ -452,17 +452,19 @@
       changeCurrent(value){
         this.choose = value;
         this.scroll.refresh();
-        if(value==2){
+        if(value==2) {
+           this.initConstituteData()
            this.$nextTick(() => {
-             this.initScrollConstitute()
+             this.initConstituteScroll()
            });
-         }else if(value==3){
+         }else if(value==3) {
+          this.initRecordData()
           this.$nextTick(() => {
-            this.initScrollRecord()
+            this.initRecordScroll()
           });
         }
       },
-      initData(){
+      initMainData(){
         let vms = this
         let req = {
                   "sellInfoId": "JE0902018072001", 
@@ -484,14 +486,20 @@
           vms.value2 = (vms.objData.sellInfo.ExpectedYearYield*100).toFixed(2)
           vms.value3 = (vms.objData.sellInfo.ImproveYearRate*100).toFixed(2)
           vms.value4 = (vms.objData.sellInfo.AccountFeeRate*100).toFixed(2)
-          vms.value5 = vms.objData.sellInfo.AdvanceWayValue*100
+          vms.value5 = (vms.objData.sellInfo.AdvanceWayValue*100).toFixed(2)
           vms.text1 = "最低出借"+vms.objData.sellInfo.MinInvestMoney+"元"
-          console.log(" vms.objData", vms.objData)
+          console.log("vms.objData", vms.objData)
         }).catch(err=>{
           console.log(err)
         })
       },
-      _initScroll(){
+      initConstituteData(){
+
+      },
+      initRecordData(){
+
+      },
+      initMainScroll(){
         this.scroll = new window.BScroll(document.querySelector(".content"), {
           probeType: 2,
           click:true,
@@ -500,7 +508,7 @@
          });
          this.scroll.on('touchEnd', this.mainScrollUp)
       },
-      initScrollConstitute(){
+      initConstituteScroll(){
         this.scrolls = new window.BScroll(document.querySelector(".contents"), {
           probeType: 2,
           click:true,
@@ -510,7 +518,7 @@
          this.scrolls.on('beforeScrollStart', this.mainScrollDisable)
          this.scrolls.on('touchEnd', this.mainScrollEnable)
        },
-      initScrollRecord(){
+      initRecordScroll(){
         this.scrollss = new window.BScroll(document.querySelector(".contentss"), {
           probeType: 2,
           click:true,
@@ -548,11 +556,11 @@
       
     },
     mounted() {
-      document.getElementById("top").style.minHeight=(document.documentElement.clientHeight+50)+"px";
-      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
-      this.initData();
+      document.getElementById("top").style.minHeight = (document.documentElement.clientHeight+50)+"px";
+      document.getElementById("bottom").style.minHeight = (document.documentElement.clientHeight)+"px";
+
       this.$nextTick(() => {
-        this._initScroll();
+        this.initMainScroll();
       });
     },
   })

@@ -404,8 +404,6 @@
     el:"#main",
     data(){
       return{
-        h1:"",
-        h2:"",
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
         scroll,
@@ -463,14 +461,13 @@
       }
     },
     created() {
-      console.log(document.documentElement.clientHeight)
+        this.initMainData();
     },
     methods:{
       submit(){
-        /* let vms = this
-        document.getElementById("bottom").style.display="block";
-        this.scroll.refresh();
-        vms.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0); */
+        this.submitData();
+      },
+      submitData(){
         let req = {
                   "tel_phone": "15822753827", 
                   "sell_id": "JE0602018072001", 
@@ -490,58 +487,37 @@
       },
       changeCurrent(value){
         this.choose=value;
-       // this.scroll.refresh();
-        //console.log("change")
       },
-      _initScroll(){
-        let vms = this
-        //this.scroll
-        vms.scroll = new window.BScroll(document.querySelector(".content"), {
+      initMainScroll(){
+        this.scroll = new window.BScroll(document.querySelector(".content"), {
           probeType: 2,
           click:true,
           momentum:false,
           pullUpLoad: true ,
           
          });
-         
-       function up(pos){
-        if(vms.scroll.maxScrollY>pos.y+50){
-            console.log("上拉")
-          
-           
+       this.scroll.on('touchEnd', this.mainScrollUp)
+     },
+      mainScrollUp(pos){
+        if(this.scroll.maxScrollY>pos.y+50) {
             document.getElementById("bottom").style.display="block";
-           // document.getElementById("top").style.height="6.69rem"
-            vms.scroll.refresh();
-            vms.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0);
-            vms.scroll.off('touchEnd', up)
-            vms.scroll.on('touchEnd', down)
+            this.scroll.refresh();
+            this.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0);
+            this.scroll.off('touchEnd', this.mainScrollUp)
+            this.scroll.on('touchEnd', this.mainScrollDown)
          } 
-          console.log(Math.round(pos.y));
-       }
-       function down(pos) {
-        
+      },
+      mainScrollDown(pos){
         var h = document.getElementById("top").offsetHeight
         if(pos.y>-h+20){
-           
-            console.log("下拉")
-            vms.scroll.scrollToElement(document.querySelector(".top"),800,0,0);
-            vms.scroll.off('touchEnd', down)
-            vms.scroll.on('touchEnd', up)
+           this.scroll.scrollToElement(document.querySelector(".top"),800,0,0);
+            this.scroll.off('touchEnd', this.mainScrollDown)
+            this.scroll.on('touchEnd', this.mainScrollUp)
             document.getElementById("bottom").style.display="none";
-           // document.getElementById("top").style.height="6.69rem"
-            vms.scroll.refresh();
-           
+           this.scroll.refresh();
           }
-          console.log(Math.round(pos.y));
-       }
-       vms.scroll.on('touchEnd', up)
-      
-   
-      
-       
-      
-      },
-      initData(){
+       },
+      initMainData(){
           let vms = this 
           let req = {
                     "BorrowId": "20180704035229010122", 
@@ -562,15 +538,12 @@
       }
     },
     mounted() {
-        document.getElementById("top").style.minHeight=(document.documentElement.clientHeight+50)+"px";;
-     document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
-     this.initData();
-      this.$nextTick(() => {
-       this._initScroll();
-      });
-      
-      
-    },
+        document.getElementById("top").style.minHeight = (document.documentElement.clientHeight+50)+"px";;
+        document.getElementById("bottom").style.minHeight = (document.documentElement.clientHeight)+"px";
+        this.$nextTick(() => {
+        this.initMainScroll();
+        });
+   },
   })
 </script>
 </body>
