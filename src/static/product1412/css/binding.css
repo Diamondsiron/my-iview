@@ -34,6 +34,8 @@ html,body{
   font-size: 0.36rem;
   left:3.12rem;
   top:1.12rem;
+  line-height: 0.36rem;
+  height: 0.36rem;
   /* width: 1.44rem; */
 }
 #top .card>div:nth-child(2){
@@ -52,7 +54,7 @@ html,body{
   height: 0.9rem;
   margin-top: 1.93rem;
   color: #998675;
-  line-height: 100%;
+  line-height: 0.9rem;
 }
 .card-font-1{
   color:#988675;
@@ -248,6 +250,11 @@ html,body{
   overflow: hidden;
   margin: 0.3rem auto 0 auto;
   width: 11.34rem;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 #top .foot-content-btn{
   height: 1.5rem;
@@ -264,6 +271,8 @@ html,body{
   background: -o-linear-gradient(#ff6a55, #ee1e27); /* Opera 11.1 - 12.0 */
   background: -moz-linear-gradient(#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
   background: linear-gradient(#ff6a55, #ee1e27); /* 标准的语法 */
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 
 
@@ -533,6 +542,11 @@ height: 2.1rem;
 overflow: hidden;
 margin: 0.3rem auto;
 width: 11.34rem;
+-moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 .foot-content-btn{
   font-weight: 100;
@@ -548,6 +562,11 @@ background: -webkit-linear-gradient(#ff6a55, #ee1e27); /* Safari 5.1 - 6.0 */
 background: -o-linear-gradient(#ff6a55, #ee1e27); /* Opera 11.1 - 12.0 */
 background: -moz-linear-gradient(#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
 background: linear-gradient(#ff6a55, #ee1e27); /* 标准的语法 */
+-moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 btn:hover{
 border: none;
@@ -576,4 +595,8 @@ text-decoration:none;
 }
 .contents{
   
+}
+.clickable{
+  color: #656565 !important;
+  background: #c3c3c3 !important;
 }

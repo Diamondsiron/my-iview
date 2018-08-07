@@ -90,7 +90,7 @@
                    
                   </div>
                   <div class="foot-content">
-                      <button class="foot-content-btn" @click="submit()" >立即出借</button>
+                      <button class="foot-content-btn" @click="submit()" v-bind:class="{clickable:!clickable}">立即出借</button>
                   </div>
                 </footer>
           </div>
@@ -176,7 +176,7 @@
                     出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                   </div>
                   <div class="foot-content">
-                      <button class="foot-content-btn" >立即出借</button>
+                      <button class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
                   </div>
                   
                 </footer>
@@ -278,7 +278,7 @@
                       出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                     </div>
                     <div class="foot-content">
-                        <button class="foot-content-btn" >立即出借</button>
+                        <button class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
                     </div>
                     
                   </footer>
@@ -310,7 +310,7 @@
                       出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                     </div>
                     <div class="foot-content">
-                        <button class="foot-content-btn" >立即出借</button>
+                        <button class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
                     </div>
                     
                   </footer>
@@ -333,6 +333,7 @@
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
         scroll:{},
+        clickable:true,
         scrolls:{},
         objData:{
                 fundAccountInfo: {
@@ -418,7 +419,10 @@
         document.getElementById("bottom").style.display="block";
         this.scroll.refresh();
         vms.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0); */
-        let req = {
+        if(vms.objData.sellInfo.Status!==2){
+           return
+          }else{
+            let req = {
                   "tel_phone": "15822753827", 
                   "sell_id": "JE0602018072001", 
                     "jyd_pubData": {
@@ -429,11 +433,14 @@
                       "token_id": "123235h5e3"
                     }
                   }
-          axios.post("/api/redEnvelope/personProLend",req).then(res=>{
+          axios.post("/api/personProLend",req).then(res=>{
             console.log(res)
+            
           }).catch(err=>{
             console.log(err)
           })
+        }
+       
 
         
       },
@@ -527,6 +534,9 @@
         axios.post("/api/productDetails/querySellinDetail",req).then(res=>{
          
           vms.objData = res.data
+          if(vms.objData.sellInfo.Status!==2){
+            vms.clickable=false;
+          }
           console.log(" vms.objData", vms.objData)
         }).catch(err=>{
           console.log(err)
