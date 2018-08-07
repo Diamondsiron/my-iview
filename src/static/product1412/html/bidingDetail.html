@@ -522,28 +522,22 @@
       },
       mainScrollUp(pos){
         if(this.scroll.maxScrollY>pos.y+50){
-            console.log("上拉")
             document.getElementById("bottom").style.display="block";
-           // document.getElementById("top").style.height="6.69rem"
-           this.scroll.refresh();
-           this.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0);
-           this.scroll.off('touchEnd', this.mainScrollUp)
-           this.scroll.on('touchEnd', this.mainScrollDown)
+            this.scroll.refresh();
+            this.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0);
+            this.scroll.off('touchEnd', this.mainScrollUp)
+            this.scroll.on('touchEnd', this.mainScrollDown)
          } 
-          console.log(Math.round(pos.y));
       },
       mainScrollDown(pos){
         var h = document.getElementById("top").offsetHeight
         if(pos.y>-h+20){
-            console.log("下拉")
             this.scroll.scrollToElement(document.querySelector(".top"),800,0,0);
             this.scroll.off('touchEnd', this.mainScrollDown)
             this.scroll.on('touchEnd', this.mainScrollUp)
             document.getElementById("bottom").style.display="none";
-           // document.getElementById("top").style.height="6.69rem"
-           this.scroll.refresh();
+            this.scroll.refresh();
           }
-          console.log(Math.round(pos.y));
       },
       mainScrollDisable(){
         this.scroll.disable()
@@ -555,11 +549,11 @@
     },
     mounted() {
       document.getElementById("top").style.minHeight=(document.documentElement.clientHeight+50)+"px";
-     document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
-     this.initData();
+      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
+      this.initData();
       this.$nextTick(() => {
-       this._initScroll();
-     });
+        this._initScroll();
+      });
     },
   })
 </script>
