@@ -24,18 +24,18 @@
                   </div>
                   <div>
                    
-                    <span class="card-font-1"> 64.24</span><span class="card-font-2">%+</span><span class="card-font-3">1.76</span><span class="card-font-4">%</span>
+                    <span class="card-font-1"> {{value2}}</span><span class="card-font-2">%+</span><span class="card-font-3">{{value3}}</span><span class="card-font-4">%</span>
                   </div>
                   <div>资金由江西银行全程存管</div>
                   
                     <div class="card-bottom">
                       <div class="card-bottom-l">
-                        <div>服务期限180天</div> 
+                        <div>服务期限{{objData.sellInfo.ExpiresDays}}天</div> 
                       </div>
                       <div class="card-bottom-r">
                         <div>
                           <div>剩余可出借（元）</div>
-                          <div>200000.00{{objData.selllimitconfig.RestMoney}}</div>
+                          <div>{{objData.selllimitconfig.RestMoney}}</div>
                         </div>
                       </div>
                     </div>
@@ -53,14 +53,14 @@
                     </div>
                     <div>
                       <div class="font1">到期转出</div>
-                      <div class="font2">2018.3.1</div>
+                      <div class="font2">{{objData.sellInfo.Endday}}</div>
                     </div>
                     
                   </div>
                
                 <div class="context">
                   <div class="context-title">出借金额（元）</div>
-                  <input class="context-input" type="text" v-bind:placeholder="objData.sellInfo.MinInvestMoney">
+                  <input class="context-input" type="text" v-bind:placeholder="text1">
                    <!-- <input class="context-input" type="text" placeholder="最低出借500元"> -->
                   <div>
                     <div>
@@ -71,7 +71,7 @@
                 </div>
                 <div>
                 
-                      11725.00元
+                      {{income}}元
                   
                 </div>
                   </div>
@@ -107,17 +107,17 @@
             <div id="choose1" v-if="choose==1">
                 <div class="context">
                     <div class="context-desc">
-                      <p>服务名称：JJF0902012018052301 {{objData.sellInfo.SellName}}</p>
+                      <p>服务名称：{{objData.sellInfo.SellName}}</p>
                       <p>筹集期限：3个工作日</p>
-                      <p>期待年回报率：7.5%{{objData.sellInfo.ExpectedYearYield}}，包含基础年化利率6.2%+出借奖励1.3%</p>
-                      <p>服务年限：180天</p>
+                      <p>期待年回报率：{{value1}}%，包含基础年化利率{{value2}}%+出借奖励{{value3}}%</p>
+                      <p>服务年限：{{objData.sellInfo.ExpiresDays}}天</p>
                       <p>出借范围：车辆抵押借款标、信用借款标</p>
-                      <p>出借金额：出借金额100{{objData.sellInfo.MinInvestMoney}}元起</p>
-                      <p>出借时间：09：00~20：00{{objData.validtime}}</p>
-                      <p>预计起息日期：2017-6-28，具体以匹配完成时间为准</p>
-                      <p>账户管理费：单笔标的利息的0%{{objData.sellInfo.AccountFeeRate}}</p>
-                      <p>提前转出：服务期满30{{objData.sellInfo.AdvanceDays}}天后可申请提前转出</p>
-                      <p>提前转出服务费：转出本金的6%</p>
+                      <p>出借金额：出借金额{{objData.sellInfo.MinInvestMoney}}元起</p>
+                      <p>出借时间：{{objData.sellInfo.validtime}}</p>
+                      <p>预计起息日期：{{objData.sellInfo.nowDate}}，具体以匹配完成时间为准</p>
+                      <p>账户管理费：单笔标的利息的{{value4}}%</p>
+                      <p>提前转出：服务期满{{objData.sellInfo.AdvanceDays}}天后可申请提前转出</p>
+                      <p>提前转出服务费：转出本金的{{value5}}%</p>
                     </div>
                     <div class="context-safety">
                       <div class="context-title">
@@ -328,8 +328,13 @@
     el:"#main",
     data(){
       return{
-        h1:"",
-        h2:"",
+        value1:"",
+        value2:"",
+        value3:"",
+        value4:"",
+        value5:"",
+        text1:"",
+        income:'',
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
         scroll:{},
@@ -419,7 +424,8 @@
         document.getElementById("bottom").style.display="block";
         this.scroll.refresh();
         vms.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0); */
-        if(vms.objData.sellInfo.Status!==2){
+        let vms = this
+        if(vms.objData.sellInfo.buyStatus!=="0"){
            return
           }else{
             let req = {
@@ -530,13 +536,22 @@
                     "token_id": "123235h5e3"
                   }
                 }
-                ;
+
+                
         axios.post("/api/productDetails/querySellinDetail",req).then(res=>{
          
           vms.objData = res.data
-          if(vms.objData.sellInfo.Status!==2){
+          if(vms.objData.sellInfo.buyStatus!=="0"){
             vms.clickable=false;
           }
+          vms.income = (((10000*(vms.objData.sellInfo.ImproveYearRate + vms.objData.sellInfo.ExpectedYearYield)*vms.objData.sellInfo.ExpiresDays)/365).toFixed(2));
+          vms.value1 = (vms.objData.sellInfo.ExpectedYearYield*100+vms.objData.sellInfo.ImproveYearRate*100).toFixed(2)
+          vms.value2 = (vms.objData.sellInfo.ExpectedYearYield*100).toFixed(2)
+          vms.value3 = (vms.objData.sellInfo.ImproveYearRate*100).toFixed(2)
+          vms.value4 = (vms.objData.sellInfo.AccountFeeRate*100).toFixed(2)
+          vms.value5 = vms.objData.sellInfo.AdvanceWayValue*100
+          vms.text1 = "最低出借"+vms.objData.sellInfo.MinInvestMoney+"元"
+         
           console.log(" vms.objData", vms.objData)
         }).catch(err=>{
           console.log(err)
