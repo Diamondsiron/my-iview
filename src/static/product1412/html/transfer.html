@@ -29,7 +29,7 @@
                   <div>{{objData.Obligatoryrightrealation.yearrate}}<span style="font-size: 0.39rem">%</span></div>
                  
                   <div>
-                    剩余时间:1天23小时59分
+                    剩余时间:{{d}}天{{h}}小时{{m}}分
                   </div>
                   
                   <div></div>
@@ -65,7 +65,7 @@
                       </li>
                       <li>
                             <p>本金折扣:</p>
-                            <p>0%</p>
+                            <p>{{objData.Obligatoryrightrealation.discount}}%</p>
                         </li>
                         <li>
                             <p>还款方式:</p>
@@ -395,6 +395,9 @@
         h2:"",
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
+        d:"",
+        h:"",
+        m:'',
         scroll,
         objData:{
                 Obligatoryrightrealation: {
@@ -431,8 +434,10 @@
                     month: "",
                     expectprofit: "",
                     valuedate: "",
+                    discount:"",
                     realapplyendtime: "",
-                    expectedyearyield: ""
+                    expectedyearyield: "",
+                    countdowntime:""
                 },
                 return_msg: "",
                 return_code: ""
@@ -482,10 +487,34 @@
                     }
         axios.post("/api/productDetails/queryTransferDetail",req).then(res=>{
             vms.objData = res.data
-            console.log(vms.objData,vms.objData)
+            this.countDown
+            console.log("vms.objData",vms.objData)
         }).catch(err=>{
 
         })
+      },
+      countDown(){
+        
+              //获取当前时间
+              var date = new Date();  
+              var now = date.getTime();  
+             //设置截止时间
+             var str=this.objData.Obligatoryrightrealation.countdowntime;
+             var endDate = new Date(str); 
+             var end = endDate.getTime();  
+             var leftTime = end-now; 
+             if (leftTime>=0) {  
+                 this.d = Math.floor(leftTime/1000/60/60/24);  
+                 this.h = Math.floor(leftTime/1000/60/60%24);  
+                 this.m = Math.floor(leftTime/1000/60%60);  
+                 //s = Math.floor(leftTime/1000%60);                     
+             }  
+               
+			console.log(d,h,m,s)
+             //递归每秒调用countTime方法，显示动态时间效果
+             setTimeout(this.countDown,1000);  
+   
+        
       },
       initMainScroll(){
         this.scroll = new window.BScroll(document.querySelector(".content"), {
