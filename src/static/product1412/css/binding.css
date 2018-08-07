@@ -590,13 +590,24 @@ text-decoration:none;
 }
 .wrappers{
   
+  height: 14.85rem;
   overflow: hidden;
  
 }
 .contents{
-  
+  height: 14.85rem;
+  overflow: hidden;
 }
 .clickable{
   color: #656565 !important;
   background: #c3c3c3 !important;
+}
+.wrapperss{
+  
+  overflow: hidden;
+  height:14.85rem;
+}
+.contentss{
+  height: 14.85rem;
+  overflow: hidden;
 }

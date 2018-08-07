@@ -184,8 +184,8 @@
             <div id="choose2" v-if="choose==2" >
                 <div class="context" >
                     <div class="context-title">为保护借款人信息仅展示部分内容，具体匹配以实际情况为准。</div>
-                    <div class="wrappers" style="height:14.85rem;">
-                      <div class="contents" style="height: 14.85rem;overflow: hidden;">
+                    <div class="wrappers">
+                      <div class="contents">
                         <div class="context-table-wrap ">
                           <table class="context-table">
                             <tr>
@@ -286,23 +286,27 @@
             <div id="choose3" v-if="choose==3">
                 <div class="context">
                     <div class="context-title"></div>
-                    <div class="context-table-wrap">
-                      <table class="context-table">
-                        <tr>
-                          <th>出借人</th>
-                          <th>加入金额（元）</th>
-                          <th>加入期限</th>
-                          <th>加入时间</th>
-                        </tr>
-                        <tr v-for="(item,index) in list" :key="index">
-                          <td>137****8833</td>
-                          <td>1000000.00</td>
-                          <td>60天</td>
-                          <td>2017-7-8 11:11:44</td>
-                        </tr>
-                       
-                       
-                      </table>
+                    <div class="wrapperss" >
+                      <div class="contentss" >
+                        <div class="context-table-wrap">
+                          <table class="context-table">
+                            <tr>
+                              <th>出借人</th>
+                              <th>加入金额（元）</th>
+                              <th>加入期限</th>
+                              <th>加入时间</th>
+                            </tr>
+                            <tr v-for="(item,index) in list" :key="index">
+                              <td>137****8833</td>
+                              <td>1000000.00</td>
+                              <td>60天</td>
+                              <td>2017-7-8 11:11:44</td>
+                            </tr>
+                           
+                           
+                          </table>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <footer style="overflow: hidden;">
@@ -335,11 +339,12 @@
         value5:"",
         text1:"",
         income:'',
-        list:[0,1,2,3,4,5,6,7,8,9],
+        list:[0,1,2,3,4,5,6,7,8,9,10,11],
         choose:1,
         scroll:{},
-        clickable:true,
         scrolls:{},
+        scrollss:{},
+        clickable:true,
         objData:{
                 fundAccountInfo: {
                   AccountId: "",
@@ -416,21 +421,20 @@
       }
     },
     created() {
-      console.log(document.documentElement.clientHeight)
+      //console.log(document.documentElement.clientHeight)
     },
     methods:{
       submit(){
-       /*  let vms = this
-        document.getElementById("bottom").style.display="block";
-        this.scroll.refresh();
-        vms.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0); */
-        let vms = this
-        if(vms.objData.sellInfo.buyStatus!=="0"){
+        if(this.objData.sellInfo.buyStatus!=="0"){
            return
           }else{
-            let req = {
+           this.submitData() 
+        }
+      },
+      submitData(){
+        let req = {
                   "tel_phone": "15822753827", 
-                  "sell_id": "JE0602018072001", 
+                  "sell_id": vms.objData.sellInfo.Id, 
                     "jyd_pubData": {
                       "user_id": 91, 
                       "source_type": "0001", 
@@ -441,88 +445,22 @@
                   }
           axios.post("/api/personProLend",req).then(res=>{
             console.log(res)
-            
           }).catch(err=>{
             console.log(err)
           })
-        }
-       
-
-        
       },
       changeCurrent(value){
-        let vms = this
-        this.choose=value;
+        this.choose = value;
         this.scroll.refresh();
-       if(value==2){
-        this.$nextTick(() => {
-          vms.initX()
+        if(value==2){
+           this.$nextTick(() => {
+             this.initScrollConstitute()
+           });
+         }else if(value==3){
+          this.$nextTick(() => {
+            this.initScrollRecord()
           });
-         
         }
-        
-      },
-      _initScroll(){
-        let vms = this
-        //this.scroll
-        vms.scroll = new window.BScroll(document.querySelector(".content"), {
-          probeType: 2,
-          click:true,
-          momentum:false,
-          pullUpLoad: true ,
-          
-         });
-         
-       function up(pos){
-        if(vms.scroll.maxScrollY>pos.y+50){
-            console.log("上拉")
-          
-           
-            document.getElementById("bottom").style.display="block";
-           // document.getElementById("top").style.height="6.69rem"
-            vms.scroll.refresh();
-            vms.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0);
-            vms.scroll.off('touchEnd', up)
-            vms.scroll.on('touchEnd', down)
-         } 
-          console.log(Math.round(pos.y));
-       }
-       function down(pos) {
-        
-        var h = document.getElementById("top").offsetHeight
-        if(pos.y>-h+20){
-           
-            console.log("下拉")
-            vms.scroll.scrollToElement(document.querySelector(".top"),800,0,0);
-            vms.scroll.off('touchEnd', down)
-            vms.scroll.on('touchEnd', up)
-            document.getElementById("bottom").style.display="none";
-           // document.getElementById("top").style.height="6.69rem"
-            vms.scroll.refresh();
-           
-          }
-          console.log(Math.round(pos.y));
-       }
-         vms.scroll.on('touchEnd', up)
-      },
-      initX(){
-        let vms = this
-        //this.scroll
-        vms.scrolls = new window.BScroll(document.querySelector(".contents"), {
-          probeType: 2,
-          click:true,
-          momentum:false,
-          pullUpLoad: true ,
-          
-         });
-         vms.scrolls.on('beforeScrollStart', aaa)
-         function aaa() {
-          vms.scroll.disable()
-         }
-         vms.scrolls.on('touchEnd', bbb)
-         function bbb(){
-          vms.scroll.enable()
-         }
       },
       initData(){
         let vms = this
@@ -536,10 +474,7 @@
                     "token_id": "123235h5e3"
                   }
                 }
-
-                
-        axios.post("/api/productDetails/querySellinDetail",req).then(res=>{
-         
+       axios.post("/api/productDetails/querySellinDetail",req).then(res=>{
           vms.objData = res.data
           if(vms.objData.sellInfo.buyStatus!=="0"){
             vms.clickable=false;
@@ -551,12 +486,72 @@
           vms.value4 = (vms.objData.sellInfo.AccountFeeRate*100).toFixed(2)
           vms.value5 = vms.objData.sellInfo.AdvanceWayValue*100
           vms.text1 = "最低出借"+vms.objData.sellInfo.MinInvestMoney+"元"
-         
           console.log(" vms.objData", vms.objData)
         }).catch(err=>{
           console.log(err)
         })
-      }
+      },
+      _initScroll(){
+        this.scroll = new window.BScroll(document.querySelector(".content"), {
+          probeType: 2,
+          click:true,
+          momentum:false,
+          pullUpLoad: true ,
+         });
+         this.scroll.on('touchEnd', this.mainScrollUp)
+      },
+      initScrollConstitute(){
+        this.scrolls = new window.BScroll(document.querySelector(".contents"), {
+          probeType: 2,
+          click:true,
+          momentum:false,
+          pullUpLoad: true ,
+         });
+         this.scrolls.on('beforeScrollStart', this.mainScrollDisable)
+         this.scrolls.on('touchEnd', this.mainScrollEnable)
+       },
+      initScrollRecord(){
+        this.scrollss = new window.BScroll(document.querySelector(".contentss"), {
+          probeType: 2,
+          click:true,
+          momentum:false,
+          pullUpLoad: true ,
+         });
+         this.scrollss.on('beforeScrollStart', this.mainScrollDisable)
+         this.scrollss.on('touchEnd', this.mainScrollEnable)
+      },
+      mainScrollUp(pos){
+        if(this.scroll.maxScrollY>pos.y+50){
+            console.log("上拉")
+            document.getElementById("bottom").style.display="block";
+           // document.getElementById("top").style.height="6.69rem"
+           this.scroll.refresh();
+           this.scroll.scrollToElement(document.querySelector(".bottom"),800,0,0);
+           this.scroll.off('touchEnd', this.mainScrollUp)
+           this.scroll.on('touchEnd', this.mainScrollDown)
+         } 
+          console.log(Math.round(pos.y));
+      },
+      mainScrollDown(pos){
+        var h = document.getElementById("top").offsetHeight
+        if(pos.y>-h+20){
+            console.log("下拉")
+            this.scroll.scrollToElement(document.querySelector(".top"),800,0,0);
+            this.scroll.off('touchEnd', this.mainScrollDown)
+            this.scroll.on('touchEnd', this.mainScrollUp)
+            document.getElementById("bottom").style.display="none";
+           // document.getElementById("top").style.height="6.69rem"
+           this.scroll.refresh();
+          }
+          console.log(Math.round(pos.y));
+      },
+      mainScrollDisable(){
+        this.scroll.disable()
+      },
+      mainScrollEnable(){
+        this.scroll.enable()
+      },
+      
     },
     mounted() {
       document.getElementById("top").style.minHeight=(document.documentElement.clientHeight+50)+"px";
@@ -564,8 +559,7 @@
      this.initData();
       this.$nextTick(() => {
        this._initScroll();
-      // this.initX()
-      });
+     });
     },
   })
 </script>
