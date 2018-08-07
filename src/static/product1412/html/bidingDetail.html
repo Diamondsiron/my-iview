@@ -14,6 +14,9 @@
   <div class="wrapper" id="main">
     <div class="content">
       <div >
+        <div class="toast" id="toast">
+          {{hint}}
+        </div>
           <div id="top" style="display: block;overflow: hidden;" class="top">
               <div class="card">
                   <div>
@@ -60,8 +63,8 @@
                
                 <div class="context">
                   <div class="context-title">出借金额（元）</div>
-                  <input class="context-input" type="text" v-bind:placeholder="text1">
-                   <!-- <input class="context-input" type="text" placeholder="最低出借500元"> -->
+                  <input class="context-input" type="text" pattern="[0-9]*" v-bind:placeholder="text1" v-model="count">
+                  
                   <div>
                     <div>
                     
@@ -194,78 +197,13 @@
                               <th>剩余金额（元）</th>
                               <th></th>
                             </tr>
-                            <tr>
-                              <td>扩大经营</td>
-                              <td>信A</td>
-                              <td>100000.00</td>
+                            <tr v-for="(item,index) in listConstitute" ::key="index">
+                              <td>{{item.description}}</td>
+                              <td>{{item.borrowtypeid | type}}</td>
+                              <td>{{item.originalamount}}</td>
                               <td>></td>
                             </tr>
-                            <tr>
-                              <td>度假旅游</td>
-                              <td>车AA</td>
-                              <td>10000.00</td>
-                              <td>></td>
-                            </tr>
-                            <tr>
-                              <td>扩大经营</td>
-                              <td>信A</td>
-                              <td>100000.00</td>
-                              <td>></td>
-                            </tr>
-                            <tr>
-                              <td>度假旅游</td>
-                              <td>车AA</td>
-                              <td>10000.00</td>
-                              <td>></td>
-                            </tr>
-                            <tr>
-                              <td>扩大经营</td>
-                              <td>信A</td>
-                              <td>100000.00</td>
-                              <td>></td>
-                            </tr>
-                            <tr>
-                              <td>度假旅游</td>
-                              <td>车AA</td>
-                              <td>10000.00</td>
-                              <td>></td>
-                            </tr>
-                            <tr>
-                              <td>扩大经营</td>
-                              <td>信A</td>
-                              <td>100000.00</td>
-                              <td>></td>
-                            </tr>
-                            <tr>
-                              <td>度假旅游</td>
-                              <td>车AA</td>
-                              <td>10000.00</td>
-                              <td>></td>
-                            </tr>
-                            <tr>
-                              <td>扩大经营</td>
-                              <td>信A</td>
-                              <td>100000.00</td>
-                              <td>></td>
-                            </tr>
-                            <tr>
-                              <td>度假旅游</td>
-                              <td>车AA</td>
-                              <td>10000.00</td>
-                              <td>></td>
-                            </tr>
-                            <tr>
-                              <td>扩大经营</td>
-                              <td>信A</td>
-                              <td>100000.00</td>
-                              <td>></td>
-                            </tr>
-                            <tr>
-                              <td>度假旅游</td>
-                              <td>车AA</td>
-                              <td>10000.00</td>
-                              <td>></td>
-                            </tr>
+                            
                           
                           </table>
                         </div>
@@ -296,11 +234,11 @@
                               <th>加入期限</th>
                               <th>加入时间</th>
                             </tr>
-                            <tr v-for="(item,index) in list" :key="index">
-                              <td>137****8833</td>
-                              <td>1000000.00</td>
-                              <td>60天</td>
-                              <td>2017-7-8 11:11:44</td>
+                            <tr v-for="(item,index) in listRecord" :key="index">
+                              <td>{{item.Phone}}</td>
+                              <td>{{item.ContractAmount}}</td>
+                              <td>{{item.ExpiresDays}}天</td>
+                              <td>{{item.StartTime}}</td>
                             </tr>
                            
                            
@@ -338,13 +276,18 @@
         value4:"",
         value5:"",
         text1:"",
+        count:"",
         income:'',
+        h1:"",
         list:[0,1,2,3,4,5,6,7,8,9,10,11],
+        hint:"最多20万",
         choose:1,
         scroll:{},
         scrolls:{},
         scrollss:{},
         clickable:true,
+        listConstitute:[],
+        listRecord:[],
         objData:{
                 fundAccountInfo: {
                   AccountId: "",
@@ -420,8 +363,39 @@
 
       }
     },
-    created() {
-      this.initMainData();
+    watch:{
+      count:function(){
+        if(this.count>200000){
+         var h2 = window.innerHeight
+          this.count=200000
+         /*  document.getElementById("toast").style.bottom=h1-h2+document.documentElement.clientWidth / 1242*100*3+"px"
+          document.getElementById("toast").style.display="block" */
+        // alert(this.h1,h2)
+          /* setTimeout(function(){
+            h2 = window.innerHeight
+            document.getElementById("toast").style.display="none"
+            document.getElementById("toast").style.bottom=document.documentElement.clientWidth / 1242*100*3+"px"
+            alert(h1,h2)
+          },2000) */
+         /*  setTimeout(function(){
+            alert(window.innerHeight)
+          },2000) 
+          window.innerHeight */
+          return
+        }else{
+          this.income = (((Math.floor(this.count/100)*100*(this.objData.sellInfo.ImproveYearRate + this.objData.sellInfo.ExpectedYearYield)*this.objData.sellInfo.ExpiresDays)/365).toFixed(2));
+        }
+        
+      }
+    },
+    filters:{
+      type(value){
+        if(value==1){
+          return "信贷"
+        }else{
+          return "抵押贷"
+        }
+      }
     },
     methods:{
       submit(){
@@ -430,6 +404,13 @@
           }else{
            this.submitData() 
         }
+      },
+      onChange(){
+        console.log(this.count)
+        if(this.count!=="") {
+          this.income = (((this.count*(this.objData.sellInfo.ImproveYearRate + this.objData.sellInfo.ExpectedYearYield)*this.objData.sellInfo.ExpiresDays)/365).toFixed(2));
+        }
+        
       },
       submitData(){
         let req = {
@@ -481,7 +462,7 @@
           if(vms.objData.sellInfo.buyStatus!=="0"){
             vms.clickable=false;
           }
-          vms.income = (((10000*(vms.objData.sellInfo.ImproveYearRate + vms.objData.sellInfo.ExpectedYearYield)*vms.objData.sellInfo.ExpiresDays)/365).toFixed(2));
+          vms.income = (((vms.objData.sellInfo.MinInvestMoney*(vms.objData.sellInfo.ImproveYearRate + vms.objData.sellInfo.ExpectedYearYield)*vms.objData.sellInfo.ExpiresDays)/365).toFixed(2));
           vms.value1 = (vms.objData.sellInfo.ExpectedYearYield*100+vms.objData.sellInfo.ImproveYearRate*100).toFixed(2)
           vms.value2 = (vms.objData.sellInfo.ExpectedYearYield*100).toFixed(2)
           vms.value3 = (vms.objData.sellInfo.ImproveYearRate*100).toFixed(2)
@@ -494,10 +475,44 @@
         })
       },
       initConstituteData(){
-
+        let vms = this
+        let req ={
+                  "SellLimitConfigId": "a793ac4f065f4c6f82cb760964010abb", 
+                  "jyd_pubData": {
+                    "user_id": 39, 
+                    "source_type": "0001", 
+                    "system_id": "Android 7", 
+                    "network_type": "wifi", 
+                    "token_id": "123235h5e3"
+                  }
+                }
+        axios.post("/api/productObligatory",req).then(res=>{
+          vms.listConstitute = res.data.borrows
+          console.log(res)
+        }).catch(err=>{
+          
+        })
       },
       initRecordData(){
+        let vms = this
+        let req = {
+                    "SellLimitConfigId": "77439636f2af4eea80c36ea442b431e9", 
+                    "jyd_pubData": {
+                      "user_id": 39, 
+                      "source_type": "0001", 
+                      "system_id": "Android 7", 
+                      "network_type": "wifi", 
+                      "token_id": "123235h5e3"
+                    }
+                  }
 
+
+        axios.post("/api/productJoinRecord",req).then(res=>{
+          vms.listRecord = res.data.records
+          console.log(res)
+        }).catch(err=>{
+          
+        })
       },
       initMainScroll(){
         this.scroll = new window.BScroll(document.querySelector(".content"), {
@@ -555,12 +570,16 @@
       },
       
     },
+    created() {
+      this.initMainData();
+    },
     mounted() {
       document.getElementById("top").style.minHeight = (document.documentElement.clientHeight+50)+"px";
       document.getElementById("bottom").style.minHeight = (document.documentElement.clientHeight)+"px";
 
       this.$nextTick(() => {
         this.initMainScroll();
+        this.h1=window.innerHeight
       });
     },
   })

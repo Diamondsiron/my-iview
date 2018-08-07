@@ -75,12 +75,12 @@ html,body{
   border-radius:0.13rem;
   background-color: #f3f3f3;
 }
-#top .card>div:nth-child(6) div{
+.progress{
   position: absolute;
   top: 0.06rem;
   left: 0.06rem;
   height: 0.24rem;
-  width: 9rem;
+  width: 0rem;
   border-radius: 0.09rem;
  
   background: -webkit-linear-gradient(#ff6a55, #ee1e27); /* Safari 5.1 - 6.0 */
@@ -88,6 +88,7 @@ html,body{
   background: -moz-linear-gradient(#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
   background: linear-gradient(#ff6a55, #ee1e27); /* 标准的语法 */
 }
+
 #top .card>div:nth-child(7){
   position: absolute;
   left: 2.44rem;

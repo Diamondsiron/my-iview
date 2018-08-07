@@ -26,7 +26,7 @@
                   </div>
                   <div>等额本息</div>
                   <div>年化利率</div>
-                  <div>10.5<span style="font-size: 0.39rem">%</span></div>
+                  <div>{{objData.Obligatoryrightrealation.yearrate}}<span style="font-size: 0.39rem">%</span></div>
                  
                   <div>
                     剩余时间:1天23小时59分
@@ -37,19 +37,19 @@
                     <div class="card-bottom-l">
                         <div>
                             <div class="card-bottom-top">剩余期限</div>
-                            <div class="card-bottom-bottom">12期+25天</div>
+                            <div class="card-bottom-bottom">{{objData.Obligatoryrightrealation.month}} 期+{{objData.Obligatoryrightrealation.daysSpan}} 天</div>
                         </div>
                     </div>
                     <div class="card-bottom-c">
                         <div>
                             <div class="card-bottom-top">转让金额（元）</div>
-                            <div class="card-bottom-bottom">200000.00</div>
+                            <div class="card-bottom-bottom"> {{objData.Obligatoryrightrealation.transferAmoney}}</div>
                         </div>
                     </div>
                       <div class="card-bottom-r">
                         <div>
                           <div class="card-bottom-top">借款额（元）</div>
-                          <div class="card-bottom-bottom">200000.00</div>
+                          <div class="card-bottom-bottom">{{objData.Obligatoryrightrealation.curmatchMoney}}</div>
                         </div>
                       </div>
                     </div>
@@ -61,7 +61,7 @@
                   <ul>
                       <li>
                           <p>转让编号:</p>
-                          <p>22222222</p>
+                          <p>{{objData.Obligatoryrightrealation.relationid}}</p>
                       </li>
                       <li>
                             <p>本金折扣:</p>
@@ -73,11 +73,11 @@
                         </li>
                         <li>
                             <p>发布时间:</p>
-                            <p>2017-11-2</p>
+                            <p>{{objData.Obligatoryrightrealation.starttime}}</p>
                         </li>
                         <li>
                             <p>下一个还款日:</p>
-                            <p>2017-11-30</p>
+                            <p>{{objData.Obligatoryrightrealation.returndate}}</p>
                         </li>
                        
                   </ul>
@@ -395,7 +395,49 @@
         h2:"",
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
-        scroll
+        scroll,
+        objData:{
+                Obligatoryrightrealation: {
+                    appleenddate: "",
+                    collectedamount: "",
+                    expectedyield: "",
+                    outapplytime: "",
+                    description: "",
+                    relationid: "",
+                    realendtime: null,
+                    starttime: "",
+                    nextvaluedate: "",
+                    yearrate: "",
+                    borrowid: "",
+                    curmatchMoney: "",
+                    borrowtypeid: "",
+                    expiresdays: "",
+                    advanceendid: "",
+                    transferAmoney: "",
+                    offsetamount: "",
+                    contractamount: "",
+                    investstatus: "",
+                    improverate: "",
+                    incomeamount: "",
+                    returndate: "",
+                    contractno: "",
+                    daysSpan: "",
+                    realouttime: "",
+                    applytime: "",
+                    expectendtime: "",
+                    sellname: "",
+                    accountfeerate: "",
+                    enddate: "",
+                    month: "",
+                    expectprofit: "",
+                    valuedate: "",
+                    realapplyendtime: "",
+                    expectedyearyield: ""
+                },
+                return_msg: "",
+                return_code: ""
+                }
+
       }
     },
     created() {
@@ -418,7 +460,7 @@
                     }
                   }
           axios.post("/api/productDetails/querySellinDetail",req).then(res=>{
-            console.log(res)
+             
           }).catch(err=>{
             console.log(err)
           })
@@ -427,7 +469,23 @@
         this.choose=value;
       },
       initMainData(){
+          let vms = this;
+          let req = {
+                    "relationid": "20181203135610010884", 
+                    "jyd_pubData": {
+                        "user_id": 39, 
+                        "source_type": "0001", 
+                        "system_id": "Android 7", 
+                        "network_type": "wifi", 
+                        "token_id": "123235h5e3"
+                    }
+                    }
+        axios.post("/api/productDetails/queryTransferDetail",req).then(res=>{
+            vms.objData = res.data
+            console.log(vms.objData,vms.objData)
+        }).catch(err=>{
 
+        })
       },
       initMainScroll(){
         this.scroll = new window.BScroll(document.querySelector(".content"), {
@@ -461,6 +519,7 @@
     mounted() {
      document.getElementById("top").style.minHeight=(document.documentElement.clientHeight+50)+"px";
      document.getElementById("bottom").style.minHeight=(document.documentElement.clientHeight)+"px";
+     this.initMainData();
       this.$nextTick(() => {
        this.initMainScroll();
       });

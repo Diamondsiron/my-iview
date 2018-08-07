@@ -27,10 +27,10 @@
                   <div>{{objData.Borrow.YearRate}}<span style="font-size: 0.39rem">%</span> </div>
                   <div>年化利率</div>
                   <div>
-                    <div></div>
+                    <div class="progress" id="progress"></div>
                   </div>
                   <div>剩余可出借(元)</div>
-                  <div>20000.00</div>
+                  <div>{{objData.Borrow.OriginalAmount-objData.Borrow.CollectedAmount}}</div>
                   <div></div>
                     <div class="card-bottom">
                       <div class="card-bottom-l">
@@ -39,7 +39,7 @@
                       <div class="card-bottom-r">
                         <div>
                           <div>借款额（元）</div>
-                          <div>200000.00</div>
+                          <div>{{objData.Borrow.OriginalAmount}}</div>
                         </div>
                       </div>
                     </div>
@@ -530,8 +530,11 @@
                     }
                     }
          axios.post("/api/productDetails/queryStandardpowderDetail",req).then(res=>{
-             console.log(res)
+             
              vms.objData = res.data;
+             document.getElementById("progress").style.width=(vms.objData.Borrow.CollectedAmount/vms.objData.Borrow.OriginalAmount)*9.9+"rem"
+             //document.getElementById("progress").style.width="2rem"
+             console.log("vms.objData",vms.objData)
          }).catch(err=>{
              console.log(err)
          })
