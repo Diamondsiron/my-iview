@@ -275,7 +275,9 @@ html,body{
   -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 
-
+.foot-content-btn:active{
+  opacity: 0.7;
+}
 a:link { 
   color:#3b92f0;
   text-decoration:none;
@@ -475,6 +477,7 @@ border-collapse: collapse;
 }
 #choose2 th{
 color: #998675; 
+font-weight: normal;
 }
 #choose2 tr{
 height: 1.35rem;
@@ -514,6 +517,7 @@ border-collapse: collapse;
 }
 #choose3 th{
 color: #998675; 
+font-weight: normal;
 }
 #choose3 tr{
 height: 1.35rem;

@@ -93,7 +93,7 @@
                    
                   </div>
                   <div class="foot-content">
-                      <button class="foot-content-btn" @click="submit()" v-bind:class="{clickable:!clickable}">立即出借</button>
+                      <button ontouchstart="" class="foot-content-btn" @click="submit()" v-bind:class="{clickable:!clickable}">立即出借</button>
                   </div>
                 </footer>
           </div>
@@ -179,7 +179,7 @@
                     出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                   </div>
                   <div class="foot-content">
-                      <button class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
+                      <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
                   </div>
                   
                 </footer>
@@ -216,7 +216,7 @@
                       出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                     </div>
                     <div class="foot-content">
-                        <button class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
+                        <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
                     </div>
                     
                   </footer>
@@ -252,7 +252,7 @@
                       出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                     </div>
                     <div class="foot-content">
-                        <button class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
+                        <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
                     </div>
                     
                   </footer>
@@ -594,6 +594,9 @@
           axios.post("/api/productJoinRecord",req).then(res=>{
             var list = res.data.records
             vms.listRecord = vms.listRecord.concat(list)
+            vms.$nextTick(() => {
+              vms.scrollss.refresh();
+           });
             vms.scrollss.refresh();
             console.log(res)
           }).catch(err=>{

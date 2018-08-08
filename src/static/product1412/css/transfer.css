@@ -198,7 +198,9 @@ html,body{
 }
 #top .foot-touch{
   font-size: 0.36rem;
-  margin-top: 0.87rem;
+  height: 0.36rem;
+  line-height: 0.36rem;
+  /* margin-top: 0.87rem; */
   text-align: center;
   color: #989898;
 }
@@ -212,8 +214,13 @@ html,body{
 #top .foot-content{
   height: 2.1rem;
   overflow: hidden;
-  margin: 0.3rem auto 0 auto;
+  margin: 0.6rem auto 0 auto;
   width: 11.34rem;
+  -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 #top .foot-content-btn{
   margin-top: 0.3rem;
@@ -227,6 +234,11 @@ html,body{
   border: none;
   outline: none;
   border-radius: 5px;
+  -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 
 
@@ -438,6 +450,7 @@ border-collapse: collapse;
 }
 #choose2 th{
 color: #998675; 
+font-weight: normal;
 }
 #choose2 tr{
 height: 1.35rem;
@@ -593,9 +606,12 @@ margin-top: 0.24rem;
   margin: 0 auto;
 height: 2.1rem;
 overflow: hidden;
-
-
 width: 11.34rem;
+-moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 #bottom .foot-content-btn{
 height: 1.5rem;
@@ -608,7 +624,15 @@ border: none;
 outline: none;
 margin-top: 0.3rem;
 border-radius: 5px;
+-moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
 
+}
+.foot-content-btn:active{
+  opacity: 0.7;
 }
 btn:hover{
 border: none;
