@@ -12,28 +12,31 @@
 <body>
   <div id="main">
     <div>
+        <div class="toast" id="toast">
+          {{hint}}
+        </div>
       <div class="card">
         <div>
           剩余可出借金额(元)
         </div>
         <div>
-          248,000.00
+          {{objData.sell_limit_config.RestMoney}}
         </div>
         <div class="card-bottom">
           <div class="card-bottom-l">
             <div>预计利息</div>
-            <div>20000.00</div>
+            <div>{{interest}}</div>
           </div>
           <div class="card-bottom-r">
             <div>出借金额</div>
-            <div>20000.00</div>
+            <div>200000.00</div>
           </div>
         </div>
       </div>
       <div class="context">
         <div>出借金额(元)</div>
-        <input type="text">
-        <div>可出借金额(元):1000000.00</div>
+        <input type="text" pattern="[0-9]*" v-model="count">
+        <div>可出借金额(元):{{avail}}</div>
         <div><button ontouchstart="">充值</button></div>
       </div>
       <footer class="footer">
@@ -43,7 +46,7 @@
           
         </div>
         <div class="foot-content">
-            <button ontouchstart="" class="foot-content-btn" @click="submit()" >确认出借0.00元</button>
+            <button ontouchstart="" class="foot-content-btn" @click="submit()" >确认出借{{count}}元</button>
         </div>
       </footer>
     </div>
@@ -54,26 +57,192 @@
       el:"#main",
       data(){
         return{
+          avail:"",
+          interest:"",
+          count:"",
+          hint:"",
+          h1:"",
+          h2:"",
+          objData:{
+                  sell_info: {
+                    ImproveRate: "",
+                    InvestMaxTimes: "",
+                    EndTime: "",
+                    MinInvestMoney: "",
+                    SellLimitConfigId: "",
+                    ProductId: "",
+                    OrderNo: "",
+                    ProductMaxMoney: null,
+                    InComeType: "",
+                    ProductFirstAwardRate: "",
+                    ProductConfigId: "",
+                    AdvanceWay: "",
+                    IntorduceLimit: "",
+                    LabelText: "",
+                    ActivityRuleIds: null,
+                    AdvanceWayValue: "",
+                    ActivateIntegralRate: "",
+                    IntorduceInvestRate: "",
+                    Status: "",
+                    ExpectedYearYield: "",
+                    SellName: "",
+                    InvestMaxMoney: "",
+                    InputPerson: "",
+                    AccountFeeRate: "",
+                    InputTime: "",
+                    StartTime: "",
+                    RatingLevelId: "",
+                    IncrementMoney: "",
+                    SelfInvestRate: "",
+                    ProductTypeId: "",
+                    PromptText: "",
+                    AdvanceDays: "",
+                    Intro: "",
+                    ProductMaxTimes: null,
+                    ImproveYearRate: "",
+                    ExpiresDays: "",
+                    Id: "",
+                    ExpectedYield: "",
+                    SellConfigId: "",
+                    SendIntegralRate: "",
+                    LastTime: null
+                  },
+                  sell_limit_config: {
+                    Status: "",
+                    SellAmount: "",
+                    InputPerson: "",
+                    SellStatus: "",
+                    InputTime: "",
+                    GroupId: null,
+                    BuyKey: null,
+                    SellCreateDate: "",
+                    Type: "",
+                    ProductConfigId: "",
+                    SellDate: "",
+                    Id: "",
+                    RestMoney: ""
+                  },
+                  keyong: "",
+                  display: "",
+                  buy_status: "",
+                  limit_status: "",
+                  return_code: "",
+                  return_msg: ""
+                }
 
+
+        }
+      },
+      watch:{
+        count:function(){
+          if(this.count>200000){
+            this.h2=window.innerHeight
+            this.showToastZoom("出借金额不能大于200000元。")
+            this.count=200000
+            return
+          }
         }
       },
       methods:{
         submit(){
-          
+          if(this.count<100){
+            //1
+            this.showToast("出借金额不能小于100元。")
+            //this.count=""
+            return
+          }else if(this.count>this.objData.sell_limit_config.RestMoney){
+            //2
+            this.showToast("出借金额不能大于剩余可出借金额。")
+            //this.count=""
+            return
+          }else if(this.count>this.avail){
+            this.showToast("可用余额不足，请先充值。")
+            //this.count=""
+            return
+          }else if((this.count%100)!==0){
+            this.showToast("出借金额需为100的整数倍。")
+            //this.count=""
+            return
+          }else if(this.count>200000){
+            this.showToast("出借金额不能大于200000元。")
+            //this.count=""
+            return
+          }else if((this.objData.sell_limit_config.RestMoney-this.count)<100){
+            this.showToast("输入后剩余可出借金额小于最低出借金额，请重新输入。")
+            //this.count=""
+            return
+          }else{
+            if(this.objData.sell_info.InvestMaxMoney==null){
+
+            }else if(this.count>this.objData.sell_info.InvestMaxMoney) {
+              this.showToast("出借金额不能大于限参与金额。")
+            }
+          }
+            console.log(this.count)
+        },
+        showToast(text){
+          this.hint = text
+          document.getElementById("toast").style.display="block"
+          setTimeout(function(){
+            document.getElementById("toast").style.display="none"
+          },2000) 
+        },
+        showToastZoom(text){
+          this.hint = text
+          document.getElementById("toast").style.bottom=this.h1-this.h2+document.documentElement.clientWidth / 1242*100*3+"px"
+          document.getElementById("toast").style.display="block"
+          setTimeout(function(){
+            document.getElementById("toast").style.display="none"
+            document.getElementById("toast").style.bottom="3rem"
+          },2000) 
         },
         initData(){
-          let req = {
+          let vms = this
+          let req =  {
+                      "tel_phone": "15822753827", 
+                      "sell_id": "JE0602018072001", 
+                        "jyd_pubData": {
+                          "user_id": 91, 
+                          "source_type": "0001", 
+                          "system_id": "Android 7", 
+                          "network_type": "wifi", 
+                          "token_id": "123235h5e3"
+                        }
+                      }
 
-          }
-          axios.post("/api/",req).then(res=>{
-            console.log(res)
+          axios.post("/api/personProLend",req).then(res=>{
+            vms.objData = res.data
+            vms.interest = (((Math.floor(200000/100)*100*(vms.objData.sell_info.ImproveYearRate + vms.objData.sell_info.ExpectedYearYield)*vms.objData.sell_info.ExpiresDays)/365).toFixed(2));
+            console.log("vms.objData",vms.objData)
           }).catch(err=>{
             console.log(err)
           })
+          let req1 = {
+                      "tel_phone": "15822753827",
+                      "jyd_pubData": {
+                          "user_id": 91, 
+                          "source_type": "0001", 
+                          "system_id": "Android 7", 
+                          "network_type": "wifi", 
+                          "token_id": "123235h5e3"
+                      }
+                  }
+
+                axios.post("/api/balanceQuery",req1).then(res=>{
+                  vms.avail = res.data.avail_bal
+                  //vms.avail = 700
+                  
+                  console.log("vms.avail",vms.avail)
+                }).catch(err=>{
+                  console.log(err)
+                })
         }
+        
+
       },
       mounted() {
-       //this.initData();
+       this.initData();
+       this.h1=window.innerHeight
       },
     })
   </script>
