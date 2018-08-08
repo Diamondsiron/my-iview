@@ -284,6 +284,8 @@
         choose:1,
         scroll:{},
         scrolls:{},
+        constitutePage:"1",
+        recordPage:"1",
         scrollss:{},
         clickable:true,
         listConstitute:[],
@@ -497,6 +499,7 @@
         let vms = this
         let req = {
                   "SellLimitConfigId": "77439636f2af4eea80c36ea442b431e9", 
+                  "PageNum":"1",
                   "jyd_pubData": {
                     "user_id": 39, 
                     "source_type": "0001", 
@@ -542,7 +545,7 @@
           pullUpLoad: true ,
          });
          this.scrollss.on('beforeScrollStart', this.mainScrollDisable)
-         this.scrollss.on('touchEnd', this.mainScrollEnable)
+         this.scrollss.on('touchEnd', this.recordScrollUp)
       },
       mainScrollUp(pos){
         if(this.scroll.maxScrollY>pos.y+50){
@@ -569,6 +572,36 @@
       mainScrollEnable(){
         this.scroll.enable()
       },
+      recordScrollUp(pos){
+        this.mainScrollEnable()
+        if(this.scrollss.maxScrollY>pos.y+50){
+          this.recordPage++
+          let vms = this
+          let req = {
+                    "SellLimitConfigId": "77439636f2af4eea80c36ea442b431e9", 
+                    "PageNum":this.recordPage,
+                    "jyd_pubData": {
+                      "user_id": 39, 
+                      "source_type": "0001", 
+                      "system_id": "Android 7", 
+                      "network_type": "wifi", 
+                      "token_id": "123235h5e3"
+                    }
+                  }
+
+
+
+          axios.post("/api/productJoinRecord",req).then(res=>{
+            var list = res.data.records
+            vms.listRecord = vms.listRecord.concat(list)
+            vms.scrollss.refresh();
+            console.log(res)
+          }).catch(err=>{
+            
+          })
+        }
+        
+      }
       
     },
     created() {
@@ -580,7 +613,7 @@
 
       this.$nextTick(() => {
         this.initMainScroll();
-        this.h1=window.innerHeight
+        //this.h1=window.innerHeight
       });
     },
   })

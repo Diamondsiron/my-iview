@@ -457,6 +457,8 @@ color: #989898;
 text-align: center;
 margin-top: 0.54rem;
 margin-bottom: 0.6rem;
+height: 0.36rem;
+line-height: 0.36rem;
 }
 #choose2 td{
 padding: 0px;
@@ -530,12 +532,14 @@ width: 2.31rem;
 width: 2.85rem;
 }
 .foot-title{
-font-size: 0.36rem;
-color: #656565;
-text-align: center;
-margin-top: 0.63rem;
-margin-bottom: 0.3rem;
-font-weight: 100;
+  font-size: 0.36rem;
+  color: #656565;
+  text-align: center;
+  margin-top: 0.9rem;
+  margin-bottom: 0.3rem;
+  font-weight: 100;
+  height: 0.36rem;
+  line-height: 0.36rem;
 }
 .foot-content{
 height: 2.1rem;
