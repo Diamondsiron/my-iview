@@ -630,3 +630,12 @@ text-decoration:none;
 .content{
   height:100%;
 }
+.wrappers{
+  
+  overflow: hidden;
+  height:14.85rem;
+}
+.contents{
+  height: 14.85rem;
+  overflow: hidden;
+}

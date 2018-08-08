@@ -496,15 +496,16 @@
       initRecordData(){
         let vms = this
         let req = {
-                    "SellLimitConfigId": "77439636f2af4eea80c36ea442b431e9", 
-                    "jyd_pubData": {
-                      "user_id": 39, 
-                      "source_type": "0001", 
-                      "system_id": "Android 7", 
-                      "network_type": "wifi", 
-                      "token_id": "123235h5e3"
-                    }
+                  "SellLimitConfigId": "77439636f2af4eea80c36ea442b431e9", 
+                  "jyd_pubData": {
+                    "user_id": 39, 
+                    "source_type": "0001", 
+                    "system_id": "Android 7", 
+                    "network_type": "wifi", 
+                    "token_id": "123235h5e3"
                   }
+                }
+
 
 
         axios.post("/api/productJoinRecord",req).then(res=>{

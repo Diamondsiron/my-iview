@@ -596,6 +596,7 @@ color: #c3c3c3;
     left: 0.59rem;
     right: auto;
     bottom: 0.15rem;
+    overflow: hidden;
 }
 #bottom .foot-title{
  font-weight: 100; 
@@ -655,4 +656,13 @@ text-decoration:none;
 }
 .content{
   height:100%;
+}
+.wrappers{
+  
+  overflow: hidden;
+  height:14.85rem;
+}
+.contents{
+  height: 14.85rem;
+  overflow: hidden;
 }

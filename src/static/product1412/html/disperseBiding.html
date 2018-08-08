@@ -298,28 +298,30 @@
             <div id="choose2" v-if="choose==2">
                 <div class="context">
                     <div class="context-title"></div>
-                    <div class="context-table-wrap">
-                      <table class="context-table">
-                        <tr>
-                          <th>借款人</th>
-                          <th>出借金额（元）</th>
-                          <th>出借记录</th>
-                          <th></th>
-                        </tr>
-                        <tr v-for="(item,index) in list" :key="index">
-                          <td>137***8833</td>
-                          <td>100000.00</td>
-                          <td>2017-7-8 11:11:44</td>
-                        </tr>
-                        
-                       
-                      </table>
+                    <div class="wrappers">
+                        <div class="contents">
+                            <div class="context-table-wrap">
+                                <table class="context-table">
+                                  <tr>
+                                    <th>借款人</th>
+                                    <th>出借金额（元）</th>
+                                    <th>出借记录</th>
+                                    <th></th>
+                                  </tr>
+                                  <tr v-for="(item,index) in list" :key="index">
+                                    <td>137***8833</td>
+                                    <td>100000.00</td>
+                                    <td>2017-7-8 11:11:44</td>
+                                  </tr>
+                                  
+                                 
+                                </table>
+                              </div>
+                        </div>
                     </div>
                   </div>
-                  <div style="widows: 100%;height:3.96rem;">
-
-                </div>
-                  <footer class="bottom-footer  bottom-footer-3">
+                
+                  <footer class="bottom-footer">
                     <div class="foot-title">
                        出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《担保函》</a>
                         
@@ -369,9 +371,7 @@
                     </div> -->
                   </div>
             </div>
-            <div style="widows: 100%;height:3.96rem;">
-
-            </div>
+            <div class="" style="height: 3.96rem;"></div>
             <footer class="bottom-footer bottom-footer-3">
                 <div class="foot-title">
                     出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《担保函》</a>
@@ -407,6 +407,7 @@
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
         scroll,
+        scrolls:{},
         objData:{
                 Borrow: {
                     DayRate: "",
@@ -487,6 +488,12 @@
       },
       changeCurrent(value){
         this.choose=value;
+        if(value==2) {
+           //this.initConstituteData()
+           this.$nextTick(() => {
+             this.initRecordScroll()
+           });
+         }
       },
       initMainScroll(){
         this.scroll = new window.BScroll(document.querySelector(".content"), {
@@ -498,6 +505,17 @@
          });
        this.scroll.on('touchEnd', this.mainScrollUp)
      },
+     initRecordScroll(){
+        this.scrolls = new window.BScroll(document.querySelector(".contents"), {
+          probeType: 2,
+          click:true,
+          momentum:false,
+          pullUpLoad: true ,
+         });
+         this.scrolls.on('beforeScrollStart', this.mainScrollDisable)
+         this.scrolls.on('touchEnd', this.mainScrollEnable)
+     },
+     
       mainScrollUp(pos){
         if(this.scroll.maxScrollY>pos.y+50) {
             document.getElementById("bottom").style.display="block";
@@ -517,6 +535,12 @@
            this.scroll.refresh();
           }
        },
+       mainScrollDisable(){
+        this.scroll.disable()
+      },
+      mainScrollEnable(){
+        this.scroll.enable()
+      },
       initMainData(){
           let vms = this 
           let req = {
@@ -538,7 +562,13 @@
          }).catch(err=>{
              console.log(err)
          })
-      }
+      },
+      initRecordData(){
+
+      },
+      initPlanData(){
+
+      },
     },
     mounted() {
         document.getElementById("top").style.minHeight = (document.documentElement.clientHeight+50)+"px";;

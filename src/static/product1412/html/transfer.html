@@ -65,7 +65,8 @@
                       </li>
                       <li>
                             <p>本金折扣:</p>
-                            <p>{{objData.Obligatoryrightrealation.discount}}%</p>
+                            <p >{{objData.Obligatoryrightrealation.discount}}%</p>
+                            
                         </li>
                         <li>
                             <p>还款方式:</p>
@@ -291,28 +292,33 @@
             <div id="choose2" v-if="choose==2">
                 <div class="context">
                     <div class="context-title"></div>
-                    <div class="context-table-wrap">
-                      <table class="context-table">
-                        <tr>
-                          <th>借款人</th>
-                          <th>出借金额（元）</th>
-                          <th>出借记录</th>
-                          <th></th>
-                        </tr>
-                        <tr v-for="(item,index) in list" :key="index">
-                          <td>137***8833</td>
-                          <td>100000.00</td>
-                          <td>2017-7-8 11:11:44</td>
-                        </tr>
-                        
-                       
-                      </table>
+                    <div class="wrappers">
+                        <div class="contents">
+                            <div class="context-table-wrap">
+                                <table class="context-table">
+                                  <tr>
+                                    <th>借款人</th>
+                                    <th>出借金额（元）</th>
+                                    <th>出借记录</th>
+                                    <th></th>
+                                  </tr>
+                                  <tr v-for="(item,index) in list" :key="index">
+                                    <td>137***8833</td>
+                                    <td>100000.00</td>
+                                    <td>2017-7-8 11:11:44</td>
+                                  </tr>
+                                  
+                                 
+                                </table>
+                              </div>
+                        </div>
                     </div>
+                   
                   </div>
                   <div style="width: 100%;height: 2.1rem;">
 
-                </div>
-                  <footer class="footer bottom-footer-3">
+                  </div>
+                 <footer class="footer bottom-footer-3">
               
                     <div class="foot-content">
                         <button class="foot-content-btn">还款中</button>
@@ -395,6 +401,7 @@
         h2:"",
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
+        scrolls:{},
         d:"",
         h:"",
         m:'',
@@ -472,6 +479,12 @@
       },
       changeCurrent(value){
         this.choose=value;
+        if(value==2) {
+           //this.initConstituteData()
+           this.$nextTick(() => {
+             this.initRecordScroll()
+           });
+         }
       },
       initMainData(){
           let vms = this;
@@ -487,11 +500,20 @@
                     }
         axios.post("/api/productDetails/queryTransferDetail",req).then(res=>{
             vms.objData = res.data
+            if(!vms.objData.Obligatoryrightrealation.discount){
+                vms.objData.Obligatoryrightrealation.discount=0
+            }
             vms.countDown()
             console.log("vms.objData",vms.objData)
         }).catch(err=>{
 
         })
+      },
+      initRecordData(){
+       
+      },
+      initPlanData(){
+
       },
       countDown(){
            let vms = this
@@ -526,6 +548,16 @@
           pullUpLoad: true ,
          });
          this.scroll.on('touchEnd', this.mainScrollUp)
+      },
+      initRecordScroll(){
+        this.scrolls = new window.BScroll(document.querySelector(".contents"), {
+          probeType: 2,
+          click:true,
+          momentum:false,
+          pullUpLoad: true ,
+         });
+         this.scrolls.on('beforeScrollStart', this.mainScrollDisable)
+         this.scrolls.on('touchEnd', this.mainScrollEnable)
       },
       mainScrollUp(pos){
         if(this.scroll.maxScrollY>pos.y+50){
