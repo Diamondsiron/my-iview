@@ -401,7 +401,8 @@
     },
     methods:{
       submit(){
-        if(this.objData.sellInfo.buyStatus!=="0"){
+        //if(this.objData.sellInfo.buyStatus!=="0"){
+        if(false){
            return
           }else{
            this.submitData() 
@@ -461,9 +462,9 @@
                 }
        axios.post("/api/productDetails/querySellinDetail",req).then(res=>{
           vms.objData = res.data
-          if(vms.objData.sellInfo.buyStatus!=="0"){
+         /*  if(vms.objData.sellInfo.buyStatus!=="0"){
             vms.clickable=false;
-          }
+          } */
           vms.income = (((vms.objData.sellInfo.MinInvestMoney*(vms.objData.sellInfo.ImproveYearRate + vms.objData.sellInfo.ExpectedYearYield)*vms.objData.sellInfo.ExpiresDays)/365).toFixed(2));
           vms.value1 = (vms.objData.sellInfo.ExpectedYearYield*100+vms.objData.sellInfo.ImproveYearRate*100).toFixed(2)
           vms.value2 = (vms.objData.sellInfo.ExpectedYearYield*100).toFixed(2)

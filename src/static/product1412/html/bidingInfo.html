@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/axios.min.js"></script>
+  <link rel="stylesheet" href="../css/bidingInfo.css">
+</head>
+<body>
+  <div id="main">
+    <div>
+      <div class="card">
+        <div>
+          剩余可出借金额(元)
+        </div>
+        <div>
+          248,000.00
+        </div>
+        <div class="card-bottom">
+          <div class="card-bottom-l">
+            <div>预计利息</div>
+            <div>20000.00</div>
+          </div>
+          <div class="card-bottom-r">
+            <div>出借金额</div>
+            <div>20000.00</div>
+          </div>
+        </div>
+      </div>
+      <div class="context">
+        <div>出借金额(元)</div>
+        <input type="text">
+        <div>可出借金额(元):1000000.00</div>
+        <div><button ontouchstart="">充值</button></div>
+      </div>
+      <footer class="footer">
+        
+        <div class="foot-title">
+            出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
+          
+        </div>
+        <div class="foot-content">
+            <button ontouchstart="" class="foot-content-btn" @click="submit()" >确认出借0.00元</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+    var vm = new Vue({
+      el:"#main",
+      data(){
+        return{
+
+        }
+      },
+      methods:{
+        submit(){
+          
+        },
+        initData(){
+          let req = {
+
+          }
+          axios.post("/api/",req).then(res=>{
+            console.log(res)
+          }).catch(err=>{
+            console.log(err)
+          })
+        }
+      },
+      mounted() {
+       //this.initData();
+      },
+    })
+  </script>
+</body>
+</html>
