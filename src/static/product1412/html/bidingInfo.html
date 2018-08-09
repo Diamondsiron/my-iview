@@ -7,14 +7,16 @@
   <title>Document</title>
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
+  <script src="../js/axios.config.js"></script>
   <link rel="stylesheet" href="../css/bidingInfo.css">
 </head>
 <body>
-  <div id="main">
-    <div>
-        <div class="toast" id="toast">
+  <div id="main" style="overflow: hidden;position: relative;">
+      <div class="toast" id="toast">
           {{hint}}
         </div>
+    <div>
+      
       <div class="card">
         <div>
           剩余可出借金额(元)
@@ -201,7 +203,7 @@
                       "token_id": "123235h5e3"
                     }
                   }
-        axios.post("/api/personProLend/confirmLend",req).then(res=>{
+        axios.post(axiosBaseUrl+"personProLend/confirmLend",req).then(res=>{
 
         }).catch(err=>{
 
@@ -229,15 +231,23 @@
           },2000) 
         },
         showToastZoom(text){
+          let vms = this
           this.hint = text
-          this.h2=window.innerHeight
-          document.getElementById("toast").style.bottom=this.h1-this.h2+document.documentElement.clientWidth / 1242*100*3+"px"
-          //document.getElementById("toast").style.bottom="3rem";
-          document.getElementById("toast").style.display="block"
           setTimeout(function(){
+            vms.h2=window.innerHeight
+            //document.body.scrollHeight全部高,document.body.scrollTop卷去的高
+            document.getElementById("toast").style.top=vms.h2-document.documentElement.clientWidth / 1242*120*3+"px"
+            document.getElementById("toast").style.display="block"
+            
+            //alert("h1:"+vms.h1+"h2:"+vms.h2)
+          },1000) 
+         
+          
+        /*   setTimeout(function(){
+           document.getElementById("toast").style.top=""
             document.getElementById("toast").style.display="none"
-            document.getElementById("toast").style.bottom="3rem"
-          },2000) 
+           document.getElementById("toast").style.bottom="3.6rem";
+          },3000)  */
         },
         initData(){
           let vms = this
@@ -253,7 +263,7 @@
                         }
                       }
 
-          axios.post("/api/personProLend",req).then(res=>{
+          axios.post(axiosBaseUrl+"personProLend",req).then(res=>{
             vms.objData = res.data
             vms.text1 = "最低出借"+vms.objData.sell_info.MinInvestMoney+"元"
             vms.interest = (((Math.floor(200000/100)*100*(vms.objData.sell_info.ImproveYearRate + vms.objData.sell_info.ExpectedYearYield)*vms.objData.sell_info.ExpiresDays)/365).toFixed(2));
@@ -272,7 +282,7 @@
                       }
                   }
 
-                axios.post("/api/balanceQuery",req1).then(res=>{
+                axios.post(axiosBaseUrl+"balanceQuery",req1).then(res=>{
                   vms.avail = res.data.avail_bal
                   //vms.avail = 700
                   
@@ -286,6 +296,7 @@
       },
       mounted() {
        this.initData();
+       document.getElementById("main").style.minHeight = (document.documentElement.clientHeight)+"px";
        this.h1=window.innerHeight
       },
     })

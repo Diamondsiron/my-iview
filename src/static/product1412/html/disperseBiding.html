@@ -7,6 +7,7 @@
   <title>Document</title>
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
+  <script src="../js/axios.config.js"></script>
   <link rel="stylesheet" href="../css/disperse.css">
   <script src="../js/bscroll.min.js"></script>
  
@@ -397,8 +398,10 @@
       return{
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
+        recordPage:"1",
         scroll,
         scrolls:{},
+        RNmessage:{},
         objData:{
                 Borrow: {
                     DayRate: "",
@@ -485,17 +488,17 @@
       submitData(){
         let vms = this
         let req = {
-                  "tel_phone": "15822753827", 
+                  "tel_phone": this.RNmessage.tel_phone, 
                   "sell_id": vms.objData.sellInfo.Id, 
                     "jyd_pubData": {
-                      "user_id": 91, 
-                      "source_type": "0001", 
-                      "system_id": "Android 7", 
-                      "network_type": "wifi", 
-                      "token_id": "123235h5e3"
+                        "user_id":  this.RNmessage.jyd_pubData.user_id,
+                        "source_type": this.RNmessage.jyd_pubData.source_type,
+                        "system_id": this.RNmessage.jyd_pubData.system_id,
+                        "network_type": this.RNmessage.jyd_pubData.network_type,
+                        "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                   }
-          axios.post("/api/personProLend",req).then(res=>{
+          axios.post(axiosBaseUrl+"personProLend",req).then(res=>{
             console.log(res)
           }).catch(err=>{
             console.log(err)
@@ -530,9 +533,40 @@
           pullUpLoad: true ,
          });
          this.scrolls.on('beforeScrollStart', this.mainScrollDisable)
-         this.scrolls.on('touchEnd', this.mainScrollEnable)
+         this.scrolls.on('touchEnd', this.recordScrollUp)
      },
-     
+     recordScrollUp(){
+        this.mainScrollEnable()
+        if(this.scrolls.maxScrollY>pos.y+50){
+          this.recordPage++
+          let vms = this
+          let req = {
+                    "page_number":this.recordPage,
+                    "borrow_id":  this.RNmessage.sellInfoId,
+                    "jyd_pubData": {
+                        "user_id":  this.RNmessage.jyd_pubData.user_id,
+                        "source_type": this.RNmessage.jyd_pubData.source_type,
+                        "system_id": this.RNmessage.jyd_pubData.system_id,
+                        "network_type": this.RNmessage.jyd_pubData.network_type,
+                        "token_id": this.RNmessage.jyd_pubData.token_id
+                    }
+                    }
+
+
+
+          axios.post(axiosBaseUrl+"productMore/lendRecord",req).then(res=>{
+            var list = res.data.records
+            vms.recordList = vms.recordList.concat(list)
+            vms.$nextTick(() => {
+              vms.scrolls.refresh();
+           });
+            vms.scrolls.refresh();
+            console.log(res)
+          }).catch(err=>{
+            
+          })
+        }
+     },
       mainScrollUp(pos){
         if(this.scroll.maxScrollY>pos.y+50) {
             document.getElementById("bottom").style.display="block";
@@ -558,19 +592,22 @@
       mainScrollEnable(){
         this.scroll.enable()
       },
-      initMainData(){
+      initMainData(value){
           let vms = this 
-          let req = {
-                    "BorrowId": "20180704035229010122", 
+        let req = JSON.parse(JSON.stringify(value))
+        //let req = JSON.parse(value)
+        this.RNmessage = req
+          let req1 = {
+                    "BorrowId": this.RNmessage.sellInfoId, 
                     "jyd_pubData": {
-                        "user_id": 39, 
-                        "source_type": "0001", 
-                        "system_id": "Android 7", 
-                        "network_type": "wifi", 
-                        "token_id": "123235h5e3"
+                        "user_id":  this.RNmessage.jyd_pubData.user_id,
+                        "source_type": this.RNmessage.jyd_pubData.source_type,
+                        "system_id": this.RNmessage.jyd_pubData.system_id,
+                        "network_type": this.RNmessage.jyd_pubData.network_type,
+                        "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                     }
-         axios.post("/api/productDetails/queryStandardpowderDetail",req).then(res=>{
+         axios.post(axiosBaseUrl+"productDetails/queryStandardpowderDetail",req1).then(res=>{
              
              vms.objData = res.data;
              document.getElementById("progress").style.width=(vms.objData.Borrow.CollectedAmount/vms.objData.Borrow.OriginalAmount)*9.9+"rem"
@@ -583,17 +620,17 @@
       initBorrowData(){
          let vms = this 
           let req = {
-                    "borrow_id": "20180223114926010025",
+                    "borrow_id":  this.RNmessage.sellInfoId,
                     "jyd_pubData": {
-                        "user_id": 41,
-                        "source_type": "0001",
-                        "system_id": "Android 7",
-                        "network_type": "wifi",
-                        "token_id": "123235h5e3"
+                        "user_id":  this.RNmessage.jyd_pubData.user_id,
+                        "source_type": this.RNmessage.jyd_pubData.source_type,
+                        "system_id": this.RNmessage.jyd_pubData.system_id,
+                        "network_type": this.RNmessage.jyd_pubData.network_type,
+                        "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                     }
 
-          axios.post("/api/productMore",req).then(res=>{
+          axios.post(axiosBaseUrl+"productMore",req).then(res=>{
             vms.Borrow = res.data; 
           }).catch(err=>{
 
@@ -603,17 +640,17 @@
         let vms = this 
         let req = {
                     "page_number": "1",
-                    "borrow_id": "20190311054512010114",
+                    "borrow_id":  this.RNmessage.sellInfoId,
                     "jyd_pubData": {
-                        "user_id": 2,
-                        "source_type": "0001",
-                        "system_id": "Android 7",
-                        "network_type": "wifi",
-                        "token_id": "123235h5e3"
+                        "user_id":  this.RNmessage.jyd_pubData.user_id,
+                        "source_type": this.RNmessage.jyd_pubData.source_type,
+                        "system_id": this.RNmessage.jyd_pubData.system_id,
+                        "network_type": this.RNmessage.jyd_pubData.network_type,
+                        "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                     }
 
-        axios.post("/api/productMore/lendRecord",req).then(res=>{
+        axios.post(axiosBaseUrl+"productMore/lendRecord",req).then(res=>{
             vms.recordList = res.data.record_list
         }).catch(err=>{
             
@@ -622,27 +659,54 @@
       initPlanData(){
         let vms = this 
         let req = {
-                    "page_number": "2",
-                    "borrow_id": "20180825020450010086",
+                    "page_number": "1",
+                    "borrow_id":  this.RNmessage.sellInfoId,
                     "jyd_pubData": {
-                        "user_id": 2,
-                        "source_type": "0001",
-                        "system_id": "Android 7",
-                        "network_type": "wifi",
-                        "token_id": "123235h5e3"
+                        "user_id":  this.RNmessage.jyd_pubData.user_id,
+                        "source_type": this.RNmessage.jyd_pubData.source_type,
+                        "system_id": this.RNmessage.jyd_pubData.system_id,
+                        "network_type": this.RNmessage.jyd_pubData.network_type,
+                        "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                     }
 
-        axios.post("/api/productMore/returnPlan",req).then(res=>{
+        axios.post(axiosBaseUrl+"productMore/returnPlan",req).then(res=>{
             vms.planList = res.data.record_list
         }).catch(err=>{
             
         })
       },
+      init(){
+        let vms = this
+        var str = {"tel_phone":"15822753827","tel_code":"","tel_pwd":"","refer_code":"","jyd_pubData":{"user_id":39,"user_name":"","source_type":"0001","system_id":"Apple ios 11.4","network_type":"wifi","token_id":"123235h5e3"},"PageNum":"1","sellInfoId":"20180704035229010122"}
+        vms.initMainData(str)
+        vms.initBorrowData()
+        window.onload = function () {
+            document.addEventListener('message', function (e) {
+                //document.getElementById('data').textContent = e.data;
+                vms.initMainData(e.data)
+                vms.initBorrowData()
+            })
+            
+        }
+        var refreshIntervalId = setInterval(function(){
+            if (window.originalPostMessage) {
+              
+                stop();
+            } 
+        }, 500);
+
+        function stop(){
+            window.postMessage("");
+            clearInterval(refreshIntervalId);
+        }
+       
+       
+       }
     },
     created() {
-        this.initMainData();
-       /*  this.initBorrowData()
+        /* this.initMainData();
+        this.initBorrowData()
         this.initRecordData()
         this.initPlanData() */
     },
@@ -651,7 +715,7 @@
         document.getElementById("bottom").style.minHeight = (document.documentElement.clientHeight)+"px";
         this.$nextTick(() => {
         this.initMainScroll();
-        this.initBorrowData()
+        this.init()
         });
    },
   })

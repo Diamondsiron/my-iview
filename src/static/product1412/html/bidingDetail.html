@@ -8,6 +8,7 @@
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
   <script src="../js/bscroll.min.js"></script>
+  <script src="../js/axios.config.js"></script>
   <link rel="stylesheet" href="../css/binding.css">
 </head>
 <body>
@@ -466,26 +467,26 @@
                       "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                   }
-                 
-          axios.post("/api/personProLend",req).then(res=>{
+          window.location.href="http://10.2.0.155:8099/JYD_RN_Serv/personProLend/jumpUrl?"+"tel_phone="+this.RNmessage.tel_phone+"&sell_id="+this.objData.sellInfo.Id+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+         /*  axios.post(axiosBaseUrl+"personProLend",req).then(res=>{
             console.log(res)
             window.location.href=res.data.jumpUrl
           }).catch(err=>{
             console.log(err)
-          })
+          }) */
       },
       showToastZoom(){
           this.hint = "出借金额不能大于200000元。"
           var h2 = window.innerHeight
           console.log(this.h1,h2)
           //document.getElementById("toast").style.bottom=this.h1-h2+document.documentElement.clientWidth / 1242*100*3+"px"
-          document.getElementById("toast").style.bottom=="3rem"
+          document.getElementById("toast").style.bottom=="3.6rem"
           document.getElementById("toast").style.display="block"
          
          
           setTimeout(function(){
             document.getElementById("toast").style.display="none"
-            document.getElementById("toast").style.bottom="3rem"
+            document.getElementById("toast").style.bottom="3.6rem"
           },2000) 
       },
       changeCurrent(value){
@@ -506,6 +507,7 @@
       initMainData(value){
         let vms = this
         let req = JSON.parse(JSON.stringify(value))
+        //let req = JSON.parse(value)
         this.RNmessage = req
         let req1 = {
                     "sellInfoId": this.RNmessage.sellInfoId, 
@@ -518,7 +520,7 @@
                     }
                   }
 
-       axios.post("/api/productDetails/querySellinDetail",req1).then(res=>{
+       axios.post(axiosBaseUrl+"productDetails/querySellinDetail",req1).then(res=>{
           vms.objData = res.data
          /*  if(vms.objData.sellInfo.buyStatus!=="0"){
             vms.clickable=false;
@@ -547,7 +549,7 @@
                     "token_id": this.RNmessage.jyd_pubData.token_id
                   }
                 }
-        axios.post("/api/productObligatory",req).then(res=>{
+        axios.post(axiosBaseUrl+"productObligatory",req).then(res=>{
           vms.listConstitute = res.data.borrows
           console.log(res)
         }).catch(err=>{
@@ -570,7 +572,7 @@
 
 
 
-        axios.post("/api/productJoinRecord",req).then(res=>{
+        axios.post(axiosBaseUrl+"productJoinRecord",req).then(res=>{
           vms.listRecord = res.data.records
           console.log(res)
         }).catch(err=>{
@@ -650,7 +652,7 @@
 
 
 
-          axios.post("/api/productJoinRecord",req).then(res=>{
+          axios.post(axiosBaseUrl+"productJoinRecord",req).then(res=>{
             var list = res.data.records
             vms.listRecord = vms.listRecord.concat(list)
             vms.$nextTick(() => {
@@ -666,22 +668,7 @@
       },
       init(){
         let vms = this
-        var str = {
-                  "tel_phone": "15822753827",
-                  "tel_code": "",
-                  "tel_pwd": "",
-                  "refer_code": "",
-                  "jyd_pubData": {
-                    "user_id": 39,
-                    "user_name": "",
-                    "source_type": "",
-                    "system_id": "Apple ios 11.4",
-                    "network_type": "wifi",
-                    "token_id": ""
-                  },
-                  "PageNum": "1",
-                  "sellInfoId": "JE0902018072001"
-                }
+        var str = {"tel_phone":"15822753827","tel_code":"","tel_pwd":"","refer_code":"","jyd_pubData":{"user_id":39,"user_name":"","source_type":"0001","system_id":"Apple ios 11.4","network_type":"wifi","token_id":"123235h5e3"},"PageNum":"1","sellInfoId":"JE0902018072001"}
         vms.initMainData(str)
         window.onload = function () {
             document.addEventListener('message', function (e) {

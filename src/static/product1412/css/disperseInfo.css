@@ -253,7 +253,8 @@ a:link {
     padding-left: 5px;
     padding-right: 5px;
     position: absolute;
-    bottom: 3rem;
+   /*  bottom: 3.6rem; */
+    z-index: 1;
     text-align: center;
     left: 50%;
     transform: translateX(-50%);

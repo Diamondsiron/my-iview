@@ -7,14 +7,16 @@
   <title>Document</title>
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
+  <script src="../js/axios.config.js"></script>
   <link rel="stylesheet" href="../css/disperseInfo.css">
 </head>
 <body>
-  <div id="main">
+  <div id="main" style="overflow: hidden;position: relative;">
+      <div class="toast" id="toast">
+          {{hint}}
+        </div>
     <div>
-        <div class="toast" id="toast">
-            {{hint}}
-          </div>
+        
       <div class="card">
         <div>
           剩余可出借金额(元)
@@ -63,7 +65,7 @@
         count:function(){
           if(this.count>200000){
            
-            this.h2=window.innerHeight
+            
             //alert(this.h1+"h2:"+this.h2)
             this.showToastZoom("出借金额不能大于200000元。")
             this.count=200000
@@ -116,7 +118,7 @@
                       }
                     }
 
-           axios("/api/personProLend/buyStandard",req).then(res=>{
+           axios(axiosBaseUrl+"personProLend/buyStandard",req).then(res=>{
 
            }).catch(err=>{
 
@@ -144,13 +146,23 @@
         },
         showToastZoom(text){
           this.hint = text
-          document.getElementById("toast").style.bottom=this.h1-this.h2+document.documentElement.clientWidth / 1242*100*3+"px"
-          document.getElementById("toast").style.display="block"
-          alert(this.h1+this.h2)
-          setTimeout(function(){
+          let vms = this
+          vms.h2=window.innerHeight
+            document.getElementById("toast").style.top=vms.h2-document.documentElement.clientWidth / 1242*120*3+"px"
+            document.getElementById("toast").style.display="block"
+         /*  setTimeout(function(){
+            vms.h2=window.innerHeight
+            document.getElementById("toast").style.top=vms.h2-document.documentElement.clientWidth / 1242*120*3+"px"
+            document.getElementById("toast").style.display="block"
+            
+            //alert("h1:"+vms.h1+"h2:"+vms.h2)
+          },1000) 
+          */
+        /*   setTimeout(function(){
             document.getElementById("toast").style.display="none"
-            document.getElementById("toast").style.bottom="3rem"
-          },2000) 
+            document.getElementById("toast").style.top=""
+            document.getElementById("toast").style.bottom="3.6rem"
+          },3000)  */
         },
         initData(){
           let vms = this
@@ -164,7 +176,7 @@
                         "token_id": "123235h5e3"
                     }
                 }
-          axios.post("/api/balanceQuery",req).then(res=>{
+          axios.post(axiosBaseUrl+"balanceQuery",req).then(res=>{
             vms.avail = res.data.avail_bal
             
             console.log("vms.avail",vms.avail)
@@ -175,6 +187,7 @@
       },
       mounted() {
        this.initData();
+       document.getElementById("main").style.minHeight = (document.documentElement.clientHeight)+"px";
        this.h1=window.innerHeight
       },
     })
