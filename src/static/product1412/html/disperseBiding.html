@@ -117,51 +117,51 @@
                      <ul>
                          <li>
                              <p>姓名</p>
-                             <p>张**</p>
+                             <p>{{Borrow.name}}</p>
                          </li>
                          <li>
                             <p>身份证号</p>
-                            <p>1*****************</p>
+                            <p>{{Borrow.identify_id}}</p>
                         </li>
                          <li>
                             <p>性别</p>
-                            <p>男</p>
+                            <p>{{Borrow.sex}}</p>
                         </li>
                         <li>
                             <p>婚姻</p>
-                            <p>已婚</p>
+                            <p>{{Borrow.marriage}}</p>
                         </li>
                         <li>
                             <p>最高学历</p>
-                            <p>本科</p>
+                            <p>{{Borrow.edu_type}}</p>
                         </li>
                         <li>
                             <p>现居地</p>
-                            <p>省-市-区</p>
+                            <p>{{Borrow.house_address}}</p>
                         </li>
                         <li>
                             <p>房产信息</p>
-                            <p>无</p>
+                            <p>{{Borrow.house_info}}</p>
                         </li>
                         <li>
                             <p>车产信息</p>
-                            <p>有</p>
+                            <p>{{Borrow.car_info}}</p>
                         </li>
                         <li>
                             <p>工作行业</p>
-                            <p>金融</p>
+                            <p>{{Borrow.industry}}</p>
                         </li>
                         <li>
                             <p>月收入</p>
-                            <p>4000.00</p>
+                            <p>{{Borrow.month_pay}}</p>
                         </li>
                         <li>
                             <p>工作年限</p>
-                            <p>两年以上</p>
+                            <p>{{Borrow.work_time}}</p>
                         </li>
                         <li>
                             <p>工作职务</p>
-                            <p>中基管理人员</p>
+                            <p>{{Borrow.dt_duty}}</p>
                         </li>
                      </ul>
                     
@@ -177,19 +177,19 @@
                         <ul style="margin-top: 0.66rem">
                          <li>
                              <p>逾期次数</p>
-                             <p>0次</p>
+                             <p>{{Borrow.overdue_times}}次</p>
                          </li>
                          <li>
                             <p>逾期总金额</p>
-                            <p>0元</p>
+                            <p>{{Borrow.overdue_money}}元</p>
                         </li>
                         <li>
                             <p>待还总额</p>
-                            <p>0元</p>
+                            <p>{{Borrow.wait_pay}}元</p>
                         </li>
                         <li>
                             <p>借款人在其他网络借款平台借款情况</p>
-                            <p>未获知</p>
+                            <p>{{Borrow.other_borrow}}</p>
                         </li>
                      </ul>
                     </div>
@@ -203,15 +203,15 @@
                         <ul style="margin-top: 0.66rem">
                           <li>
                               <p>借款用途</p>
-                              <p>资金周转</p>
+                              <p>{{Borrow.borrow_use}}</p>
                           </li>
                           <li>
                             <p>借款时间</p>
-                            <p>2017-11-30 22:22:22</p>
+                            <p>{{Borrow.lend_time}}</p>
                         </li>
                         <li>
                             <p>借款类型</p>
-                            <p>车辆抵押借款标</p>
+                            <p>{{Borrow.big_type}}</p>
                         </li>
                       </ul>
                       <div>
@@ -308,10 +308,10 @@
                                     <th>出借记录</th>
                                     <th></th>
                                   </tr>
-                                  <tr v-for="(item,index) in list" :key="index">
-                                    <td>137***8833</td>
-                                    <td>100000.00</td>
-                                    <td>2017-7-8 11:11:44</td>
+                                  <tr v-for="(item,index) in recordList" :key="index">
+                                    <td>{{item.tel_phone}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{item.lend_time}}</td>
                                   </tr>
                                   
                                  
@@ -341,34 +341,25 @@
                 <div class="context">
                     <div class="context-title"></div>
                     <div class="context-table-wrap">
-                      <div class="card">
-                        <div>第1期/共12期</div>
-                        <div>已还款</div>
+                      <div class="card" v-for="(item,index) in planList" ::key="index">
+                        <div>{{item.return_no}}</div>
+                        <div>{{item.repay_status}}</div>
                         <div>应还本金</div>
-                        <div>1444.72</div>
+                        <div>{{item.principal}}</div>
                         <div>应还利息</div>
-                        <div>772.27</div>
+                        <div>{{item.interest}}</div>
                         <div>总款金额</div>
-                        <div>2327.4</div>
+                        <div>{{item.total_return}}</div>
                       </div>
-                      <div class="card">
-                        <div>第2期/共12期</div>
-                        <div>已还款</div>
-                        <div>应还本金</div>
-                        <div>1444.72</div>
-                        <div>应还利息</div>
-                        <div>772.27</div>
-                        <div>总款金额</div>
-                        <div>2327.4</div>
-                      </div>      
+                            
                    
-                    <!--  -->
-                    <!-- <div class="grayblock">
+                    
+                    <div class="grayblock" v-if="planList.length==0">
 
                     </div>
-                    <div class="grayblock-desc">
+                    <div class="grayblock-desc" v-if="planList.length==0">
                         尚未生成数据
-                    </div> -->
+                    </div>
                   </div>
             </div>
             <div class="" style="height: 3.96rem;"></div>
@@ -457,12 +448,35 @@
                 },
                 return_msg: "",
                 return_code: ""
-                }
+                },
+        Borrow:{
+                return_code:"",
+                return_msg:"",
+                name:"",
+                identify_id:"",
+                sex:"",
+                marriage:"",
+                edu_type:"",
+                house_address:"",
+                house_info:"",
+                car_info:"",
+                industry:"",
+                month_pay:"",
+                work_time:"",
+                dt_duty:"",
+                overdue_times:"",
+                overdue_money:"",
+                wait_pay:"",
+                other_borrow:"",
+                borrow_use:"",
+                lend_time:"",
+                big_type:""
+        },
+        recordList:[],
+        planList:[],
+
 
       }
-    },
-    created() {
-        this.initMainData();
     },
     methods:{
       submit(){
@@ -490,10 +504,12 @@
       changeCurrent(value){
         this.choose=value;
         if(value==2) {
-           //this.initConstituteData()
+           this.initRecordData()
            this.$nextTick(() => {
              this.initRecordScroll()
            });
+         }else if(value==3){
+            this.initPlanData() 
          }
       },
       initMainScroll(){
@@ -564,18 +580,78 @@
              console.log(err)
          })
       },
-      initRecordData(){
+      initBorrowData(){
+         let vms = this 
+          let req = {
+                    "borrow_id": "20180223114926010025",
+                    "jyd_pubData": {
+                        "user_id": 41,
+                        "source_type": "0001",
+                        "system_id": "Android 7",
+                        "network_type": "wifi",
+                        "token_id": "123235h5e3"
+                    }
+                    }
 
+          axios.post("/api/productMore",req).then(res=>{
+            vms.Borrow = res.data; 
+          }).catch(err=>{
+
+          })
+      },
+      initRecordData(){
+        let vms = this 
+        let req = {
+                    "page_number": "1",
+                    "borrow_id": "20190311054512010114",
+                    "jyd_pubData": {
+                        "user_id": 2,
+                        "source_type": "0001",
+                        "system_id": "Android 7",
+                        "network_type": "wifi",
+                        "token_id": "123235h5e3"
+                    }
+                    }
+
+        axios.post("/api/productMore/lendRecord",req).then(res=>{
+            vms.recordList = res.data.record_list
+        }).catch(err=>{
+            
+        })
       },
       initPlanData(){
+        let vms = this 
+        let req = {
+                    "page_number": "2",
+                    "borrow_id": "20180825020450010086",
+                    "jyd_pubData": {
+                        "user_id": 2,
+                        "source_type": "0001",
+                        "system_id": "Android 7",
+                        "network_type": "wifi",
+                        "token_id": "123235h5e3"
+                    }
+                    }
 
+        axios.post("/api/productMore/returnPlan",req).then(res=>{
+            vms.planList = res.data.record_list
+        }).catch(err=>{
+            
+        })
       },
+    },
+    created() {
+        this.initMainData();
+       /*  this.initBorrowData()
+        this.initRecordData()
+        this.initPlanData() */
     },
     mounted() {
         document.getElementById("top").style.minHeight = (document.documentElement.clientHeight+50)+"px";;
         document.getElementById("bottom").style.minHeight = (document.documentElement.clientHeight)+"px";
         this.$nextTick(() => {
         this.initMainScroll();
+        this.initBorrowData()
         });
    },
   })

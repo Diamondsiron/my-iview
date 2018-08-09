@@ -39,7 +39,7 @@
           
         </div>
         <div class="foot-content">
-            <button ontouchstart="" class="foot-content-btn" @click="submit()" >确认出借{{count}}元</button>
+            <button ontouchstart="" class="foot-content-btn" @click="submit()" >确认出借<span v-if="count==''">0.00</span>{{count}}元</button>
         </div>
       </footer>
     </div>
@@ -115,6 +115,7 @@
                         "token_id": "123235h5e3"
                       }
                     }
+
            axios("/api/personProLend/buyStandard",req).then(res=>{
 
            }).catch(err=>{
