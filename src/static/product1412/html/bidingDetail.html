@@ -12,11 +12,12 @@
 </head>
 <body>
   <div class="wrapper" id="main">
-    <div class="content">
-      <div >
-        <div class="toast" id="toast">
+      <div class="toast" id="toast">
           {{hint}}
         </div>
+    <div class="content">
+      <div >
+       
           <div id="top" style="display: block;overflow: hidden;" class="top">
               <div class="card">
                   <div>
@@ -63,7 +64,12 @@
                
                 <div class="context">
                   <div class="context-title">出借金额（元）</div>
-                  <input class="context-input" type="text" pattern="[0-9]*" v-bind:placeholder="text1" v-model="count">
+                  <div class="context-input">
+                    <input id="text" class="context-input-text" type="text" pattern="[0-9]*"  v-model="count" v-on:input="dispear()"  v-on:blur="apear()" >
+                    <label id="label" class="context-input-lable" v-on:click="labelClick()" >{{text1}}</label>
+                  </div>
+                  
+                
                   
                   <div>
                     <div>
@@ -201,7 +207,7 @@
                               <td>{{item.description}}</td>
                               <td>{{item.borrowtypeid | type}}</td>
                               <td>{{item.originalamount}}</td>
-                              <td>></td>
+                              <td v-on:click="nextPage(item.typeid,item.borrowid,item.relationid)">></td>
                             </tr>
                             
                           
@@ -279,6 +285,7 @@
         count:"",
         income:'',
         h1:"",
+        h2:"",
         list:[0,1,2,3,4,5,6,7,8,9,10,11],
         hint:"最多20万",
         choose:1,
@@ -290,6 +297,7 @@
         clickable:true,
         listConstitute:[],
         listRecord:[],
+        RNmessage:{},
         objData:{
                 fundAccountInfo: {
                   AccountId: "",
@@ -368,21 +376,9 @@
     watch:{
       count:function(){
         if(this.count>200000){
-         var h2 = window.innerHeight
+          
           this.count=200000
-         /*  document.getElementById("toast").style.bottom=h1-h2+document.documentElement.clientWidth / 1242*100*3+"px"
-          document.getElementById("toast").style.display="block" */
-        // alert(this.h1,h2)
-          /* setTimeout(function(){
-            h2 = window.innerHeight
-            document.getElementById("toast").style.display="none"
-            document.getElementById("toast").style.bottom=document.documentElement.clientWidth / 1242*100*3+"px"
-            alert(h1,h2)
-          },2000) */
-         /*  setTimeout(function(){
-            alert(window.innerHeight)
-          },2000) 
-          window.innerHeight */
+          this.showToastZoom()
           return
         }else{
           this.income = (((Math.floor(this.count/100)*100*(this.objData.sellInfo.ImproveYearRate + this.objData.sellInfo.ExpectedYearYield)*this.objData.sellInfo.ExpiresDays)/365).toFixed(2));
@@ -408,31 +404,89 @@
            this.submitData() 
         }
       },
-      onChange(){
-        console.log(this.count)
-        if(this.count!=="") {
-          this.income = (((this.count*(this.objData.sellInfo.ImproveYearRate + this.objData.sellInfo.ExpectedYearYield)*this.objData.sellInfo.ExpiresDays)/365).toFixed(2));
+      dispear(){
+        document.getElementById("label").style.display = 'none';
+      },
+      apear(){
+        if(this.count == ""){
+          document.getElementById("label").style.display = 'block';
         }
-        
+       
+      },
+      labelClick(){
+        document.getElementById("text").focus();
+      },
+      nextPage(value,borrowid,relationid){
+        //转让标
+        if(value==0){
+          let req = {
+                    "BorrowId": borrowid, 
+                    "jyd_pubData": {
+                      "user_id": this.RNmessage.jyd_pubData.user_id, 
+                      "source_type": this.RNmessage.jyd_pubData.source_type, 
+                      "system_id": this.RNmessage.jyd_pubData.system_id, 
+                      "network_type": this.RNmessage.jyd_pubData.network_type, 
+                      "token_id": this.RNmessage.jyd_pubData.token_id
+                    }
+                  }
+          axios("",req).then(res=>{
+
+          }).catch(err=>{
+
+          })
+        }else if(value==1){
+          //二手标
+          let req = {
+                    "relationid": relationid, 
+                    "jyd_pubData": {
+                      "user_id": this.RNmessage.jyd_pubData.user_id, 
+                      "source_type": this.RNmessage.jyd_pubData.source_type, 
+                      "system_id": this.RNmessage.jyd_pubData.system_id, 
+                      "network_type": this.RNmessage.jyd_pubData.network_type, 
+                      "token_id": this.RNmessage.jyd_pubData.token_id
+                    }
+                  }
+          axios("",req).then(res=>{
+
+          }).catch(err=>{
+            
+          })
+        }
       },
       submitData(){
         let vms = this
         let req = {
-                  "tel_phone": "15822753827", 
-                  "sell_id": vms.objData.sellInfo.Id, 
+                  "tel_phone": this.RNmessage.tel_phone, 
+                  "sell_id": this.objData.sellInfo.Id, 
                     "jyd_pubData": {
-                      "user_id": 91, 
-                      "source_type": "0001", 
-                      "system_id": "Android 7", 
-                      "network_type": "wifi", 
-                      "token_id": "123235h5e3"
+                      "user_id": this.RNmessage.jyd_pubData.user_id, 
+                      "source_type": this.RNmessage.jyd_pubData.source_type, 
+                      "system_id": this.RNmessage.jyd_pubData.system_id, 
+                      "network_type": this.RNmessage.jyd_pubData.network_type, 
+                      "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                   }
+                 
           axios.post("/api/personProLend",req).then(res=>{
             console.log(res)
+            window.location.href=res.data.jumpUrl
           }).catch(err=>{
             console.log(err)
           })
+      },
+      showToastZoom(){
+          this.hint = "出借金额不能大于200000元。"
+          var h2 = window.innerHeight
+          console.log(this.h1,h2)
+          //document.getElementById("toast").style.bottom=this.h1-h2+document.documentElement.clientWidth / 1242*100*3+"px"
+          document.getElementById("toast").style.bottom=="3rem"
+          document.getElementById("toast").style.display="block"
+         
+         
+          setTimeout(function(){
+            document.getElementById("toast").style.display="none"
+            document.getElementById("toast").style.bottom="3rem"
+          },2000) 
       },
       changeCurrent(value){
         this.choose = value;
@@ -449,19 +503,22 @@
           });
         }
       },
-      initMainData(){
+      initMainData(value){
         let vms = this
-        let req = {
-                  "sellInfoId": "JE0902018072001", 
-                  "jyd_pubData": {
-                    "user_id": 39, 
-                    "source_type": "0001", 
-                    "system_id": "Android 7", 
-                    "network_type": "wifi", 
-                    "token_id": "123235h5e3"
+        let req = JSON.parse(JSON.stringify(value))
+        this.RNmessage = req
+        let req1 = {
+                    "sellInfoId": this.RNmessage.sellInfoId, 
+                    "jyd_pubData": {
+                      "user_id": this.RNmessage.jyd_pubData.user_id, 
+                      "source_type": this.RNmessage.jyd_pubData.source_type, 
+                      "system_id": this.RNmessage.jyd_pubData.system_id, 
+                      "network_type": this.RNmessage.jyd_pubData.network_type, 
+                      "token_id": this.RNmessage.jyd_pubData.token_id
+                    }
                   }
-                }
-       axios.post("/api/productDetails/querySellinDetail",req).then(res=>{
+
+       axios.post("/api/productDetails/querySellinDetail",req1).then(res=>{
           vms.objData = res.data
          /*  if(vms.objData.sellInfo.buyStatus!=="0"){
             vms.clickable=false;
@@ -481,13 +538,13 @@
       initConstituteData(){
         let vms = this
         let req ={
-                  "SellLimitConfigId": "a793ac4f065f4c6f82cb760964010abb", 
+                  "SellLimitConfigId": this.objData.sellInfo.SellLimitConfigId, 
                   "jyd_pubData": {
-                    "user_id": 39, 
-                    "source_type": "0001", 
-                    "system_id": "Android 7", 
-                    "network_type": "wifi", 
-                    "token_id": "123235h5e3"
+                    "user_id": this.RNmessage.jyd_pubData.user_id, 
+                    "source_type": this.RNmessage.jyd_pubData.source_type, 
+                    "system_id": this.RNmessage.jyd_pubData.system_id, 
+                    "network_type": this.RNmessage.jyd_pubData.network_type, 
+                    "token_id": this.RNmessage.jyd_pubData.token_id
                   }
                 }
         axios.post("/api/productObligatory",req).then(res=>{
@@ -500,14 +557,14 @@
       initRecordData(){
         let vms = this
         let req = {
-                  "SellLimitConfigId": "77439636f2af4eea80c36ea442b431e9", 
+                  "SellLimitConfigId": this.objData.sellInfo.SellLimitConfigId, 
                   "PageNum":"1",
                   "jyd_pubData": {
-                    "user_id": 39, 
-                    "source_type": "0001", 
-                    "system_id": "Android 7", 
-                    "network_type": "wifi", 
-                    "token_id": "123235h5e3"
+                    "user_id": this.RNmessage.jyd_pubData.user_id, 
+                    "source_type": this.RNmessage.jyd_pubData.source_type, 
+                    "system_id": this.RNmessage.jyd_pubData.system_id, 
+                    "network_type": this.RNmessage.jyd_pubData.network_type, 
+                    "token_id": this.RNmessage.jyd_pubData.token_id
                   }
                 }
 
@@ -580,14 +637,14 @@
           this.recordPage++
           let vms = this
           let req = {
-                    "SellLimitConfigId": "77439636f2af4eea80c36ea442b431e9", 
+                    "SellLimitConfigId": this.objData.sellInfo.SellLimitConfigId, 
                     "PageNum":this.recordPage,
                     "jyd_pubData": {
-                      "user_id": 39, 
-                      "source_type": "0001", 
-                      "system_id": "Android 7", 
-                      "network_type": "wifi", 
-                      "token_id": "123235h5e3"
+                      "user_id": this.RNmessage.jyd_pubData.user_id, 
+                      "source_type": this.RNmessage.jyd_pubData.source_type, 
+                      "system_id": this.RNmessage.jyd_pubData.system_id, 
+                      "network_type": this.RNmessage.jyd_pubData.network_type, 
+                      "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                   }
 
@@ -606,19 +663,59 @@
           })
         }
         
-      }
+      },
+      init(){
+        let vms = this
+        var str = {
+                  "tel_phone": "15822753827",
+                  "tel_code": "",
+                  "tel_pwd": "",
+                  "refer_code": "",
+                  "jyd_pubData": {
+                    "user_id": 39,
+                    "user_name": "",
+                    "source_type": "",
+                    "system_id": "Apple ios 11.4",
+                    "network_type": "wifi",
+                    "token_id": ""
+                  },
+                  "PageNum": "1",
+                  "sellInfoId": "JE0902018072001"
+                }
+        vms.initMainData(str)
+        window.onload = function () {
+            document.addEventListener('message', function (e) {
+                //document.getElementById('data').textContent = e.data;
+                vms.initMainData(e.data)
+            })
+            
+        }
+        var refreshIntervalId = setInterval(function(){
+            if (window.originalPostMessage) {
+              
+                stop();
+            } 
+        }, 500);
+
+        function stop(){
+            window.postMessage("");
+            clearInterval(refreshIntervalId);
+        }
+       
+       
+       }
       
     },
     created() {
-      this.initMainData();
+      //this.initMainData();
     },
     mounted() {
-      document.getElementById("top").style.minHeight = (document.documentElement.clientHeight+50)+"px";
+      document.getElementById("top").style.minHeight = (document.documentElement.clientHeight+10)+"px";
       document.getElementById("bottom").style.minHeight = (document.documentElement.clientHeight)+"px";
-
+      this.init()
       this.$nextTick(() => {
         this.initMainScroll();
-        //this.h1=window.innerHeight
+        this.h1=window.innerHeight
       });
     },
   })

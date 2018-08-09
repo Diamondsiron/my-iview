@@ -35,7 +35,10 @@
       </div>
       <div class="context">
         <div>出借金额(元)</div>
-        <input type="text" pattern="[0-9]*" v-model="count">
+        <div class="context-input">
+            <input id="text" class="context-input-text" type="text" pattern="[0-9]*"  v-model="count" v-on:input="dispear()"  v-on:blur="apear()" >
+            <label id="label" class="context-input-lable" v-on:click="labelClick()" >{{text1}}</label>
+          </div>
         <div>可出借金额(元):{{avail}}</div>
         <div><button ontouchstart="">充值</button></div>
       </div>
@@ -46,7 +49,7 @@
           
         </div>
         <div class="foot-content">
-            <button ontouchstart="" class="foot-content-btn" @click="submit()" >确认出借{{count}}元</button>
+            <button ontouchstart="" class="foot-content-btn" @click="submit()" >确认出借<span v-if="count==''">0.00</span> {{count}}元</button>
         </div>
       </footer>
     </div>
@@ -63,6 +66,7 @@
           hint:"",
           h1:"",
           h2:"",
+          text1:"",
           objData:{
                   sell_info: {
                     ImproveRate: "",
@@ -136,7 +140,8 @@
       watch:{
         count:function(){
           if(this.count>200000){
-            this.h2=window.innerHeight
+           
+            //alert(this.h1+"h2:"+this.h2)
             this.showToastZoom("出借金额不能大于200000元。")
             this.count=200000
             return
@@ -179,6 +184,42 @@
             }
           }
             console.log(this.count)
+            this.submitData();
+        },
+        submitData(){
+          let vms = this;
+          let req ={
+                    "tel_phone": "15822753827", 
+                  "sell_id": "JE0602018072001", 
+                  "amount": "10000", 
+                  "buy_key": "LLL", 
+                    "jyd_pubData": {
+                      "user_id": 91, 
+                      "source_type": "0001", 
+                      "system_id": "Android 7", 
+                      "network_type": "wifi", 
+                      "token_id": "123235h5e3"
+                    }
+                  }
+        axios.post("/api/personProLend/confirmLend",req).then(res=>{
+
+        }).catch(err=>{
+
+        })
+
+
+        },
+        dispear(){
+          document.getElementById("label").style.display = 'none';
+        },
+        apear(){
+          if(this.count == ""){
+            document.getElementById("label").style.display = 'block';
+          }
+        
+        },
+        labelClick(){
+          document.getElementById("text").focus();
         },
         showToast(text){
           this.hint = text
@@ -189,7 +230,9 @@
         },
         showToastZoom(text){
           this.hint = text
+          this.h2=window.innerHeight
           document.getElementById("toast").style.bottom=this.h1-this.h2+document.documentElement.clientWidth / 1242*100*3+"px"
+          //document.getElementById("toast").style.bottom="3rem";
           document.getElementById("toast").style.display="block"
           setTimeout(function(){
             document.getElementById("toast").style.display="none"
@@ -212,6 +255,7 @@
 
           axios.post("/api/personProLend",req).then(res=>{
             vms.objData = res.data
+            vms.text1 = "最低出借"+vms.objData.sell_info.MinInvestMoney+"元"
             vms.interest = (((Math.floor(200000/100)*100*(vms.objData.sell_info.ImproveYearRate + vms.objData.sell_info.ExpectedYearYield)*vms.objData.sell_info.ExpiresDays)/365).toFixed(2));
             console.log("vms.objData",vms.objData)
           }).catch(err=>{
