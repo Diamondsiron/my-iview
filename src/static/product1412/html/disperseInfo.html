@@ -145,24 +145,13 @@
           },2000) 
         },
         showToastZoom(text){
-          this.hint = text
-          let vms = this
-          vms.h2=window.innerHeight
-            document.getElementById("toast").style.top=vms.h2-document.documentElement.clientWidth / 1242*120*3+"px"
-            document.getElementById("toast").style.display="block"
-         /*  setTimeout(function(){
-            vms.h2=window.innerHeight
-            document.getElementById("toast").style.top=vms.h2-document.documentElement.clientWidth / 1242*120*3+"px"
-            document.getElementById("toast").style.display="block"
-            
-            //alert("h1:"+vms.h1+"h2:"+vms.h2)
-          },1000) 
-          */
-        /*   setTimeout(function(){
+          this.hint = "出借金额不能大于200000元。"
+          document.getElementById("text").blur();
+          document.getElementById("toast").style.display="block"
+          setTimeout(function(){
             document.getElementById("toast").style.display="none"
-            document.getElementById("toast").style.top=""
-            document.getElementById("toast").style.bottom="3.6rem"
-          },3000)  */
+          },2000) 
+          
         },
         initData(){
           let vms = this

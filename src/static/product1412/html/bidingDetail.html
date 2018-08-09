@@ -477,16 +477,10 @@
       },
       showToastZoom(){
           this.hint = "出借金额不能大于200000元。"
-          var h2 = window.innerHeight
-          console.log(this.h1,h2)
-          //document.getElementById("toast").style.bottom=this.h1-h2+document.documentElement.clientWidth / 1242*100*3+"px"
-          document.getElementById("toast").style.bottom=="3.6rem"
+          document.getElementById("text").blur();
           document.getElementById("toast").style.display="block"
-         
-         
           setTimeout(function(){
             document.getElementById("toast").style.display="none"
-            document.getElementById("toast").style.bottom="3.6rem"
           },2000) 
       },
       changeCurrent(value){
