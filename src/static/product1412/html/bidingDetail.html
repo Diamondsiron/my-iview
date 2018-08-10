@@ -100,7 +100,7 @@
                    
                   </div>
                   <div class="foot-content">
-                      <button ontouchstart="" class="foot-content-btn" @click="submit()" v-bind:class="{clickable:!clickable}">立即出借</button>
+                      <button ontouchstart="" class="foot-content-btn" @click="submit()" v-bind:class="{clickable:!clickable}">{{objData.sellInfo.display}}</button>
                   </div>
                 </footer>
           </div>
@@ -186,7 +186,7 @@
                     出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                   </div>
                   <div class="foot-content">
-                      <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
+                      <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">{{objData.sellInfo.display}}</button>
                   </div>
                   
                 </footer>
@@ -223,7 +223,7 @@
                       出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                     </div>
                     <div class="foot-content">
-                        <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
+                        <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">{{objData.sellInfo.display}}</button>
                     </div>
                     
                   </footer>
@@ -259,7 +259,7 @@
                       出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                     </div>
                     <div class="foot-content">
-                        <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
+                        <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">{{objData.sellInfo.display}}</button>
                     </div>
                     
                   </footer>
@@ -352,7 +352,8 @@
                   ExpectedYield: null,
                   SellConfigId: "",
                   SendIntegralRate: "",
-                  LastTime: null
+                  LastTime: null,
+                  display:""
                 },
                 return_code: "",
                 selllimitconfig: {
@@ -398,10 +399,9 @@
     },
     methods:{
       submit(){
-        //if(this.objData.sellInfo.buyStatus!=="0"){
-        if(false){
-           return
-          }else{
+        if(this.objData.sellInfo.buyStatus!=="1"){
+          return
+         }else{
            this.submitData() 
         }
       },
@@ -482,9 +482,9 @@
 
        axios.post(axiosBaseUrl+"productDetails/querySellinDetail",req1).then(res=>{
           vms.objData = res.data
-         /*  if(vms.objData.sellInfo.buyStatus!=="0"){
+          if(vms.objData.sellInfo.buyStatus!=="1"){
             vms.clickable=false;
-          } */
+          }
           vms.income = (((vms.objData.sellInfo.MinInvestMoney*(vms.objData.sellInfo.ImproveYearRate + vms.objData.sellInfo.ExpectedYearYield)*vms.objData.sellInfo.ExpiresDays)/365).toFixed(2));
           vms.value1 = (vms.objData.sellInfo.ExpectedYearYield*100+vms.objData.sellInfo.ImproveYearRate*100).toFixed(2)
           vms.value2 = (vms.objData.sellInfo.ExpectedYearYield*100).toFixed(2)
