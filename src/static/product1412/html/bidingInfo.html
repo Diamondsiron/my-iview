@@ -191,7 +191,7 @@
         submitData(){
           let vms = this;
           let req ={
-                    "tel_phone": "15822753827", 
+                  "tel_phone": "15822753827", 
                   "sell_id": "JE0602018072001", 
                   "amount": "10000", 
                   "buy_key": "LLL", 
@@ -202,7 +202,8 @@
                       "network_type": "wifi", 
                       "token_id": "123235h5e3"
                     }
-                  }
+                }
+
         axios.post(axiosBaseUrl+"personProLend/confirmLend",req).then(res=>{
 
         }).catch(err=>{
