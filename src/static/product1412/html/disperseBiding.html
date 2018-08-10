@@ -489,7 +489,7 @@
         let vms = this
         let req = {
                   "tel_phone": this.RNmessage.tel_phone, 
-                  "sell_id": vms.objData.sellInfo.Id, 
+                  
                     "jyd_pubData": {
                         "user_id":  this.RNmessage.jyd_pubData.user_id,
                         "source_type": this.RNmessage.jyd_pubData.source_type,
@@ -498,11 +498,13 @@
                         "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                   }
-          axios.post(axiosBaseUrl+"personProLend",req).then(res=>{
+                  var restmany = this.objData.Borrow.OriginalAmount-this.objData.Borrow.CollectedAmount
+                  window.location.href="http://10.2.0.155:8099/JYD_RN_Serv/personProLend/jumpUrlSb?"+"tel_phone="+this.RNmessage.tel_phone+"&restmoney="+restmany+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+         /*  axios.post(axiosBaseUrl+"personProLend",req).then(res=>{
             console.log(res)
           }).catch(err=>{
             console.log(err)
-          })
+          }) */
       },
       changeCurrent(value){
         this.choose=value;
