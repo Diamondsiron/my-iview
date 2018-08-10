@@ -594,11 +594,9 @@
       mainScrollEnable(){
         this.scroll.enable()
       },
-      initMainData(value){
+      initMainData(){
           let vms = this 
-        let req = JSON.parse(JSON.stringify(value))
-        //let req = JSON.parse(value)
-        this.RNmessage = req
+        
           let req1 = {
                     "BorrowId": this.RNmessage.sellInfoId, 
                     "jyd_pubData": {
@@ -680,13 +678,17 @@
       },
       init(){
         let vms = this
+        //本地测试用这段代码
         var str = {"tel_phone":"15822753827","tel_code":"","tel_pwd":"","refer_code":"","jyd_pubData":{"user_id":39,"user_name":"","source_type":"0001","system_id":"Apple ios 11.4","network_type":"wifi","token_id":"123235h5e3"},"PageNum":"1","sellInfoId":"20180704035229010122"}
-        vms.initMainData(str)
+        vms.RNmessage  = JSON.parse(JSON.stringify(str))
+        vms.initMainData()
         vms.initBorrowData()
+        
+        //分割线
         window.onload = function () {
             document.addEventListener('message', function (e) {
-                //document.getElementById('data').textContent = e.data;
-                vms.initMainData(e.data)
+                vms.RNmessage = JSON.parse(e.data)
+                vms.initMainData()
                 vms.initBorrowData()
             })
             

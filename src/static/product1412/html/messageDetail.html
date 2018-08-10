@@ -7,6 +7,7 @@
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
   <link rel="stylesheet" href="../css/messageDetail.css">
+  <script src="../js/axios.config.js"></script>
   <title>Document</title>
 </head>
 <body>
@@ -48,7 +49,7 @@
           var vms = this;
           let req = JSON.parse(id)
 
-        axios.post("/api/userMail/readAnnouncement",req).then(res=>{
+        axios.post(axiosBaseUrl+"userMail/readAnnouncement",req).then(res=>{
           vms.obj=res.data
           
           alert(res.data.return_msg)

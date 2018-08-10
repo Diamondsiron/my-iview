@@ -192,6 +192,7 @@
 						"token_id": "<%=request.getAttribute("tokenId")%>"
 					}
 				}
+				//var str = {"tel_phone":"15822753827","tel_code":"","tel_pwd":"","refer_code":"","jyd_pubData":{"user_id":"91","user_name":"","source_type":"0001","system_id":"Apple ios 11.4","network_type":"wifi","token_id":"123235h5e3"},"PageNum":"1","borrow_id":"20181201114056010091","restMoney":119600}
 				this.RNmessage = JSON.parse(JSON.stringify(str))
 				if(this.RNmessage.tel_phone!=="null"){
 					this.restMoney= this.RNmessage.restMoney
@@ -201,7 +202,7 @@
         window.onload = function () {
             document.addEventListener('message', function (e) {
 								vms.RNmessage = JSON.parse(e.data)
-								vms.restMoney= this.RNmessage.restMoney
+								vms.restMoney= vms.RNmessage.restMoney
                 vms.initData()
             })
             
