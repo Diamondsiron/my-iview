@@ -1,1 +1,1 @@
-var axiosBaseUrl="/api/"
+var axiosBaseUrl="https://jydrnserv.jiayidai.com:8282/JYD_RN_Serv/"

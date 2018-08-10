@@ -420,11 +420,11 @@
       nextPage(value,borrowid,relationid){
         //转让标
         if(value==0){
-          window.location.href="http://10.2.0.155:8099/JYD_RN_Serv/productJoinRecord/jumpBiaodiDetail?"+"typeid="+0+"&borrow_id="+borrowid+"&relationid="+relationid+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+          window.location.href=axiosBaseUrl+"productObligatory/jumpBiaodiDetail?"+"typeid="+0+"&borrow_id="+borrowid+"&relationid="+relationid+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
          
         }else if(value==1){
           //二手标
-          window.location.href="http://10.2.0.155:8099/JYD_RN_Serv/productJoinRecord/jumpBiaodiDetail?"+"typeid="+1+"&borrow_id="+borrowid+"&relationid="+relationid+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+          window.location.href=axiosBaseUrl+"productObligatory/jumpBiaodiDetail?"+"typeid="+1+"&borrow_id="+borrowid+"&relationid="+relationid+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
         }
       },
       submitData(){
@@ -440,7 +440,7 @@
                       "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                   }
-          window.location.href="http://10.2.0.155:8099/JYD_RN_Serv/personProLend/jumpUrl?"+"tel_phone="+this.RNmessage.tel_phone+"&sell_id="+this.objData.sellInfo.Id+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+          window.location.href=axiosBaseUrl+"personProLend/jumpUrl?"+"tel_phone="+this.RNmessage.tel_phone+"&sell_id="+this.objData.sellInfo.Id+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
         
       },
       showToastZoom(){
