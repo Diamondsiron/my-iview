@@ -42,7 +42,7 @@
 		<footer class="footer">
 
 			<div class="foot-title">
-				出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
+				出借即表示同意<a href="javascript:void(0)">《借款协议》</a>、<a href="javascript:void(0)">《担保函》</a>、<a href="javascript:void(0)">《风险提示书》</a>
 
 			</div>
 			<div class="foot-content">
