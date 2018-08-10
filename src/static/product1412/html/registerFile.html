@@ -21,7 +21,7 @@
           <div class="context-line"></div>
       </div>
       <div class="context-basic-desc w588h825">
-        <img src="" data-src="../image/fx_36.png" alt="">
+        <img src="" data-src="../image/fx_36.jpg" alt="">
       </div>
       <div class="context-basic mt120">
           <div class="context-title">
@@ -30,7 +30,7 @@
           <div class="context-line"></div>
       </div>
       <div class="context-basic-desc w851h587">
-        <img src="" data-src="../image/fx_34.png" alt="">
+        <img src="" data-src="../image/fx_34.jpg" alt="">
       </div>
       <div class="context-basic mt120">
           <div class="context-title">
@@ -39,7 +39,7 @@
           <div class="context-line"></div>
       </div>
       <div class="context-basic-desc w767h531">
-        <img src="" data-src="../image/fx_35.png" alt="">
+        <img src="" data-src="../image/fx_35.jpg" alt="">
       </div>
       <div class="context-basic mt120">
           <div class="context-title">
@@ -83,7 +83,7 @@
           </div> 
           <div class="context-line"></div>
       </div>
-      <div class="context-basic-desc w843h576">
+      <!-- <div class="context-basic-desc w843h576">
          
               <div class="swiper-container" id="banner">
                   <div class="swiper-wrapper">
@@ -95,7 +95,15 @@
                   </div>
                   <div class="swiper-pagination"></div>
                 </div>
+
          
+      </div> -->
+      <div class="context-basic-desc w843h576">
+        <div class="swiper-slide" v-for="(item,index) in imageList" :key="index">
+            <div class="show-detail">
+             <img v-bind:data-src="item">
+            </div>  
+          </div>
       </div>
   </div>
 </div>
@@ -105,7 +113,7 @@
     el:"#main",
     data(){
       return{
-        imageList:["../image/fx_38.jpg","../image/fx_39.jpg","../image/fx_40.jpg","../image/fx_41.jpg"]
+        imageList:["../image/fx_38.jpg","../image/fx_39.jpg","../image/fx_40.jpg","../image/fx_41.jpg","../image/fx_42.jpg","../image/fx_43.jpg","../image/fx_44.jpg"]
       }
     },
     methods:{
