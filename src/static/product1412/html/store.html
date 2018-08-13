@@ -112,10 +112,6 @@
                         "token_id":vms.RNmessage.jyd_pubData.token_id
                     }
                 }
-
-
-
-       
           axios.post(axiosBaseUrl+"goods",req).then(res=>{
             console.log(res)
             vms.list = res.data.gd_list;
@@ -140,10 +136,11 @@
           pullUpLoad: true ,
           
          });
-         
-       
-       function down(pos) {
-          if(pos.y>50){
+         vms.scroll.on('touchEnd', this.scrollDown)
+      },
+      scrollDown(pos){
+        let vms = this
+        if(pos.y>50){
             console.log("下拉刷新")
              document.getElementById("loadTop").style.height="44px"
              vms.scroll.refresh()
@@ -206,8 +203,10 @@
           } 
         
           console.log(Math.round(pos.y));
-       }
-         vms.scroll.on('touchEnd', down)
+       
+      },
+      scrollUp(){
+
       },
       init(){
         let vms = this
