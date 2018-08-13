@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
+  <script src="../js/axios.config.js"></script>
   <script src="../js/bscroll.min.js"></script>
   <link rel="stylesheet" href="../css/store.css">
   <title>Document</title>
@@ -114,7 +115,7 @@
 
 
        
-          axios.post("/api/goods",req).then(res=>{
+          axios.post(axiosBaseUrl+"goods",req).then(res=>{
             console.log(res)
             vms.list = res.data.gd_list;
             vms.$nextTick(() => {
@@ -155,7 +156,7 @@
                         "token_id": "123235h5e3"
                     }
                 }
-            axios.post("/api/goods",req).then(res=>{
+            axios.post(axiosBaseUrl+"goods",req).then(res=>{
                 console.log(res)
                
                //vms.scroll.refresh()
@@ -187,7 +188,7 @@
                         "token_id": "123235h5e3"
                     }
                 } 
-            axios.post("/api/goods",req).then(res=>{
+            axios.post(axiosBaseUrl+"goods",req).then(res=>{
              
              // vms.scroll.refresh()
                 vms.list=vms.list.concat(res.data.gd_list)

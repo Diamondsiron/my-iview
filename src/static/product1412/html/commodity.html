@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
+  <script src="../js/axios.config.js"></script>
   <script src="../js/swiper.min.js"></script>
   <script src="../js/bscroll.min.js"></script>
   <link rel="stylesheet" href="../css/swiper.min.css">
@@ -146,6 +147,7 @@
             gd_status:"",
           },
           imageList:[],
+          req:{},
         }
       },
       methods:{
@@ -160,24 +162,24 @@
              
           });
         },
-        init(){
+        initData(){
           
           var vms = this
-          var data = this.getRequest()
+          //var data = this.getRequest()
           let req ={
-                "goods_id":data.id,
-                "tel_phone": " 15822753827",
+                "goods_id":vms.req.goods_id,
+                "tel_phone": vms.req.tel_phone,
                 "jyd_pubData": {
-                        "user_id": "4", 
-                        "source_type": "0001", 
-                        "system_id": "Android 7", 
-                        "network_type": "wifi", 
-                        "token_id": "123235h5e3"
+                         "user_id": vms.req.jyd_pubData.user_id, 
+                          "source_type": vms.req.jyd_pubData.source_type, 
+                          "system_id": vms.req.jyd_pubData.system_id, 
+                          "network_type":vms.req.jyd_pubData.network_type, 
+                          "token_id": vms.req.jyd_pubData.token_id
                     }
                 }
 
 
-          axios.post("/api/goods/goodsDetails",req).then(res=>{
+          axios.post(axiosBaseUrl+"goods/goodsDetails",req).then(res=>{
             vms.list = res.data.exchange_records.slice();
             vms.showList = res.data.exchange_records.slice(0,11);
             vms.goods_detail = res.data.goods_detail
@@ -256,23 +258,39 @@
           var vms = this
           var data = this.getRequest();
           let req = {
-                      "goods_id": data.id, 
-                      "tel_phone": "15822753827",
+                      "goods_id": vms.req.goods_id, 
+                      "tel_phone": vms.req.tel_phone,
                       "exchange_num": vms.count, 
                       "jyd_pubData": 
                       {
-                          "user_id": 2, 
-                          "source_type": "0001", 
-                          "system_id": "Android 7", 
-                          "network_type": "wifi", 
-                          "token_id": "123235h5e3"
+                          "user_id": vms.req.jyd_pubData.user_id, 
+                          "source_type": vms.req.jyd_pubData.source_type, 
+                          "system_id": vms.req.jyd_pubData.system_id, 
+                          "network_type":vms.req.jyd_pubData.network_type, 
+                          "token_id": vms.req.jyd_pubData.token_id
                       }
                   }
-          axios.post("/api/goods/exchange",req).then(res=>{
+          axios.post(axiosBaseUrl+"goods/exchange",req).then(res=>{
             console.log("exchange",res);
           }).catch(err=>{
             console.log("exchange",err)
           })
+        },
+        init(){
+          let vms = this;
+           let str = {
+                "goods_id":data.id,
+                "tel_phone": " 15822753827",
+                "jyd_pubData": {
+                        "user_id": "4", 
+                        "source_type": "0001", 
+                        "system_id": "Android 7", 
+                        "network_type": "wifi", 
+                        "token_id": "123235h5e3"
+                    }
+                }
+            this.req = JSON.parse(JSON.stringify(str))    
+            this.initData()
         }
       },
       mounted() {
