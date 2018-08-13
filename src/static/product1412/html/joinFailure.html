@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/axios.min.js"></script>
+  <link rel="stylesheet" href="../css/joinFailure.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <div class="content">
+        <header>
+          <img src="../image/dl_3.png" alt="">
+        </header>
+        <article>
+          <div>
+            <img src="../image/me_40.png" alt="">
+          </div>
+        </article>
+        
+        <footer>
+          <div>
+            操作失败，请重试
+          </div>
+          <div>
+              原因:此处写明原因此处写明原因
+          </div>
+        </footer>
+    </div>
+  </div>
+  <script>
+     document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+    var vm = new Vue({
+      el:"#main",
+      data(){
+        return{
+
+        }
+      },
+      methods:{
+
+      },
+      mounted() {
+        
+      },
+    })
+  </script>
+</body>
+</html>

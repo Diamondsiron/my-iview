@@ -1,0 +1,141 @@
+html,body{
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  background-color: #f0f0f0;
+}
+.content{
+ /*  overflow: hidden; */
+  position: relative;
+}
+header{
+  width: 100%;
+  /* height: 10.8rem; */
+}
+header>img{
+  width: 100%
+}
+.succeed{
+  position: absolute;
+  top:0.93rem;
+  width: 100%;
+  height: 0.72rem;
+  font-size: 0.72rem;
+  line-height: 0.72rem;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center
+}
+article{
+  position: absolute;
+  z-index: 10;
+  top:2.82rem ;
+  width: 11.34rem;
+  height: 7.08rem;
+ /*  background: url("../image/cp_7.png");
+  background-size: contain; */
+  overflow: hidden;
+  left: 0.54rem;
+  background: #fff;
+  border-radius: 0.23rem;
+}
+ul{
+  padding: 0px;
+  margin:1.2rem 0rem 0rem 0rem;
+}
+li{
+  list-style: none;
+  display: flex;
+  font-size: 0.42rem;
+  line-height: 0.42rem;
+  height: 0.42rem;
+  margin: 0rem 0rem 0.21rem 0rem;
+  color: #989898;
+}
+li>div:nth-child(1){
+  flex: 0 0 1.15rem;
+}
+li>div:nth-child(2){
+  text-align: left;
+  flex: 1;
+}
+li>div:nth-child(3){
+  text-align: right;
+  flex: 1;
+}
+li>div:nth-child(4){
+  flex: 0 0 1.15rem;
+}
+
+
+.context-safety {
+  
+  top: 11.61rem;
+  left: 0.54rem;
+  position: absolute;
+  height: 0.72rem;
+  font-size: 0px;
+}
+.context-title {
+  display: inline-block;
+  width: 2.48rem;
+  height: 0.72rem;
+  color: #f2f2f2;
+  border-radius: 10px;
+  background-color: #c7b299;
+  text-align: center;
+}
+.context-title p {
+  margin-top: 0.1rem;
+  font-size: 0.36rem;
+}
+.context-line {
+  display: inline-block;
+  height: 1px;
+  border-bottom: solid 1px #c7b299;
+  width: 8.76rem;
+  position: absolute;
+  top: 0.36rem;
+  left: 2.58rem;
+}
+footer{
+ position: absolute;
+ top: 12.33rem;
+ left: 1.08rem;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+footer>p{
+  width: 10.26rem;
+  
+  margin: 0 auto 0 auto;
+  font-size: 0.36rem;
+  line-height: 0.54rem;
+  color: #989898;
+}
+.mt66{
+  margin: 0.66rem auto 0 auto;
+}
+.btn-block{
+  width: 100%;
+  text-align: center;
+}
+.btn{
+  height: 1.09rem;
+  width: 5.58rem;
+    margin-top: 1.26rem;
+   
+    color: #fff;
+    font-size: 0.5rem;
+    text-align: center;
+    border: none;
+    outline: none;
+    border-radius:0.47rem;
+    font-weight: 100;
+    background: -webkit-linear-gradient(#ff6a55, #ee1e27);
+    background: -o-linear-gradient(#ff6a55, #ee1e27);
+    background: -moz-linear-gradient(#ff6a55, #ee1e27);
+    background: linear-gradient(#ff6a55, #ee1e27);
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
