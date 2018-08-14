@@ -151,7 +151,7 @@ button:active{
   color: #989898;
 }
 .modal{
-  position: fixed;
+  position: absolute;
   height: 100%;
   width: 100%;
   z-index: 5;
@@ -163,7 +163,7 @@ button:active{
  
 }
 .modal-title{
-  position: fixed;
+  position: absolute;
   font-size: 0.72rem;
   height: 0.72rem;
   line-height: 0.72rem;
@@ -175,7 +175,7 @@ button:active{
 }
 .modal-card{
   top: 3.74rem;
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 10.44rem;
   background: url("../image/me_37.png");
@@ -183,7 +183,7 @@ button:active{
 }
 .modal-card1{
   top: 3.74rem;
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 10.44rem;
   background: url("../image/me_38.png");
@@ -228,7 +228,7 @@ button:active{
 }
 .content-table {
   width: 10.24rem;
-  margin: 1.35rem auto 0 auto;
+ /*  margin: 1.35rem auto 0 auto; */
   background-color: #ffffff;
   color: #989898;
   font-size: 0.42rem;

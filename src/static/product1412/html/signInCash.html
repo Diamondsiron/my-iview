@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
+  <script src="../js/bscroll.min.js"></script>
   <script src="../js/axios.config.js"></script>
   <link rel="stylesheet" href="../css/signInCash.css">
   <title>Document</title>
@@ -58,8 +59,8 @@
           <div class="modal-title">
               签到成功
         </div>
-        <div class="modal-card">
-          
+        <div v-bind:class="{ 'modal-card': objData.reward_type=='嘉金币', 'modal-card1': objData.reward_type=='签到金' }">
+          <!--  v-bind:class="{ modal-card: objData.reward_type=='嘉金币', modal-card1: objData.reward_type=='签到金' }" -->
           <div class="modal-card-content">
             今日已获得{{objData.amount}}{{objData.reward_type}}奖励！
           </div>
@@ -68,19 +69,22 @@
           </div>
         </div>
       </div>
-      <div v-if="modal2">
-
-      </div>
+      
       <div  v-if="modal3" >
-          <table class="content-table">
+        <div style="height: 13.5rem;overflow: hidden;margin: 1.35rem auto 0 auto;width: 10.24rem;">
+          <div style="height: 13.5rem;overflow: hidden;" class="content">
+              <table class="content-table">
              
-              <tr v-for="(item,index) in recordList" :key="index">
-                <td>{{item.get_item}}</td>
-                <td>{{item.get_value}}</td>
-                <td>{{item.input_time}}</td>
-              </tr>
-             
-          </table>
+                  <tr v-for="(item,index) in recordList" :key="index">
+                    <td>{{item.get_item}}</td>
+                    <td>{{item.get_value}}</td>
+                    <td>{{item.input_time}}</td>
+                  </tr>
+                 
+              </table>
+          </div>
+        </div>
+          
       </div>
     </div>
     
@@ -94,10 +98,11 @@
           RNmessage:{},
           modal:false,
           modal1:false,
-          modal2:false,
           modal3:false,
           continue_times:"",
           addup_times:"",
+          page:1,
+          scroll:{},
           error:false,
           objData:{
                   reward_type:"",
@@ -105,7 +110,7 @@
                   return_msg:"",
                   return_code:""
                  },
-          recordList:[0,1,2,3,4],       
+          recordList:[0,1,2,3,4,5,6,7,8,9],       
 
          }
        },
@@ -132,7 +137,7 @@
             vms.RNmessage = JSON.parse(JSON.stringify(str))
             vms.initSign();
             vms.initSignRecord();
-              //分割线
+            //分割线
             window.onload = function () {
                 document.addEventListener('message', function (e) {
                     vms.RNmessage = JSON.parse(e.data)
@@ -157,10 +162,78 @@
           this.modal = !this.modal
           this.modal1 = false
           this.modal3 = true
+          this.$nextTick(() => {
+            this.initMainScroll();
+            
+          });
         },
         modalClose(){
           
           this.modal = !this.modal
+        },
+        initMainScroll(){
+          this.scroll = new window.BScroll(document.querySelector(".content"), {
+            probeType: 2,
+            click:true,
+            momentum:false,
+            pullUpLoad: true ,
+          });
+          this.scroll.on('touchEnd', this.mainScrollUp)
+        },
+        mainScrollUp(pos){
+          let vms =this
+          if(pos.y>50){
+            console.log("下拉刷新")
+             
+             vms.scroll.refresh()
+            let req = {
+                      "page_number": "1",
+                      "tel_phone": vms.RNmessage.tel_phone, 
+                      "jyd_pubData": {
+                        "user_id":  vms.RNmessage.jyd_pubData.user_id, 
+                        "source_type":  vms.RNmessage.jyd_pubData.source_type, 
+                        "system_id":  vms.RNmessage.jyd_pubData.system_id, 
+                        "network_type": vms.RNmessage.jyd_pubData.network_type, 
+                        "token_id":  vms.RNmessage.jyd_pubData.token_id
+                      }
+                    }
+            axios.post(axiosBaseUrl+"checkIn/queryCheckIn",req).then(res=>{
+                vms.recordList = res.data.record_list;
+                vms.page = 1
+                vms.$nextTick(() => {
+                  vms.scroll.refresh()
+                  });
+              }).catch(err=>{
+                console.log(res);
+              })
+          }
+          if(vms.scroll.maxScrollY>pos.y+50){
+              vms.page++
+             let req = {
+                      "page_number": vms.page,
+                      "tel_phone": vms.RNmessage.tel_phone, 
+                      "jyd_pubData": {
+                        "user_id":  vms.RNmessage.jyd_pubData.user_id, 
+                        "source_type":  vms.RNmessage.jyd_pubData.source_type, 
+                        "system_id":  vms.RNmessage.jyd_pubData.system_id, 
+                        "network_type": vms.RNmessage.jyd_pubData.network_type, 
+                        "token_id":  vms.RNmessage.jyd_pubData.token_id
+                      }
+                    }
+            axios.post(axiosBaseUrl+"checkIn/queryCheckIn",req).then(res=>{
+             
+             // vms.scroll.refresh()
+                vms.recordList=vms.recordList.concat(res.data.record_list)
+                vms.$nextTick(() => {
+                  
+                  vms.scroll.refresh()
+                  });
+              }).catch(err=>{
+                console.log(res);
+              })
+
+           
+          } 
         },
          initSign(){
            let vms = this;
@@ -207,8 +280,8 @@
             vms.continue_times = res.data.continue_times
             vms.addup_times = res.data.addup_times
             if(vms.error == true){
-              vms.objData.reward_type = res.data.getitem
-              vms.objData.amount = res.data.getvalue
+              vms.objData.reward_type = "签到金"
+              vms.objData.amount = "10.08元"
             }
           }).catch(err=>{
 
@@ -217,6 +290,10 @@
        },
        mounted() {
         this.init();
+        this.$nextTick(() => {
+          //this.initMainScroll();
+          
+        });
        },
      })
   </script>

@@ -54,8 +54,10 @@ footer>div:nth-child(1){
 }
 footer>div:nth-child(2){
   height: 0.36rem;
-  line-height: 0.36rem;
+  /* line-height: 0.36rem; */
   font-size: 0.36rem;
   color: #989898;
-  margin-top: 0.51rem;
+  margin: 0.51rem auto;
+  text-align: left;
+  width: 10.26rem;
 }
