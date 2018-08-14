@@ -12,11 +12,15 @@ header{
 header>img{
   width: 100%;
 }
+article{
+  overflow: hidden;
+}
 .context-safety {
   margin-top: 0.75rem;
   margin-left: 0.54rem;
   position: relative;
   height: 0.72rem;
+  font-size: 0.36rem;
 }
 .context-title {
   display: inline-block;
@@ -27,7 +31,7 @@ header>img{
   background-color: #c7b299;
   text-align: center;
 }
-#choose1 .context-title p {
+.context-title p {
   margin-top: 0.1rem;
 }
 .context-line {
@@ -38,4 +42,117 @@ header>img{
   position: absolute;
   top: 0.36rem;
   left: 2.58rem;
+}
+.context-desc-block{
+  margin-top: 0rem;
+  font-size: 0rem;
+  overflow: hidden;
+}
+.context-desc-block-l1{
+  width: 6.36rem;
+  display: inline-block;
+  margin-top: 0.85rem;
+  
+}
+.context-desc-block-r1{
+  width: 3.21rem;
+  height: 2.82rem;
+  display: inline-block;
+  margin: 2.52rem 0 0 0.72rem;
+}
+.context-desc-block-r1>img{
+  width: 100%;
+}
+.context-desc-block-title{
+  font-size: 0.42rem;
+    color: #656565;
+}
+.context-desc{
+   
+  width: 10.29rem;
+  margin: 0 0 0 1.14rem;
+}
+.p1{
+  margin: 0.42rem 0 0 0;
+  padding: 0;
+  line-height: 0.54rem;
+  font-size: 0.36rem;
+  color: #989898;
+}
+.p2{
+  margin: 0 0 0 0;
+  padding: 0;
+  line-height: 0.54rem;
+  font-size: 0.36rem;
+  color: #989898;
+}   
+.context-desc-block-l2{
+  width: 3.21rem;
+ 
+  display: inline-block;
+  margin: 1.2rem 0 0;
+}
+.context-desc-block-l2>img{
+  width: 100%;
+}
+.context-desc-block-r2{
+  width: 6.33rem;
+  display: inline-block;
+  margin: 0.99rem 0 0 0.72rem;
+}
+.context-desc-block-l3{
+  width: 6.29rem;
+  display: inline-block;
+  margin: 0.99rem 0 0 0;
+  
+}
+.context-desc-block-r3{
+  width: 4rem;
+  height: 2.82rem;
+  display: inline-block;
+  margin: 1.2rem 0 0 0rem;
+}
+.context-desc-block-r3>img{
+  width: 100%;
+}
+.context-safety-desc-img{
+  margin:  1.26rem auto 2.13rem auto;
+  width: 9.39rem;
+}
+.context-safety-desc-img>img{
+  width: 100%;
+}
+.content-card{
+  overflow: hidden;
+  margin-top: 0.87rem;
+  margin-bottom: 0.99rem
+}
+.card{
+  background: url("../image/qt_5.png");
+  background-size: contain;
+  width: 10.02rem;
+  height: 3.21rem;
+  position: relative;
+ 
+  margin: 0 auto 0.27rem auto;
+}
+
+.card-img{
+  position: absolute;
+  width: 1.62rem;
+  height: 1.47rem;
+  left:0.63rem;
+  top: 1.02rem;
+
+}
+.card-img>img{
+  width: 100%;
+}
+.card-desc{
+  position: absolute;
+  width: 6.21rem;
+  font-size: 0.34rem;
+  color: #989898;
+  top: 0.87rem;
+  left: 3.09rem;
 }

@@ -8,15 +8,20 @@ html,body{
 header{
   height: 5rem;
   width: 100%;
+  margin-bottom: 0.41rem;
 }
 header>img{
   width: 100%;
+}
+article{
+  overflow: hidden;
 }
 .context-safety {
   margin-top: 0.75rem;
   margin-left: 0.54rem;
   position: relative;
   height: 0.72rem;
+  font-size: 0.36rem;
 }
 .context-title {
   display: inline-block;
@@ -27,7 +32,7 @@ header>img{
   background-color: #c7b299;
   text-align: center;
 }
-#choose1 .context-title p {
+.context-title p {
   margin-top: 0.1rem;
 }
 .context-line {
@@ -38,4 +43,22 @@ header>img{
   position: absolute;
   top: 0.36rem;
   left: 2.58rem;
+}
+.context-safety-desc{
+  width: 10.26rem;
+  margin: 0.78rem auto 0.21rem auto;
+}
+.context-safety-desc>p{
+  font-size: 0.36rem;
+  line-height: 0.54rem;
+  margin: 0px;
+  padding: 0px;
+  color: #989898;
+}
+.context-safety-desc-img{
+  margin:  0 auto 2.13rem auto;
+  width: 8.46rem;
+}
+.context-safety-desc-img>img{
+  width: 100%;
 }

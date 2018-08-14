@@ -28,6 +28,7 @@
           <div>
               原因:此处写明原因此处写明原因
           </div>
+         
         </footer>
     </div>
   </div>
@@ -41,10 +42,28 @@
         }
       },
       methods:{
+        init(){
+          window.onload = function () {
+              document.addEventListener('message', function (e) {
+                 
+              })
+              
+          }
+          var refreshIntervalId = setInterval(function(){
+              if (window.originalPostMessage) {
+                
+                  stop();
+              } 
+          }, 500);
 
+          function stop(){
+              window.postMessage("");
+              clearInterval(refreshIntervalId);
+          }
+        }
       },
       mounted() {
-        
+        //this.init()
       },
     })
   </script>

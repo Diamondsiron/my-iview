@@ -66,7 +66,7 @@
               您可在【我的-散标债权】内查看该笔出借。
           </p>
           <div class="btn-block">
-              <button class="btn">
+              <button class="btn" @click="index" ontouchstart="">
                   返回首页
                 </button>
           </div>
@@ -84,7 +84,11 @@
         }
       },
       methods:{
-
+        index(){
+          console.log("aaa")
+          let message = {key:2,val:{}}
+          window.postMessage(message); 
+        }
       },
       mounted() {
         

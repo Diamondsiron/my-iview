@@ -12,3 +12,24 @@ header{
 header>img{
   width: 100%;
 }
+article{
+  overflow: hidden;
+  margin-top: 1.5rem;
+  margin-bottom: 2.31rem;
+}
+article>p{
+  color: #989898;
+  font-size: 0.36rem;
+  line-height: 0.54rem;
+  width: 10.26rem;
+  margin: 0.54rem auto 1.14rem auto;
+}
+article>div{
+ 
+}
+article>div>img{
+  width: 2.46rem;
+  margin: 0 auto 0 auto;
+  display: block;
+  /* width: 100%; */
+}
