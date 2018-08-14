@@ -55,8 +55,14 @@ article{
   margin-top: 0.9rem;
   font-size: 0rem;
 }
+mt96{
+  margin-top: 0.96rem;
+}
+mt60{
+  margin-top: 0.60rem;
+}
 .context-desc-block-l1{
-  width: 6.36rem;
+  width: 6.5rem;
   display: inline-block;
   vertical-align: top;
   
@@ -66,7 +72,7 @@ article{
   width: 3.45rem;
   height: 2.82rem;
   display: inline-block;
-  margin: -0.27rem 0 0 0.45rem;
+  margin: -0.27rem 0 0 0.3rem;
   vertical-align: top;
 }
 .context-desc-block-r1>img{
