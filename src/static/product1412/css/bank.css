@@ -52,13 +52,14 @@ article{
   width: 6.36rem;
   display: inline-block;
   margin-top: 0.85rem;
-  
+  vertical-align: top;
 }
 .context-desc-block-r1{
   width: 3.21rem;
   height: 2.82rem;
   display: inline-block;
   margin: 2.52rem 0 0 0.72rem;
+  vertical-align: top;
 }
 .context-desc-block-r1>img{
   width: 100%;
@@ -87,8 +88,9 @@ article{
   color: #989898;
 }   
 .context-desc-block-l2{
+  vertical-align: top;
   width: 3.21rem;
- 
+ vertical-align: top;
   display: inline-block;
   margin: 1.2rem 0 0;
 }
@@ -96,6 +98,7 @@ article{
   width: 100%;
 }
 .context-desc-block-r2{
+  vertical-align: top;
   width: 6.33rem;
   display: inline-block;
   margin: 0.99rem 0 0 0.72rem;
@@ -104,13 +107,14 @@ article{
   width: 6.29rem;
   display: inline-block;
   margin: 0.99rem 0 0 0;
-  
+  vertical-align: top;
 }
 .context-desc-block-r3{
   width: 4rem;
   height: 2.82rem;
   display: inline-block;
   margin: 1.2rem 0 0 0rem;
+  vertical-align: top;
 }
 .context-desc-block-r3>img{
   width: 100%;

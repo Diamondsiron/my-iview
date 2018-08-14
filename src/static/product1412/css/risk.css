@@ -74,7 +74,7 @@ article{
 .context-desc-block-l1{
   width: 6.36rem;
   display: inline-block;
-  
+  vertical-align: top;
   
 }
 
@@ -83,6 +83,7 @@ article{
   height: 2.82rem;
   display: inline-block;
   margin: -0.27rem 0 0 0.45rem;
+  vertical-align: top;
 }
 .context-desc-block-r1>img{
   width: 100%;
@@ -99,6 +100,7 @@ article{
   color: #989898;
 }   
 .context-desc-block-l2{
+  vertical-align: top;
   width: 3.48rem;
   height: 2.947em;
   display: inline-block;
@@ -108,6 +110,7 @@ article{
   width: 100%;
 }
 .context-desc-block-r2{
+  vertical-align: top;
   width: 6.33rem;
   display: inline-block;
   margin: 0 0 0 0.45rem;
