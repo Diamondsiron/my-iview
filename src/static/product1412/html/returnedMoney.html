@@ -15,14 +15,14 @@
     <div>
         <article>
             <div class="card" v-for="(item,index) in list" ::key="item">
-              <div>第1期/共12期</div>
-              <div>已还款</div>
-              <div>应还本金</div>
-              <div>1444.72</div>
-              <div>应还利息</div>
-              <div>772.27</div>
-              <div>总款金额</div>
-              <div>2327.4</div>
+                <div>{{item.return_no}}</div>
+                <div>{{item.repay_status}}</div>
+                <div>应还本金</div>
+                <div>{{item.principal}}</div>
+                <div>应还利息</div>
+                <div>{{item.interest}}</div>
+                <div>总款金额</div>
+                <div>{{item.total_return}}</div>
             </div>
         </article>
     </div>
@@ -34,7 +34,7 @@
        data(){
          return{
           choose:1,
-          list:[0,1,2,3],
+          list:[],
           page1:1,
           RNmessage:{}
          }
@@ -89,7 +89,7 @@
                     }
                   }
           axios.post(axiosBaseUrl+"productMore/returnPlan",req).then(res=>{
-
+            vms.list = res.data.record_list
           }).catch(err=>{
 
           })

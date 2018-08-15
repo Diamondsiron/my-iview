@@ -27,28 +27,28 @@
         <div class="content">
           <div v-if="choose==1">
             <article>
-              <div v-for="(item,index) in list" class="item">
+              <div v-for="(item,index) in recentList" class="item">
                 <div class="item-l">
-                  <div class="item-l-t">签到领红包</div>
-                  <div class="item-l-b">流水号：721109</div>
+                  <div class="item-l-t">{{item.describe}}</div>
+                  <div class="item-l-b">流水号：{{item.traceNo}}</div>
                 </div>
                 <div class="item-r">
-                  <div class="item-r-t">+0.01</div>
-                  <div class="item-r-b">2018.6.15</div>
+                  <div class="item-r-t" v-class="{'item-r-t_remove':(item.txFlag=='-')}">{{item.txFlag}}{{item.txAmount}}</div>
+                  <div class="item-r-b">{{item.inpDate}}</div>
                 </div>
               </div>
             </article>
           </div>
           <div v-if="choose==2">
               <article>
-                  <div v-for="(item,index) in list" class="item">
+                  <div v-for="(item,index) in historyList" class="item">
                     <div class="item-l">
-                      <div class="item-l-t">提取现金</div>
-                      <div class="item-l-b">流水号：721109</div>
+                      <div class="item-l-t">{{item.amount | money}}</div>
+                      <div class="item-l-b">流水号：{{item.serial_no}}</div>
                     </div>
                     <div class="item-r">
-                      <div class="item-r-t item-r-t_remove">-0.01</div>
-                      <div class="item-r-b">2018.6.15</div>
+                      <div class="item-r-t" v-class="{'item-r-t_remove':(item.amount<0)}">{{item.amount}}</div>
+                      <div class="item-r-b">{{item.deal_date}}</div>
                     </div>
                   </div>
                 </article>
@@ -66,7 +66,20 @@
           list:[0,1,2,3],
           page1:1,
           page1:2,
+          recentList:[],
+          historyList:[],
           RNmessage:{}
+         }
+       },
+       filters:{
+         money(value) {
+           var str =""
+           if(value>0) {
+             str = "签到领红包"
+           }else{
+             str = "提取现金"
+           }
+           return str
          }
        },
        methods:{
@@ -77,7 +90,7 @@
         initRecent(){
           let vms = this
           let req ={
-                    "tel_phoe": vms.RNmessage.tel_phone,
+                    "tel_phone": vms.RNmessage.tel_phone,
                     "type": "0",
                     "tran_type": "9",
                     "jyd_pubData": {
@@ -91,7 +104,7 @@
 
 
           axios.post(axiosBaseUrl+"assets/jxDetailQuery",req).then(res=>{
-
+            vms.recentList = res.data.sub_packs
           }).catch(err=>{
 
           })
@@ -110,7 +123,7 @@
                     }
                   }
           axios.post(axiosBaseUrl+"assets/historyBalance",req).then(res=>{
-
+            vms.historyList = res.data.record_list
           }).catch(err=>{
 
           })
