@@ -121,44 +121,6 @@
         }
        },
        methods:{
-         init(){
-          let vms = this
-          //本地测试用这段代码
-            var str = {
-                      "tel_phone": "15822753827", 
-                      "jyd_pubData": {
-                        "user_id": 2, 
-                        "source_type": "0001", 
-                        "system_id": "Android 7", 
-                        "network_type": "wifi", 
-                        "token_id": "88f7ef8134e6317e"
-                      }
-                    }
-            vms.RNmessage = JSON.parse(JSON.stringify(str))
-            vms.initSign();
-            //vms.initSignRecord();
-            //分割线
-            window.onload = function () {
-                document.addEventListener('message', function (e) {
-                    vms.RNmessage = JSON.parse(e.data)
-                    vms.initSign();
-                    //vms.initSignRecord();
-                })
-                
-            }
-            var refreshIntervalId = setInterval(function(){
-                if (window.originalPostMessage) {
-                  
-                    stop();
-                } 
-            }, 500);
-
-            function stop(){
-              let message = {key:'1',val:{name:'首次打开'}}
-              window.postMessage(JSON.stringify(message));
-              clearInterval(refreshIntervalId);
-            }
-         },
          modalShow(){
           this.modal = !this.modal
           this.modal1 = false
@@ -283,19 +245,48 @@
             vms.continue_times = res.data.continue_times
             vms.addup_times = res.data.addup_times
             if(vms.error == true){
-              vms.objData.reward_type = "签到金"
-              vms.objData.amount = "10.08元"
+              vms.objData.reward_type = res.data.getitem
+              vms.objData.amount = res.data.getvalue
             }
           }).catch(err=>{
 
           })
-         }
+         },
+         init(){
+          let vms = this
+          //本地测试用这段代码
+           /*  var str = {"tel_phone":"15822753827","tel_code":"","tel_pwd":"","refer_code":"","jyd_pubData":{"user_id":"91","user_name":"","source_type":"0001","system_id":"Apple ios 11.4","network_type":"wifi","token_id":"123235h5e3111"}}
+            vms.RNmessage = JSON.parse(JSON.stringify(str))
+            vms.initSign(); */
+           
+            //分割线
+            window.onload = function () {
+                document.addEventListener('message', function (e) {
+                    vms.RNmessage = JSON.parse(e.data)
+                    vms.initSign();
+                    
+                })
+                
+            }
+            var refreshIntervalId = setInterval(function(){
+                if (window.originalPostMessage) {
+                  
+                    stop();
+                } 
+            }, 500);
+
+            function stop(){
+              let message = {key:'1',val:{name:'首次打开'}}
+              window.postMessage(JSON.stringify(message));
+              clearInterval(refreshIntervalId);
+            }
+         },
        },
        created() {
-        this.init();
+        //this.init();
        },
        mounted() {
-        //this.init();
+        this.init();
         this.$nextTick(() => {
           //this.initMainScroll();
           

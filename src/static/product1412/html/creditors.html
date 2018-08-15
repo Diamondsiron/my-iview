@@ -65,43 +65,6 @@
         }
       },
        methods:{
-         init(){
-          let vms = this
-          //本地测试用这段代码
-          var str = {
-                      "SellLimitConfigId": "a793ac4f065f4c6f82cb760964010abb", 
-                      "jyd_pubData": {
-                        "user_id": 39, 
-                        "source_type": "0001", 
-                        "system_id": "Android 7", 
-                        "network_type": "wifi", 
-                        "token_id": "123235h5e3"
-                      }
-                    }
-
-          vms.RNmessage = JSON.parse(JSON.stringify(str))
-          vms.initData()
-            //分割线
-          window.onload = function () {
-              document.addEventListener('message', function (e) {
-                  vms.RNmessage = JSON.parse(e.data)
-                  vms.initData()
-              })
-              
-          }
-          var refreshIntervalId = setInterval(function(){
-              if (window.originalPostMessage) {
-                
-                  stop();
-              } 
-          }, 500);
-
-          function stop(){
-            let message = {key:'1',val:{name:'首次打开'}}
-              window.postMessage(JSON.stringify(message));
-              clearInterval(refreshIntervalId);
-          }
-         },
          initScroll(){
           this.scroll = new window.BScroll(document.querySelector(".content"), {
                           probeType: 2,
@@ -159,7 +122,44 @@
           }).catch(err=>{
             
           })
-         }
+         },
+         init(){
+          let vms = this
+          //本地测试用这段代码
+         /*  var str = {
+                      "SellLimitConfigId": "a793ac4f065f4c6f82cb760964010abb", 
+                      "jyd_pubData": {
+                        "user_id": 39, 
+                        "source_type": "0001", 
+                        "system_id": "Android 7", 
+                        "network_type": "wifi", 
+                        "token_id": "123235h5e3"
+                      }
+                    }
+
+          vms.RNmessage = JSON.parse(JSON.stringify(str))
+          vms.initData() */
+            //分割线
+          window.onload = function () {
+              document.addEventListener('message', function (e) {
+                  vms.RNmessage = JSON.parse(e.data)
+                  vms.initData()
+              })
+              
+          }
+          var refreshIntervalId = setInterval(function(){
+              if (window.originalPostMessage) {
+                
+                  stop();
+              } 
+          }, 500);
+
+          function stop(){
+            let message = {key:'1',val:{name:'首次打开'}}
+              window.postMessage(JSON.stringify(message));
+              clearInterval(refreshIntervalId);
+          }
+         },
        },
        mounted() {
          this.init()

@@ -59,39 +59,12 @@
         list:[0,1,2,3,4,5,6,7,8,9],
         showList:[],
         page:1,
+        RNmessage:{},
         people:"",
         money:""
       }
     },
     methods:{
-      init(){
-        var vms = this
-        let req = {
-                    "tel_phone": "17188120744",
-                    "jyd_pubData": {
-                        "user_id": "148", 
-                        "source_type": "0001", 
-                        "system_id": "Android 7", 
-                        "network_type": "wifi", 
-                        "token_id": "123235h5e3"
-                    }
-                }
-
-       
-        axios.post("/api/invest",req).then(res=>{
-          vms.list = res.data.invest_list.slice()
-          vms.showList = res.data.invest_list.slice(0,11)
-          vms.people = res.data.count_people
-          vms.money = res.data.sum_money
-          vms.$nextTick(() => {
-            vms.initScroll();
-          });
-         
-        }).catch(err=>{
-          console.log(res);
-        })
-
-      },
       initScroll(){
         let vms = this
         //this.scroll
@@ -113,6 +86,72 @@
             vms.scrolls.refresh();
         }
         vms.scrolls.on('touchEnd', up)
+      },
+      initData(){
+        var vms = this
+        let req = {
+                    "tel_phone": this.RNmessage.tel_phone,
+                    "jyd_pubData": {
+                        "user_id": this.RNmessage.jyd_pubData.user_id, 
+                        "source_type": this.RNmessage.jyd_pubData.source_type, 
+                        "system_id": this.RNmessage.jyd_pubData.system_id, 
+                        "network_type": this.RNmessage.jyd_pubData.network_type, 
+                        "token_id": this.RNmessage.jyd_pubData.token_id
+                    }
+                }
+
+       
+        axios.post("/api/invest",req).then(res=>{
+          vms.list = res.data.invest_list.slice()
+          vms.showList = res.data.invest_list.slice(0,11)
+          vms.people = res.data.count_people
+          vms.money = res.data.sum_money
+          vms.$nextTick(() => {
+            vms.initScroll();
+          });
+         
+        }).catch(err=>{
+          console.log(res);
+        })
+
+      },
+      init(){
+        let vms = this
+          //本地测试用这段代码
+            /* var str = {
+                    "tel_phone": "17188120744",
+                    "jyd_pubData": {
+                        "user_id": "148", 
+                        "source_type": "0001", 
+                        "system_id": "Android 7", 
+                        "network_type": "wifi", 
+                        "token_id": "123235h5e3"
+                    }
+                }
+            vms.RNmessage = JSON.parse(JSON.stringify(str))
+            vms.initData(); */
+           
+            //分割线
+            window.onload = function () {
+                document.addEventListener('message', function (e) {
+                    vms.RNmessage = JSON.parse(e.data)
+                    vms.initData();
+                    
+                })
+                
+            }                    
+            var refreshIntervalId = setInterval(function(){
+                if (window.originalPostMessage) {
+                  
+                    stop();
+                } 
+            }, 500);
+
+            function stop(){
+              let message = {key:'1',val:{name:'首次打开'}}
+              window.postMessage(JSON.stringify(message));
+              clearInterval(refreshIntervalId);
+            }
       }
     },
     filters:{
