@@ -85,3 +85,11 @@ article{
   line-height: 0.36rem;
   color: #989898;
 }
+.wrapper{
+  height: 14.91rem;
+  overflow: hidden;
+}
+.contents{
+height: 14.91rem;
+overflow: hidden;
+}

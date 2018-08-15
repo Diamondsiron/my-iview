@@ -118,10 +118,29 @@
       }
     },
     methods:{
+        init(){
+          window.onload = function () {
+              document.addEventListener('message', function (e) {
+                
+              })
+              
+          }
+          var refreshIntervalId = setInterval(function(){
+              if (window.originalPostMessage) {
+                
+                  stop();
+              } 
+          }, 500);
 
+          function stop(){
+              let message = {key:'1',val:{name:'首次打开'}}
+              window.postMessage(JSON.stringify(message));
+              clearInterval(refreshIntervalId);
+          }
+        }
     },
     mounted() {
-      
+        this.init()
     },
   })
 </script>

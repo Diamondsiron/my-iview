@@ -60,40 +60,7 @@
       el:"#main",
       data(){
         return{
-          list:[
-            /* {
-              img:"../image/fx_15.png",
-              main:"苏泊尔电饼铛家用煎烤机",
-              sub:"双面加热，悬浮烤盘设计",
-              count:"1200000000",
-              unit:"嘉金币",
-              sales:"38"
-            },
-            {
-              img:"../image/fx_15.png",
-              main:"苏泊尔电饼铛家用煎烤机",
-              sub:"双面加热，悬浮烤盘设计",
-              count:"1200000000",
-              unit:"嘉金币",
-              sales:"38"
-            },
-            {
-              img:"../image/fx_15.png",
-              main:"苏泊尔电饼铛家用煎烤机",
-              sub:"双面加热，悬浮烤盘设计",
-              count:"1200000000",
-              unit:"嘉金币",
-              sales:"38"
-            },
-            {
-              img:"../image/fx_15.png",
-              main:"苏泊尔电饼铛家用煎烤机",
-              sub:"双面加热，悬浮烤盘设计",
-              count:"1200000000",
-              unit:"嘉金币",
-              sales:"38"
-            },{},{},{},{},{},{} */
-          ],
+          list:[],
           page:1,
           RNmessage:{}
         }
@@ -241,7 +208,8 @@
         }, 500);
 
         function stop(){
-            window.postMessage("");
+            let message = {key:'1',val:{name:'首次打开'}}
+            window.postMessage(JSON.stringify(message));
             clearInterval(refreshIntervalId);
         }
       }

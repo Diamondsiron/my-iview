@@ -7,6 +7,7 @@
     <script src="../js/vue.min.js"></script>
     <script src="../js/axios.min.js"></script>
     <script src="../js/axios.config.js"></script>
+    <script src="../js/bscroll.min.js"></script>
     <link rel="stylesheet" href="../css/returnedMoney.css">
     <title>Document</title>
 </head>
@@ -71,7 +72,8 @@
           }, 500);
 
           function stop(){
-              window.postMessage("");
+            let message = {key:'1',val:{name:'首次打开'}}
+              window.postMessage(JSON.stringify(message));
               clearInterval(refreshIntervalId);
           }
          },

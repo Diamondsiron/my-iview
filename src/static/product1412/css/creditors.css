@@ -56,4 +56,12 @@ article{
     width: 0.48rem;
     height: 0.48rem;
   }
+.wrapper{
+    height: 13.5rem;
+    overflow: hidden;
+}
+.content{
+  height: 13.5rem;
+  overflow: hidden;
+}
   

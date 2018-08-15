@@ -71,7 +71,8 @@
         }, 500);
 
         function stop(){
-            window.postMessage("");
+          let message = {key:'1',val:{name:'首次打开'}}
+          window.postMessage(JSON.stringify(message));
             clearInterval(refreshIntervalId);
         }
        

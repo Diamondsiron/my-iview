@@ -7,6 +7,7 @@
     <script src="../js/vue.min.js"></script>
     <script src="../js/axios.min.js"></script>
     <script src="../js/axios.config.js"></script>
+    <script src="../js/bscroll.min.js"></script>
     <link rel="stylesheet" href="../css/creditors.css">
     <title>Document</title>
 </head>
@@ -14,26 +15,31 @@
   <div id="main">
     <div>
       <article>
-        <table class="content-table">
-          <tr>
-            <th>借款用途</th>
-            <th>借款人</th>
-            <th>出借金额（元）</th>
-            <th></th>
-            <th></th>
-          </tr>
-          <tr v-for="(item,index) in list" :key="index">
-            <td>{{item.borrowtypeid | type}}</td>
-            <td><img src="../image/me_29.png" alt=""></td>
-            <td>{{item.originalamount}}</td>
-            <td>
-              <div class="tr-td-l">查看协议</div>  
-              <div class="tr-td-r">汇款协议</div>  
-            </td>
-            <td></td>
-          </tr>
-         
-        </table>
+        <div class="wrapper">
+          <div class="content">
+              <table class="content-table">
+                  <tr>
+                    <th>借款用途</th>
+                    <th>借款人</th>
+                    <th>出借金额（元）</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  <tr v-for="(item,index) in list" :key="index">
+                    <td>{{item.borrowtypeid | type}}</td>
+                    <td><img src="../image/me_29.png" alt=""></td>
+                    <td>{{item.originalamount}}</td>
+                    <td>
+                      <div class="tr-td-l">查看协议</div>  
+                      <div class="tr-td-r">汇款协议</div>  
+                    </td>
+                    <td></td>
+                  </tr>
+                 
+                </table>
+          </div>
+        </div>
+       
       </article>
     </div>
   </div>
@@ -44,6 +50,8 @@
        data(){
          return{
            list:[],
+           page:"1",
+           scroll:{},
            RNmessage:{}
          }
        },
@@ -89,9 +97,45 @@
           }, 500);
 
           function stop(){
-              window.postMessage("");
+            let message = {key:'1',val:{name:'首次打开'}}
+              window.postMessage(JSON.stringify(message));
               clearInterval(refreshIntervalId);
           }
+         },
+         initScroll(){
+          this.scroll = new window.BScroll(document.querySelector(".content"), {
+                          probeType: 2,
+                          click:true,
+                          momentum:false,
+                          pullUpLoad: true ,
+                        });
+          this.scroll.on('touchEnd', this.mainScrollUp)
+         },
+         mainScrollUp(pos){
+          if(this.scroll.maxScrollY>pos.y+50){
+              this.page++
+              let vms = this
+              let req = {
+                        "SellLimitConfigId": this.RNmessage.SellLimitConfigId, 
+                        "PageNum":this.page,
+                        "jyd_pubData": {
+                          "user_id": this.RNmessage.jyd_pubData.user_id, 
+                          "source_type": this.RNmessage.jyd_pubData.source_type, 
+                          "system_id": this.RNmessage.jyd_pubData.system_id, 
+                          "network_type": this.RNmessage.jyd_pubData.network_type, 
+                          "token_id": this.RNmessage.jyd_pubData.token_id
+                        }
+                      }
+
+              axios.post(axiosBaseUrl+"productObligatory",req).then(res=>{
+                vms.list = vms.list.concat(res.data.borrows)
+                vms.$nextTick(() => {
+                    vms.scroll.refresh();
+                });
+              }).catch(err=>{
+                
+              })
+            }
          },
          initData(){
           let vms = this
@@ -107,6 +151,10 @@
                   }
           axios.post(axiosBaseUrl+"productObligatory",req).then(res=>{
             vms.list = res.data.borrows
+            //vms.list = [0,1,2,3,4,5,6,7,8,9,10,11]
+            vms.$nextTick(() => {
+                vms.initScroll();
+            });
             console.log(res)
           }).catch(err=>{
             
