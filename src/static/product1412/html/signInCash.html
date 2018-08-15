@@ -136,13 +136,13 @@
                     }
             vms.RNmessage = JSON.parse(JSON.stringify(str))
             vms.initSign();
-            vms.initSignRecord();
+            //vms.initSignRecord();
             //分割线
             window.onload = function () {
                 document.addEventListener('message', function (e) {
                     vms.RNmessage = JSON.parse(e.data)
                     vms.initSign();
-                    vms.initSignRecord();
+                    //vms.initSignRecord();
                 })
                 
             }
@@ -252,8 +252,10 @@
               vms.objData = res.data
               this.modal = true
               this.modal1 = true
+              vms.initSignRecord();
             }else{
               vms.error = true
+              vms.initSignRecord();
             }
             
 
@@ -288,8 +290,11 @@
           })
          }
        },
-       mounted() {
+       created() {
         this.init();
+       },
+       mounted() {
+        //this.init();
         this.$nextTick(() => {
           //this.initMainScroll();
           
