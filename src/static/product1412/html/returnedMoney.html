@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="../js/vue.min.js"></script>
     <script src="../js/axios.min.js"></script>
+    <script src="../js/axios.config.js"></script>
     <link rel="stylesheet" href="../css/returnedMoney.css">
     <title>Document</title>
 </head>
@@ -34,12 +35,65 @@
          return{
           choose:1,
           list:[0,1,2,3],
+          page1:1,
+          RNmessage:{}
          }
        },
        methods:{
         init(){
+          let vms = this
+          //本地测试用这段代码
+          var str = {
+                    "page_number": "1",
+                    "borrow_id": "20180825020450010086",
+                    "jyd_pubData": {
+                      "user_id": 2,
+                      "source_type": "0001",
+                      "system_id": "Android 7",
+                      "network_type": "wifi",
+                      "token_id": "123235h5e3"
+                    }
+                  }
+         vms.RNmessage = JSON.parse(JSON.stringify(str))
+         vms.initData()
+         //分割线
+          window.onload = function () {
+              document.addEventListener('message', function (e) {
+                  vms.RNmessage = JSON.parse(e.data)
+                  vms.initData()
+              })
+          }
 
+          var refreshIntervalId = setInterval(function(){
+              if (window.originalPostMessage) {
+                stop();
+              } 
+          }, 500);
+
+          function stop(){
+              window.postMessage("");
+              clearInterval(refreshIntervalId);
+          }
          },
+         initData(){
+           let vms = this
+           let req = {
+                    "page_number": "1",
+                    "borrow_id": vms.RNmessage.borrow_id,
+                    "jyd_pubData": {
+                      "user_id": vms.RNmessage.jyd_pubData.user_id,
+                      "source_type": vms.RNmessage.jyd_pubData.source_type,
+                      "system_id": vms.RNmessage.jyd_pubData.system_id,
+                      "network_type": vms.RNmessage.jyd_pubData.network_type,
+                      "token_id": vms.RNmessage.jyd_pubData.token_id
+                    }
+                  }
+          axios.post(axiosBaseUrl+"productMore/returnPlan",req).then(res=>{
+
+          }).catch(err=>{
+
+          })
+         }
        },
        mounted() {
          this.init()
