@@ -23,6 +23,16 @@
                         </div>
                       </div>
                 </div>
+                <form action="http://10.2.0.155:8099/JYD_RN_Serv/showGoods/showGoodsDetail" id="form"  method="POST">
+                  <input type="text" name="goods_id"  v-model="id">
+                  <input type="text" name="tel_phone"  v-model="RNmessage.tel_phone">
+                  <input type="text" name="jyd_pubData.user_id"  v-model="RNmessage.jyd_pubData.user_id">
+                  <input type="text" name="jyd_pubData.source_type"  v-model="RNmessage.jyd_pubData.source_type">
+                  <input type="text" name="jyd_pubData.system_id"  v-model="RNmessage.jyd_pubData.system_id">
+                  <input type="text" name="jyd_pubData.network_type"  v-model="RNmessage.jyd_pubData.network_type">
+                  <input type="text" name="jyd_pubData.token_id"  v-model="RNmessage.jyd_pubData.token_id">
+                  <button type="button" v-on:click="submit()"> 按钮</button>
+                </form>
                 <div class="card" v-for="(item,index) in list" ::key="index" @click="handleChange(item.gd_id)">
                   <div>
                     <div class="card-img">
@@ -53,6 +63,7 @@
              </div>
        </div>
     </div>
+    
   </div>
   <script>
     document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
@@ -62,7 +73,18 @@
         return{
           list:[],
           page:1,
-          RNmessage:{}
+          id:"",
+          RNmessage:{
+                    page_number: "",
+                    tel_phone: "",
+                    jyd_pubData: {
+                        user_id: "", 
+                        source_type: "", 
+                        system_id: "", 
+                        network_type: "", 
+                        token_id: ""
+                    }
+                }
         }
       },
       methods:{
@@ -90,8 +112,12 @@
           })
         },
         handleChange(id){
-          let vm = this
-          window.location.href=axiosBaseUrl+"showGoods/showGoodsDetail?"+"goods_id="+id+"&tel_phone="+this.RNmessage.tel_phone+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+          this.id = id 
+          //let vm = this
+          //window.location.href=axiosBaseUrl+"showGoods/showGoodsDetail?"+"goods_id="+id+"&tel_phone="+this.RNmessage.tel_phone+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+        },
+        submit(){
+          document.getElementById("form").submit();
         },
         _initScroll(){
         let vms = this
@@ -178,7 +204,7 @@
       init(){
         let vms = this
         //本地测试用这段代码
-       /*  var str = {
+        var str = {
                     "page_number": "1",
                     "tel_phone": "15822753827",
                     "jyd_pubData": {
@@ -191,7 +217,7 @@
                 }
 
          vms.RNmessage = JSON.parse(JSON.stringify(str))
-         vms.initData() */
+         vms.initData()
           //分割线
         window.onload = function () {
             document.addEventListener('message', function (e) {

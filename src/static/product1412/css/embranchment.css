@@ -59,6 +59,7 @@ tr>td:nth-child(1) {
 }
 td>div{
   margin-left: 0.36rem;
+  line-height: 0.57rem;
  /*  margin-left: 0.24rem;
   transform: scale(0.88,0.88); */
  /*  width: 100%; */

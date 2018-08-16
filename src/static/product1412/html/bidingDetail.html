@@ -18,9 +18,13 @@
         </div>
     <div class="content">
       <div >
-       
+          
           <div id="top" style="display: block;overflow: hidden;" class="top">
+             
+           
+            
               <div class="card">
+                  
                   <div>
                     年化利率
                   </div>
@@ -100,7 +104,7 @@
                    
                   </div>
                   <div class="foot-content">
-                      <button ontouchstart="" class="foot-content-btn" @click="submit()" v-bind:class="{clickable:!clickable}">{{objData.sellInfo.display}}</button>
+                      <button ontouchstart="" class="foot-content-btn" @click="submit()" v-bind:class="{clickable:!clickable}">立即出借</button>
                   </div>
                 </footer>
           </div>
@@ -186,7 +190,7 @@
                     出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                   </div>
                   <div class="foot-content">
-                      <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">{{objData.sellInfo.display}}</button>
+                      <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
                   </div>
                   
                 </footer>
@@ -194,6 +198,40 @@
             <div id="choose2" v-if="choose==2" >
                 <div class="context" >
                     <div class="context-title">为保护借款人信息仅展示部分内容，具体匹配以实际情况为准。</div>
+                    <form action="personProLend/jumpUrl" id="form1"  method="POST">
+                      <input type="text" name="sell_id"  v-model="objData.sellInfo.Id">
+                      <input type="text" name="tel_phone"  v-model="RNmessage.tel_phone">
+                      <input type="text" name="jyd_pubData.user_id"  v-model="RNmessage.jyd_pubData.user_id">
+                      <input type="text" name="jyd_pubData.source_type"  v-model="RNmessage.jyd_pubData.source_type">
+                      <input type="text" name="jyd_pubData.system_id"  v-model="RNmessage.jyd_pubData.system_id">
+                      <input type="text" name="jyd_pubData.network_type"  v-model="RNmessage.jyd_pubData.network_type">
+                      <input type="text" name="jyd_pubData.token_id"  v-model="RNmessage.jyd_pubData.token_id">
+        
+                  </form>
+                    <form action="productObligatory/jumpBiaodiDetail" id="forms"  method="POST">
+                      <input type="text" name="typeid"  value="0">
+                      <input type="text" name="borrow_id"  v-model="borrow_id">
+                      <input type="text" name="relationid"  v-model="relationid">
+                      <input type="text" name="tel_phone"  v-model="RNmessage.tel_phone">
+                      <input type="text" name="jyd_pubData.user_id"  v-model="RNmessage.jyd_pubData.user_id">
+                      <input type="text" name="jyd_pubData.source_type"  v-model="RNmessage.jyd_pubData.source_type">
+                      <input type="text" name="jyd_pubData.system_id"  v-model="RNmessage.jyd_pubData.system_id">
+                      <input type="text" name="jyd_pubData.network_type"  v-model="RNmessage.jyd_pubData.network_type">
+                      <input type="text" name="jyd_pubData.token_id"  v-model="RNmessage.jyd_pubData.token_id">
+        
+                  </form>
+                  
+                  <form action="productObligatory/jumpBiaodiDetail" id="formss"  method="POST">
+                      <input type="text" name="typeid"  value="1">
+                      <input type="text" name="borrow_id"  v-model="borrow_id">
+                      <input type="text" name="relationid"  v-model="relationid">
+                      <input type="text" name="jyd_pubData.user_id"  v-model="RNmessage.jyd_pubData.user_id">
+                      <input type="text" name="jyd_pubData.source_type"  v-model="RNmessage.jyd_pubData.source_type">
+                      <input type="text" name="jyd_pubData.system_id"  v-model="RNmessage.jyd_pubData.system_id">
+                      <input type="text" name="jyd_pubData.network_type"  v-model="RNmessage.jyd_pubData.network_type">
+                      <input type="text" name="jyd_pubData.token_id"  v-model="RNmessage.jyd_pubData.token_id">
+        
+                  </form>
                     <div class="wrappers">
                       <div class="contents">
                         <div class="context-table-wrap ">
@@ -223,7 +261,7 @@
                       出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                     </div>
                     <div class="foot-content">
-                        <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">{{objData.sellInfo.display}}</button>
+                        <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
                     </div>
                     
                   </footer>
@@ -259,7 +297,7 @@
                       出借即表示同意<a href="javascript:void(0)">《出借咨询及信息管理服务协议》</a>、<a href="javascript:void(0)">《风险提示书》</a>
                     </div>
                     <div class="foot-content">
-                        <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">{{objData.sellInfo.display}}</button>
+                        <button ontouchstart="" class="foot-content-btn" v-bind:class="{clickable:!clickable}">立即出借</button>
                     </div>
                     
                   </footer>
@@ -298,7 +336,24 @@
         clickable:true,
         listConstitute:[],
         listRecord:[],
-        RNmessage:{},
+        borrow_id:"",
+		  relationid:"",
+        RNmessage:{
+        	tel_phone:"",
+            tel_code:"",
+            tel_pwd:"",
+            refer_code:"",
+            jyd_pubData:{
+        		user_id:"",
+                user_name:"",
+                source_type:"",
+                system_id:"",
+                network_type:"",
+                token_id:""
+        	},
+            PageNum:"",
+            sellInfoId:""
+        },
         objData:{
                 fundAccountInfo: {
                   AccountId: "",
@@ -352,8 +407,7 @@
                   ExpectedYield: null,
                   SellConfigId: "",
                   SendIntegralRate: "",
-                  LastTime: null,
-                  display:""
+                  LastTime: null
                 },
                 return_code: "",
                 selllimitconfig: {
@@ -399,9 +453,10 @@
     },
     methods:{
       submit(){
-        if(this.objData.sellInfo.buyStatus!=="1"){
-          return
-         }else{
+        //if(this.objData.sellInfo.buyStatus!=="0"){
+        if(false){
+           return
+          }else{
            this.submitData() 
         }
       },
@@ -420,11 +475,17 @@
       nextPage(value,borrowid,relationid){
         //转让标
         if(value==0){
-          window.location.href=axiosBaseUrl+"productObligatory/jumpBiaodiDetail?"+"typeid="+0+"&borrow_id="+borrowid+"&relationid="+relationid+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+        	this.borrowid = borrowid
+            this.relationid = relationid
+		//	document.getElementById("forms").submit();
+         // window.location.href=axiosBaseUrl+"productObligatory/jumpBiaodiDetail?"+"typeid="+0+"&borrow_id="+borrowid+"&relationid="+relationid+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id
          
         }else if(value==1){
           //二手标
-          window.location.href=axiosBaseUrl+"productObligatory/jumpBiaodiDetail?"+"typeid="+1+"&borrow_id="+borrowid+"&relationid="+relationid+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+			this.borrowid = borrowid
+			this.relationid = relationid
+		//	document.getElementById("formss").submit();
+          //window.location.href=axiosBaseUrl+"productObligatory/jumpBiaodiDetail?"+"typeid="+1+"&borrow_id="+borrowid+"&relationid="+relationid+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id
         }
       },
       submitData(){
@@ -440,7 +501,8 @@
                       "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                   }
-          window.location.href=axiosBaseUrl+"personProLend/jumpUrl?"+"tel_phone="+this.RNmessage.tel_phone+"&sell_id="+this.objData.sellInfo.Id+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+		  document.getElementById("form").submit();
+          //window.location.href=axiosBaseUrl+"personProLend/jumpUrl?"+"tel_phone="+this.RNmessage.tel_phone+"&sell_id="+this.objData.sellInfo.Id+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id
         
       },
       showToastZoom(){
@@ -482,9 +544,9 @@
 
        axios.post(axiosBaseUrl+"productDetails/querySellinDetail",req1).then(res=>{
           vms.objData = res.data
-          if(vms.objData.sellInfo.buyStatus!=="1"){
+         /*  if(vms.objData.sellInfo.buyStatus!=="0"){
             vms.clickable=false;
-          }
+          } */
           vms.income = (((vms.objData.sellInfo.MinInvestMoney*(vms.objData.sellInfo.ImproveYearRate + vms.objData.sellInfo.ExpectedYearYield)*vms.objData.sellInfo.ExpiresDays)/365).toFixed(2));
           vms.value1 = (vms.objData.sellInfo.ExpectedYearYield*100+vms.objData.sellInfo.ImproveYearRate*100).toFixed(2)
           vms.value2 = (vms.objData.sellInfo.ExpectedYearYield*100).toFixed(2)
@@ -629,9 +691,9 @@
       init(){
         let vms = this
         //本地测试用这段代码
-        var str = {"tel_phone":"15822753827","tel_code":"","tel_pwd":"","refer_code":"","jyd_pubData":{"user_id":39,"user_name":"","source_type":"0001","system_id":"Apple ios 11.4","network_type":"wifi","token_id":"123235h5e3"},"PageNum":"1","sellInfoId":"JE0902018072001"}
-         vms.RNmessage = JSON.parse(JSON.stringify(str))
-         vms.initMainData()
+       var str = {"tel_phone":"15822753827","tel_code":"","tel_pwd":"","refer_code":"","jyd_pubData":{"user_id":39,"user_name":"","source_type":"0001","system_id":"Apple ios 11.4","network_type":"wifi","token_id":"123235h5e3"},"PageNum":"1","sellInfoId":"JE0902018072001"}
+        vms.RNmessage = JSON.parse(JSON.stringify(str))
+       vms.initMainData()
           //分割线
         window.onload = function () {
             document.addEventListener('message', function (e) {
@@ -648,7 +710,8 @@
         }, 500);
 
         function stop(){
-            window.postMessage("");
+			let message = {key:'1',val:{name:'首次打开'}}
+			window.postMessage(JSON.stringify(message));
             clearInterval(refreshIntervalId);
         }
        

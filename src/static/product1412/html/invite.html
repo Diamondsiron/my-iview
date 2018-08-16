@@ -25,6 +25,14 @@
         </div>
         <div>邀请规则</div>
     </footer>
+    <form action="http:localhost:8888/api/xxx" id="form" style="display: none;" method="POST">
+      <input type="text" name="a" id="">
+      <input type="text" name="b" id="">
+      <input type="text" name="c" id="">
+      <input type="text" name="d" id="">
+      <button type="button" v-on:click="submit()"> 按钮</button>
+    </form>
+   
   </div>
 </div>
 <script>
@@ -37,10 +45,12 @@
       }
     },
     methods:{
-
+      submit(){
+        document.getElementById("form").submit();
+      }
     },
     mounted() {
-      
+      this.submit();
     },
   })
 </script>
