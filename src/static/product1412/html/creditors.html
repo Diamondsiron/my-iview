@@ -27,7 +27,8 @@
                   </tr>
                   <tr v-for="(item,index) in list" :key="index">
                     <td>{{item.borrowtypeid | type}}</td>
-                    <td><img src="../image/me_29.png" alt=""></td>
+                    <td v-if="item.borrowtypeid==1"><img src="../image/me_29.png" alt=""></td>
+                    <td v-if="item.borrowtypeid==3"><img src="../image/me_28.png" alt=""></td>
                     <td>{{item.originalamount}}</td>
                     <td>
                       <div class="tr-td-l">查看协议</div>  

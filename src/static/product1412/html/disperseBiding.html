@@ -17,9 +17,9 @@
     <div class="content">
       <div >
           <div id="top" style="display: block;overflow: hidden;" class="top">
-                <form action="personProLend/jumpUrlSb" id="form"  method="POST">
+                <form action="personProLend/jumpUrlSb" id="form"  method="POST" style="display: none;">
                     <input type="text" name="borrow_id"  v-model="RNmessage.sellInfoId">
-                    <input type="text" name="restmoney"  v-model="RNmessage.sellInfoId">
+                    <input type="text" name="restmoney"  v-model="restmoney">
                     <input type="text" name="tel_phone"  v-model="RNmessage.tel_phone">
                     <input type="text" name="jyd_pubData.user_id"  v-model="RNmessage.jyd_pubData.user_id">
                     <input type="text" name="jyd_pubData.source_type"  v-model="RNmessage.jyd_pubData.source_type">
@@ -411,7 +411,7 @@
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
         recordPage:"1",
-        restmany:"",
+        restmoney:"",
         scroll,
         scrolls:{},
         RNmessage:{
@@ -527,9 +527,10 @@
                         "token_id": this.RNmessage.jyd_pubData.token_id
                     }
                   }
-                  this.restmany = this.objData.Borrow.OriginalAmount-this.objData.Borrow.CollectedAmount
-                  //window.location.href=axiosBaseUrl+"personProLend/jumpUrlSb?"+"tel_phone="+this.RNmessage.tel_phone+"&borrow_id="+this.RNmessage.sellInfoId+"&restmoney="+restmany+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+                  this.restmoney = this.objData.Borrow.OriginalAmount-this.objData.Borrow.CollectedAmount
                   document.getElementById("form").submit();
+                  //window.location.href=axiosBaseUrl+"personProLend/jumpUrlSb?"+"tel_phone="+this.RNmessage.tel_phone+"&borrow_id="+this.RNmessage.sellInfoId+"&restmoney="+restmany+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+                  //document.getElementById("form").submit();
          /*  axios.post(axiosBaseUrl+"personProLend",req).then(res=>{
             console.log(res)
           }).catch(err=>{

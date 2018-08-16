@@ -23,7 +23,7 @@
                         </div>
                       </div>
                 </div>
-                <form action="http://10.2.0.155:8099/JYD_RN_Serv/showGoods/showGoodsDetail" id="form"  method="POST">
+                <form action="showGoods/showGoodsDetail" id="form"  method="POST" style="display: none">
                   <input type="text" name="goods_id"  v-model="id">
                   <input type="text" name="tel_phone"  v-model="RNmessage.tel_phone">
                   <input type="text" name="jyd_pubData.user_id"  v-model="RNmessage.jyd_pubData.user_id">
@@ -113,6 +113,7 @@
         },
         handleChange(id){
           this.id = id 
+          document.getElementById("form").submit();
           //let vm = this
           //window.location.href=axiosBaseUrl+"showGoods/showGoodsDetail?"+"goods_id="+id+"&tel_phone="+this.RNmessage.tel_phone+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
         },

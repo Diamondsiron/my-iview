@@ -198,7 +198,7 @@
             <div id="choose2" v-if="choose==2" >
                 <div class="context" >
                     <div class="context-title">为保护借款人信息仅展示部分内容，具体匹配以实际情况为准。</div>
-                    <form action="personProLend/jumpUrl" id="form1"  method="POST">
+                    <form action="personProLend/jumpUrl" id="form"  method="POST" style="display: none;">
                       <input type="text" name="sell_id"  v-model="objData.sellInfo.Id">
                       <input type="text" name="tel_phone"  v-model="RNmessage.tel_phone">
                       <input type="text" name="jyd_pubData.user_id"  v-model="RNmessage.jyd_pubData.user_id">
@@ -208,7 +208,7 @@
                       <input type="text" name="jyd_pubData.token_id"  v-model="RNmessage.jyd_pubData.token_id">
         
                   </form>
-                    <form action="productObligatory/jumpBiaodiDetail" id="forms"  method="POST">
+                    <form action="productObligatory/jumpBiaodiDetail" id="forms"  method="POST" style="display: none;">
                       <input type="text" name="typeid"  value="0">
                       <input type="text" name="borrow_id"  v-model="borrow_id">
                       <input type="text" name="relationid"  v-model="relationid">
@@ -221,7 +221,7 @@
         
                   </form>
                   
-                  <form action="productObligatory/jumpBiaodiDetail" id="formss"  method="POST">
+                  <form action="productObligatory/jumpBiaodiDetail" id="formss"  method="POST" style="display: none;">
                       <input type="text" name="typeid"  value="1">
                       <input type="text" name="borrow_id"  v-model="borrow_id">
                       <input type="text" name="relationid"  v-model="relationid">
@@ -477,14 +477,15 @@
         if(value==0){
         	this.borrowid = borrowid
             this.relationid = relationid
-		//	document.getElementById("forms").submit();
+            
+			document.getElementById("forms").submit();
          // window.location.href=axiosBaseUrl+"productObligatory/jumpBiaodiDetail?"+"typeid="+0+"&borrow_id="+borrowid+"&relationid="+relationid+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id
          
         }else if(value==1){
           //二手标
 			this.borrowid = borrowid
 			this.relationid = relationid
-		//	document.getElementById("formss").submit();
+			document.getElementById("formss").submit();
           //window.location.href=axiosBaseUrl+"productObligatory/jumpBiaodiDetail?"+"typeid="+1+"&borrow_id="+borrowid+"&relationid="+relationid+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id
         }
       },
@@ -691,9 +692,9 @@
       init(){
         let vms = this
         //本地测试用这段代码
-       var str = {"tel_phone":"15822753827","tel_code":"","tel_pwd":"","refer_code":"","jyd_pubData":{"user_id":39,"user_name":"","source_type":"0001","system_id":"Apple ios 11.4","network_type":"wifi","token_id":"123235h5e3"},"PageNum":"1","sellInfoId":"JE0902018072001"}
+      /*  var str = {"tel_phone":"15822753827","tel_code":"","tel_pwd":"","refer_code":"","jyd_pubData":{"user_id":39,"user_name":"","source_type":"0001","system_id":"Apple ios 11.4","network_type":"wifi","token_id":"123235h5e3"},"PageNum":"1","sellInfoId":"JE0902018072001"}
         vms.RNmessage = JSON.parse(JSON.stringify(str))
-       vms.initMainData()
+       vms.initMainData() */
           //分割线
         window.onload = function () {
             document.addEventListener('message', function (e) {
