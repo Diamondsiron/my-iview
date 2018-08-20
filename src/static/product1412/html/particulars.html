@@ -48,16 +48,23 @@
             </div>
             <div v-if="choose==2">
                 <article>
-                    <div v-for="(item,index) in historyList" class="item">
-                        <div class="item-l">
-                            <div class="item-l-t">{{item.amount | money}}</div>
-                            <div class="item-l-b">流水号：{{item.serial_no}}</div>
-                        </div>
-                        <div class="item-r">
-                            <div class="item-r-t" v-class="{'item-r-t_remove':(item.amount<0)}">{{item.amount}}</div>
-                            <div class="item-r-b">{{item.deal_date}}</div>
-                        </div>
-                    </div>
+						<div class="wrapper">
+								<div class="contentss">
+									<div>
+											<div v-for="(item,index) in historyList" class="item">
+													<div class="item-l">
+														<div class="item-l-t">{{item.amount | money}}</div>
+														<div class="item-l-b">流水号：{{item.serial_no}}</div>
+													</div>
+													<div class="item-r">
+														<div class="item-r-t" v-class="{'item-r-t_remove':(item.amount<0)}">{{item.amount}}</div>
+														<div class="item-r-b">{{item.deal_date}}</div>
+													</div>
+												</div>
+									</div>
+								</div>
+						</div>
+                    
                 </article>
             </div>
         </div>
@@ -72,7 +79,7 @@
 				choose:1,
 				list:[],
 				page1:1,
-				page1:2,
+				pageHis:2,
 				scroll:{},
 				scrolls:{},
 				recentList:[],
@@ -95,6 +102,11 @@
 			changeCurrent(value){
 				let vms = this
 				this.choose=value;
+				if(value==2){
+					this.$nextTick(() => {
+							this.initHistoryScroll();
+					});
+				}
 			},
 			initRecent(){
 				let vms = this
@@ -114,11 +126,11 @@
 
 				axios.post(axiosBaseUrl+"assets/jxDetailQuery",req).then(res=>{
 					vms.recentList = res.data.sub_packs
-				//vms.recentList = [0,1,2,3,4,5,6,7,8,9]
-				vms.$nextTick(() => {
-					vms.initRecentScroll();
-			});
-			}).catch(err=>{
+					//vms.recentList = [0,1,2,3,4,5,6,7,8,9]
+					vms.$nextTick(() => {
+						vms.initRecentScroll();
+					});
+				}).catch(err=>{
 
 				})
 			},
@@ -137,7 +149,8 @@
 				}
 				axios.post(axiosBaseUrl+"assets/historyBalance",req).then(res=>{
 					vms.historyList = res.data.record_list
-			}).catch(err=>{
+					//vms.historyList = [0,1,2,3,4,5,6,7,8,9,10,11]
+				}).catch(err=>{
 
 				})
 			},
@@ -151,29 +164,34 @@
 				this.scroll.on('touchEnd', this.recentScrollUp)
 			},
 			initHistoryScroll(){
-
+				this.scrolls = new window.BScroll(document.querySelector(".contentss"), {
+					probeType: 2,
+					click:true,
+					momentum:false,
+					pullUpLoad: true ,
+				});
+				this.scrolls.on('touchEnd', this.historyScrollUp)
 			},
 			recentScrollUp(pos){
 				if(this.scroll.maxScrollY>pos.y+50){
 					this.page++
 					let vms = this
-					let req ={
-						"tel_phone": vms.RNmessage.tel_phone,
-						"type": "0",
-						"tran_type": "9",
-						"jyd_pubData": {
-							"user_id": vms.RNmessage.jyd_pubData.user_id,
-							"source_type": vms.RNmessage.jyd_pubData.source_type,
-							"system_id": vms.RNmessage.jyd_pubData.system_id,
-							"network_type": vms.RNmessage.jyd_pubData.network_type,
-							"token_id": vms.RNmessage.jyd_pubData.token_id
-						}
+					let req = {
+					"page_number": "1",
+					"tel_phone": vms.RNmessage.tel_phone,
+					"jyd_pubData": {
+						"user_id": vms.RNmessage.jyd_pubData.user_id,
+						"source_type": vms.RNmessage.jyd_pubData.source_type,
+						"system_id": vms.RNmessage.jyd_pubData.system_id,
+						"network_type": vms.RNmessage.jyd_pubData.network_type,
+						"token_id": vms.RNmessage.jyd_pubData.token_id
+					}
 					}
 					axios.post(axiosBaseUrl+"assets/jxDetailQuery",req).then(res=>{
 						vms.recentList = vms.recentList.concat(data.sub_packs)
-					vms.$nextTick(() => {
-						vms.scroll.refresh();
-				});
+						vms.$nextTick(() => {
+							vms.scroll.refresh();
+						});
 				}).catch(err=>{
 
 					})
@@ -181,12 +199,37 @@
 				}
 			},
 			historyScrollUp(pos){
+				if(this.scrolls.maxScrollY>pos.y+50){
+					this.pageHis++
+					let vms = this
+					let req ={
+								"page_number": this.pageHis,
+								"tel_phone": vms.RNmessage.tel_phone,
+								"jyd_pubData": {
+									"user_id": vms.RNmessage.jyd_pubData.user_id,
+									"source_type": vms.RNmessage.jyd_pubData.source_type,
+									"system_id": vms.RNmessage.jyd_pubData.system_id,
+									"network_type": vms.RNmessage.jyd_pubData.network_type,
+									"token_id": vms.RNmessage.jyd_pubData.token_id
+								}
+							}
+							axios.post(axiosBaseUrl+"assets/historyBalance",req).then(res=>{
+								var historyList = res.data.record_list
+								//var historyList = [01,12,3,4,5,6]
+								vms.historyList = vms.historyList.concat(historyList)
+								vms.$nextTick(() => {
+									vms.scrolls.refresh();
+								});
+							}).catch(err=>{
 
+							})
+
+				}
 			},
 			init(){
 				let vms = this
 				//本地测试用这段代码
-                /* var str = {
+                var str = {
                  "page_number": "1",
                  "tel_phone": "15822753827",
                  "jyd_pubData": {
@@ -199,7 +242,7 @@
                  }
                  vms.RNmessage = JSON.parse(JSON.stringify(str))
                  vms.initRecent()
-                 vms.initHistory() */
+                 vms.initHistory()
 				//分割线
 				window.onload = function () {
 					document.addEventListener('message', function (e) {
