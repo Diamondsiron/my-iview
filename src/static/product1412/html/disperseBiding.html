@@ -352,27 +352,34 @@
             </div>
             <div id="choose3" v-if="choose==3">
                 <div class="context">
-                    <div class="context-title"></div>
+                    <div  style="height:0.48rem"></div>
+                    <div class="wrapperss">
+                            <div class="contentss">
+                                <div>
+                                        <div class="card" v-for="(item,index) in planList" ::key="index">
+                                                <div>{{item.return_no}}</div>
+                                                <div>{{item.repay_status}}</div>
+                                                <div>应还本金</div>
+                                                <div>{{item.principal}}</div>
+                                                <div>应还利息</div>
+                                                <div>{{item.interest}}</div>
+                                                <div>总款金额</div>
+                                                <div>{{item.total_return}}</div>
+                                              </div>
+                                                    
+                                           
+                                            
+                                            <div class="grayblock" v-if="planList.length==0">
+                        
+                                            </div>
+                                            <div class="grayblock-desc" v-if="planList.length==0">
+                                                尚未生成数据
+                                            </div>
+                                </div>
+                            </div>
+                    </div>
                     <div class="context-table-wrap">
-                      <div class="card" v-for="(item,index) in planList" ::key="index">
-                        <div>{{item.return_no}}</div>
-                        <div>{{item.repay_status}}</div>
-                        <div>应还本金</div>
-                        <div>{{item.principal}}</div>
-                        <div>应还利息</div>
-                        <div>{{item.interest}}</div>
-                        <div>总款金额</div>
-                        <div>{{item.total_return}}</div>
-                      </div>
-                            
-                   
-                    
-                    <div class="grayblock" v-if="planList.length==0">
-
-                    </div>
-                    <div class="grayblock-desc" v-if="planList.length==0">
-                        尚未生成数据
-                    </div>
+                     
                   </div>
             </div>
             <div class="" style="height: 3.96rem;"></div>
@@ -411,9 +418,11 @@
         list:[0,1,2,3,4,5,6,7,8,9],
         choose:1,
         recordPage:"1",
+        planPage:"1",
         restmoney:"",
         scroll,
         scrolls:{},
+        scrollss:{},
         RNmessage:{
             tel_phone:"",
             tel_code:"",
@@ -568,7 +577,46 @@
          this.scrolls.on('beforeScrollStart', this.mainScrollDisable)
          this.scrolls.on('touchEnd', this.recordScrollUp)
      },
-     recordScrollUp(){
+     initPlanScroll(){
+        this.scrollss = new window.BScroll(document.querySelector(".contentss"), {
+          probeType: 2,
+          click:true,
+          momentum:false,
+          pullUpLoad: true ,
+         });
+         this.scrollss.on('beforeScrollStart', this.mainScrollDisable)
+         this.scrollss.on('touchEnd', this.planScrollUp)
+      },
+      planScrollUp(pos){
+          let vms = this; 
+        this.mainScrollEnable()
+        if(this.scrollss.maxScrollY>pos.y+50){
+            this.planPage++
+            let req = {
+                    "page_number": this.planPage,
+                    "borrow_id":  this.RNmessage.sellInfoId,
+                    "jyd_pubData": {
+                        "user_id":  this.RNmessage.jyd_pubData.user_id,
+                        "source_type": this.RNmessage.jyd_pubData.source_type,
+                        "system_id": this.RNmessage.jyd_pubData.system_id,
+                        "network_type": this.RNmessage.jyd_pubData.network_type,
+                        "token_id": this.RNmessage.jyd_pubData.token_id
+                    }
+                    }
+
+            axios.post(axiosBaseUrl+"productMore/returnPlan",req).then(res=>{
+                var list = res.data.record_list
+                //var list =  [0,1,2,3,4]
+                vms.planList = vms.planList.concat(list)
+                vms.$nextTick(() => {
+                    vms.scrollss.refresh();
+                });
+            }).catch(err=>{
+                
+            })
+        }
+      },
+     recordScrollUp(pos){
         this.mainScrollEnable()
         if(this.scrolls.maxScrollY>pos.y+50){
           this.recordPage++
@@ -703,6 +751,10 @@
 
         axios.post(axiosBaseUrl+"productMore/returnPlan",req).then(res=>{
             vms.planList = res.data.record_list
+            //vms.planList = [0,1,2,3,4]
+            vms.$nextTick(() => {
+                vms.initPlanScroll();
+            });
         }).catch(err=>{
             
         })

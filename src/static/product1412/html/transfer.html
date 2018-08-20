@@ -329,27 +329,35 @@
             </div>
             <div id="choose3" v-if="choose==3">
                 <div class="context">
-                    <div class="context-title"></div>
+                    <div style="height:0.48rem"></div>
+                    <div class="wrapperss">
+                            <div class="contentss">
+                                <div>
+                                        <div class="card" v-for="(item,index) in planList" ::key="index">
+                                                <div>{{item.return_no}}</div>
+                                                <div>{{item.repay_status}}</div>
+                                                <div>应还本金</div>
+                                                <div>{{item.principal}}</div>
+                                                <div>应还利息</div>
+                                                <div>{{item.interest}}</div>
+                                                <div>总款金额</div>
+                                                <div>{{item.total_return}}</div>
+                                            </div>
+                                                 
+                                           
+                                            
+                                            <div class="grayblock" v-if="planList.length==0">
+                        
+                                            </div>
+                                            <div class="grayblock-desc" v-if="planList.length==0">
+                                                尚未生成数据
+                                            </div>
+                                </div>
+                                    
+                            </div>
+                     </div>
                     <div class="context-table-wrap">
-                    <div class="card" v-for="(item,index) in planList" ::key="index">
-                        <div>{{item.return_no}}</div>
-                        <div>{{item.repay_status}}</div>
-                        <div>应还本金</div>
-                        <div>{{item.principal}}</div>
-                        <div>应还利息</div>
-                        <div>{{item.interest}}</div>
-                        <div>总款金额</div>
-                        <div>{{item.total_return}}</div>
-                    </div>
-                         
-                   
                     
-                    <div class="grayblock" v-if="planList.length==0">
-
-                    </div>
-                    <div class="grayblock-desc" v-if="planList.length==0">
-                        尚未生成数据
-                    </div>
                   </div>
                   <div style="width: 100%;height: 2.1rem;">
 
@@ -574,8 +582,11 @@
                     }
 
         axios.post(axiosBaseUrl+"productMore/returnPlan",req).then(res=>{
-            //vms.planList = res.data.record_list
-            vms.planList = [0,1,2,3,4,5,6,7,8,9]
+            vms.planList = res.data.record_list
+            //vms.planList = [0,1,2,3,4,5,6,7,8,9]
+            vms.$nextTick(() => {
+                vms.initPlanScroll();
+            });
         }).catch(err=>{
             
         })
@@ -634,7 +645,8 @@
          this.scrollss.on('beforeScrollStart', this.mainScrollDisable)
          this.scrollss.on('touchEnd', this.planScrollUp)
       },
-      planScrollUp(){
+      planScrollUp(pos){
+          let vms = this; 
         this.mainScrollEnable()
         if(this.scrollss.maxScrollY>pos.y+50){
             this.planPage++
@@ -652,8 +664,8 @@
 
             axios.post(axiosBaseUrl+"productMore/returnPlan",req).then(res=>{
                 
-                //var list = res.data.record_list
-                var list = [0,1,2,3,4,5,6,7,8,9]
+                var list = res.data.record_list
+               // var list = [0,1,2,3,4,5,6,7,8,9]
                 vms.planList = vms.planList.concat(list)
                 vms.$nextTick(() => {
                     vms.scrollss.refresh();
@@ -665,7 +677,7 @@
             })
         }
       },
-      recordScrollUp(){
+      recordScrollUp(pos){
         this.mainScrollEnable()
         if(this.scrolls.maxScrollY>pos.y+50){
           this.recordPage++
@@ -705,6 +717,12 @@
             this.scroll.off('touchEnd', this.mainScrollUp)
             this.scroll.on('touchEnd', this.mainScrollDown)
          } 
+      },
+      mainScrollDisable(){
+        this.scroll.disable()
+      },
+      mainScrollEnable(){
+        this.scroll.enable()
       },
       mainScrollDown(pos){
         var h = document.getElementById("top").offsetHeight

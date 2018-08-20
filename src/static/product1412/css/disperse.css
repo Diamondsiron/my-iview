@@ -515,15 +515,7 @@ background-size: contain;
 position: relative;
 overflow: hidden; 
 }
-#choose3 .card:nth-child(1){
-margin-top: 0.48rem;
-width: 12.42rem;
-height: 4.23rem;
-background: url(../image/cp_12.png) no-repeat;
-background-size: contain;
-position: relative;
-overflow: hidden; 
-}
+
 #choose3 .card div:nth-child(1){
 position: absolute;
 font-size: 0.48rem;
@@ -702,5 +694,14 @@ text-decoration:none;
 }
 .contents{
   height: 14.85rem;
+  overflow: hidden;
+}
+.wrapperss{
+  
+  overflow: hidden;
+  height:13.23rem;
+}
+.contentss{
+  height: 13.23rem;
   overflow: hidden;
 }
