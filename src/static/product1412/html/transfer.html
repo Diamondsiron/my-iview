@@ -382,6 +382,8 @@
         h1:"",
         h2:"",
         list:[0,1,2,3,4,5,6,7,8,9],
+        recordPage:"1",
+        planPage:"1",
         choose:1,
         scrolls:{},
         d:"",
@@ -560,7 +562,7 @@
       initPlanData(){
         let vms = this 
         let req = {
-                    "page_number": "2",
+                    "page_number": "1",
                     "borrow_id": "20180825020450010086",
                     "jyd_pubData": {
                         "user_id": 2,
@@ -572,7 +574,8 @@
                     }
 
         axios.post(axiosBaseUrl+"productMore/returnPlan",req).then(res=>{
-            vms.planList = res.data.record_list
+            //vms.planList = res.data.record_list
+            vms.planList = [0,1,2,3,4,5,6,7,8,9]
         }).catch(err=>{
             
         })
@@ -620,6 +623,47 @@
          });
          this.scrolls.on('beforeScrollStart', this.mainScrollDisable)
          this.scrolls.on('touchEnd', this.recordScrollUp)
+      },
+      initPlanScroll(){
+        this.scrollss = new window.BScroll(document.querySelector(".contentss"), {
+          probeType: 2,
+          click:true,
+          momentum:false,
+          pullUpLoad: true ,
+         });
+         this.scrollss.on('beforeScrollStart', this.mainScrollDisable)
+         this.scrollss.on('touchEnd', this.planScrollUp)
+      },
+      planScrollUp(){
+        this.mainScrollEnable()
+        if(this.scrollss.maxScrollY>pos.y+50){
+            this.planPage++
+            let req = {
+                    "page_number": this.planPage,
+                    "borrow_id": "20180825020450010086",
+                    "jyd_pubData": {
+                        "user_id": 2,
+                        "source_type": "0001",
+                        "system_id": "Android 7",
+                        "network_type": "wifi",
+                        "token_id": "123235h5e3"
+                    }
+                    }
+
+            axios.post(axiosBaseUrl+"productMore/returnPlan",req).then(res=>{
+                
+                //var list = res.data.record_list
+                var list = [0,1,2,3,4,5,6,7,8,9]
+                vms.planList = vms.planList.concat(list)
+                vms.$nextTick(() => {
+                    vms.scrollss.refresh();
+                });
+                
+                console.log(res)
+            }).catch(err=>{
+                
+            })
+        }
       },
       recordScrollUp(){
         this.mainScrollEnable()
