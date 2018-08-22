@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/axios.min.js"></script>
+  <link rel="stylesheet" href="../css/gold.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+      <div class="modal" v-if="modal" @click="modalClose">
+          <div class="modal-card">
+            <div class="modal-succed">兑换成功</div>
+            <div class="modal-desc">
+              <div>
+                <div class="modal-desc-item modal-desc-item-l">本次兑换嘉金币数额：</div>
+                <div class="modal-desc-item modal-desc-item-r">500枚</div>
+              </div>
+              <div>
+                <div class="modal-desc-item modal-desc-item-l" >已成功兑换现金：</div>
+                <div class="modal-desc-item modal-desc-item-r">20元</div>
+              </div>
+            </div>
+            <div class="modal-text">
+              <div>兑换金额将在T+1个工作日内</div>
+              <div>划拨至您的银行存管电子账户。</div>
+            </div>
+            <div class="modal-btn-block">
+              <button ontouchstart="" class="modal-btn" @click.stop="submitData" type="button">确定</button>
+            </div>
+          </div>
+        </div>
+    <div class="content">
+        
+        <header>
+          <img src="../image/me_1.png" alt="">
+        </header>
+        <div class="succeed">
+          <div>
+            <div>嘉金币余额</div>
+            <div>21350</div>
+          </div>
+          <div>
+            <div>已激活数量</div>
+            <div>21350</div>
+            <div><img src="../image/gold_03.png" alt=""></div>
+          </div>
+        </div>
+        <article>
+            <div class="context-safety">
+              <div class="context-title">
+                <p>嘉金币明细</p> 
+              </div>
+              <div class="context-line"></div>
+            </div>
+          <ul>
+            <li>
+              <div></div>
+              <div>签到</div>
+              <div class="remove">-3</div>
+              <div></div>
+            </li>
+            <li>
+                <div></div>
+                <div>签到</div>
+                <div class="add">+3</div>
+                <div></div>
+            </li>
+            <li>
+              <div></div>
+              <div>签到</div>
+              <div class="remove">-3</div>
+              <div></div>
+            </li>
+            <li>
+                <div></div>
+                <div>签到</div>
+                <div class="add">+3</div>
+                <div></div>
+            </li>
+            <li>
+                <div></div>
+                <div>签到</div>
+                <div class="remove">-3</div>
+                <div></div>
+              </li>
+              <li>
+                  <div></div>
+                  <div>签到</div>
+                  <div class="add">+3</div>
+                  <div></div>
+              </li>
+              <li>
+                  <div></div>
+                  <div>签到</div>
+                  <div class="remove">-3</div>
+                  <div></div>
+                </li>
+                <li>
+                    <div></div>
+                    <div>签到</div>
+                    <div class="add">+3</div>
+                    <div></div>
+                </li>
+                <li>
+                    <div></div>
+                    <div>签到</div>
+                    <div class="remove">-3</div>
+                    <div></div>
+                  </li>
+                <li>
+                    <div></div>
+                    <div>签到</div>
+                    <div class="add">+3</div>
+                    <div></div>
+                </li>
+          </ul>
+        </article>
+       
+        <footer>
+          
+          <div class="btn-block">
+              <button class="btn" @click="index()" ontouchstart="">
+                  兑换现金
+                </button>
+          </div>
+         <a href="javascript:void(0)">嘉金币规则</a>
+        </footer>
+    </div>
+  </div>
+  <script>
+     document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+    var vm = new Vue({
+      el:"#main",
+      data(){
+        return{
+          modal:false
+        }
+      },
+      methods:{
+        index(){
+         this.modal = true;
+        },
+        modalClose(){
+          this.modal = false
+        },
+        submitData(){
+          
+        }
+      },
+      mounted() {
+        
+      },
+    })
+  </script>
+</body>
+</html>

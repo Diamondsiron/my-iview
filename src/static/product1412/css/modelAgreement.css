@@ -56,3 +56,12 @@ td{
   border-bottom: 1px solid #989898;
   font-size: 0.36rem;
 }
+span{
+  min-width: 100px;
+  display: inline-block;
+  border-bottom: solid 1px #989898;
+  text-align: center;
+  line-height: 0.54rem;
+  height: 0.54rem;
+  /* vertical-align: text-bottom; */
+}
