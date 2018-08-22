@@ -8,23 +8,27 @@ html,body{
 
 article{
   width: 10.26rem;
-  margin: 0.51rem auto 0 auto;
+  margin: 0 auto 0 auto;
   overflow: hidden;
 }
 .title{
-  margin: 0.66rem 0 0 0;
+  margin: 0.57rem 0 0 0;
   font-size: 0.36rem;
   font-weight: bold;
   color: #656565;
-  line-height: 0.36rem;
+  line-height: 0.54rem;
  /*  height: 0.36rem; */
 }
 .desc{
   font-size: 0.36rem;
-  margin: 0.18rem 0 0 0;
+  line-height: 0.54rem;
+  margin: 0.09rem 0 0 0;
   color: #989898;
   text-align: justify;
     word-break: break-all;
+}
+.desc_right{
+  text-align: right
 }
 .main-title{
   margin: 0.9rem 0 0 0;
@@ -40,6 +44,7 @@ table{
   border-left: 1px solid #989898;
   border-top: 1px solid #989898;
   color: #656565;
+  text-align: center;
 }
 th{
   border-right: 1px solid #989898;
