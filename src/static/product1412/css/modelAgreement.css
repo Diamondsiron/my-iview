@@ -17,7 +17,7 @@ article{
   font-weight: bold;
   color: #656565;
   line-height: 0.36rem;
-  height: 0.36rem;
+ /*  height: 0.36rem; */
 }
 .desc{
   font-size: 0.36rem;
@@ -34,4 +34,20 @@ article{
   font-size: 0.42rem;
   font-weight: bold;
   text-align: center;
+}
+table{
+  width: 100%;
+  border-left: 1px solid #989898;
+  border-top: 1px solid #989898;
+  color: #656565;
+}
+th{
+  border-right: 1px solid #989898;
+  border-bottom: 1px solid #989898;
+  font-size: 0.36rem;
+}
+td{
+  border-right: 1px solid #989898;
+  border-bottom: 1px solid #989898;
+  font-size: 0.36rem;
 }

@@ -128,7 +128,7 @@
 					vms.recentList = res.data.sub_packs
 					//vms.recentList = [0,1,2,3,4,5,6,7,8,9]
 					vms.$nextTick(() => {
-						vms.initRecentScroll();
+						//vms.initRecentScroll();
 					});
 				}).catch(err=>{
 
@@ -141,7 +141,7 @@
 					"tel_phone": vms.RNmessage.tel_phone,
 					"jyd_pubData": {
 						"user_id": vms.RNmessage.jyd_pubData.user_id,
-						"source_type": vms.RNmessage.jyd_pubData.source_type,
+						"source_type": "0002",
 						"system_id": vms.RNmessage.jyd_pubData.system_id,
 						"network_type": vms.RNmessage.jyd_pubData.network_type,
 						"token_id": vms.RNmessage.jyd_pubData.token_id
@@ -161,7 +161,7 @@
 					momentum:false,
 					pullUpLoad: true ,
 				});
-				this.scroll.on('touchEnd', this.recentScrollUp)
+				//this.scroll.on('touchEnd', this.recentScrollUp)
 			},
 			initHistoryScroll(){
 				this.scrolls = new window.BScroll(document.querySelector(".contentss"), {
@@ -207,7 +207,7 @@
 								"tel_phone": vms.RNmessage.tel_phone,
 								"jyd_pubData": {
 									"user_id": vms.RNmessage.jyd_pubData.user_id,
-									"source_type": vms.RNmessage.jyd_pubData.source_type,
+									"source_type": "0002",
 									"system_id": vms.RNmessage.jyd_pubData.system_id,
 									"network_type": vms.RNmessage.jyd_pubData.network_type,
 									"token_id": vms.RNmessage.jyd_pubData.token_id

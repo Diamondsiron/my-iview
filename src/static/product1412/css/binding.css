@@ -388,12 +388,18 @@ font-size: 0.36rem;
 color: #989898;
 }
 #choose1 .context-desc{
-margin-top: 0.66rem;
+margin-top: 0.57rem;
 margin-left: 1.08rem;
 line-height: 0.18rem;
 }
+#choose1 .context-desc>p{
+  height: 0.54rem;
+  padding: 0px;
+  margin: 0px;
+  line-height: 0.54rem;
+}
 #choose1 .context-safety{
-margin-top: 0.75rem;
+margin-top: 0.66rem;
 margin-left: 0.54rem;
 position: relative;
 height: 0.72rem;
@@ -428,24 +434,37 @@ position: relative;
 height: 0.72rem;
 }
 #choose1 .context-serve-desc{
-margin-top: 0.66rem;
+margin-top: 0.57rem;
 margin-left: 1.08rem;
 margin-right: 1.08rem;
 
 }
+#choose1 .context-serve-desc>p{
+ /* height: 0.54rem;*/
+  padding: 0px;
+  margin: 0px;
+  line-height: 0.54rem;
+
+}
 #choose1 .context-advanced{
-margin-top: 0.84rem;
+margin-top: 0.75rem;
 margin-left: 0.54rem;
 position: relative;
 height: 0.72rem;
 }
 #choose1 .context-advanced-desc{
-margin-top: 0.66rem;
+margin-top: 0.57rem;
 margin-left: 1.08rem;
 margin-right: 1.08rem;
 }
+#choose1 .context-advanced-desc>p{
+  /*height: 0.54rem;*/
+  padding: 0px;
+  margin: 0px;
+  line-height: 0.54rem;
+}
 #choose1 .context-theory{
-margin-top: 0.84rem;
+margin-top: 0.75rem;
 margin-left: 0.54rem;
 position: relative;
 height: 0.72rem;
@@ -573,7 +592,7 @@ width: 2.85rem;
   font-size: 0.36rem;
   color: #656565;
   text-align: center;
-  margin-top: 0.9rem;
+  margin-top: 0.63rem;
   margin-bottom: 0.3rem;
   font-weight: 100;
   height: 0.36rem;
@@ -591,6 +610,7 @@ width: 11.34rem;
   -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 .foot-content-btn{
+  margin-top: 0.3rem;
   font-weight: 100;
 height: 1.5rem;
 width: 100%;
@@ -664,7 +684,7 @@ text-decoration:none;
   padding-left: 5px;
   padding-right: 5px;
   position: absolute;
-  bottom: 3.6rem;
+  bottom: 3rem;
   text-align: center;
   left: 50%;
   transform: translateX(-50%);

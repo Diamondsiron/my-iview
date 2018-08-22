@@ -352,14 +352,18 @@ position: absolute;
 left: 1.08rem;
 height: 0.36rem;
 top: 0px;
-line-height: 0px;
+line-height:0.36rem;
+padding: 0px;
+margin: 0px;
 }
 #choose1  ul li p:nth-child(2){
 position: absolute;
 right: 1.08rem;
 height: 0.36rem;
 top: 0px;
-line-height: 0px;
+line-height:0.36rem;
+padding: 0px;
+margin: 0px;
 }
 #choose1 .context-record{
   margin-top: 0.81rem;
