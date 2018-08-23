@@ -109,7 +109,7 @@ li>div:nth-child(2){
   flex: 1;
   color: #ff3a49;
 }
-.remobe{
+.remove{
   text-align: right;
   flex: 1;
   color: #3b92f0;
@@ -200,6 +200,7 @@ a{
   font-size: 0.36rem;
   color: #3b92f0;
   font-weight: 100;
+  display: block;
 }
 a:link {
   color:#3b92f0;
@@ -214,13 +215,13 @@ a:link {
   left: 0;
   bottom: 0;
    right: 0;
-  background: rgba(222,222,222,0.7);
+   background: rgba(106,105,105,.7)
 
 }
 .modal-card{
   width: 9.15rem;
   height: 7.14rem;
-  margin: 8rem auto 0 auto; 
+  margin: 5.7rem auto 0 auto; 
 
   background: #ffffff;
   border-radius: 0.23rem;
@@ -306,4 +307,7 @@ a:link {
     background: linear-gradient(to right,#ff6a55, #ee1e27);
     user-select: none;
     -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+button:active{
+  opacity: 0.7;
 }

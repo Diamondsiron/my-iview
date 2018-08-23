@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
+  <script src="../js/axios.config.js"></script>
+  
   <link rel="stylesheet" href="../css/gold.css">
   <title>Document</title>
 </head>
@@ -17,11 +19,11 @@
             <div class="modal-desc">
               <div>
                 <div class="modal-desc-item modal-desc-item-l">本次兑换嘉金币数额：</div>
-                <div class="modal-desc-item modal-desc-item-r">500枚</div>
+                <div class="modal-desc-item modal-desc-item-r">{{remain_points}}枚</div>
               </div>
               <div>
                 <div class="modal-desc-item modal-desc-item-l" >已成功兑换现金：</div>
-                <div class="modal-desc-item modal-desc-item-r">20元</div>
+                <div class="modal-desc-item modal-desc-item-r">{{money}}元</div>
               </div>
             </div>
             <div class="modal-text">
@@ -41,11 +43,11 @@
         <div class="succeed">
           <div>
             <div>嘉金币余额</div>
-            <div>21350</div>
+            <div>{{remain_points}}</div>
           </div>
           <div>
             <div>已激活数量</div>
-            <div>21350</div>
+            <div>{{activated_points}}</div>
             <div><img src="../image/gold_03.png" alt=""></div>
           </div>
         </div>
@@ -57,66 +59,13 @@
               <div class="context-line"></div>
             </div>
           <ul>
-            <li>
+            <li v-for="item in list">
               <div></div>
-              <div>签到</div>
-              <div class="remove">-3</div>
-              <div></div>
-            </li>
-            <li>
-                <div></div>
-                <div>签到</div>
-                <div class="add">+3</div>
-                <div></div>
-            </li>
-            <li>
-              <div></div>
-              <div>签到</div>
-              <div class="remove">-3</div>
+              <div>{{item.channel}}</div>
+              <div :class="{'add':item.income>0,'remove':item.income<0}">{{item.income}}</div>
               <div></div>
             </li>
-            <li>
-                <div></div>
-                <div>签到</div>
-                <div class="add">+3</div>
-                <div></div>
-            </li>
-            <li>
-                <div></div>
-                <div>签到</div>
-                <div class="remove">-3</div>
-                <div></div>
-              </li>
-              <li>
-                  <div></div>
-                  <div>签到</div>
-                  <div class="add">+3</div>
-                  <div></div>
-              </li>
-              <li>
-                  <div></div>
-                  <div>签到</div>
-                  <div class="remove">-3</div>
-                  <div></div>
-                </li>
-                <li>
-                    <div></div>
-                    <div>签到</div>
-                    <div class="add">+3</div>
-                    <div></div>
-                </li>
-                <li>
-                    <div></div>
-                    <div>签到</div>
-                    <div class="remove">-3</div>
-                    <div></div>
-                  </li>
-                <li>
-                    <div></div>
-                    <div>签到</div>
-                    <div class="add">+3</div>
-                    <div></div>
-                </li>
+            
           </ul>
         </article>
        
@@ -137,7 +86,24 @@
       el:"#main",
       data(){
         return{
-          modal:false
+          modal:false,
+          remain_points:"",
+          activated_points:"",
+          money:"",
+          page:"1",
+          list:[],
+          RNmessage :{
+                        tel_phone: "",
+                        page_number: "",
+                          jyd_pubData: {
+                                  user_id: "", 
+                                  source_type: "", 
+                                  system_id: "", 
+                                  network_type: "", 
+                                  token_id: ""
+                              }
+                    }
+
         }
       },
       methods:{
@@ -148,11 +114,111 @@
           this.modal = false
         },
         submitData(){
-          
+          let vms = this;
+          let req = {
+                     "tel_phone": vms.RNmessage.tel_phone,
+                    "jyd_pubData": {
+                            "user_id": vms.RNmessage.jyd_pubData.user_id, 
+                            "source_type": "0002", 
+                            "system_id": vms.RNmessage.jyd_pubData.system_id, 
+                            "network_type": vms.RNmessage.jyd_pubData.network_type, 
+                            "token_id": vms.RNmessage.jyd_pubData.token_id
+                        }
+                    }
+            axios.post(axiosBaseUrl+"integral/exchangeToCash",req).then(res=>{
+              vms.initList()
+              vms.modal = false
+            }).catch(err=>{
+
+            })
+            
+        },
+        initList(){
+          let vms = this
+
+          let req = {
+                    "tel_phone": vms.RNmessage.tel_phone,
+                    "page_number": "1",
+                    "jyd_pubData": {
+                            "user_id": vms.RNmessage.jyd_pubData.user_id, 
+                            "source_type": "0002", 
+                            "system_id": vms.RNmessage.jyd_pubData.system_id, 
+                            "network_type": vms.RNmessage.jyd_pubData.network_type, 
+                            "token_id": vms.RNmessage.jyd_pubData.token_id
+                        }
+                    }
+            axios.post(axiosBaseUrl+"integral",req).then(res=>{
+              vm.list = res.data.record_list
+              vms.remain_points = res.data.remain_points
+              vms.activated_points = res.data.activated_points
+              vms.money=(vms.remain_points/50).toFixed(2);
+            }).catch(err=>{
+
+            })
+        },
+        initData(){
+          let vms = this
+          let req = {
+                    "tel_phone": vms.RNmessage.tel_phone,
+                    "page_number": "1",
+                    "jyd_pubData": {
+                            "user_id": vms.RNmessage.jyd_pubData.user_id, 
+                            "source_type": vms.RNmessage.jyd_pubData.source_type, 
+                            "system_id": vms.RNmessage.jyd_pubData.system_id, 
+                            "network_type": vms.RNmessage.jyd_pubData.network_type, 
+                            "token_id": vms.RNmessage.jyd_pubData.token_id
+                        }
+                    }
+            axios.post(axiosBaseUrl+"integral",req).then(res=>{
+              vm.list = res.data.record_list
+              vms.remain_points = res.data.remain_points
+              vms.activated_points = res.data.activated_points
+              vms.money=(vms.remain_points/50).toFixed(2);
+            }).catch(err=>{
+
+            })
+        },
+        init(){
+          let vms = this
+          //本地测试用这段代码
+          var str = {
+                    "tel_phone": "15822753827",
+                    "page_number": "1",
+                    "jyd_pubData": {
+                            "user_id": "4", 
+                            "source_type": "0001", 
+                            "system_id": "Android 7", 
+                            "network_type": "wifi", 
+                            "token_id": "89a5ad1adba2f96b"
+                        }
+                    }
+
+
+          vms.RNmessage = JSON.parse(JSON.stringify(str))
+          vms.initData()
+            //分割线
+          window.onload = function () {
+              document.addEventListener('message', function (e) {
+                  
+              })
+              
+          }
+          var refreshIntervalId = setInterval(function(){
+              if (window.originalPostMessage) {
+                
+                  stop();
+              } 
+          }, 500);
+
+          function stop(){
+              let message = {key:'1',val:{name:'首次打开'}}
+              window.postMessage(JSON.stringify(message));
+              clearInterval(refreshIntervalId);
+          }
         }
       },
       mounted() {
-        
+        this.init()
       },
     })
   </script>
