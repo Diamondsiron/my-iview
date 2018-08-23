@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/axios.min.js"></script>
+ <!--  <script src="../js/form.config.js"></script> -->
+  <link rel="stylesheet" href="../css/examination.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <div>
+        <div class="toast" v-if="toast">
+            答题后才能提交
+          </div>
+          <form v-bind:action="1" id="form"  method="POST" style="display: block" >
+            <input type="text" name="tel_phone"  v-model="RNmessage.tel_phone">
+            <input type="text" name="count" v-model="count">
+            <input type="text" name="options" v-model="options">
+            <input type="text" name="jyd_pubData.user_id"  v-model="RNmessage.jyd_pubData.user_id">
+            <input type="text" name="jyd_pubData.source_type"  value="0001">
+            <input type="text" name="jyd_pubData.system_id"  v-model="RNmessage.jyd_pubData.system_id">
+            <input type="text" name="jyd_pubData.network_type"  v-model="RNmessage.jyd_pubData.network_type">
+            <input type="text" name="jyd_pubData.token_id"  v-model="RNmessage.jyd_pubData.token_id">
+    
+          </form>
+        <article>
+          <div class="main-title">风险承受力测评问卷</div>
+          <p class="desc">本问卷旨在帮助您准确的对自我风险承受能力、出借理念和目标等进行专业的自我认知测试，借此协助您选择合适的服务类别，以符合您的风险承受能力。</p>
+          <p class="desc">特别提醒：本问卷的评估结果并不能取代您自己的出借判断，也不会降低服务固有的各类风险（包括不限于市场风险、信用风险、流动性风险等）。</p>
+          <p class="desc">建议：当您的各项状况发生重大变化时，请您及时进行重新测评，以确保您的出借决定与您可承受的风险程度等实际情况一致。</p>
+          <p class="title m72">1. 您的年龄是多少？（分值a2，b4，c3，d1）</p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'2',options:'A'}" v-model="list[0]" id="q1A"><label for="q1A">18-30岁</label> </p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'4',options:'B'}" v-model="list[0]" id="q1B"><label for="q1B">31-45岁 </label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'3',options:'C'}" v-model="list[0]" id="q1C"><label for="q1C">46-60岁 </label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'1',options:'D'}" v-model="list[0]" id="q1D"><label for="q1D">60岁以上 </label></p>
+          <p class="title">2. 您的家庭全年收入为？（分值a5，b4，c3，d2，e1）</p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'5',options:'A'}" v-model="list[1]" id="q2A"> <label for="q2A">300万元以上</label> </p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'4',options:'B'}" v-model="list[1]" id="q2B"><label for="q2B">150-300万元</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'3',options:'C'}" v-model="list[1]" id="q2C"><label for="q2C">80-150万元</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'2',options:'D'}" v-model="list[1]" id="q2D"><label for="q2D">30-80万元 </label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'1',options:'E'}" v-model="list[1]" id="q2E"><label for="q2E">30万元以下 </label></p>
+          <p class="title">3. 在您每年的家庭收入中，可用做投资行为(房产/储蓄除外)的资金比例为？（分值a1，b2，c3，d4，e5）</p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'1',options:'A'}" v-model="list[2]" id="q3A"> <label for="q3A">5%以内</label> </p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'2',options:'B'}" v-model="list[2]" id="q3B"><label for="q3B">5%-15%</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'3',options:'C'}" v-model="list[2]" id="q3C"><label for="q3C">5%-15% </label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'4',options:'D'}" v-model="list[2]" id="q3D"><label for="q3D">5%-15% </label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'5',options:'E'}" v-model="list[2]" id="q3E"><label for="q3E">5%-15%</label></p>
+          <p class="title">4. 您对金融知识的了解程度为？（分值a1，b2，c3，d4，e5）</p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'1',options:'A'}" v-model="list[3]" id="q4A"> <label for="q4A">几乎都不懂，一窍不通</label> </p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'2',options:'B'}" v-model="list[3]" id="q4B"><label for="q4B">仅了解银行储蓄类业务的相关知识 </label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'3',options:'C'}" v-model="list[3]" id="q4C"><label for="q4C">有一定了解，进行过保险等低风险金融产品的投资 </label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'4',options:'D'}" v-model="list[3]" id="q4D"><label for="q4D">金融、经济、财经等专业毕业，或有金融相关工作经验，或自己有理财顾问 </label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'5',options:'E'}" v-model="list[3]" id="q4E"><label for="q4E">取得了任意一项及以上的专业的金融证照 </label></p>
+          <p class="title">5. 您的投资经验可以概括为？（分值a1，b2，c3，d4，e5）</p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'1',options:'A'}" v-model="list[4]" id="q5A"><label for="q5A">除银行活期和定期存款外，基本无其他投资经验</label> </p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'2',options:'B'}" v-model="list[4]" id="q5B"><label for="q5B">仅投资过银行定期/宝宝类/保险等低风险且收益稳定的金融产品</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'3',options:'C'}" v-model="list[4]" id="q5C"><label for="q5C">投资过股票、波动和风险较大的基金类产品 </label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'4',options:'D'}" v-model="list[4]" id="q5D"><label for="q5D">从稳定低风险到高风险的各类金融产品基本上都有了解并投资过</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'5',options:'E'}" v-model="list[4]" id="q5E"><label for="q5E">非常了解各类金融产品的情况并有丰富的投资经验</label></p>
+          <p class="title">6. 您出借的目的是什么？（分值a5，b4，c3，d2，e1）</p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'5',options:'A'}" v-model="list[5]" id="q6A"><label for="q6A">寻求高回报，为此也能承担较大本金损失</label> </p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'4',options:'B'}" v-model="list[5]" id="q6B"><label for="q6B">寻求资金的较高收益和成长性，愿意为此承担有限本金损失</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'3',options:'C'}" v-model="list[5]" id="q6C"><label for="q6C">获得资产的保值增值，不愿意本金损失，但愿意承担一定幅度的收益波动</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'2',options:'D'}" v-model="list[5]" id="q6D"><label for="q6D">获得资产的保值增值，不希望本金损失，希望获得稳定回报，抵御通货膨胀 </label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'1',options:'E'}" v-model="list[5]" id="q6E"><label for="q6E">只要保本保息，即使收益低于通货膨胀率也可以 </label></p>
+          <p class="title">7. 当您进行投资时，您对风险的承受能力是？（分值a5，b4，c3，d2，e1）</p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'5',options:'A'}" v-model="list[6]" id="q7A"><label for="q7A">我能承受20％以上亏损</label> </p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'4',options:'B'}" v-model="list[6]" id="q7B"><label for="q7B">我能承受11-20％的亏损</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'3',options:'C'}" v-model="list[6]" id="q7C"><label for="q7C">我能承受5-10%的亏损</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'2',options:'D'}" v-model="list[6]" id="q7D"><label for="q7D">我能承受5%以下的亏损</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'1',options:'E'}" v-model="list[6]" id="q7E"><label for="q7E">我几乎不能承受任何亏损</label></p>
+          <p class="title">8. 您用于投资的大部分资金不会用作其它用途的时间段是？（分值a5，b4，c3，d2，e1）	</p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'5',options:'A'}" v-model="list[7]" id="q8A"><label for="q8A"> 3年及以上 </label> </p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'4',options:'B'}" v-model="list[7]" id="q8B"><label for="q8B">2-3年</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'3',options:'C'}" v-model="list[7]" id="q8C"><label for="q8C">1-2年</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'2',options:'D'}" v-model="list[7]" id="q8D"><label for="q8D">6-12个月</label></p>
+          <p class="desc"> <input type="radio"  v-bind:value="{score:'1',options:'E'}" v-model="list[7]" id="q8E"><label for="q8E">6个月以下 </label></p>
+        </article>
+       
+        <div class="foot-content">
+            <button ontouchstart="" class="foot-content-btn"  @click="submit()">提交答案</button>
+        </div>
+    </div>
+  </div>
+  <script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+    var vm = new Vue({
+      el:"#main",
+      data(){
+        return{
+          list:[
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+              ],
+          count:0,
+          options:"",
+          RNmessage:{
+                  tel_phone:"",
+                  jyd_pubData:{
+                        user_id:"",
+                        source_type:"",
+                        system_id:"",
+                        network_type:"",
+                        token_id:""
+                  },
+                },
+          toast:false
+        }
+      },
+      methods:{
+        submit(){
+          let vms = this
+          if(this.formData()){
+            
+            for(let i=0; i<this.list.length; i++){
+              a = this.list[i]
+              this.count = this.count + Number(a.score)
+              this.options = this.options + "|" + a.options 
+            }
+            this.options=this.options.substr(1)
+            this.$nextTick(() => {
+							//document.getElementById("form").submit();
+						});
+          }else{
+           
+            this.toast = true
+            setTimeout(function(){
+              vms.toast = false
+            },3000)
+          }
+          
+        },
+        formData(){
+          for(let i=0; i<this.list.length; i++){
+            if(this.list[i]==""){
+              return false
+            }
+          }
+          return true
+        },
+        init(){
+          let vms = this
+          //本地测试用这段代码
+          var str = {
+            "tel_phone":"",
+            "jyd_pubData": {
+              "user_id": "",
+              "source_type": "",
+              "system_id": "",
+              "network_type": "",
+              "token_id": ""
+            }
+          }
+
+				  vms.RNmessage = JSON.parse(JSON.stringify(str))
+				
+          window.onload = function () {
+              document.addEventListener('message', function (e) {
+                
+              })
+              
+          }
+          var refreshIntervalId = setInterval(function(){
+              if (window.originalPostMessage) {
+                
+                  stop();
+              } 
+          }, 500);
+
+          function stop(){
+              let message = {key:'1',val:{name:'首次打开'}}
+              window.postMessage(JSON.stringify(message));
+              clearInterval(refreshIntervalId);
+          }
+        }
+      },
+      mounted() {
+        this.init();
+      },
+    })
+  </script>
+</body>
+</html>

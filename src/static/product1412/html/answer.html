@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/axios.min.js"></script>
+  <link rel="stylesheet" href="../css/answer.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <article>
+      <p class="title">1.	您属于保守型出借者（12分及以下）</p>
+      <p class="desc"> 您对风险损失比较敏感，追求本金安全，兼顾流动性。</p>
+      <p class="desc"> 资金出借配置建议：</p>
+      <p class="desc"> 资金可适当配置在嘉e优选服务的短期服务（如嘉季丰服务、嘉季盈服务）中，在保持流动的基础上，获得期望收益。可匹配的借款标的等级为AAA级、AA级、A级。</p>
+      <p class="desc"> 建议您的出借限额占个人可支配财产额度的百分比，不超过20%。</p>
+      <p class="desc"> 您在完成第一次风险测评后，如自身财产状况、资信状况及风险偏好等发生变化，请重新进行风险测评，平台将根据重新测评结果对出借人进行分级管理。</p>
+      <p class="title">2.您属于稳健型出借者（13-26分）</p>
+      <p class="desc">您对风险损失较为谨慎，在考虑资金安全的同时，对收益和流动性有一定要求。</p>
+      <p class="desc"> 资金出借配置建议：</p>
+      <p class="desc">  资金可适当配置在嘉e优选服务的短期或中长期服务（如嘉季丰服务、嘉季盈服务、嘉聚宝服务）中，兼顾期望收益和流动性。可匹配的借款标的等级为AAA级、AA级、A级、极少量的B级及C级。</p>
+      <p class="desc"> 建议您的出借限额占个人可支配财产额度的百分比，不超过30%。</p>
+      <p class="desc"> 您在完成第一次风险测评后，如自身财产状况、资信状况及风险偏好等发生变化，请重新进行风险测评，平台将根据重新测评结果对出借人进行分级管理。</p>
+      <p class="title">3.您属于进取型出借者（26分以上）</p>
+      <p class="desc"> 您的风险承受能力较高，愿意承担一定风险来获得较高收益，追求财富快速增长。</p>
+      <p class="desc"> 资金出借配置建议：</p>
+      <p class="desc">资金可按照您的出借意愿自主配置在嘉e优选服务中，兼顾期望收益和适当流动性。可匹配的借款标的等级为AAA级、AA级、A级、较少量的B级及C级。</p>
+      <p class="desc"> 建议您的出借限额占个人可支配财产额度的百分比，不超过50%。</p>
+      <p class="desc"> 您在完成第一次风险测评后，如自身财产状况、资信状况及风险偏好等发生变化，请重新进行风险测评，平台将根据重新测评结果对出借人进行分级管理。</p>
+    </article>
+    <div class="foot-content">
+        <button ontouchstart="" class="foot-content-btn"  @click="submit()">重新测试</button>
+    </div>
+  </div>
+  <script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+    var vm = new Vue({
+      el:"#main",
+      data(){
+        return{
+          
+        }
+      },
+      methods:{
+        submit(){
+
+        },
+        init(){
+          window.onload = function () {
+              document.addEventListener('message', function (e) {
+                
+              })
+              
+          }
+          var refreshIntervalId = setInterval(function(){
+              if (window.originalPostMessage) {
+                
+                  stop();
+              } 
+          }, 500);
+
+          function stop(){
+              let message = {key:'1',val:{name:'首次打开'}}
+              window.postMessage(JSON.stringify(message));
+              clearInterval(refreshIntervalId);
+          }
+        }
+      },
+      mounted() {
+        this.init();
+      },
+    })
+  </script>
+</body>
+</html>
