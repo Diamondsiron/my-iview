@@ -32,7 +32,9 @@ article{
   margin: 0 5px 0 0;
 }
 .item-r{
-  flex:1
+  display: inline-block;
+    width: 90%;
+    vertical-align: text-top;
 }
 .desc{
   font-size: 0.36rem;
