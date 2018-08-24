@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/axios.min.js"></script>
+  <link rel="stylesheet" href="../css/transferAccounts.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <div>
+      <img src="" alt="">
+    </div>
+    <div>
+      您可以使用已绑定的银行卡通过柜台、网银、手机银行账户向嘉e贷江西银行资金存管专户进行转账，入账后由江西银行自动划转至您的存管账户内。
+    </div>
+    <div>
+      <div>所需填写信息如下</div>
+      <ul>
+        <li>
+          <div>收款账户名称：</div>
+          <div>天津嘉业投资管理有限公司</div>
+        </li>
+        <li>
+          <div>收款账号：</div>
+          <div>79193336800313</div>
+          <div><button></button></div>
+        </li>
+        <li>
+          <div>开户行：</div>
+          <div>江西银行股份有限公司新华支行</div>
+        </li>
+        <li>
+          <div>附言</div>
+          <div>1</div>
+        </li>
+      </ul>
+      <div>(大额充值需填写江西银行行号：313421081245)</div>
+      <div>*如开户行搜索不到新华支行可以搜索铁路支行</div>
+      <div>铁路支行联行号为：313421081204</div>
+    </div>
+    <div>
+      温馨提示
+    </div>
+    <div>
+      <p>1、根据银行不同，网上银行或手机银行显示的开户行不同（例：建设银行在选择开户行时需要选择江西银行（城市商业银行））；</p>
+      <p>2、使用银行转账方式充值时，到账时间以各银行为准；</p>
+      <p>3、成功完成转账充值后，资金可在嘉e贷的可用金额中实时查看；</p>
+      <p>4、请您务必在转账充值钱，确保已在嘉e贷平台绑定了一张您本人的同名银行卡，并务必使用该张绑定的银行卡，向以上账户进行转账充值，否则充值资金将会被原路退回；</p>
+      <p>5、如您仍充值至您的江西银行个人资金存管账户，资金将在2个工作日内被退回；</p>
+      <p>6、由于银行会在23：00到次日凌晨3：00进行系统数据处理，请尽量避免在此时间段充值；</p>
+      <p>7、如充值过程中出现异常，请联系嘉e贷客服400-8780-777或直接与江西银行客服联系400-78-96266</p>
+      
+    </div>
+  </div>
+  <script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+    var vm = new Vue({
+      el:"#main",
+      data(){
+        return{
+          list:[],
+          modal:false,
+          currentUrl:""
+        }
+      },
+      methods:{
+        modalShow(url){
+          this.currentUrl = url
+          this.modal = !this.modal
+        },
+        modalClose(){
+          this.modal = !this.modal
+        },
+        init(){
+          window.onload = function () {
+              document.addEventListener('message', function (e) {
+                
+              })
+              
+          }
+          var refreshIntervalId = setInterval(function(){
+              if (window.originalPostMessage) {
+                
+                  stop();
+              } 
+          }, 500);
+
+          function stop(){
+              let message = {key:'1',val:{name:'首次打开'}}
+              window.postMessage(JSON.stringify(message));
+              clearInterval(refreshIntervalId);
+          }
+        }
+      },
+      mounted() {
+        this.init();
+      },
+    })
+  </script>
+</body>
+</html>
