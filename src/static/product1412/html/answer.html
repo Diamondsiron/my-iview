@@ -6,11 +6,21 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
+  <script src="../js/form.config.js"></script>
   <link rel="stylesheet" href="../css/answer.css">
   <title>Document</title>
 </head>
 <body>
   <div id="main">
+      <form v-bind:action="1" id="form"  method="POST" style="display: block" >
+          <input type="text" name="tel_phone"  v-model="RNmessage.tel_phone">
+          <input type="text" name="jyd_pubData.user_id"  v-model="RNmessage.jyd_pubData.user_id">
+          <input type="text" name="jyd_pubData.source_type"  value="0001">
+          <input type="text" name="jyd_pubData.system_id"  v-model="RNmessage.jyd_pubData.system_id">
+          <input type="text" name="jyd_pubData.network_type"  v-model="RNmessage.jyd_pubData.network_type">
+          <input type="text" name="jyd_pubData.token_id"  v-model="RNmessage.jyd_pubData.token_id">
+  
+        </form>
     <article>
       <p class="title">1.	您属于保守型出借者（12分及以下）</p>
       <p class="desc"> 您对风险损失比较敏感，追求本金安全，兼顾流动性。</p>
@@ -41,7 +51,16 @@
       el:"#main",
       data(){
         return{
-          
+          RNmessage:{
+                  tel_phone:"",
+                  jyd_pubData:{
+                        user_id:"",
+                        source_type:"",
+                        system_id:"",
+                        network_type:"",
+                        token_id:""
+                  },
+                },
         }
       },
       methods:{
@@ -49,6 +68,20 @@
 
         },
         init(){
+          let vms = this
+          //本地测试用这段代码
+          var str = {
+            "tel_phone":"",
+            "jyd_pubData": {
+              "user_id": "",
+              "source_type": "",
+              "system_id": "",
+              "network_type": "",
+              "token_id": ""
+            }
+          }
+
+				  vms.RNmessage = JSON.parse(JSON.stringify(str))
           window.onload = function () {
               document.addEventListener('message', function (e) {
                 
