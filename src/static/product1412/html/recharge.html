@@ -15,16 +15,22 @@
         <table class="context-table">
           <tbody>
             <tr>
-              <th>银行列表</th> 
+              <th></th> 
+              <th>银行</th> 
+              <th>卡类型</th> 
               <th>单笔限额</th> 
               <th>单日限额</th>
               <th>单月限额</th>
+              <th></th> 
             </tr> 
             <tr v-for="item in list">
+              <td></td>
+              <td>{{item.bank_name}}</td>
               <td>{{item.bank_name}}</td>
               <td>{{item.dr_limit}}</td>
               <td>{{item.db_limit}}</td>
               <td>{{item.dy_limit}}</td>
+              <td></td>
             </tr>
           </tbody>
         </table>

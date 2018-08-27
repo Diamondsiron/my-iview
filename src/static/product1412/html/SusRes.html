@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/axios.min.js"></script>
+  <link rel="stylesheet" href="../css/SusRes.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main">
+    <article>
+       <div class="card1">
+        <div class="card-title">数据总揽</div>
+        <div class="card-line"></div>
+        <div class="card-content">
+          <div class="card-content-block">
+            <div class="card-content-block-warpper-img"><img src="../image/fx_64.png" alt=""></div>
+            <div class="card-content-block-title-main">累计借贷金额(元)</div>
+            <div class="card-content-block-title-sub">2,959,526,591</div>
+          </div>
+          <div class="card-content-block ml33">
+            <div class="card-content-block-warpper-img"><img src="../image/fx_63.png" alt=""></div>
+            <div class="card-content-block-title-main">累计借款笔数(笔)</div>
+            <div class="card-content-block-title-sub">33,049</div>
+          </div>
+          <div class="card-content-block">
+            <div class="card-content-block-warpper-img"><img src="../image/fx_65.png" alt=""></div>
+            <div class="card-content-block-title-main">借贷余额(元)</div>
+            <div class="card-content-block-title-sub">424,958,665</div>
+          </div>
+          <div class="card-content-block ml33">
+            <div class="card-content-block-warpper-img"><img src="../image/fx_66.png" alt=""></div>
+            <div class="card-content-block-title-main">累计余额笔数(笔)</div>
+            <div class="card-content-block-title-sub">9,439</div>
+          </div>
+          <div class="card-content-block">
+            <div class="card-content-block-warpper-img"><img src="../image/fx_67.png" alt=""></div>
+            <div class="card-content-block-title-main">关联关系借款余额(元)</div>
+            <div class="card-content-block-title-sub">0</div>
+          </div>
+          <div class="card-content-block ml33">
+            <div class="card-content-block-warpper-img"><img src="../image/fx_68.png" alt=""></div>
+            <div class="card-content-block-title-main">关联关系借款笔数(笔)</div>
+            <div class="card-content-block-title-sub">0</div>
+          </div>
+        </div>
+       </div>
+       <div class="card2">
+          <div class="card-title">借款概况</div>
+          <div class="card-line"></div>
+          <div class="card-content2">
+              <div class="card-content-block2">
+                  <div class="card-content-block-warpper-img2"><img src="../image/fx_69.png" alt=""></div>
+                  <div class="card-content-block-title-main2">人均累计借款金额</div>
+                  <div class="card-content-block-title-sub2">125,091元</div>
+                </div>
+                <div class="card-content-block2 ml18">
+                  <div class="card-content-block-warpper-img2"><img src="../image/fx_70.png" alt=""></div>
+                  <div class="card-content-block-title-main2">人均累计出借金额</div>
+                  <div class="card-content-block-title-sub2">297,712元</div>
+                </div>
+          </div>
+       </div>
+       <div class="card3">
+          <div class="card-title">借款详情</div>
+          <div class="card-line"></div>
+          <div class="card-content3">
+            <div class="card-content-block3">
+              <div class="card-content-block-title-main3">累计出借人数量</div>
+              <div class="card-content-block-title-sub3">2,959,526,591</div>
+            </div>
+            <div class="card-content-block3 ml222">
+              <div class="card-content-block-title-main3">当前出借人数量</div>
+              <div class="card-content-block-title-sub3">33,049</div>
+            </div>
+            <div class="card-content-block3">
+              <div class="card-content-block-title-main3">累计借款人数量</div>
+              <div class="card-content-block-title-sub3">424,958,665</div>
+            </div>
+            <div class="card-content-block3 ml222">
+              <div class="card-content-block-title-main3">当前借款人数量</div>
+              <div class="card-content-block-title-sub3">9,439</div>
+            </div>
+          </div>
+       </div>
+       <div class="card4">
+          <div class="card-content4">
+              <div class="card-content-block4">
+                <div class="card-content-block-title-main4">0.54%</div>
+                <div class="card-content-block-title-sub4">前十大借款人待还金额占比</div>
+              </div>
+              <div class="card-content-block4 ml60">
+                <div class="card-content-block-title-main4">0.06%</div>
+                <div class="card-content-block-title-sub4">最大单一借款人待还金额占比</div>
+              </div>
+              <div class="card-content-block4">
+                <div class="card-content-block-title-main4">0.10%</div>
+                <div class="card-content-block-title-sub4">最大单户出借余额占比</div>
+              </div>
+              <div class="card-content-block4 ml60">
+                <div class="card-content-block-title-main4">46,424,115元</div>
+                <div class="card-content-block-title-sub4">余额利息</div>
+              </div>
+            </div> 
+       </div>
+       <div>
+         预期情况
+       </div>
+       <ul>
+         <li>
+           <p>逾期金额</p>
+           <p>33，188，150元</p>
+         </li>
+         <li>
+          <p>逾期笔数</p>
+          <p>1413笔</p>
+         </li>
+         <li>
+          <p>预期90天(不含)以上金额</p>
+          <p>31，280，908元</p>
+         </li>
+         <li>
+          <p>预期90天(不含)以上笔数</p>
+          <p>1，078笔</p>
+         </li>
+         <li>
+          <p>项目预期率</p>
+          <p>14.97%</p>
+         </li>
+         <li>
+          <p>金额预期率</p>
+          <p>7.04%</p>
+         </li>
+       </ul>
+       <div>项目分级逾期率</div>
+       <ul>
+         <li>
+           <p>90天</p>
+           <p>3.55%</p>
+         </li>
+         <li>
+            <p>91-180天</p>
+            <p>1.78%</p>
+          </li>
+          <li>
+            <p>180天以上</p>
+            <p>9.64%</p>
+          </li>
+       </ul>
+       <div>金额分级逾期率</div>
+       <ul>
+         <li>
+           <p>90天</p>
+           <p>0.42%</p>
+         </li>
+         <li>
+            <p>91-180天</p>
+            <p>0.62%</p>
+          </li>
+          <li>
+            <p>180天以上</p>
+            <p>6.00%</p>
+          </li>
+       </ul>
+       <div>代偿情况</div>
+       <ul>
+          <li>
+            <p>累计代偿金额</p>
+            <p>0元</p>
+          </li>
+          <li>
+             <p>累计代偿笔数</p>
+             <p>0笔</p>
+           </li>
+       </ul>
+    </article>
+  </div>
+  <script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 1242*100 + 'px';
+    var vm = new Vue({
+      el:"#main",
+      data(){
+        return{
+          list:[],
+          
+        }
+      },
+      methods:{
+      
+        init(){
+          
+        }
+      },
+      mounted() {
+        this.init();
+      },
+    })
+  </script>
+</body>
+</html>
