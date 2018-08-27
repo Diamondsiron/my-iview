@@ -14,7 +14,7 @@ html,body{
 }
 .desc{
   width: 10.26rem;
-  margin: 0.54rem auto 0 auto;
+  margin: 0.54rem auto 0.69rem auto;
   font-size:0.36rem;
   line-height: 0.54rem;
   color: #989898
@@ -118,7 +118,7 @@ html,body{
 .context-safety {
   
   margin-top: 1.11rem;
-  margin-left: 1.08rem;
+  margin-left: 0.99rem;
  height: 0.72rem;
   font-size: 0px;
   position: relative;

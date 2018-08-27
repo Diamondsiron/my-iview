@@ -46,8 +46,12 @@ header{
 }
 .content{
   overflow: hidden;
+  margin-bottom: 0.66rem
 }
-#choose1 .context-title{
+.h66{
+  height: 0.66rem;
+}
+.context-title{
   display: inline-block;
   width: 2.48rem;
   height: 0.72rem;
@@ -58,7 +62,7 @@ header{
   font-size: 0.42rem;
   position: absolute;
 }
-#choose1 .context-line{
+.context-line{
   position: absolute;
   display: inline-block;
   height: 1px;
@@ -70,19 +74,19 @@ header{
 .context-title p{
     margin-top: 0.1rem;
 }
-#choose1 .context-message{
+.context-message{
   margin-top: 0.84rem;
   margin-left: 0.55rem;
   position: relative;
   height: 0.72rem;
 }
-#choose1 .context-message-desc{
+.context-message-desc{
   margin-top: 0.84rem;
   
   position: relative;
   
 }
-#choose1 .context-message-desc-title{
+.context-message-desc-title{
   
   font-size: 0.42rem;
   color: #656565;
@@ -91,7 +95,7 @@ header{
   position: relative;
   background-color: #fff;
 }
-#choose1 .context-message-desc-title-l{
+.context-message-desc-title-l{
   
   font-size: 0.42rem;
   color: #656565;
@@ -101,7 +105,7 @@ header{
   left: 0.96rem;
   position: absolute;
 }
-#choose1 .context-message-desc-title-r{
+.context-message-desc-title-r{
   top: 0.4rem;
   right:0.54rem ;
   height: 0.54rem;
@@ -115,21 +119,23 @@ header{
 .deg180{
   transform: rotate(180deg);
 }
-#choose1 .context-message-desc-context{
+.context-message-desc-context{
   width: 10.26rem;
   margin: 0 auto 0 auto;
 /*   padding-top: 0.66rem; */
   font-size: 0.36rem;
   color: #989898;
   overflow: hidden;
-}
-#choose1 .context-message-desc-title_bottom{
-  border-top: solid 1px #f2f2f2;
-}
-#choose1 .context-message-desc-context p{
-  margin: 0;
-}
-#desc1{
   height: 0px;
   transition: height 0.4s ease-in-out;
 }
+.context-message-desc-title_bottom{
+  border-top: solid 1px #f2f2f2;
+}
+.context-message-desc-context p{
+  margin: 0;
+}
+/* #desc1{
+  height: 0px;
+  transition: height 0.4s ease-in-out;
+} */
