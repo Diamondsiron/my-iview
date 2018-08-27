@@ -6,10 +6,36 @@ html,body{
   background-color: #f0f0f0;
 }
 ul{
+  margin: 0px auto 0 auto;
+  padding: 0px;
+  width: 10.26rem;
+}
+.ul-title{
+  margin: 0.60rem 0 0.09rem 1.08rem;
+  font-size: 0.36rem;
+  height: 0.36rem;
+  line-height: 0.36rem;
+  color: #656565;
+}
+li{
+  margin: 0px;
+  padding: 0px;
+  height: 0.54rem;
+  line-height: 0.54rem;
+  font-size: 0.36rem;
+  position: relative;
+  color: #989898;
+  list-style: none;
+}
+li>p:nth-child(1){
+  position: absolute;
+  left: 0px;
   margin: 0px;
   padding: 0px;
 }
-li{
+li>p:nth-child(2){
+  position: absolute;
+  right: 0px;
   margin: 0px;
   padding: 0px;
 }
@@ -199,4 +225,46 @@ li{
 }
 .ml60{
   margin-left:0.6rem;
+}
+.context-safety {
+  
+  margin-top: 0.63rem;
+  margin-left: 0.54rem;
+ height: 0.72rem;
+  font-size: 0px;
+  position: relative;
+}
+.context-title {
+  display: inline-block;
+  width: 2.48rem;
+  height: 0.72rem;
+  color: #f2f2f2;
+  border-radius: 10px;
+  background-color: #c7b299;
+  text-align: center;
+}
+.context-title p {
+  margin-top: 0.1rem;
+  font-size: 0.36rem;
+}
+.context-line {
+  display: inline-block;
+  height: 1px;
+  border-bottom: solid 1px #c7b299;
+  width: 8.76rem;
+  position: absolute;
+  top: 0.36rem;
+  left: 2.58rem;
+}
+.mt60{
+  margin-top: 0.6rem
+}
+.mb72{
+  margin-bottom: 0.72rem
+} 
+.mt54{
+  margin-top: 0.54rem
+}
+.mb99{
+  margin-bottom: 0.99rem
 }
