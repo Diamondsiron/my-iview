@@ -112,7 +112,7 @@
           </div>
           <div class="context-line"></div>
         </div>
-        <ul class="mt60">
+        <ul class="mt57">
          <li>
            <p>逾期金额</p>
            <p>33,188,150元</p>
@@ -199,7 +199,24 @@
       methods:{
       
         init(){
-          
+          window.onload = function () {
+              document.addEventListener('message', function (e) {
+                
+              })
+              
+          }
+          var refreshIntervalId = setInterval(function(){
+              if (window.originalPostMessage) {
+                
+                  stop();
+              } 
+          }, 500);
+
+          function stop(){
+              let message = {key:'1',val:{name:'首次打开'}}
+              window.postMessage(JSON.stringify(message));
+              clearInterval(refreshIntervalId);
+          }
         }
       },
       mounted() {
