@@ -6,7 +6,7 @@ html,body{
   background-color: #f0f0f0;
 }
 header{
-  height: 5rem;
+  /*height: 5rem;*/
   width: 100%;
 }
 header>img{

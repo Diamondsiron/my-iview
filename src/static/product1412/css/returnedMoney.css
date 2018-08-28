@@ -1,97 +1,97 @@
 html,body{
-  padding: 0px;
-  margin: 0px;
-  width: 100%;
+ padding: 0px;
+ margin: 0px;
+ width: 100%;
  /*  height: 100%; */
-  background-color: #f0f0f0;
+ background-color: #f0f0f0;
 }
 article{
-  overflow: hidden;
-  padding-top: 0.3rem
+ overflow: hidden;
+ padding-top: 0.3rem
 }
 .content{
-  overflow: hidden;
-  height: 100%;
+ overflow: hidden;
+ height: 100%;
 }
- .card{
-  margin-top: 0.18rem;
-  width: 12.42rem;
-  height: 4.23rem;
-  background: url(../image/cp_12.png) no-repeat;
-  background-size: contain;
-  position: relative;
-  overflow: hidden; 
-  }
- .card div:nth-child(1){
-  position: absolute;
-  font-size: 0.48rem;
-  color: #998675;
-  top: 0.66rem;
-  line-height: 0.48rem;
-  left: 1.17rem;
-  height: 0.48rem;
-  }
-  .card div:nth-child(2){
-  position: absolute;
-  font-weight: bold;
-  font-size: 0.48rem;
-  color: #998675;
-  top: 0.66rem;
-  right: 1.17rem;
-  height: 0.48rem;
-  line-height: 0.48rem;
-  }
-  .card div:nth-child(3){
-  position: absolute;
-  font-size: 0.36rem;
-  color: #656565;
-  top: 1.8rem;
-  left: 1.17rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  }
-  .card div:nth-child(4){
-  color: #656565;
-  position: absolute;
-  font-size: 0.36rem;
-  top: 1.8rem;
-  right: 1.17rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  }
-  .card div:nth-child(5){
-  color: #656565;
-  position: absolute;
-  font-size: 0.36rem;
-  top: 2.4rem;
-  left: 1.17rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  }
-  .card div:nth-child(6){
-  position: absolute;
-  color: #656565;
-  font-size: 0.36rem;
-  top: 2.4rem;
-  right: 1.17rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  }
-  .card div:nth-child(7){
-  color: #656565;
-  position: absolute;
-  font-size: 0.36rem;
-  top: 3rem;
-  left: 1.17rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  }
- .card div:nth-child(8){
-  color: #656565;
-  position: absolute;
-  font-size: 0.36rem;
-  top: 3rem;
-  right: 1.17rem;
-  height: 0.36rem;
-  line-height: 0.36rem;
-  }
+.card{
+ margin-top: 0.18rem;
+ width: 12.42rem;
+ height: 4.23rem;
+ background: url(../image/cp_12.png) no-repeat;
+ background-size: contain;
+ position: relative;
+ overflow: hidden;
+}
+.card div:nth-child(1){
+ position: absolute;
+ font-size: 0.48rem;
+ color: #998675;
+ top: 0.66rem;
+ line-height: 0.48rem;
+ left: 1.17rem;
+ height: 0.48rem;
+}
+.card div:nth-child(2){
+ position: absolute;
+ font-weight: bold;
+ font-size: 0.48rem;
+ color: #998675;
+ top: 0.66rem;
+ right: 1.17rem;
+ height: 0.48rem;
+ line-height: 0.48rem;
+}
+.card div:nth-child(3){
+ position: absolute;
+ font-size: 0.36rem;
+ color: #656565;
+ top: 1.8rem;
+ left: 1.17rem;
+ height: 0.36rem;
+ line-height: 0.36rem;
+}
+.card div:nth-child(4){
+ color: #656565;
+ position: absolute;
+ font-size: 0.36rem;
+ top: 1.8rem;
+ right: 1.17rem;
+ height: 0.36rem;
+ line-height: 0.36rem;
+}
+.card div:nth-child(5){
+ color: #656565;
+ position: absolute;
+ font-size: 0.36rem;
+ top: 2.4rem;
+ left: 1.17rem;
+ height: 0.36rem;
+ line-height: 0.36rem;
+}
+.card div:nth-child(6){
+ position: absolute;
+ color: #656565;
+ font-size: 0.36rem;
+ top: 2.4rem;
+ right: 1.17rem;
+ height: 0.36rem;
+ line-height: 0.36rem;
+}
+.card div:nth-child(7){
+ color: #656565;
+ position: absolute;
+ font-size: 0.36rem;
+ top: 3rem;
+ left: 1.17rem;
+ height: 0.36rem;
+ line-height: 0.36rem;
+}
+.card div:nth-child(8){
+ color: #656565;
+ position: absolute;
+ font-size: 0.36rem;
+ top: 3rem;
+ right: 1.17rem;
+ height: 0.36rem;
+ line-height: 0.36rem;
+}

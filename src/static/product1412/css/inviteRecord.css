@@ -8,12 +8,14 @@ html,body{
   overflow: hidden;
 }
 header{
-  background: url("../image/cp_4.png");
-  background-size: contain;
+ /* background: url("../image/cp_4.png");
+  background-size: contain;*/
   width: 100%;
   height: 3.72rem;
   display: flex;
   margin-top: 0.5rem;
+  z-index: 5;
+    position: relative;
 }
 header>div{
   flex: 1;
