@@ -134,6 +134,7 @@ header{
 }
 .context-message-desc-context p{
   margin: 0;
+  line-height: 0.54rem;
 }
 /* #desc1{
   height: 0px;

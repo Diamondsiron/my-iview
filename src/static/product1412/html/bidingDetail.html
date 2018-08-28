@@ -48,6 +48,9 @@
                         </div>
                       </div>
                     </div>
+                    <div style="width:100%;height:100%;position:absolute;left:0;top:0;z-index: -1;">
+                      <img src="../image/cp_5.png" alt="" style="width:100%">
+                    </div>
                 </div>
                
                   <div class="table"></div>
@@ -722,10 +725,14 @@
     },
     created() {
       //this.initMainData();
+      /* function isIphoneX(){
+          return /iphone/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)
+      }
+      isIphoneX(); */
     },
     mounted() {
-      document.getElementById("top").style.minHeight = (document.documentElement.clientHeight+10)+"px";
-      document.getElementById("bottom").style.minHeight = (document.documentElement.clientHeight)+"px";
+      document.getElementById("top").style.minHeight = (screen.height)+"px";
+      document.getElementById("bottom").style.minHeight = (screen.height)+"px";
       this.init()
       this.$nextTick(() => {
         this.initMainScroll();
