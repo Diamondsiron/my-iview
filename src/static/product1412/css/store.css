@@ -33,9 +33,9 @@ html,body{
   width: 5.94rem;
   height: 5.94rem;
   overflow: hidden;
-  position: relative;
-  margin-top: 0.48rem;
-  margin-left: 0.24rem
+  position: absolute;
+    top: 0.48rem;
+    right: 0.03rem;
 }
 /* 双数 */
 .card:nth-child(even) .card-img{
@@ -69,13 +69,14 @@ html,body{
 
 }
 .card:nth-child(odd) .card-title-main{
-margin-top: 0.36rem;
-margin-left: 0.57rem;
 font-size: 0.42rem;
 line-height: 0.42rem;
 height: 0.42rem;
 width: 5.31rem;
 color: #656565;
+position: absolute;
+top: 6.78rem;
+right: 0.33rem;
 }
 .card:nth-child(even) .card-title-main{
   margin-top: 0.36rem;
@@ -87,13 +88,14 @@ color: #656565;
   color: #656565;
   }
 .card:nth-child(odd) .card-title-sub{
-  margin-top: 0.18rem;
-  margin-left: 0.57rem;
   font-size: 0.36rem;
   line-height: 0.36rem;
   height: 0.36rem;
   width: 5.31rem;
   color: #989898;
+  position: absolute;
+  right: 0.33rem;
+  top: 7.38rem;
 }
 .card:nth-child(even) .card-title-sub{
   margin-top: 0.18rem;
@@ -105,13 +107,13 @@ color: #656565;
   color: #989898;
 }
 .card:nth-child(odd) .card-title-bottom{
-  margin-top: 0.3rem;
-  margin-left: 0.57rem;
   font-size: 0.36rem;
   line-height: 0.36rem;
   height: 0.36rem;
   width: 5.31rem;
-  position: relative;
+  position: absolute;
+  right: 0.33rem;
+  top: 8.04rem;
 }
 .card:nth-child(even) .card-title-bottom{
   margin-top: 0.3rem;
@@ -213,6 +215,13 @@ animation: donut-rotate 1000ms cubic-bezier(.4,0,.22,1) infinite;
 50% { transform: rotate(-140deg) }
 100% { transform: rotate(0) }
 }
+.loadCenter{
+  top:50%;
+  left: 50%;
+  position: absolute;
+  z-index: 10;
+  transform: translate(-50%,-50%)
+}
 .loadTop{
   flex: 0 0 100%;
   text-align: center;
@@ -226,3 +235,4 @@ animation: donut-rotate 1000ms cubic-bezier(.4,0,.22,1) infinite;
   display: none;
   overflow: hidden;
 }
+

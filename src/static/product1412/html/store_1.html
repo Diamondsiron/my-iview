@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="../js/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/1.0.28-csp/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
   <script src="../js/axios.config.js"></script>
   <script src="../js/bscroll.min.js"></script>
@@ -33,13 +33,6 @@
                   <input type="text" name="jyd_pubData.token_id"  v-model="RNmessage.jyd_pubData.token_id">
                   <button type="button" v-on:click="submit()"> 按钮</button>
                 </form>
-                <div class="loadCenter" v-if="aaa==true">
-                  <div class="pswp__preloader__icn">
-                    <div class="pswp__preloader__cut">
-                      <div class="pswp__preloader__donut"></div>
-                    </div>
-                  </div>
-                </div>
                 <div class="card" v-for="(item,index) in list" ::key="index" @click="handleChange(item.gd_id)">
                   <div style="position:relative;height: 8.52rem;">
                     <div class="card-img">
@@ -81,7 +74,6 @@
           list:[],
           page:1,
           id:"",
-          aaa:true,
           RNmessage:{
                     page_number: "",
                     tel_phone: "",
@@ -102,11 +94,120 @@
             vms.$nextTick(() => {
               vms._initScroll()
               });
-         
+          /* let req = {
+                    "page_number": "1",
+                    "tel_phone": vms.RNmessage.tel_phone,
+                    "jyd_pubData": {
+                        "user_id": vms.RNmessage.jyd_pubData.user_id, 
+                        "source_type": vms.RNmessage.jyd_pubData.source_type, 
+                        "system_id": vms.RNmessage.jyd_pubData.system_id, 
+                        "network_type":vms.RNmessage.jyd_pubData.network_type, 
+                        "token_id":vms.RNmessage.jyd_pubData.token_id
+                    }
+                }
+          axios.post(axiosBaseUrl+"goods",req).then(res=>{
+            console.log(res)
+            vms.list = res.data.gd_list;
+            vms.$nextTick(() => {
+              vms._initScroll()
+              });
+          }).catch(err=>{
+            console.log(res);
+          }) */
         },
+        handleChange(id){
+          this.id = id 
+          document.getElementById("form").submit();
+          //let vm = this
+          //window.location.href=axiosBaseUrl+"showGoods/showGoodsDetail?"+"goods_id="+id+"&tel_phone="+this.RNmessage.tel_phone+"&jyd_pubData.user_id="+this.RNmessage.jyd_pubData.user_id+"&jyd_pubData.source_type="+this.RNmessage.jyd_pubData.source_type+"&jyd_pubData.system_id="+this.RNmessage.jyd_pubData.system_id+"&jyd_pubData.network_type="+this.RNmessage.jyd_pubData.network_type+"&jyd_pubData.token_id="+this.RNmessage.jyd_pubData.token_id   
+        },
+        submit(){
+          document.getElementById("form").submit();
+        },
+        _initScroll(){
+        let vms = this
+        //this.scroll
+        vms.scroll = new window.BScroll(document.querySelector(".content"), {
+          probeType: 2,
+          click:true,
+          momentum:false,
+          pullUpLoad: true ,
+          
+         });
+         vms.scroll.on('touchEnd', this.scrollDown)
+      },
+      scrollDown(pos){
+        let vms = this
+        if(pos.y>50){
+            console.log("下拉刷新")
+             document.getElementById("loadTop").style.height="44px"
+             vms.scroll.refresh()
+            let req = {
+                    "page_number": "1",
+                    "tel_phone": vms.RNmessage.tel_phone,
+                    "jyd_pubData": {
+                        "user_id": vms.RNmessage.jyd_pubData.user_id, 
+                        "source_type": vms.RNmessage.jyd_pubData.source_type, 
+                        "system_id": vms.RNmessage.jyd_pubData.system_id, 
+                        "network_type":vms.RNmessage.jyd_pubData.network_type, 
+                        "token_id":vms.RNmessage.jyd_pubData.token_id
+                    }
+                }
+            axios.post(axiosBaseUrl+"goods",req).then(res=>{
+                console.log(res)
+               
+               //vms.scroll.refresh()
+                vms.list = res.data.gd_list;
+                vms.page = 1
+                vms.$nextTick(() => {
+                  document.getElementById("loadTop").style.height="0px"
+                  vms.scroll.refresh()
+                  });
+              }).catch(err=>{
+                console.log(res);
+              })
+          }
+          if(vms.scroll.maxScrollY>pos.y+50){
+              console.log("上拉加载更多")
+              document.getElementById("loadBottom").style.display="block"
+             vms.scroll.refresh()
+              vms.page++
+              //vms.showList=vms.showList.concat(vms.list.slice((vms.page-1+"1"),(vms.page+"1")))
+              //console.log(vms.showList)
+              let req = {
+                    "page_number": vms.page,
+                    "tel_phone": vms.RNmessage.tel_phone,
+                    "jyd_pubData": {
+                        "user_id": vms.RNmessage.jyd_pubData.user_id, 
+                        "source_type": vms.RNmessage.jyd_pubData.source_type, 
+                        "system_id": vms.RNmessage.jyd_pubData.system_id, 
+                        "network_type":vms.RNmessage.jyd_pubData.network_type, 
+                        "token_id":vms.RNmessage.jyd_pubData.token_id
+                    }
+                } 
+            axios.post(axiosBaseUrl+"goods",req).then(res=>{
+             
+             // vms.scroll.refresh()
+                vms.list=vms.list.concat(res.data.gd_list)
+                vms.$nextTick(() => {
+                  document.getElementById("loadBottom").style.display="none"
+                  vms.scroll.refresh()
+                  });
+              }).catch(err=>{
+                console.log(res);
+              })
+
+           
+          } 
         
+          console.log(Math.round(pos.y));
+       
+      },
+      scrollUp(){
+
+      },
       init(){
-        let vms = this;
+        let vms = this
         //本地测试用这段代码
         var str = {
                     "page_number": "1",
@@ -118,15 +219,15 @@
                         "network_type": "wifi", 
                         "token_id": "123235h5e3"
                     }
-                };
+                }
 
-         vms.RNmessage = JSON.parse(JSON.stringify(str));
-         vms.initData();
+         vms.RNmessage = JSON.parse(JSON.stringify(str))
+         vms.initData()
           //分割线
         window.onload = function () {
             document.addEventListener('message', function (e) {
-                vms.RNmessage = JSON.parse(e.data);
-                vms.initData();
+                vms.RNmessage = JSON.parse(e.data)
+                vms.initData()
             })
             
         }
@@ -138,22 +239,19 @@
         }, 500);
 
         function stop(){
-            let message = {key:'1',val:{name:'首次打开'}};
+            let message = {key:'1',val:{name:'首次打开'}}
             window.postMessage(JSON.stringify(message));
             clearInterval(refreshIntervalId);
         }
       }
       },
       created() {
-       
+        //document.getElementById("top").style.minHeight=(document.documentElement.clientHeight+10)+"px";  
       },
       mounted() {
         
-       vms = this
+       
         this.init();
-        setTimeout(function(){
-          vms.aaa = false;
-        },3000)
         
        
       }
