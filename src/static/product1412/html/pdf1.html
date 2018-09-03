@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+  article>img{
+    width: 100%;
+  }
+  </style>
+  <body>
+  <div id="main">
+     <article>
+       <img v-bind:src="item" alt="" v-for="item in list">
+     </article> 
+  </div>
+  <script>
+      var vm = new Vue({
+        el:"#main",
+        data(){
+          return{
+            list:[
+              "../image/cpbg_1.png",
+              "../image/cpbg_2.png",
+              "../image/cpbg_3.png",
+              "../image/cpbg_4.png",
+              "../image/cpbg_5.png",
+            ]
+          }
+        }
+      })
+  </script>
+</body>
+</html>

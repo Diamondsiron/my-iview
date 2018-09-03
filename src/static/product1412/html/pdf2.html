@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+article>img{
+  width: 100%;
+}
+</style>
+<body>
+<div id="main">
+   <article>
+     <img v-bind:src="item" alt="" v-for="item in list">
+   </article> 
+</div>
+<script>
+    var vm = new Vue({
+      el:"#main",
+      data(){
+        return{
+          list:[
+            "../image/sjbg_1.jpg",
+            "../image/sjbg_2.jpg",
+            "../image/sjbg_3.jpg",
+            "../image/sjbg_4.jpg",
+            "../image/sjbg_5.jpg",
+            "../image/sjbg_6.jpg",
+            "../image/sjbg_7.jpg",
+            "../image/sjbg_8.jpg",
+            "../image/sjbg_9.jpg",
+            "../image/sjbg_10.jpg",
+            "../image/sjbg_11.jpg",
+            "../image/sjbg_12.jpg",
+            "../image/sjbg_13.jpg",
+            "../image/sjbg_14.jpg",
+            "../image/sjbg_15.jpg",
+            "../image/sjbg_16.jpg",
+            "../image/sjbg_17.jpg",
+            "../image/sjbg_18.jpg",
+            "../image/sjbg_19.jpg",
+            "../image/sjbg_20.jpg",
+            "../image/sjbg_21.jpg",
+            "../image/sjbg_22.jpg",
+            "../image/sjbg_23.jpg",
+            "../image/sjbg_24.jpg",
+            "../image/sjbg_25.jpg",
+            "../image/sjbg_26.jpg",
+            "../image/sjbg_27.jpg",
+            "../image/sjbg_28.jpg",
+            "../image/sjbg_29.jpg",
+            "../image/sjbg_30.jpg",
+            "../image/sjbg_31.jpg",
+            "../image/sjbg_32.jpg",
+            "../image/sjbg_33.jpg",
+            "../image/sjbg_34.jpg",
+            "../image/sjbg_35.jpg",
+            "../image/sjbg_36.jpg",
+            "../image/sjbg_37.jpg",
+          ]
+        }
+      }
+    })
+</script>
+</body>
+</html>
