@@ -74,7 +74,7 @@ header{
 .context-title p{
   margin-top: 0.1rem;
 }
-.context-message{
+.context-basic{
   margin-top: 0.84rem;
   margin-left: 0.55rem;
   position: relative;
@@ -111,10 +111,13 @@ header{
   height: 0.54rem;
   width: 0.54rem;
   position: absolute;
-  background: url("../image/fx_4.png");
-  background-size: contain;
+  /*background: url("../image/fx_4.png");
+  background-size: contain;*/
   transition: all 0.4s ease-in-out;
   /* transform: rotate(180deg); */
+}
+.context-message-desc-title-r>img{
+  width: 100%;
 }
 .deg180{
   transform: rotate(180deg);

@@ -16,7 +16,9 @@ html,body{
 }
 .context-basic-desc{
   margin-top: 0.66rem;
-  margin-left: 0.84rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10.74rem;
 }
 .context-basic-desc>img{
   width: 100%;
@@ -41,7 +43,7 @@ html,body{
 }
 .w843h576{
   width: 8.43rem;
-  height: 5.76rem;
+  /*height: 5.76rem;*/
   margin-left: auto;
   margin-right:auto; 
   margin-bottom: 3rem;
@@ -85,18 +87,28 @@ html,body{
  /*  letter-spacing: -1px; */
 }
 tr {
-  height: 0.57rem;
+  /*height: 0.57rem;*/
+  /*  vertical-align: baseline; */
 }
 td{
+  background-color: #ffffff;
   border-bottom: solid 1px #f2f2f2;
-  padding: 0px;
+  vertical-align: text-bottom;
 }
-tr>td>div{
- /*  margin-left: 0.24rem;
-  transform: scale(0.88,0.88); */
+td>div{
+  /* color: red;*/
+  vertical-align:text-top;
+  display:inline-block;
+  line-height: 0.57rem;
   margin-left: 0.36rem;
 }
-
+.td>div:after{
+  content:'';
+  width:0;
+  height:100%;
+  display:inline-block;
+  vertical-align:text-top;
+}
 .mt120{
   margin-top: 1.2rem;
 }

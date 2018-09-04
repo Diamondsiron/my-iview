@@ -5,7 +5,15 @@ html,body{
  /*  height: 100%; */
   background-color: #f0f0f0;
 }
-
+.mt66{
+  margin-top: 0.66rem;
+}
+.mt78{
+  margin-top: 0.78rem;
+}
+.mt75{
+  margin-top: 0.75rem;
+}
 /* @font-face{
   font-family: 'PingFangSC-Regular';
   src : url('../font/PingFang-Jian-ChangGuiTi-2.ttf');
@@ -20,13 +28,15 @@ html,body{
   font-family:"SimSun"
 } */
 #top .card{
-  margin-top: 0.48rem;
+  margin: 0.48rem auto 0 auto;
   width: 100%;
   height: 6.66rem;
- /*  background: url(../image/cp_5.png) no-repeat;
-  background-size: contain; */
+  /*background: url(../image/cp_5.png) no-repeat;*/
+ /* background: red;*/
+  /*background-size: cover;*/
   position: relative;
   overflow: hidden;
+ /* border: solid 15px red;*/
 }
 #top .card>div:nth-child(1){
   color:#989898;
@@ -131,44 +141,50 @@ html,body{
   background-size: contain;
 }
 #top  .table-desc{
-  width: 100%;
+  width: 7.26rem;
   height: 0.9rem;
-  margin-top: 0.3rem;
+  margin: 0.3rem auto 0 auto;
   /* position: relative; */
-  overflow: hidden;
+ /* overflow: hidden;*/
+  position: relative;
 }
 #top .table-desc>div:nth-child(1){
   
  position: absolute;
- left: 2.16rem;
+ left: 0rem;
+  transform: translateX(-50%);
  font-size: 0.36rem;
  /* width: 1.53rem; */
 }
 #top .table-desc>div:nth-child(2){
   position: absolute;
- left: 5.43rem;
+ left: 50%;
+  transform: translateX(-50%);
  font-size: 0.36rem;
  /* width: 1.53rem; */
 }
 #top .table-desc>div:nth-child(3){
   position: absolute;
- right:2.16rem ;
+ right:0rem ;
+  transform: translateX(50%);
  font-size: 0.36rem;
  /* width: 1.53rem; */
  
 }
-
+.context{
+  position: relative;
+}
 #top .context{
   width: 100%;
   height: 5.22rem;
   margin-top: 0.54rem;
   font-size: 0.36rem;
-  background: url(../image/cp_7.png) no-repeat;
-  background-size: contain;
+  /*background: url(../image/cp_7.png) no-repeat;
+  background-size: contain;*/
   overflow: hidden;
   position: relative;
 }
-#top .context-title{
+#top .context-titles{
   line-height: 100%;
   font-size: 0.36rem;
   margin-top: 0.64rem;
@@ -278,6 +294,8 @@ html,body{
   text-align: center;
   margin-top: 0.6rem;
   margin-bottom: 0.3rem;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 #top .foot-content{
   height: 2.1rem;
@@ -389,8 +407,10 @@ color: #989898;
 }
 #choose1 .context-desc{
 margin-top: 0.57rem;
-margin-left: 1.08rem;
+margin-left: auto;
+  margin-right: auto;
 line-height: 0.18rem;
+  width: 10.24rem;
 }
 #choose1 .context-desc>p{
   height: 0.54rem;
@@ -429,14 +449,17 @@ margin-left: 2.07rem;
 }
 #choose1 .context-serve{
 margin-top: 0.78rem;
-margin-left: 0.54rem;
+margin-left: auto;
+  margin-right: auto;
 position: relative;
 height: 0.72rem;
+  width: 10.26rem;
 }
 #choose1 .context-serve-desc{
 margin-top: 0.57rem;
-margin-left: 1.08rem;
-margin-right: 1.08rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10.26rem;
 
 }
 #choose1 .context-serve-desc>p{
@@ -454,8 +477,9 @@ height: 0.72rem;
 }
 #choose1 .context-advanced-desc{
 margin-top: 0.57rem;
-margin-left: 1.08rem;
-margin-right: 1.08rem;
+margin-left: auto;
+margin-right: auto;
+  width: 10.26rem;
 }
 #choose1 .context-advanced-desc>p{
   /*height: 0.54rem;*/
@@ -469,10 +493,15 @@ margin-left: 0.54rem;
 position: relative;
 height: 0.72rem;
 }
+.w-s_n{
+  white-space: nowrap;
+}
+
 #choose1 .context-theory-desc{
 
-margin-left: 1.08rem;
-margin-right: 1.08rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10.26rem;
 }
 #choose1 .context-theory-desc img{
 margin-top: 1.02rem;
@@ -503,10 +532,10 @@ top: 0.36rem;
 left: 2.58rem;
 }
 #choose1 .context-title p{
-margin-top: 0.1rem;
+
 
 }
-#choose2 .context-title{
+#choose2 .context-titles{
 font-size: 0.36rem;
 color: #989898;
 text-align: center;
@@ -548,7 +577,7 @@ width: 3.51rem;
 .head-content-item_choose{
 border-bottom: solid 2px #c7b299;
 }
-#choose3 .context-title{
+#choose3 .context-titles{
 font-size: 0.36rem;
 color: #989898;
 text-align: center;
@@ -597,6 +626,24 @@ width: 2.85rem;
   font-weight: 100;
   height: 0.36rem;
   line-height: 0.36rem;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+a:active {
+  color:#3b92f0;
+  text-decoration:none;
+}
+a:hover {
+  color:#3b92f0;
+  text-decoration:none;
+}
+a:focus {
+  color:#3b92f0;
+  text-decoration:none;
+}
+a:visited {
+  color:#3b92f0;
+  text-decoration:none;
 }
 .foot-content{
 height: 2.1rem;
@@ -690,4 +737,135 @@ text-decoration:none;
   transform: translateX(-50%);
   display: none;
   /* transition: opacity 2s; */
+}
+.modal{
+  position: absolute;
+  /*height: 100%;*/
+  width: 100%;
+  z-index: 5;
+  top: 0;
+  left: 0;
+ /* bottom: 0;
+  right: 0;*/
+  background: rgba(222,222,222,0.7);
+
+}
+.modal>article{
+  width: 8.24rem;
+  padding-left: 0.54rem;
+  padding-right: 0.54rem;
+  margin: 0.54rem auto 1.08rem auto;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+.modal .title{
+  margin: 0.57rem 0 0 0;
+  font-size: 0.36rem;
+  font-weight: bold;
+  color: #656565;
+  line-height: 0.54rem;
+  /*  height: 0.36rem; */
+}
+.modal .desc{
+  font-size: 0.36rem;
+  line-height: 0.54rem;
+  margin: 0.09rem 0 0 0;
+  color: #989898;
+  text-align: justify;
+  word-break: break-all;
+}
+.modal .desc_right{
+  text-align: right
+}
+.modal .main-title{
+  margin: 0.9rem 0 0 0;
+  color: #656565;
+  line-height: 0.42rem;
+  height: 0.42rem;
+  font-size: 0.42rem;
+  font-weight: bold;
+  text-align: center;
+}
+.modal table{
+  width: 100%;
+  border-left: 1px solid #989898;
+  border-top: 1px solid #989898;
+  color: #656565;
+  text-align: center;
+}
+.modal th{
+  border-right: 1px solid #989898;
+  border-bottom: 1px solid #989898;
+  font-size: 0.36rem;
+}
+.modal td{
+  border-right: 1px solid #989898;
+  border-bottom: 1px solid #989898;
+  font-size: 0.36rem;
+}
+
+.modal .desc_bottom{
+  margin-bottom: 0.9rem;
+}
+.pswp__preloader__icn {
+  margin: 10px auto 10px auto;
+  opacity:0.75;
+  width: 24px;
+  height: 24px;
+  -webkit-animation: clockwise 500ms linear infinite;
+  animation: clockwise 500ms linear infinite;
+}
+
+/* The idea of animating inner circle is based on Polymer loading indicator by Keanu Lee https://blog.keanulee.com/2014/10/20/the-tale-of-three-spinners.html */
+.pswp__preloader__cut {
+  position: relative;
+  width: 12px;
+  height: 24px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.pswp__preloader__donut {
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: none;
+  margin:0;
+  -webkit-animation: donut-rotate 1000ms cubic-bezier(.4,0,.22,1) infinite;
+  animation: donut-rotate 1000ms cubic-bezier(.4,0,.22,1) infinite;
+}
+
+@-webkit-keyframes clockwise {
+  0% { -webkit-transform: rotate(0deg) }
+  100% { -webkit-transform: rotate(360deg) }
+}
+@keyframes clockwise {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}
+@-webkit-keyframes donut-rotate {
+  0% { -webkit-transform: rotate(0) }
+  50% { -webkit-transform: rotate(-140deg) }
+  100% { -webkit-transform: rotate(0) }
+}
+@keyframes donut-rotate {
+  0% { transform: rotate(0) }
+  50% { transform: rotate(-140deg) }
+  100% { transform: rotate(0) }
+}
+.loadCenter{
+  top:50%;
+  left: 50%;
+  position: absolute;
+  z-index: 10;
+  transform: translate(-50%,-50%)
 }

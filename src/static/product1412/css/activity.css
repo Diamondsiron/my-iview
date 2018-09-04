@@ -32,7 +32,7 @@ li{
 .card{
   width: 10.26rem;
   height: 6.35rem;
-  margin: 0 1.08rem  0 1.08rem;
+  margin: 0 auto  0 auto;
   overflow: hidden;
 }
 .card-main-title{
@@ -42,7 +42,7 @@ li{
   font-size: 0.42rem;
   line-height: 0.42rem;
   color: #656565;
-  overflow: hidden;
+  /*overflow: hidden;*/
   text-overflow:ellipsis;
   /* white-space: nowrap; */
 }

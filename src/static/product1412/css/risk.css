@@ -33,34 +33,25 @@ article{
   margin-top: 0.09rem;
   margin-bottom: 1.5rem;
 }
-.context-safety {
+.context-basic {
   margin-top: 0.96rem;
   margin-left: 0.54rem;
   position: relative;
   height: 0.72rem;
   font-size: 0.36rem;
 }
-.context-title {
-  display: inline-block;
-  width: 2.48rem;
-  height: 0.72rem;
-  color: #f2f2f2;
-  border-radius: 10px;
-  background-color: #c7b299;
-  text-align: center;
+.context-title_w {
+
+  width: 3.17rem !important;
+
 }
 .context-title p {
-  margin-top: 0.1rem;
-  font-size: 0.36rem;
+font-size: 0.36rem !important;
 }
-.context-line {
-  display: inline-block;
-  height: 1px;
-  border-bottom: solid 1px #c7b299;
-  width: 8.76rem;
-  position: absolute;
-  top: 0.36rem;
-  left: 2.58rem;
+.context-line_w {
+  left: 3.27rem !important;
+  width: 8.04rem !important;
+
 }
 .context-desc{
    

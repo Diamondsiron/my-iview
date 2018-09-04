@@ -322,11 +322,13 @@ input:-ms-input-placeholder{
 }
 #choose1 .context-message-desc div{
   margin-top: 0.66rem;
-  margin-left: 1.08rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10.26rem;
   font-size: 0.36rem;
   color: #656565;
   font-weight: bold;
-  width: 3.87rem;
+
 
 }
 #choose1  ul{
@@ -335,6 +337,9 @@ input:-ms-input-placeholder{
   padding: 0px;
   color: #989898;
   margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10.26rem;
 
 }
 #choose1  ul li{
@@ -351,7 +356,7 @@ input:-ms-input-placeholder{
 }
 #choose1  ul li p:nth-child(1){
   position: absolute;
-  left: 1.08rem;
+  left: 0rem;
   height: 0.36rem;
   top: 0px;
   line-height:0.36rem;
@@ -360,7 +365,7 @@ input:-ms-input-placeholder{
 }
 #choose1  ul li p:nth-child(2){
   position: absolute;
-  right: 1.08rem;
+  right: 0rem;
   height: 0.36rem;
   top: 0px;
   line-height:0.36rem;
@@ -387,8 +392,9 @@ input:-ms-input-placeholder{
 }
 #choose1 .context-borrow-desc div {
 
-  margin-left: 1.08rem;
-  width: 10.24rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10.26rem;
 }
 #choose1 .context-borrow-desc div span{
   color: #656565;
@@ -434,10 +440,16 @@ input:-ms-input-placeholder{
   left: 2.58rem;
 }
 #choose1 .context-title p{
-  margin-top: 0.1rem;
+  /*margin-top: 0.1rem;*/
 
 }
-#choose2 .context-title{
+.mt78{
+  margin-top: 0.78rem;
+}
+.mt81{
+  margin-top: 0.81rem;
+}
+#choose2 .context-titles{
   font-size: 0.36rem;
   color: #989898;
   text-align: center;
@@ -487,7 +499,7 @@ input:-ms-input-placeholder{
 }
 #choose3 .card{
   margin-top: 0.18rem;
-  width: 12.42rem;
+  width: 100%;
   height: 4.23rem;
   /*background: url(../image/cp_12.png) no-repeat;
   background-size: contain;*/

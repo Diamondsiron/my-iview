@@ -1,0 +1,38 @@
+.context-basic{
+	position: relative;
+	height: 0.72rem;
+	margin-left:auto;
+	margin-right: auto;
+	width: 11.34rem;
+
+}
+.context-title {
+	display: inline-block;
+	width: 2.48rem;
+	height: 0.72rem;
+	color: #f2f2f2;
+	border-radius: 10px;
+	background-color: #c7b299;
+	text-align: center;
+	font-size: 0.42rem;
+	position: absolute;
+}
+.context-title p {
+	margin: 0rem;
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 0.42rem;
+	transform: translate(-50%,-50%);
+}
+.context-line {
+	position: absolute;
+	display: inline-block;
+	height: 1px;
+	border-bottom: solid 1px #c7b299;
+	width: 8.76rem;
+	top: 0.36rem;
+	left: 2.58rem;
+}

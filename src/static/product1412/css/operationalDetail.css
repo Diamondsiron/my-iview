@@ -40,36 +40,44 @@ li>p:nth-child(2){
   padding: 0px;
 }
 .card1{
-  background: url("../image/fx_71.png");
-  background-size: contain;
+  /*background: url("../image/fx_71.png");
+  background-size: contain;*/
   width: 100%;
   height: 7.5rem;
   overflow: hidden;
   margin: 0.54rem 0 0 0;
+  position: relative;
+  z-index: 5;
 }
 .card2{
-  background: url("../image/sy_20.png");
-  background-size: contain;
+  /*background: url("../image/sy_20.png");
+  background-size: contain;*/
   width: 100%;
   height: 4.02rem;
   overflow: hidden;
   margin: 0.36rem 0 0 0;
+  position: relative;
+  z-index: 5;
 }
 .card3{
-  background: url("../image/fx_72.png");
-  background-size: contain;
+  /*  background: url("../image/fx_72.png");
+	background-size: contain;*/
   width: 100%;
   height: 5.58rem;
   overflow: hidden;
   margin: 0.36rem 0 0 0;
+  position: relative;
+  z-index: 5;
 }
 .card4{
-  background: url("../image/me_4.png");
-  background-size: contain;
+  /*background: url("../image/me_4.png");
+  background-size: contain;*/
   width: 100%;
   height: 5.16rem;
   overflow: hidden;
   margin: 0.18rem 0 0 0;
+  position: relative;
+  z-index: 5;
 }
 .card-title{
   width: 100%;
@@ -269,4 +277,60 @@ li>p:nth-child(2){
 }
 .mb99{
   margin-bottom: 0.99rem
+}
+.header-card{
+  width: 100%;
+  height: 1.14rem;
+  margin-top: 0.69rem;
+  margin-bottom: 0.48rem;
+  display: flex
+}
+
+.header-card-l{
+  position: relative;
+  flex: 1;
+  border-right: solid 0.03rem #c7b299;
+}
+.header-card-l-t{
+  position: absolute;
+  height: 0.36rem;
+  line-height: 0.36rem;
+  font-size: 0.36rem;
+  color: #989898;
+  width: 3.51rem;
+  text-align: center;
+  right: 0.96rem;
+}
+.header-card-l-b{
+  position: absolute;
+  height: 0.48rem;
+  line-height: 0.48rem;
+  font-size: 0.48rem;
+  top: 0.54rem;
+  color: #c7b299;
+  width: 3.51rem;
+  text-align: center;
+  right:  0.96rem;
+}
+.header-card-r{
+  flex: 1;
+}
+.header-card-r-t{
+  height: 0.36rem;
+  line-height: 0.36rem;
+  font-size: 0.36rem;
+  color: #989898;
+  width: 3.51rem;
+  text-align: center;
+  margin-left: 0.96rem;
+}
+.header-card-r-b{
+  height: 0.48rem;
+  line-height: 0.48rem;
+  font-size: 0.48rem;
+  margin-top: 0.18rem;
+  color: #c7b299;
+  width: 3.51rem;
+  text-align: center;
+  margin-left: 0.96rem;
 }

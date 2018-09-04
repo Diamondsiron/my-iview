@@ -16,7 +16,7 @@ header>img{
 article{
   overflow: hidden;
 }
-.context-safety {
+.context-basic {
   margin-top: 0.75rem;
   margin-left: 0.54rem;
   position: relative;
@@ -33,7 +33,7 @@ article{
   text-align: center;
 }
 .context-title p {
-  margin-top: 0.1rem;
+
 }
 .context-line {
   display: inline-block;

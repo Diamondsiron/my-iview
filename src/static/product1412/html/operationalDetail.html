@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name = "format-detection" content = "telephone=no">
   <script src="../js/vue.min.js"></script>
   <script src="../js/axios.min.js"></script>
   <link rel="stylesheet" href="../css/operationalDetail.css">
@@ -12,6 +13,16 @@
 <body>
   <div id="main">
     <article>
+        <div class="header-card">
+            <div class="header-card-l">
+                <div class="header-card-l-t">数据截至日期</div>
+                <div class="header-card-l-b">2018年7月31日</div>
+            </div>
+            <div class="header-card-r">
+              <div class="header-card-r-t">运营天数</div>
+              <div class="header-card-r-b">1056天</div>
+            </div>
+        </div>
        <div class="card1">
         <div class="card-title">数据总揽</div>
         <div class="card-line"></div>
@@ -47,6 +58,9 @@
             <div class="card-content-block-title-sub">0</div>
           </div>
         </div>
+           <div style="width:100%;height:100%;position:absolute;left:0;top:0;z-index: -1;">
+               <img src="../image/fx_71.png" alt="" style="width:100%;height: 7.5rem">
+           </div>
        </div>
        <div class="card2">
           <div class="card-title">借款概况</div>
@@ -63,6 +77,9 @@
                   <div class="card-content-block-title-sub2">297,712元</div>
                 </div>
           </div>
+           <div style="width:100%;height:100%;position:absolute;left:0;top:0;z-index: -1;">
+               <img src="../image/sy_20.png" alt="" style="width:100%;height: 4.02rem">
+           </div>
        </div>
        <div class="card3">
           <div class="card-title">借款详情</div>
@@ -85,6 +102,9 @@
               <div class="card-content-block-title-sub3">9,439</div>
             </div>
           </div>
+           <div style="width:100%;height:100%;position:absolute;left:0;top:0;z-index: -1;">
+               <img src="../image/fx_72.png" alt="" style="width:100%;height: 5.58rem">
+           </div>
        </div>
        <div class="card4">
           <div class="card-content4">
@@ -104,7 +124,10 @@
                 <div class="card-content-block-title-main4">46,424,115元</div>
                 <div class="card-content-block-title-sub4">余额利息</div>
               </div>
-            </div> 
+            </div>
+           <div style="width:100%;height:100%;position:absolute;left:0;top:0;z-index: -1;">
+               <img src="../image/me_4.png" alt="" style="width:100%;height: 5.16rem">
+           </div>
        </div>
        <div class="context-safety">
           <div class="context-title">
@@ -199,24 +222,7 @@
       methods:{
       
         init(){
-          window.onload = function () {
-              document.addEventListener('message', function (e) {
-                
-              })
-              
-          }
-          var refreshIntervalId = setInterval(function(){
-              if (window.originalPostMessage) {
-                
-                  stop();
-              } 
-          }, 500);
 
-          function stop(){
-              let message = {key:'1',val:{name:'首次打开'}}
-              window.postMessage(JSON.stringify(message));
-              clearInterval(refreshIntervalId);
-          }
         }
       },
       mounted() {

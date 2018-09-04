@@ -70,11 +70,12 @@ html,body{
 #top .card>div:nth-child(6){
   position: absolute;
   top: 2.61rem;
-  left: 1.26rem;
+  left: 50%;
   height: 0.36rem;
   width: 9.90rem;
   border-radius:0.13rem;
   background-color: #f3f3f3;
+  transform: translate(-50%);
 }
 .progress{
   position: absolute;
@@ -360,11 +361,12 @@ input:-ms-input-placeholder{
 }
 #choose1 .context-message-desc div{
   margin-top: 0.66rem;
-  margin-left: 1.08rem;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 0.36rem;
   color: #656565;
   font-weight: bold;
- /* width: 3.87rem;*/
+  width: 10.24rem;
 
 }
 #choose1  ul{
@@ -373,6 +375,9 @@ input:-ms-input-placeholder{
   padding: 0px;
   color: #989898;
   margin-bottom: 0px;
+  width: 10.26rem;
+  margin-left: auto;
+  margin-right: auto;
 
 }
 #choose1  ul li{
@@ -383,7 +388,7 @@ input:-ms-input-placeholder{
 }
 #choose1  ul li p:nth-child(1){
   position: absolute;
-  left: 1.08rem;
+  left: 0rem;
   height: 0.36rem;
   top: 0px;
   line-height: 0.36rem;
@@ -393,7 +398,7 @@ input:-ms-input-placeholder{
 }
 #choose1  ul li p:nth-child(2){
   position: absolute;
-  right:  1.08rem;
+  right:  0rem;
   height: 0.36rem;
   top: 0px;
   line-height: 0.36rem;
@@ -417,7 +422,8 @@ input:-ms-input-placeholder{
   height: 0.72rem;
 }
 #choose1 .context-borrow-desc div {
-  margin-left: 1.08rem;
+  margin-left: auto;
+  margin-right: auto;
   width: 10.24rem;
 
 }
@@ -467,10 +473,19 @@ input:-ms-input-placeholder{
 
 }
 #choose1 .context-title p{
-  margin-top: 0.1rem;
+
 
 }
-#choose2 .context-title{
+.mt78{
+  margin-top: 0.78rem;
+}
+.mt93{
+  margin-top: 0.93rem;
+}
+.mt81{
+  margin-top: 0.81rem;
+}
+#choose2 .context-titles{
   font-size: 0.36rem;
   color: #989898;
   text-align: center;
@@ -519,7 +534,7 @@ input:-ms-input-placeholder{
 }
 #choose3 .card{
   margin-top: 0.18rem;
-  width: 12.42rem;
+  width: 100%;
   height: 4.23rem;
 /*  background: url(../image/cp_12.png) no-repeat;
   background-size: contain;*/
@@ -871,10 +886,10 @@ a:link {
   height: 24px;
   -webkit-animation: clockwise 500ms linear infinite;
   animation: clockwise 500ms linear infinite;
-  }
-  
-  /* The idea of animating inner circle is based on Polymer loading indicator by Keanu Lee https://blog.keanulee.com/2014/10/20/the-tale-of-three-spinners.html */
-  .pswp__preloader__cut {
+}
+
+/* The idea of animating inner circle is based on Polymer loading indicator by Keanu Lee https://blog.keanulee.com/2014/10/20/the-tale-of-three-spinners.html */
+.pswp__preloader__cut {
   position: relative;
   width: 12px;
   height: 24px;
@@ -882,9 +897,9 @@ a:link {
   position: absolute;
   top: 0;
   left: 0;
-  }
-  
-  .pswp__preloader__donut {
+}
+
+.pswp__preloader__donut {
   box-sizing: border-box;
   width: 24px;
   height: 24px;
@@ -899,48 +914,33 @@ a:link {
   margin:0;
   -webkit-animation: donut-rotate 1000ms cubic-bezier(.4,0,.22,1) infinite;
   animation: donut-rotate 1000ms cubic-bezier(.4,0,.22,1) infinite;
-  }
-  
-  @-webkit-keyframes clockwise {
+}
+
+@-webkit-keyframes clockwise {
   0% { -webkit-transform: rotate(0deg) }
   100% { -webkit-transform: rotate(360deg) }
-  }
-  @keyframes clockwise {
+}
+@keyframes clockwise {
   0% { transform: rotate(0deg) }
   100% { transform: rotate(360deg) }
-  }
-  @-webkit-keyframes donut-rotate {
+}
+@-webkit-keyframes donut-rotate {
   0% { -webkit-transform: rotate(0) }
   50% { -webkit-transform: rotate(-140deg) }
   100% { -webkit-transform: rotate(0) }
-  }
-  @keyframes donut-rotate {
+}
+@keyframes donut-rotate {
   0% { transform: rotate(0) }
   50% { transform: rotate(-140deg) }
   100% { transform: rotate(0) }
-  }
-  .loadCenter{
-    top:50%;
-    left: 50%;
-    position: absolute;
-    z-index: 10;
-    transform: translate(-50%,-50%)
-  }
-  .loadTop{
-    flex: 0 0 100%;
-    text-align: center;
-    height: 0px;
-    transition: height 0.4s ease-in-out;
-    overflow: hidden;
-  }
-  .loadBottom{
-    flex: 0 0 100%;
-    text-align: center;
-    display: none;
-    overflow: hidden;
-  }
-  .context{
-    position: relative;
-  }
-  
-  
+}
+.loadCenter{
+  top:50%;
+  left: 50%;
+  position: absolute;
+  z-index: 10;
+  transform: translate(-50%,-50%)
+}
+.context{
+  position: relative;
+}
