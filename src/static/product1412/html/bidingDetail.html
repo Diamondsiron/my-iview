@@ -699,25 +699,7 @@
         vms.RNmessage = JSON.parse(JSON.stringify(str))
        vms.initMainData() */
           //分割线
-        window.onload = function () {
-            document.addEventListener('message', function (e) {
-                vms.RNmessage = JSON.parse(e.data)
-                vms.initMainData()
-            })
-            
-        }
-        var refreshIntervalId = setInterval(function(){
-            if (window.originalPostMessage) {
-              
-                stop();
-            } 
-        }, 500);
-
-        function stop(){
-			let message = {key:'1',val:{name:'首次打开'}}
-			window.postMessage(JSON.stringify(message));
-            clearInterval(refreshIntervalId);
-        }
+        
        
        
        }
@@ -731,8 +713,8 @@
       isIphoneX(); */
     },
     mounted() {
-      document.getElementById("top").style.minHeight = (screen.height)+"px";
-      document.getElementById("bottom").style.minHeight = (screen.height)+"px";
+      document.getElementById("top").style.minHeight = (screen.height+10)+"px";
+      document.getElementById("bottom").style.minHeight = (screen.height+10)+"px";
       this.init()
       this.$nextTick(() => {
         this.initMainScroll();
