@@ -420,24 +420,11 @@ input:-ms-input-placeholder{
 }
 
 #choose1 .context-title{
-  display: inline-block;;
-  width: 2.48rem;
-  height: 0.72rem;
-  color: #f2f2f2;
 
-  border-radius: 10px;
-  background-color: #c7b299;
-  text-align: center;
 
 }
 #choose1 .context-line{
-  display: inline-block;
-  height: 1px;
-  border-bottom: solid 1px #c7b299;
-  width: 8.76rem;
-  position: absolute;
-  top: 0.36rem;
-  left: 2.58rem;
+
 }
 #choose1 .context-title p{
   /*margin-top: 0.1rem;*/
@@ -579,7 +566,7 @@ input:-ms-input-placeholder{
   width: 5.13rem;
   height: 5.13rem;
   margin: 2.22rem auto 0 auto;
-  background-color: #c3c3c3
+  /*background-color: #c3c3c3*/
 }
 #choose3 .grayblock-desc{
   margin: 0.42rem auto;

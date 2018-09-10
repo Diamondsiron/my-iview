@@ -16,30 +16,34 @@ article{
 section{
   display: flex;
   min-height: 4.89rem;
-  width: 100%;
+  width: 10.74rem;
+    margin-left: auto;
+    margin-right: auto;
   margin-top: 0.51rem;
   /* overflow: hidden; */
 }
 section>div:nth-child(1){
-  flex: 0 0 4.17rem;
+  flex: 0 0 3.45rem;
 }
 section>div:nth-child(1)>div{
-  margin-left: 0.72rem;
+  /*margin-left: 0.72rem;*/
   height: 4.89rem;
-  width: 3.89rem;
+  width: 3.45rem;
   /* background: #ffffff; */
 }
 section>div:nth-child(1)>div>img{
-  width: 3rem;
-  height: 4.26rem;
-  margin: 0.33rem 0 0 0.21rem;
+  width: 3.45rem;
+  height: 4.89rem;
+ /* margin: 0 0 0 0.21rem;*/
 }
 section>div:nth-child(2){
   flex: 1;
+    padding-top: 0.12rem;
+    padding-left: 0.42rem;
 }
 .context-table {
-  width: 6.87rem;
-  margin: 0.12rem 0 0 0.42rem;
+  width: 100%;
+ /* margin: 0.12rem 0 0 0.42rem;*/
 
   color: #989898;
   font-size: 0.32rem;

@@ -17,31 +17,16 @@ article{
 }
 .context-basic {
   margin-top: 0.75rem;
-  margin-left: 0.54rem;
-  position: relative;
-  height: 0.72rem;
-  font-size: 0.36rem;
+
 }
 .context-title {
-  display: inline-block;
-  width: 2.48rem;
-  height: 0.72rem;
-  color: #f2f2f2;
-  border-radius: 10px;
-  background-color: #c7b299;
-  text-align: center;
+
 }
 .context-title p {
-  font-size: 0.36rem !important;
+
 }
 .context-line {
-  display: inline-block;
-  height: 1px;
-  border-bottom: solid 1px #c7b299;
-  width: 8.76rem;
-  position: absolute;
-  top: 0.36rem;
-  left: 2.58rem;
+
 }
 .context-desc-block{
   margin-top: 0rem;
@@ -74,7 +59,7 @@ article{
 .context-desc{
    
   width: 10.29rem;
-  margin: 0 0 0 1.14rem;
+  margin: 0 auto 0 auto;
 }
 .p1{
   margin: 0.42rem 0 0 0;

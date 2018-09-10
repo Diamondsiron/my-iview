@@ -11,7 +11,8 @@ ul{
   width: 10.26rem;
 }
 .ul-title{
-  margin: 0.60rem 0 0.09rem 1.08rem;
+  width: 10.26rem;
+  margin: 0.60rem auto 0.09rem auto;
   font-size: 0.36rem;
   height: 0.36rem;
   line-height: 0.36rem;
@@ -205,7 +206,7 @@ li>p:nth-child(2){
   margin-left: 2.22rem;
 }
 .card-content4{
-  margin: 0.87rem 0rem 0rem 1.11rem;
+  margin: 0.87rem auto 0rem auto;
   width: 10.2rem;
   display: flex;
   flex-wrap: wrap;
@@ -236,35 +237,19 @@ li>p:nth-child(2){
 .ml60{
   margin-left:0.6rem;
 }
-.context-safety {
+.context-basic{
 
   margin-top: 0.63rem;
-  margin-left: 0.54rem;
-  height: 0.72rem;
-  font-size: 0px;
-  position: relative;
+
 }
 .context-title {
-  display: inline-block;
-  width: 2.48rem;
-  height: 0.72rem;
-  color: #f2f2f2;
-  border-radius: 10px;
-  background-color: #c7b299;
-  text-align: center;
+
 }
 .context-title p {
-  margin-top: 0.1rem;
-  font-size: 0.36rem;
+
 }
 .context-line {
-  display: inline-block;
-  height: 1px;
-  border-bottom: solid 1px #c7b299;
-  width: 8.76rem;
-  position: absolute;
-  top: 0.36rem;
-  left: 2.58rem;
+
 }
 .mt57{
   margin-top: 0.57rem

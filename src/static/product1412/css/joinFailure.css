@@ -25,7 +25,8 @@ article{
  /*  background: url("../image/cp_7.png");
   background-size: contain; */
   overflow: hidden;
-  left: 0.54rem;
+  left: 50%;
+  transform: translate(-50%);
   background: #fff;
   border-radius: 0.23rem;
 }

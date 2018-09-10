@@ -321,6 +321,15 @@ footer .button{
 #choose1>div:nth-child(1){
   width: 100%;
 }
+.footer_2 {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    height: 1.86rem;
+    width: 100%;
+    background-color: #fff;
+}
 #choose1>div:nth-child(1)>img{
   width: 100%;
 }

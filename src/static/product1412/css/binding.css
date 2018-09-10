@@ -2,7 +2,7 @@ html,body{
   padding: 0px;
   margin: 0px;
   width: 100%;
- /*  height: 100%; */
+  /* height: 100%;*/
   background-color: #f0f0f0;
 }
 .mt66{
@@ -27,6 +27,11 @@ html,body{
 /* *{
   font-family:"SimSun"
 } */
+#top{
+ /* background-color: red;*/
+	/*opacity: 0.7;*/
+  /*position: relative;*/
+}
 #top .card{
   margin: 0.48rem auto 0 auto;
   width: 100%;
@@ -136,14 +141,14 @@ html,body{
 #top .table{
   width: 7.26rem;
   height: 0.66rem;
-  margin: 0.51rem auto;
+  margin: 0.51rem auto 0.3rem auto;
   background: url(../image/cp_6.png) no-repeat;
   background-size: contain;
 }
 #top  .table-desc{
   width: 7.26rem;
   height: 0.9rem;
-  margin: 0.3rem auto 0 auto;
+  margin: 0rem auto 0 auto;
   /* position: relative; */
  /* overflow: hidden;*/
   position: relative;
@@ -274,12 +279,12 @@ html,body{
   line-height: 100%;
   height: 0.36rem;
 }
-.top-footer{
-  /* width: 100%;
+.top-footer-b{
+   width: 100%;
   position:absolute;
-  bottom: 0rem;
+  bottom: 0.25rem;
   left: 0rem;
-  background-color: #f2f2f2; */
+ /* background-color: red;*/
 }
 #top .foot-touch{
   font-size: 0.36rem;
@@ -352,12 +357,19 @@ a:link {
     font-size: 0.54rem;
   }
   .font1{
-  color:#656565;
-  font-weight: bold;
-}
+    color: #656565;
+
+    font-weight: bold;
+    height: 0.36rem;
+    line-height: 0.36rem;
+
+  }
 .font2{
   color:#989898;
   font-weight: 100;
+  height: 0.36rem;
+  line-height: 0.36rem;
+  margin-top: 0.18rem;
 }
 .font3{
   color: #ff3a49;
@@ -366,13 +378,7 @@ a:link {
   font-size: 0.45rem;
 }
 
-html,body{
-padding: 0px;
-margin: 0px;
-width: 100%;
-/* height: 100%; */
-background-color: #f2f2f2;;
-}
+
 header{
 width: 100%;
 height: 1.46rem;
@@ -426,8 +432,12 @@ height: 0.72rem;
 }
 #choose1 .context-safety-desc{
 margin-top: 0.66rem;
-
-
+  width: 8.64rem;
+  margin-left: auto;
+  margin-right: auto;
+position: relative;
+  height:2.1rem;
+/*background-color: red;*/
 
 }
 #choose1 .context-safety-desc div{
@@ -438,14 +448,18 @@ width: 1.5rem;
 
 width: 100%;
 }
-#choose1 .context-safety-desc div:nth-child(1){
-margin-left: 1.89rem;
+#choose1 .context-safety-desc>div:nth-child(1){
+  position: absolute;
+  left: 0;
 }
-#choose1 .context-safety-desc div:nth-child(2){
-margin-left: 2.07rem;
+#choose1 .context-safety-desc>div:nth-child(2){
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
-#choose1 .context-safety-desc div:nth-child(3){
-margin-left: 2.07rem;
+#choose1 .context-safety-desc>div:nth-child(3){
+  position: absolute;
+  right: 0;
 }
 #choose1 .context-serve{
 margin-top: 0.78rem;
@@ -498,7 +512,7 @@ height: 0.72rem;
 }
 
 #choose1 .context-theory-desc{
-
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
   width: 10.26rem;
@@ -510,28 +524,14 @@ height: 4.44rem;
 margin-left: auto;
 margin-right: auto;
 }
-#choose1 .context-title{
-display: inline-block;;
-width: 2.48rem;
-height: 0.72rem;
-color: #f2f2f2;
+.context-title{
 
-border-radius: 10px;
-background-color: #c7b299;
-text-align: center;
 
 }
-#choose1 .context-line{
-display: inline-block;
+.context-line{
 
-height: 1px;
-border-bottom: solid 1px #c7b299;
-width: 8.76rem;
-position: absolute;
-top: 0.36rem;
-left: 2.58rem;
 }
-#choose1 .context-title p{
+.context-title p{
 
 
 }
@@ -687,10 +687,10 @@ color:#3b92f0;
 text-decoration:none;
 }
 .wrapper{
-  width: 100%;
+  /*width: 100%;
   position:absolute;
   top: 0px;
-  bottom: 0px;
+  bottom: 0px;*/
   overflow: hidden;
   z-index: 1;
 }
@@ -868,4 +868,114 @@ text-decoration:none;
   position: absolute;
   z-index: 10;
   transform: translate(-50%,-50%)
+}
+.modal{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(106,105,105,.7)
+
+}
+.modal-card{
+  position: fixed;
+  width: 9.15rem;
+  height: 8.91rem;
+  background-color: #fff;
+  border-radius: 5px;
+  top:50%;
+  left: 50%;
+  overflow: hidden;
+  transform: translate(-50%,-50%);
+}
+.modal-card>div:nth-child(1){
+  margin-top: 1.2rem;
+  text-align: center;
+  height: 0.36rem;
+  line-height: 0.36rem;
+  font-size: 0.36rem;
+  color:#989898;
+}
+.modal-card>div:nth-child(2){
+  margin: 0.45rem auto 0 auto;
+  width: 5.22rem;
+  /*background-color: #989898;*/
+}
+.modal-card>div:nth-child(2)>img{
+  width: 100%;
+}
+.modal-card>div:nth-child(3){
+  margin-top: 0.6rem;
+  text-align: center;
+  height: 0.42rem;
+  line-height: 0.42rem;
+  font-size: 0.42rem;
+  color:#998675;
+  font-weight: bold;
+}
+.modal-card>div:nth-child(4){
+  width: 7.53rem;
+  text-align: left;
+  margin: 0.54rem auto 0 auto;
+  /*height: 0.54rem;*/
+  line-height: 0.54rem;
+  font-size: 0.36rem;
+  color:#989898;
+  /*white-space: nowrap;*/
+}
+
+.modal-card>div:nth-child(5){
+  width: 6.96rem;
+  margin: 0.54rem auto 0 auto;
+  display: flex;
+  height: 1.35rem;
+}
+.modal-card-l{
+  flex: 1;
+}
+.modal-card-l>button{
+  height: 0.83rem;
+  display: block;
+  margin: 0.24rem auto 0 auto;
+  width: 3rem;
+
+  font-size: 0.36rem;
+  text-align: center;
+  border: none;
+  outline: none;
+  border-radius:0.24rem;
+  font-weight: 100;
+  background-color: #c3c3c3;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+.modal-card-r>button{
+  height: 0.83rem;
+  display: block;
+  margin: 0.24rem auto 0 auto;
+  width: 3rem;
+  color: #fff;
+  font-size: 0.36rem;
+  text-align: center;
+  border: none;
+  outline: none;
+  border-radius:0.24rem;
+  font-weight: 100;
+  background: -webkit-linear-gradient(#ff6a55, #ee1e27); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#ff6a55, #ee1e27); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#ff6a55, #ee1e27); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#ff6a55, #ee1e27); /* 标准的语法 */
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+.modal-card-r{
+  flex: 1;
+  margin-left: 0.24rem;
+}
+button:active{
+  opacity: 0.7;
 }

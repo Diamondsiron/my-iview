@@ -9,8 +9,8 @@ html,body{
   overflow: hidden;
 }
 .content-img{
-width: 4.8rem;
-height: 4.8rem;
+width: 160px;
+height: 160px;
 margin: 4.56rem auto 0 auto;
 }
 .content-img>img{
@@ -21,6 +21,7 @@ margin: 4.56rem auto 0 auto;
   text-align: center;
   margin-top: 0.87rem;
   color: #656565;
+  /*color: red;*/
   height: 0.48rem;
   font-size: 0.48rem;
   line-height: 0.48rem

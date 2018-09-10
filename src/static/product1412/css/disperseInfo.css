@@ -193,8 +193,12 @@ html,body{
   -webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 .footer{
- margin-top: 4.38rem;
- overflow: hidden;
+  position: absolute;
+  bottom: 0.15rem;
+  left: 50%;
+  margin-top: 4.38rem;
+  overflow: hidden;
+  transform: translateX(-50%);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-user-select: none;
   -moz-user-focus: none;
