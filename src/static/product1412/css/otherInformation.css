@@ -14,9 +14,9 @@ html,body{
 }
 .context-basic-desc{
   margin-top: 0.66rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 10.74rem;
+  margin-left: 1.08rem;
+  margin-right: 1.08rem;
+ /* width: 10.74rem;*/
 }
 .context-basic-desc>.context-table>tbody>tr>td:nth-child(1){
  width: 8.79rem;
@@ -38,7 +38,7 @@ width: 1.95rem;
 
 }
 .context-table {
-  width: 10.74rem;
+  /*width: 10.74rem;*/
   background-color: #ffffff;
   color: #989898;
   font-size: 0.32rem;

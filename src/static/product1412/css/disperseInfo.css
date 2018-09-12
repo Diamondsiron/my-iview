@@ -117,8 +117,9 @@ html,body{
     font-size: 0.54rem;
 } */
 .context-input{
-  width: 9.98rem;
-  margin: 0.27rem auto 0 auto;
+  /*width: 9.98rem;
+  margin: 0.27rem auto 0 auto;*/
+  margin: 0.27rem 1.44rem 0 1.44rem;
   height: 1.14rem;
   border:none;
   display: block;
@@ -294,6 +295,7 @@ a:visited {
     left: 50%;
     transform: translateX(-50%);
     display: none;
+    z-index: 10;
     /* transition: opacity 2s; */
   }
 .modal{

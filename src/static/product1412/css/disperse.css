@@ -15,6 +15,7 @@ html,body{
   overflow: hidden;
   z-index: 5;
 }
+
 #top .card>div:nth-child(1){
 
   position: absolute;
@@ -361,12 +362,12 @@ input:-ms-input-placeholder{
 }
 #choose1 .context-message-desc div{
   margin-top: 0.66rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 1.08rem;
+  margin-right: 1.08rem;
   font-size: 0.36rem;
   color: #656565;
   font-weight: bold;
-  width: 10.24rem;
+  /*width: 10.24rem;*/
 
 }
 #choose1  ul{
@@ -375,9 +376,9 @@ input:-ms-input-placeholder{
   padding: 0px;
   color: #989898;
   margin-bottom: 0px;
-  width: 10.26rem;
-  margin-left: auto;
-  margin-right: auto;
+ /* width: 10.26rem;*/
+  margin-left: 1.08rem;
+  margin-right: 1.08rem;
 
 }
 #choose1  ul li{
@@ -422,9 +423,9 @@ input:-ms-input-placeholder{
   height: 0.72rem;
 }
 #choose1 .context-borrow-desc div {
-  margin-left: auto;
-  margin-right: auto;
-  width: 10.24rem;
+  margin-left: 1.08rem;
+  margin-right: 1.08rem;
+ /* width: 10.24rem;*/
 
 }
 #choose1 .context-borrow-desc div span{

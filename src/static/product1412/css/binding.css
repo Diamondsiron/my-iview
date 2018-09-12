@@ -11,6 +11,7 @@ html,body{
 .mt78{
   margin-top: 0.78rem;
 }
+
 .mt75{
   margin-top: 0.75rem;
 }
@@ -413,10 +414,10 @@ color: #989898;
 }
 #choose1 .context-desc{
 margin-top: 0.57rem;
-margin-left: auto;
-  margin-right: auto;
+margin-left: 1.08rem;
+  margin-right: 1.08rem;
 line-height: 0.18rem;
-  width: 10.24rem;
+ /* width: 10.24rem;*/
 }
 #choose1 .context-desc>p{
   height: 0.54rem;
@@ -463,17 +464,17 @@ width: 100%;
 }
 #choose1 .context-serve{
 margin-top: 0.78rem;
-margin-left: auto;
-  margin-right: auto;
+margin-left: 1.08rem;
+  margin-right: 1.08rem;
 position: relative;
 height: 0.72rem;
-  width: 10.26rem;
+/*  width: 10.26rem;*/
 }
 #choose1 .context-serve-desc{
 margin-top: 0.57rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 10.26rem;
+  margin-left: 1.08rem;
+  margin-right: 1.08rem;
+ /* width: 10.26rem;*/
 
 }
 #choose1 .context-serve-desc>p{
@@ -491,9 +492,9 @@ height: 0.72rem;
 }
 #choose1 .context-advanced-desc{
 margin-top: 0.57rem;
-margin-left: auto;
-margin-right: auto;
-  width: 10.26rem;
+margin-left: 1.08rem;
+margin-right: 1.08rem;
+  /*width: 10.26rem;*/
 }
 #choose1 .context-advanced-desc>p{
   /*height: 0.54rem;*/

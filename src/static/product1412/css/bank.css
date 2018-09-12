@@ -9,6 +9,7 @@ header{
   /*height: 5rem;*/
   width: 100%;
 }
+
 header>img{
   width: 100%;
 }
@@ -58,8 +59,9 @@ article{
 }
 .context-desc{
    
-  width: 10.29rem;
-  margin: 0 auto 0 auto;
+  /*width: 10.29rem;
+  margin: 0 auto 0 auto;*/
+  margin: 0 0.99rem 0 1.14rem;
 }
 .p1{
   margin: 0.42rem 0 0 0;

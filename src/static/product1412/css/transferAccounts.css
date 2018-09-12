@@ -26,6 +26,7 @@ html,body{
   height: 9.09rem;
   overflow: hidden;
   z-index: 5;
+  position: relative;
 }
 .card-title{
   margin: 0.99rem auto 0 auto;

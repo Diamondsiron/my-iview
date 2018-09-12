@@ -14,9 +14,9 @@ section{
   background-color: #fff
 }
 section>div:nth-child(1){
-  width: 10.26rem;
+ /* width: 10.26rem;*/
  /* margin-left: 1.08rem;*/
-  margin: 0.42rem auto 0 auto;
+  margin: 0.42rem 1.08rem 0 1.08rem;
   height: 0.42rem;
   line-height: 0.42rem;
   font-size: 0.42rem;
@@ -24,19 +24,20 @@ section>div:nth-child(1){
   
 }
 section>div:nth-child(2){
-  width: 10.26rem;
+ /* width: 10.26rem;*/
  /* margin-left: 1.08rem;*/
-  margin: 0.39rem auto 0 auto;
+  margin: 0.39rem 1.08rem 0 1.08rem;
   height: 0.32rem;
   line-height: 0.32rem;
   font-size: 0.32rem;
   color: #989898
 }
 section>div:nth-child(3){
-  width: 10.26rem;
+/*  width: 10.26rem;*/
   height: 4.32rem;
+  overflow: hidden;
   /*margin-left: 1.08rem;*/
-  margin: 0.18rem auto 0 auto;
+  margin: 0.18rem 1.08rem 0 1.08rem;
 }
 img{
   width: 100%;

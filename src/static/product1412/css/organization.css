@@ -13,6 +13,7 @@ html,body{
   position: relative;
   height: 0.72rem;
 }
+
 .context-title {
 
 }
@@ -70,9 +71,9 @@ td>div{
 }
 .context-basic-desc{
   margin-top: 0.66rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 10.74rem;
+  margin-left: 0.84rem;
+  margin-right: 0.84rem;
+ /* width: 10.74rem;*/
 }
 .context-basic-desc>.context-table>tbody>tr>td:nth-child(1){
   width: 0.30rem;
@@ -94,9 +95,9 @@ width: 7.38rem;
 }
 .context-experience-desc{
   margin-top: 0.66rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 10.26rem;
+  margin-left: 1.08rem;
+  margin-right: 1.08rem;
+ /* width: 10.26rem;*/
   font-size: 0.36rem;
   color: #989898;
   line-height: 0.54rem;
@@ -109,9 +110,9 @@ width: 7.38rem;
 }
 .context-platform-desc{
   margin-top: 0.66rem;
-  width: 10.74rem;
-  margin-left: auto;
-  margin-right: auto;
+  /*width: 10.74rem;*/
+  margin-left: 0.84rem;
+  margin-right: 0.84rem;
 }
 .v-baseline{
   vertical-align: baseline;
@@ -153,11 +154,11 @@ width: 7.38rem;
 }
 .context-shareholder-desc{
   margin-top: 0.66rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 1.08rem;
+  margin-right: 1.08rem;
   font-size: 0.36rem;
   color:#989898;
-  width: 10.26rem;
+ /* width: 10.26rem;*/
 }
 .card1>div:nth-child(1)>div:nth-child(1){
 display: inline-block;

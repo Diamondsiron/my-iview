@@ -21,8 +21,9 @@ article>p{
   color: #989898;
   font-size: 0.36rem;
   line-height: 0.54rem;
-  width: 10.26rem;
-  margin: 0.54rem auto 1.14rem auto;
+  /*width: 10.26rem;
+  margin: 0.54rem auto 1.14rem auto;*/
+  margin: 0.54rem 1.08rem 1.14rem 1.08rem;
 }
 article>div{
  

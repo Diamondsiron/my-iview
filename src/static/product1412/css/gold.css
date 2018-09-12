@@ -27,6 +27,10 @@ header>img{
   font-size: 0.72rem;
   color: #ffffff;
 }
+.context-basic {
+  margin-left: 1.08rem !important;
+  margin-right: 1.08rem !important;
+}
 .succeed>div:nth-child(1){
 display: inline-block;
 
