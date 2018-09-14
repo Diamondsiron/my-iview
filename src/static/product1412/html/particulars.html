@@ -125,7 +125,7 @@
 
 
 				axios.post(axiosBaseUrl+"assets/jxDetailQuery",req).then(res=>{
-					vms.recentList = res.data.sub_packs
+					//vms.recentList = res.data.sub_packs
 					//vms.recentList = [0,1,2,3,4,5,6,7,8,9]
 					vms.$nextTick(() => {
 						//vms.initRecentScroll();
