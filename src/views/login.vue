@@ -73,13 +73,13 @@
             </Card>
         </div>
         </transition>
-        <vue-canvas-nest :config="{color:'255,0,0', count: 88}" :el="'#area'"></vue-canvas-nest>
+        
        
     </div>
 </template>
 <script>
 import CanvasNest from 'canvas-nest.js';
-import vueCanvasNest from 'vue-canvas-nest'
+
 import Util from '@/libs/util';
 //import axios from 'axios';
   export default{
@@ -89,8 +89,8 @@ import Util from '@/libs/util';
           list:[],
           cn: '',
         config: {
-            color: '255,255,255',
-            count: 200,
+            color: '0,0,0',
+            count: 99,
              zIndex: 2,
         },
           showOrg:false,
@@ -118,11 +118,7 @@ import Util from '@/libs/util';
 
       }
     },
-    components: {
-            vueCanvasNest,
-            
-    },
-    methods:{
+   methods:{
         initList(){
             let vm = this
             vm.list = JSON.parse(Util.getStorge("User")).jyau_content.jyau_resData[0].org_list
@@ -370,6 +366,8 @@ header{
 }
 .login-con{
     position: absolute;
+    border-radius: 4px;
+    border:solid 1px #c3c3c3;
     right: 160px;
     top: 50%;
     transform: translateY(-60%);
@@ -379,7 +377,7 @@ header{
 .login{
 width: 100%;
 height: 100%;
-background-image: url('https://file.iviewui.com/iview-admin/login_bg.jpg');
+/* background-image: url('https://file.iviewui.com/iview-admin/login_bg.jpg'); */
 background-size: cover;
 background-position: center;
 position: relative;
