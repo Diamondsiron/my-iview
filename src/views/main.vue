@@ -22,7 +22,7 @@
     }
 </style>
 <template>
-    <div class="layout">
+    <div class="layout " >
         
         <div class="leftMenu">
             <shrinkable-menu  @on-change="handleSubmenuChange"  :menu-list="menuLists" >
@@ -80,6 +80,7 @@
 // const url ="ws://10.2.0.155:8199/AuthorityM_Serv/websocket/" 
   var websocket
   import Util from '@/libs/util';
+  
   import lockScreen from '@/components/lockscreen/lockscreen.vue';
   import logout from '@/components/logout/logout.vue';
   import fullScreen from '@/components/fullscreen/fullscreen.vue';
@@ -103,7 +104,12 @@
                 menuList:[],
                 messageList:[],
                 modal:false,
-                message:""
+                message:"",
+                cn: '',
+                config: {
+                    color: '255,255,255',
+                    count: 200,
+                }
             }
         },
         computed: {
@@ -290,8 +296,10 @@
             window.onbeforeunload = function() {
             vm.closeWebScoket();
             }
+             
             
         },
+       
         watch:{
             '$route' (to){
                 let title = to.meta.title;

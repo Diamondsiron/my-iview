@@ -1,5 +1,5 @@
 <template>
-    <div class="login" >
+    <div class="login vue-canvas-nest-element" >
            <transition name="fade">
             <div class="org" v-if="showOrg">
                 <Card :bordered="false">
@@ -73,10 +73,13 @@
             </Card>
         </div>
         </transition>
+        <vue-canvas-nest :config="{color:'255,0,0', count: 88}" :el="'#area'"></vue-canvas-nest>
        
     </div>
 </template>
 <script>
+import CanvasNest from 'canvas-nest.js';
+import vueCanvasNest from 'vue-canvas-nest'
 import Util from '@/libs/util';
 //import axios from 'axios';
   export default{
@@ -84,6 +87,12 @@ import Util from '@/libs/util';
     data(){
       return{
           list:[],
+          cn: '',
+        config: {
+            color: '255,255,255',
+            count: 200,
+             zIndex: 2,
+        },
           showOrg:false,
           showLogin:true,
           type:"password",
@@ -108,6 +117,10 @@ import Util from '@/libs/util';
           }
 
       }
+    },
+    components: {
+            vueCanvasNest,
+            
     },
     methods:{
         initList(){
@@ -331,7 +344,12 @@ import Util from '@/libs/util';
     },
     mounted(){
         this.init();
-    }
+        const el = document.querySelector('.vue-canvas-nest-element')
+        this.cn = new CanvasNest(el, this.config)
+    },
+     beforeDestroy() {
+        this.cn.destroy()
+    },
   }
   
 </script>
